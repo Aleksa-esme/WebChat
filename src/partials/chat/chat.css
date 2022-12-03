@@ -1,0 +1,105 @@
+.chat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 72px;
+  padding: 12px 0;
+  border-top: 1px solid var(--grey);
+  margin: 0 10px;
+}
+
+.chat__image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 47px;
+  height: 47px;
+          align-items: center;
+          justify-content: center;
+  border-radius: 30px;
+  margin-right: 10px;
+  background-color: var(--dark-grey);
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
+}
+
+.chat__image img {
+  border-radius: 30px;
+}
+
+.chat__user {
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.chat__date {
+  color: var(--dark-grey);
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.chat__message {
+  display: -webkit-box;
+  overflow: hidden;
+  max-width: 246px;
+  max-height: 40px;
+  padding-top: 4px;
+  -webkit-box-orient: vertical;
+  color: var(--dark-grey);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  -webkit-line-clamp: 2;
+  line-height: 16px;
+  text-overflow: ellipsis;
+}
+
+.chat__indicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 24px;
+  height: 24px;
+          align-items: center;
+      align-self: flex-end;
+          justify-content: center;
+  border-radius: 20px;
+  background: var(--blue);
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-align: center;
+  -ms-flex-item-align: end;
+      -ms-flex-pack: center;
+}
+
+.chat__indicator span {
+  color: var(--white);
+  font-size: 13px;
+  line-height: 14px;
+}
+
+.chat_line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+          justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+}
+
+@media (max-width: 1024px) {
+  .chat__message {
+    max-width: 212px;
+  }
+  .chat__indicator {
+    width: 20px;
+    height: 20px;
+  }
+  .chat__indicator span {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}
