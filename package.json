@@ -4,6 +4,7 @@
   "description": "---",
   "scripts": {
     "dev": "parcel src/pages/index.hbs --no-cache",
+    "build": "parcel build src/pages/index.hbs",
     "start": "parcel build src/pages/index.hbs && node ./server.js",
     "stylelint": "stylelint \"src/**/*.scss\"",
     "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
