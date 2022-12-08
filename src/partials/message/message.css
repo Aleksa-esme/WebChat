@@ -3,6 +3,9 @@
   border: 1px solid var(--grey);
   border-radius: 12px;
   margin: 10px 20px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-left: 160px;
 }
 
 .message img {
@@ -18,45 +21,40 @@
 }
 
 .message_user {
+  -ms-flex-item-align: end;
       align-self: flex-end;
   margin-right: 160px;
-  -ms-flex-item-align: end;
-}
-
-.message_notme {
-      align-self: flex-start;
-  margin-left: 160px;
-  -ms-flex-item-align: start;
+  margin-left: unset;
 }
 
 .message-text {
   padding: 10px;
+  background: var(--not-author-message);
+  border-bottom-left-radius: unset;
 }
 
 .message-text_user {
   background: var(--author-message);
   border-bottom-right-radius: unset;
-}
-
-.message-text_notme {
-  background: var(--not-author-message);
-  border-bottom-left-radius: unset;
+  border-bottom-left-radius: 12px;
 }
 
 @media (max-width: 1440px) {
+  .message {
+    margin-left: 60px;
+  }
   .message_user {
     margin-right: 60px;
-  }
-  .message_notme {
-    margin-left: 60px;
+    margin-left: unset;
   }
 }
 
 @media (max-width: 1024px) {
+  .message {
+    margin-left: unset;
+  }
   .message_user {
     margin-right: unset;
   }
-  .message_notme {
-    margin-left: unset;
-  }
 }
+/*# sourceMappingURL=message.css.map */
