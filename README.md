@@ -1,5 +1,6 @@
 ## Веб-приложение "Чат" без использования фреймворков
 ---
+[![Netlify Status](https://api.netlify.com/api/v1/badges/29383828-d647-4abf-8553-be28ee63d810/deploy-status)](https://app.netlify.com/sites/capable-puffpuff-dc3ab9/deploys)
 
 ## Описание
 Приложение состоит из экранов:
@@ -14,7 +15,3 @@
 ## Установка
 - `npm run dev` - запуск версии для разработчика
 - `npm run start` - запуск на порту 3000
-
-## Бейджи
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/29383828-d647-4abf-8553-be28ee63d810/deploy-status)](https://app.netlify.com/sites/capable-puffpuff-dc3ab9/deploys)
