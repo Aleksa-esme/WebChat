@@ -1,8 +1,16 @@
 {
     "extends": "airbnb",
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
     "rules": {
       "no-console": "off",
-      "max-len": [2, 100],
-      "max-params": [2, 3]
-      }
+      "no-underscore-dangle": "off",
+      "no-undef": "off",
+      "no-param-reassign":"off",
+      "class-methods-use-this":"off"
+    }
 } 
