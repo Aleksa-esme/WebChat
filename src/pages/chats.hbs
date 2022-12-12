@@ -1,3 +1,27 @@
+---
+{
+    data: [
+        {
+            name: 'Илья',
+            date: '15:12',
+            message: 'Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!',
+            messages: '10'
+        },
+        {
+            name: 'Илья',
+            date: '15:12',
+            message: 'Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!',
+            messages: '10'
+        },
+        {
+            name: 'Илья',
+            date: '15:12',
+            message: 'Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!Друзья, у меня для вас особенный выпуск новостей!',
+            messages: '10'
+        }
+    ]
+}
+---
 {{!< layout}}
 <section class="chat-page">
     <div class="chats">
@@ -7,9 +31,9 @@
         </a>
         <input type="text" class="chats__search" placeholder="Поиск">
         <div class="chats__list">
-            {{> chat/chat}}
-            {{> chat/chat}}
-            {{> chat/chat}}
+            {{#each data }}
+                {{> chat/chat name=name date=date message=message messages=messages}}
+            {{/each}}
         </div>
     </div>
     <div class="messages">

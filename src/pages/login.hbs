@@ -1,9 +1,29 @@
+---
+{
+    data: [
+        {
+            label: 'Логин',
+            value: 'ivanivanov',
+            name: 'login',
+            type: 'text'
+        },
+        {
+            label: 'Пароль',
+            value: '12345',
+            name: 'password',
+            type: 'password'
+        }
+    ]
+}
+---
+
 {{!< layout}}
 <section class="login">
     <h6 class="login__title">Вход</h6>
     <form id="form" action="#" class="login-form">
-        {{> input/input label='Логин' value='ivanivanov' name='login' type='text' classLabel='login-form__label' classInput='login-form__value'}}
-        {{> input/input label='Пароль' value='12345' name='password' type='password' classLabel='login-form__label' classInput='login-form__value'}}
+        {{#each data }}
+            {{> input/input label=label value=value name=name type=type classLabel='login-form__label' classInput='login-form__value'}}
+        {{/each}}
         <div class="login-form__buttons login-form__buttons-login">
             {{> button/button title='Войти' class="login-form__button-login"}}
             {{> link/link title='Нет аккаунта?' class="login-form__link"}}
