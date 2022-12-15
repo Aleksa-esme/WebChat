@@ -55,10 +55,14 @@
 {{!< layout}}
 <section class="login">
     <h6 class="login__title">Регистрация</h6>
-    <form id="form" action="#" class="login-form">
-        {{#each data }}
-                {{> input/input label=label value=value name=name type=type classLabel='login-form__label' classInput='login-form__value'}}
-        {{/each}}
+    <form id="form" action="#" class="login-form" method="POST">
+        <ul class="form-list">
+            {{#each data }}
+                <li>
+                    {{> input/input label=label value=value name=name type=type classLabel='login-form__label' classInput='login-form__value'}}
+                </li>
+            {{/each}}
+        </ul>
         <div class="login-form__buttons login-form__buttons-register">  
             {{> button/button title='Зарегистрироваться' class="login-form__button-register"}}
             {{> link/link title='Войти' class="login-form__link"}}

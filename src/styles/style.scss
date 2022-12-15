@@ -18,6 +18,8 @@
     font-weight: 500;
 }
 
+div, input, textarea, button, :focus, :active { outline:none; }
+
 .container {
     width: 100%;
     min-width: var(--mobile-s-width);
@@ -32,7 +34,7 @@
     justify-content: center;
 }
 
-.error {
+.http-error {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,6 +106,7 @@
         }
         &__label {
             display: flex;
+            width: 100%;
             justify-content: space-between;
             padding: 10px 0;
             border-bottom: 1px solid var(--grey);
@@ -162,8 +165,10 @@
         flex-direction: column;
         &__label {
             display: flex;
+            width: 100%;
             flex-direction: column;
-            padding-bottom: 16px;
+            padding-top: 16px;
+            border-bottom: 1px solid var(--blue);
             color: var(--dark-grey);
             font-size: 14px;
             line-height: 14px;
@@ -171,10 +176,10 @@
         &__value {
             padding: 8px 0;
             border: unset;
-            border-bottom: 1px solid var(--blue);
             background-color: unset;
             font-size: 18px;
             line-height: 18px;
+            width: 100%;
         }
         &__buttons {
             display: flex;
@@ -282,6 +287,11 @@
         justify-content: space-between;
         padding: 14px 20px;
         border-top: 1px solid var(--grey);
+        &__field {
+            display: flex;
+            position: relative;
+            width: 100%;
+        }
         &__input {
             width: 100%;
             padding: 9px 30px;
@@ -328,6 +338,44 @@
 
 }
 
+.form {
+    &-list li { 
+        display: flex; 
+        position: relative; 
+    }
+    &__error { 
+        border-color: #d24a4a;
+    }
+}
+
+.error { 
+    max-width: 260px; 
+    display: none; 
+    font-size: 13px; 
+    line-height: 15px; 
+    color: var(--white); 
+    position: absolute; 
+    left: 0px; 
+    top: calc(100% + 8px); 
+    z-index: 100; 
+    padding: 6px 10px 7px; 
+    border-radius: 6px; 
+    background: var(--warning); 
+    opacity: 0.95;
+    &:before { 
+        width: 0; 
+        height: 0; 
+        content: ''; 
+        position: absolute; 
+        left: 15px; 
+        top: -8px; 
+        border-right: 8px solid transparent; 
+        border-left: 8px solid transparent; 
+        border-bottom: 8px solid var(--warning); 
+        opacity: 0.95;
+    }
+}
+
 @media (max-width: 1024px) {   
     .chats {
         width: 310px;
@@ -335,7 +383,7 @@
 }
 
 @media (max-width: 768px) {
-    .error {
+    .http-error {
         &__number {
             font-size: 48px;
             line-height: 48px;
@@ -388,7 +436,6 @@
         }
         &-form {
             &__label {
-                padding-bottom: 14px;
                 font-size: 12px;
                 line-height: 12px;
             }
@@ -405,7 +452,14 @@
             }
         }
     }
-   
+
+    .error { 
+        font-size: 12px; 
+        line-height: 14px; 
+        top: calc(100% + 8px); 
+        padding: 5px 10px; 
+    }
+    
 }
 
 @media (max-width: 425px) {
@@ -420,7 +474,7 @@
         &-form {
             height: 100%;
             &__label {
-                padding-bottom: 10px;
+                padding-bottom: 6px;
                 font-size: 11px;
                 line-height: 11px;
             }
@@ -440,7 +494,7 @@
                 }
             }
             &__button-register {
-                margin-top: unset;
+                margin-top: 20px;
             }
             &__button-login {
                 margin-top: 14px;
@@ -479,6 +533,12 @@
             }
         }
     }
+
+    .error { 
+        font-size: 10px; 
+        line-height: 12px; 
+        padding: 5px 8px; 
+    }
 }
 
 :root {
@@ -492,6 +552,7 @@
     --dark-grey: #999999;
     --author-message: #E4EDFD;
     --not-author-message: #F8F8F8;
+    --warning: #d24a4a;
     --shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
 
     --mobile-s-width: 320px;

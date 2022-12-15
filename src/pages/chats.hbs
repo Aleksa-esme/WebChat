@@ -61,10 +61,13 @@
                 <p>Круто!</p>
             {{/message/message}}
         </div>
-        <div class="messages-send">
+        <form class="messages-send" id="form" action="#" >
             {{> button-svg/button-svg svg="../assets/svg/file.svg" alt='add file'}}
-            <textarea type="text" class="messages-send__input" placeholder="Сообщение" rows="2" wrap="soft" style="overflow:hidden"></textarea>
+            <div class="messages-send__field">
+                <textarea name="message" type="text" class="form-field messages-send__input" placeholder="Сообщение" rows="2" wrap="soft" style="overflow:hidden"></textarea>
+                <span class="error"></span>
+            </div>
             {{> button-svg/button-svg svg="../assets/svg/arrow_button.svg" alt='send'}}   
-        </div>
+        </form>
     </div>
 </section>

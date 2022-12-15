@@ -47,13 +47,17 @@
         <img src="../assets/svg/arrow_button.svg" alt="back">
     </a>
     <div class="profile">
-        <form id="form" action="#" class="profile-form">
+        <form id="form" action="#" method="POST" class="profile-form">
             <div class="profile-form__photo"></div>
             <input type="file" name="avatar" accept="image/png, image/jpeg" class="profile-form__photo__input">
-            {{#each data }}
-                {{> input/input label=label value=value name=name type=type classLabel='profile-form__label' classInput='profile-form__value'}}
-            {{/each}}
+            <ul class="form-list">
+                {{#each data }}
+                    <li>
+                        {{> input/input label=label value=value name=name type=type classLabel='profile-form__label' classInput='profile-form__value'}}
+                    </li>
+                {{/each}}
+            </ul>
             {{> button/button title='Сохранить' class="profile-form__button-submit"}}
-        </form>
+	    </form>
     </div>
 </section>
