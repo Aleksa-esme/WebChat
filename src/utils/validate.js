@@ -96,6 +96,7 @@ class Form {
 
   getError(formData, property) {
     let error = '';
+    // переписать просто на функцию
     const validate = {
       [property]: () => {
         if (Form.checks[property].check.test(formData.get(`${property}`)) === false) {

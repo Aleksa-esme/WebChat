@@ -26,10 +26,10 @@ class EventBus {
   // оповещения подписчиков
   emit(event, ...args) {
     if (!this.listeners[event]) {
-      throw new Event(`Нет события: ${event}`);
+      return;
     }
 
-    this.listeners[event].forEach((listener) => {
+    this.listeners[event].forEach(listener => {
       listener(...args);
     });
   }

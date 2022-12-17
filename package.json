@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "---",
   "scripts": {
-    "dev": "parcel src/pages/index.hbs --no-cache",
+    "dev": "parcel src/index.html --no-cache",
     "build": "parcel build src/pages/index.hbs",
     "start": "parcel build src/pages/index.hbs && node ./server.js",
     "eslint": "eslint .",
@@ -21,6 +21,7 @@
   "license": "ISC",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@babel/core": "7.20.5",
     "@babel/eslint-parser": "7.19.1",
     "@babel/preset-env": "7.20.2",
@@ -35,7 +36,9 @@
     "typescript": "4.9.4"
   },
   "dependencies": {
-    "express": "4.18.2"
+    "express": "4.18.2",
+    "handlebars": "^4.7.7",
+    "nanoid": "^4.0.0"
   },
   "engines": {
     "node": ">=12.0.0"

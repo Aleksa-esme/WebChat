@@ -1,11 +1,20 @@
-function render(query, block) {
-  const root = document.querySelector(query);
+// import Block from "./block";
 
-  root.appendChild(block.getContent());
+// block: Block
+function renderDOM(rootSelector, block) {
+  const root = document.querySelector(rootSelector);
+
+  if (!root) {
+    throw new Error('Root not found');
+  }
 
   block.dispatchComponentDidMount();
 
-  return root;
+  root.innerHTML = '';
+
+  root.append(block.getContent());
+
+  // return root;
 }
 
-export default render;
+export default renderDOM;
