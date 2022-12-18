@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 import { HelperOptions } from 'handlebars';
-import Block from './block.js';
+import Block from './Block.js';
 
 function registerComponent(Component: typeof Block) {
   Handlebars.registerHelper(Component.name, ({ hash: { ...hash }, data }: HelperOptions) => {

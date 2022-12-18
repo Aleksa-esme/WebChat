@@ -1,4 +1,4 @@
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import template from './profile.hbs';
 
 class ProfilePage extends Block {

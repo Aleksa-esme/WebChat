@@ -1,7 +1,7 @@
-import Block from '../../utils/block';
-import template from './login.hbs';
+import Block from '../../utils/Block';
+import template from './Error404.hbs';
 
-class LoginPage extends Block {
+class Error404 extends Block {
   // constructor() {
   //   super();
   // }
@@ -15,4 +15,4 @@ class LoginPage extends Block {
   }
 }
 
-export default LoginPage;
+export default Error404;

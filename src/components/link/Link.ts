@@ -1,8 +1,13 @@
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import template from './link.hbs';
 
+interface ILinkProps {
+  title: String;
+  class: String;
+}
+
 class Link extends Block {
-  constructor(props) {
+  constructor(props: ILinkProps) {
     super(props);
   }
 

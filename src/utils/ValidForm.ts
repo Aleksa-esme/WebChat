@@ -1,4 +1,4 @@
-class Form {
+class ValidForm {
   static checks = {
     email: {
       check: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
@@ -107,13 +107,13 @@ class Form {
     // переписать просто на функцию
     const validate = {
       [property]: () => {
-        if (Form.checks[property].check.test(formData.get(`${property}`)) === false) {
-          error = Form.checks[property].error;
+        if (ValidForm.checks[property].check.test(formData.get(`${property}`)) === false) {
+          error = ValidForm.checks[property].error;
         }
       },
     };
 
-    if (property in Form.checks) {
+    if (property in ValidForm.checks) {
       validate[property]();
     }
     return error;
@@ -121,7 +121,7 @@ class Form {
 
   showError(property: string, error: string) {
     const el = this.form.querySelector(`[name=${property}]`) as HTMLElement | null;
-    const errorBox = Form.getElement(el);
+    const errorBox = ValidForm.getElement(el);
 
     el.parentElement.classList.add('form__error');
     errorBox.innerHTML = error;
@@ -129,7 +129,7 @@ class Form {
   }
 
   cleanError(el: Element) {
-    const errorBox = Form.getElement(el);
+    const errorBox = ValidForm.getElement(el);
     if (el.parentElement.classList.contains('form__error')) el.parentElement.classList.remove('form__error');
     errorBox.removeAttribute('style');
     this.iserror = false;
@@ -139,4 +139,4 @@ class Form {
 }
 
 const form = document.querySelector('[id=form]') as HTMLFormElement | null;
-if (form) new Form(form);
+if (form) new ValidForm(form);

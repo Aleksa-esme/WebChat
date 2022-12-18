@@ -1,7 +1,7 @@
-import Block from '../../utils/block';
-import template from './Modal.hbs';
+import Block from '../../utils/Block';
+import template from './Chats.hbs';
 
-class Modal extends Block {
+class Chats extends Block {
   // constructor() {
   //   super();
   // }
@@ -15,4 +15,4 @@ class Modal extends Block {
   }
 }
 
-export default Modal;
+export default Chats;

@@ -1,7 +1,7 @@
-import Block from '../../utils/block';
-import template from './Chats.hbs';
+import Block from '../../utils/Block';
+import template from './profileChange.hbs';
 
-class Chats extends Block {
+class profileChangePage extends Block {
   // constructor() {
   //   super();
   // }
@@ -15,4 +15,4 @@ class Chats extends Block {
   }
 }
 
-export default Chats;
+export default profileChangePage;

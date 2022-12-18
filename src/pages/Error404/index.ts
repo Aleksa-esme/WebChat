@@ -1,6 +1,5 @@
-import ProfilePage from './profile';
-import Input from '../../components/input/input';
-import Link from '../../components/link/link';
+import Error404 from './Error404';
+import Link from '../../components/link/Link';
 import renderDOM from '../../utils/renderDOM';
 import registerComponent from '../../utils/registerComponent';
 
@@ -9,10 +8,9 @@ import registerComponent from '../../utils/registerComponent';
 // // import components from './components/**/*.ts';
 
 document.addEventListener('DOMContentLoaded', () => {
-  registerComponent(Input);
   registerComponent(Link);
 
-  const page = new ProfilePage();
+  const page = new Error404();
 
   renderDOM('#app', page);
 });

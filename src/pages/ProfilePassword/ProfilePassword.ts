@@ -1,7 +1,7 @@
-import Block from '../../utils/block';
-import template from './profileChange.hbs';
+import Block from '../../utils/Block';
+import template from './profilePassword.hbs';
 
-class profileChangePage extends Block {
+class profilePasswordPage extends Block {
   // constructor() {
   //   super();
   // }
@@ -15,4 +15,4 @@ class profileChangePage extends Block {
   }
 }
 
-export default profileChangePage;
+export default profilePasswordPage;

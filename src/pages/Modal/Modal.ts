@@ -1,7 +1,7 @@
-import Block from '../../utils/block';
-import template from './Error404.hbs';
+import Block from '../../utils/Block';
+import template from './Modal.hbs';
 
-class Error404 extends Block {
+class Modal extends Block {
   // constructor() {
   //   super();
   // }
@@ -15,4 +15,4 @@ class Error404 extends Block {
   }
 }
 
-export default Error404;
+export default Modal;

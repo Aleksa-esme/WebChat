@@ -1,7 +1,6 @@
-import RegisterPage from './register';
-import Button from '../../components/button/button';
-import Input from '../../components/input/input';
-import Link from '../../components/link/link';
+import ProfileChangePage from './ProfileChange';
+import Button from '../../components/button/Button';
+import Input from '../../components/input/Input';
 import renderDOM from '../../utils/renderDOM';
 import registerComponent from '../../utils/registerComponent';
 
@@ -12,9 +11,8 @@ import registerComponent from '../../utils/registerComponent';
 document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Button);
   registerComponent(Input);
-  registerComponent(Link);
 
-  const page = new RegisterPage();
+  const page = new ProfileChangePage();
 
   renderDOM('#app', page);
 });

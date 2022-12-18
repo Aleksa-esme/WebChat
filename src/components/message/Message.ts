@@ -1,8 +1,13 @@
-import Block from '../../utils/block';
+import Block from '../../utils/Block';
 import template from './Message.hbs';
 
+interface IMessageProps {
+  content: String;
+  class: String;
+}
+
 class Message extends Block {
-  constructor(props) {
+  constructor(props: IMessageProps) {
     super(props);
   }
 

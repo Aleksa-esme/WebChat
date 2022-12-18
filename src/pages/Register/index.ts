@@ -1,7 +1,7 @@
-import LoginPage from './login';
-import Button from '../../components/button/button';
-import Input from '../../components/input/input';
-import Link from '../../components/link/link';
+import RegisterPage from './Register';
+import Button from '../../components/button/Button';
+import Input from '../../components/input/Input';
+import Link from '../../components/link/Link';
 import renderDOM from '../../utils/renderDOM';
 import registerComponent from '../../utils/registerComponent';
 
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Input);
   registerComponent(Link);
 
-  const page = new LoginPage();
+  const page = new RegisterPage();
 
   renderDOM('#app', page);
 });

@@ -1,7 +1,7 @@
-import Block from '../../utils/block';
-import template from './Error500.hbs';
+import Block from '../../utils/Block';
+import template from './register.hbs';
 
-class Error500 extends Block {
+class RegisterPage extends Block {
   // constructor() {
   //   super();
   // }
@@ -15,4 +15,4 @@ class Error500 extends Block {
   }
 }
 
-export default Error500;
+export default RegisterPage;

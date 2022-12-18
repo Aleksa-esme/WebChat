@@ -1,7 +1,7 @@
 import Chats from './Chats';
-import Chat from '../../components/chat/chat';
+import Chat from '../../components/chat/Chat';
 import Message from '../../components/message/message';
-import ButtonSvg from '../../components/button-svg/button-svg';
+import ButtonSvg from '../../components/buttonSvg/ButtonSvg';
 import renderDOM from '../../utils/renderDOM';
 import registerComponent from '../../utils/registerComponent';
 

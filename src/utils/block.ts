@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import EventBus from './event-bus';
+import EventBus from './EventBus';
 
 class Block {
   static EVENTS = {

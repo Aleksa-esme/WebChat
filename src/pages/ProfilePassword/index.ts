@@ -1,5 +1,6 @@
-import Modal from './Modal';
-import Button from '../../components/button/button';
+import ProfilePasswordPage from './ProfilePassword';
+import Button from '../../components/button/Button';
+import Input from '../../components/input/Input';
 import renderDOM from '../../utils/renderDOM';
 import registerComponent from '../../utils/registerComponent';
 
@@ -9,8 +10,9 @@ import registerComponent from '../../utils/registerComponent';
 
 document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Button);
+  registerComponent(Input);
 
-  const page = new Modal();
+  const page = new ProfilePasswordPage();
 
   renderDOM('#app', page);
 });
