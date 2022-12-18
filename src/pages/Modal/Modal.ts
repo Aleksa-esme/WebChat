@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import template from './template';
 
 class Modal extends Block {
   // constructor() {
@@ -11,7 +10,15 @@ class Modal extends Block {
   }
 
   render() {
-    return template;
+    return `
+      <section class="modal-wrapper">
+          <div class="modal">
+              <h6 class="modal__heading">Файл загружен</h6>
+              <p>pic.jpg</p>
+              {{{ Button title='Поменять' class='modal__button' }}}
+          </div>
+      </section>
+    `;
   }
 }
 

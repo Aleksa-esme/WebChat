@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import template from './template';
 
 class Error404 extends Block {
   // constructor() {
@@ -11,7 +10,13 @@ class Error404 extends Block {
   }
 
   render() {
-    return template;
+    return `
+      <section class="http-error">
+          <h6 class="http-error__number">404</h6>
+          <p class="http-error__description">Не туда попали</p>
+          {{{ Link title='Назад к чатам' class="link-small" }}}
+      </section>
+    `;
   }
 }
 
