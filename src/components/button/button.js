@@ -10,7 +10,6 @@ import template from './button.hbs';
 
 class Button extends Block {
   // props: IButtonProps
-  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
   }

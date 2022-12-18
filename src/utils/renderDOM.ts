@@ -1,7 +1,6 @@
-// import Block from "./block";
+import Block from './block';
 
-// block: Block
-function renderDOM(rootSelector, block) {
+function renderDOM(rootSelector: string, block: Block) {
   const root = document.querySelector(rootSelector);
 
   if (!root) {

@@ -4,10 +4,10 @@
   "description": "---",
   "scripts": {
     "dev": "parcel src/index.html --no-cache",
-    "build": "parcel build src/pages/index.hbs",
-    "start": "parcel build src/pages/index.hbs && node ./server.js",
-    "eslint": "eslint .",
-    "eslint:fix": "eslint . --fix",
+    "build": "parcel build src/index.html",
+    "start": "parcel build src/index.html && node ./server.js",
+    "eslint": "eslint . --ext .ts",
+    "eslint:fix": "eslint . --ext .ts --fix",
     "stylelint": "stylelint \"src/**/*.scss\"",
     "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -21,14 +21,18 @@
   "license": "ISC",
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
-    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
+    "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
     "@babel/core": "7.20.5",
     "@babel/eslint-parser": "7.19.1",
     "@babel/preset-env": "7.20.2",
+    "@types/node": "18.11.17",
+    "@typescript-eslint/parser": "5.46.1",
     "eslint": "8.29.0",
     "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "17.0.0",
     "parcel": "2.8.0",
-    "postcss-import": "15.0.0",
+    "postcss": "8.4.20",
+    "postcss-import": "15.1.0",
     "postcss-nested": "6.0.0",
     "stylelint": "14.16.0",
     "stylelint-config-idiomatic-order": "9.0.0",
@@ -37,8 +41,8 @@
   },
   "dependencies": {
     "express": "4.18.2",
-    "handlebars": "^4.7.7",
-    "nanoid": "^4.0.0"
+    "handlebars": "4.7.7",
+    "nanoid": "4.0.0"
   },
   "engines": {
     "node": ">=12.0.0"

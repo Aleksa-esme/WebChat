@@ -1,9 +1,13 @@
 {
     "compilerOptions": {
-        "rootDir": "src",
         "outDir": "dist",
         "target": "es2016",
         "sourceMap": true,
+        "moduleResolution":"node"
     },
-    "include": ["./src", "./node_modules/handlebars/types"]
+    "typeRoots": ["node_modules/@types", "typings/app.d.ts"],
+    "include": ["./src", "./node_modules/handlebars/types", "typings"],
+    "parserOptions": {
+    "project": "./tsconfig.json"
+}
 }

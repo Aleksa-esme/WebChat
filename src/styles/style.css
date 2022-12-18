@@ -552,7 +552,7 @@ div, input, textarea, button, :focus, :active {
   z-index: 100;
   padding: 6px 10px 7px;
   border-radius: 6px;
-  background: var(--warning);
+  background: var(--red);
   opacity: 0.95;
 }
 
@@ -565,7 +565,7 @@ div, input, textarea, button, :focus, :active {
   top: -8px;
   border-right: 8px solid transparent;
   border-left: 8px solid transparent;
-  border-bottom: 8px solid var(--warning);
+  border-bottom: 8px solid var(--red);
   opacity: 0.95;
 }
 
@@ -739,14 +739,13 @@ div, input, textarea, button, :focus, :active {
   --white: #fff;
   --black: #1E1E1E;
   --blue: #3369F3;
-  --red: #FF0000;
+  --red: #d24a4a;
   --light: #FBFBFB;
   --light-grey: #EFEFEF;
   --grey: #EAEAEA;
   --dark-grey: #999999;
   --author-message: #E4EDFD;
   --not-author-message: #F8F8F8;
-  --warning: #d24a4a;
   --shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
   --mobile-s-width: 320px;
 }

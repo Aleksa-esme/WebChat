@@ -9,14 +9,19 @@ class Block {
     FLOW_RENDER: 'flow:render',
   };
 
-  id = nanoid(6);
+  public id = nanoid(6);
 
-  _element = null;
+  private _element: HTMLElement | null = null;
 
-  _meta = null;
+  private _meta: { props: any };
 
-  // constructor(name, propsAndChildren = {}) {
-  constructor(propsAndChildren = {}) {
+  protected props: any;
+
+  protected children: Record<string, Block>;
+
+  private eventBus: () => EventBus;
+
+  constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus();
 
     // this.name = name;
@@ -25,13 +30,13 @@ class Block {
 
     this.children = children;
 
-    // this.initChildren();
-
     this._meta = {
       props,
     };
 
-    this.props = this._makePropsProxy(props); // protected
+    this.props = this._makePropsProxy(props);
+
+    this.initChildren();
 
     this.eventBus = () => eventBus;
 
@@ -47,9 +52,9 @@ class Block {
   //   this._name = value;
   // }
 
-  getChildren(propsAndChildren) {
-    const children = {};
-    const props = {};
+  getChildren(propsAndChildren: any) {
+    const children: any = {};
+    const props: any = {};
 
     Object.entries(propsAndChildren).map(([key, value]) => {
       if (value instanceof Block) {
@@ -63,10 +68,9 @@ class Block {
     return { props, children };
   }
 
-  // // protected
-  // initChildren() {}
+  protected initChildren() {}
 
-  _registerEvents(eventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -74,13 +78,12 @@ class Block {
   }
 
   init() {
-    // this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   _componentDidMount() {
     this.componentDidMount();
-    // this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
+    // this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount() {}
@@ -89,7 +92,7 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps, newProps) {
+  _componentDidUpdate(oldProps: any, newProps: any) {
     // const response = this.componentDidUpdate(oldProps, newProps);
     // this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     // return response;
@@ -98,11 +101,11 @@ class Block {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(oldProps: any, newProps: any) {
     return true;
   }
 
-  setProps = (nextProps) => {
+  setProps = (nextProps: any) => {
     if (!nextProps) {
       return;
     }
@@ -110,15 +113,14 @@ class Block {
     Object.assign(this.props, nextProps);
   };
 
-  get element() {
+  get element(): HTMLElement | null {
     return this._element;
   }
 
   _render() {
     const fragment = this.render();
 
-    // const newElement = fragment.firstElementChild as HTMLElement;
-    const newElement = fragment.firstElementChild;
+    const newElement = fragment.firstElementChild as HTMLElement;
 
     if (this._element) { // если не первый рендер
       this._element.replaceWith(newElement);
@@ -129,86 +131,51 @@ class Block {
     this._addEvents();
   }
 
-  render() {
+  protected render(): DocumentFragment {
     return new DocumentFragment();
   }
 
-  getContent() {
+  getContent(): HTMLElement | null {
     return this.element;
   }
 
   _makePropsProxy(props) {
     const self = this;
-    return new Proxy(props, {
-      get(target, prop) {
-        // if (prop.indexOf('_') === 0) {
-        //   throw new Error('Нет прав');
-        // }
+    return new Proxy(props as unknown as object, {
+      get(target: Record<string, unknown>, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
-        // if (prop.indexOf('_') === 0) {
-        //   throw new Error('Нет прав');
-        // }
+      set(target: Record<string, unknown>, prop: string, value: string) {
         const oldProps = { ...target };
         target[prop] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
         return true;
       },
       deleteProperty() {
-        // if (prop.indexOf('_') === 0) {
         throw new Error('Нет прав');
-        // }
-        // delete target[prop];
-        // return true;
       },
     });
   }
 
-  _removeEvents() {
-    // переписать удаление эвента, пока не работает, предыдущее событие остается в компоненте
-    const events = (this.props).events;
-
-    if (!events || !this.element) {
-      return;
-    }
-
-    Object.entries(events).forEach(([event, listener]) => {
-      this._element.removeEventListener(event, listener);
-      // this._element!.removeEventListener(event, listener);
-    });
-  }
-
   _addEvents() {
-    const events = (this.props).events;
+    const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {
       return;
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element.addEventListener(event, listener);
-      // this._element!.addEventListener(event, listener);
+      this._element!.addEventListener(event, listener);
     });
   }
 
-  _createDocumentElement(tagName) {
+  _createDocumentElement(tagName: string): HTMLElement {
     return document.createElement(tagName);
   }
 
-  // template: (context: any) => string, context: any
-  compile(template, context) {
-    // const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
-    const fragment = this._createDocumentElement('template');
-
-    // Object.entries(this.children).forEach(([key, child]) => {
-    //   if (Array.isArray(child)) {
-    //     context[key] = child.map((ch => `<div data-id="id-${ch.id}"></div>`));
-    //   }
-
-    //   context[key] = `<div data-id="id-${child.id}"></div>`;
-    // });
+  compile(template: (context: any) => string, context: any) {
+    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
     const htmlString = template({ ...context, children: this.children });
     fragment.innerHTML = htmlString;

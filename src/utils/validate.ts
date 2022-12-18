@@ -39,7 +39,15 @@ class Form {
     },
   };
 
-  constructor(form) {
+  protected readonly form: HTMLFormElement;
+
+  protected readonly fields: NodeListOf<HTMLElement>;
+
+  protected btn: HTMLElement;
+
+  protected iserror: Boolean;
+
+  constructor(form: HTMLFormElement) {
     this.form = form;
     this.fields = this.form.querySelectorAll('.form-field');
     this.btn = this.form.querySelector('[type=submit]');
@@ -47,7 +55,7 @@ class Form {
     this.registerEventsHandler();
   }
 
-  static getElement(el) {
+  static getElement(el: any) {
     return el.nextElementSibling;
   }
 
@@ -65,10 +73,10 @@ class Form {
     }
   }
 
-  validForm(e) {
+  validForm(e: any) {
     e.preventDefault();
-    const formData = new FormData(this.form);
-    let error;
+    const formData: FormData = new FormData(this.form);
+    let error: string;
 
     for (const property of formData.keys()) {
       error = this.getError(formData, property);
@@ -78,10 +86,10 @@ class Form {
     }
 
     if (this.iserror) return;
-    this.sendFormData(formData);
+    // this.sendFormData(formData);
   }
 
-  validBlurField(e) {
+  validBlurField(e: any) {
     const { target } = e;
     const property = target.getAttribute('name');
     const { value } = target;
@@ -94,7 +102,7 @@ class Form {
     this.showError(property, error);
   }
 
-  getError(formData, property) {
+  getError(formData: FormData, property: string) {
     let error = '';
     // переписать просто на функцию
     const validate = {
@@ -111,8 +119,8 @@ class Form {
     return error;
   }
 
-  showError(property, error) {
-    const el = this.form.querySelector(`[name=${property}]`);
+  showError(property: string, error: string) {
+    const el = this.form.querySelector(`[name=${property}]`) as HTMLElement | null;
     const errorBox = Form.getElement(el);
 
     el.parentElement.classList.add('form__error');
@@ -120,7 +128,7 @@ class Form {
     errorBox.style.display = 'block';
   }
 
-  cleanError(el) {
+  cleanError(el: Element) {
     const errorBox = Form.getElement(el);
     if (el.parentElement.classList.contains('form__error')) el.parentElement.classList.remove('form__error');
     errorBox.removeAttribute('style');
@@ -130,5 +138,5 @@ class Form {
 //   sendFormData(formData) {}
 }
 
-const form = document.querySelector('[id=form]');
+const form = document.querySelector('[id=form]') as HTMLFormElement | null;
 if (form) new Form(form);

@@ -1,13 +1,9 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
-// import { HelperOptions } from 'handlebars';
-// import Block from './block.js';
+import { HelperOptions } from 'handlebars';
+import Block from './block.js';
 
-// interface BlockConstructable<Props = any> {
-//     new(props: Props): Block;
-//   }
-
-function registerComponent(Component) {
-  Handlebars.registerHelper(Component.name, ({ hash: { ...hash }, data }) => {
+function registerComponent(Component: typeof Block) {
+  Handlebars.registerHelper(Component.name, ({ hash: { ...hash }, data }: HelperOptions) => {
     if (!data.root.children) {
       data.root.children = {};
     }
