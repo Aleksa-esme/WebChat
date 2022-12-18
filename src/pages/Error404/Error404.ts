@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Error404.hbs';
+import template from './template';
 
 class Error404 extends Block {
   // constructor() {
@@ -11,7 +11,7 @@ class Error404 extends Block {
   }
 
   render() {
-    return this.compile(template, {});
+    return template;
   }
 }
 

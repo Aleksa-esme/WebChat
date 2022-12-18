@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Modal.hbs';
+import template from './template';
 
 class Modal extends Block {
   // constructor() {
@@ -11,7 +11,7 @@ class Modal extends Block {
   }
 
   render() {
-    return this.compile(template, {});
+    return template;
   }
 }
 

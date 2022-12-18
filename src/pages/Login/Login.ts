@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
-import template from './login.hbs';
+import template from './template';
 
-class LoginPage extends Block {
+class Login extends Block {
   // constructor() {
   //   super();
   // }
@@ -11,8 +11,8 @@ class LoginPage extends Block {
   }
 
   render() {
-    return this.compile(template, {});
+    return template;
   }
 }
 
-export default LoginPage;
+export default Login;

@@ -1,18 +1,18 @@
 import Block from '../../utils/Block';
-import template from './register.hbs';
+import template from './template';
 
-class RegisterPage extends Block {
-  // constructor() {
-  //   super();
-  // }
+class Register extends Block {
+  constructor(props) {
+    super({ ...props });
+  }
 
   componentDidMount() {
     console.log('готов');
   }
 
   render() {
-    return this.compile(template, {});
+    return template;
   }
 }
 
-export default RegisterPage;
+export default Register;

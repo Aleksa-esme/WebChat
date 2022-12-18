@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Chat.hbs';
+import template from './template';
 
 interface IChatProps {
   name: String;
@@ -14,7 +14,7 @@ class Chat extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return template;
   }
 }
 

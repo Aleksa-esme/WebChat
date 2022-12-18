@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './ButtonSvg.hbs';
+import template from './template';
 
 interface IButtonSvgProps {
   alt: String;
@@ -12,7 +12,7 @@ class ButtonSvg extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return template;
   }
 }
 

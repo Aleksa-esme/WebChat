@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
-import template from './profile.hbs';
+import template from './template';
 
-class ProfilePage extends Block {
+class Profile extends Block {
   // constructor() {
   //   super();
   // }
@@ -11,8 +11,8 @@ class ProfilePage extends Block {
   }
 
   render() {
-    return this.compile(template, {});
+    return template;
   }
 }
 
-export default ProfilePage;
+export default Profile;

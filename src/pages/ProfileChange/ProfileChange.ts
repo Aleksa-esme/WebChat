@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
-import template from './profileChange.hbs';
+import template from './template';
 
-class profileChangePage extends Block {
+class ProfileChange extends Block {
   // constructor() {
   //   super();
   // }
@@ -11,8 +11,8 @@ class profileChangePage extends Block {
   }
 
   render() {
-    return this.compile(template, {});
+    return template;
   }
 }
 
-export default profileChangePage;
+export default ProfileChange;

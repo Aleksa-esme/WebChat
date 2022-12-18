@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Button.hbs';
+import template from './template';
 
 interface IButtonProps {
   title: String;
@@ -15,7 +15,7 @@ class Button extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return template;
   }
 }
 

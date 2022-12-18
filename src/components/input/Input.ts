@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './input.hbs';
+import template from './template';
 
 interface IInputProps {
   label: String;
@@ -16,7 +16,7 @@ class Input extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return template;
   }
 }
 

@@ -1,4 +1,4 @@
-import Handlebars from 'handlebars/dist/handlebars.runtime';
+import * as Handlebars from 'handlebars';
 import { HelperOptions } from 'handlebars';
 import Block from './Block.js';
 
@@ -6,10 +6,6 @@ function registerComponent(Component: typeof Block) {
   Handlebars.registerHelper(Component.name, ({ hash: { ...hash }, data }: HelperOptions) => {
     if (!data.root.children) {
       data.root.children = {};
-    }
-
-    if (!data.root.refs) {
-      data.root.refs = {};
     }
 
     const { children } = data.root;

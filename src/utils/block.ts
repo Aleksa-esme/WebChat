@@ -1,4 +1,5 @@
 import { nanoid } from 'nanoid';
+import * as Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
 class Block {
@@ -118,7 +119,9 @@ class Block {
   }
 
   _render() {
-    const fragment = this.render();
+    const templateString = this.render();
+
+    const fragment = this.compile(templateString, { ...this.props });
 
     const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -131,8 +134,8 @@ class Block {
     this._addEvents();
   }
 
-  protected render(): DocumentFragment {
-    return new DocumentFragment();
+  protected render(): string {
+    return '';
   }
 
   getContent(): HTMLElement | null {
@@ -174,8 +177,10 @@ class Block {
     return document.createElement(tagName);
   }
 
-  compile(template: (context: any) => string, context: any) {
+  compile(templateString: string, context: any) {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
+
+    const template = Handlebars.compile(templateString);
 
     const htmlString = template({ ...context, children: this.children });
     fragment.innerHTML = htmlString;

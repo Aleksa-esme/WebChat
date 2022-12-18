@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Chats.hbs';
+import template from './template';
 
 class Chats extends Block {
   // constructor() {
@@ -11,7 +11,7 @@ class Chats extends Block {
   }
 
   render() {
-    return this.compile(template, {});
+    return template;
   }
 }
 

@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './link.hbs';
+import template from './template';
 
 interface ILinkProps {
   title: String;
@@ -12,7 +12,8 @@ class Link extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    // return this.compile(template, { ...this.props });
+    return template;
   }
 }
 

@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import template from './Message.hbs';
+import template from './template';
 
 interface IMessageProps {
   content: String;
@@ -12,7 +12,7 @@ class Message extends Block {
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return template;
   }
 }
 
