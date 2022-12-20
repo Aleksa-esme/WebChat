@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 import fields from './data';
 
 class Login extends Block {

@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 import fields from './data';
 
 class Register extends Block {
@@ -16,7 +16,7 @@ class Register extends Block {
     return `
       <section class="login">
           <h6 class="login__title">Регистрация</h6>
-          <form id="form" action="#" class="login-form" method="POST">
+          <form id="form" class="login-form">
               <ul class="form-list">
               ${fields.map(el => `
                 <li>

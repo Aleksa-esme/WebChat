@@ -1,8 +1,8 @@
+import Input from 'components/input/Input';
+import Link from 'components/link/Link';
+import renderDOM from 'utils/renderDOM';
+import registerComponent from 'utils/registerComponent';
 import ProfilePage from './Profile';
-import Input from '../../components/input/Input';
-import Link from '../../components/link/Link';
-import renderDOM from '../../utils/renderDOM';
-import registerComponent from '../../utils/registerComponent';
 
 // import components from './components/**/index.js';
 

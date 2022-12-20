@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 import fields from './data';
 
 class ProfilePassword extends Block {
@@ -18,7 +18,7 @@ class ProfilePassword extends Block {
               <img src="../assets/svg/arrow_button.svg" alt="back">
           </a>
           <div class="profile">
-              <form id="form" action="#" method="POST" class="profile-form">
+              <form id="form" class="profile-form">
                   <div class="profile-form__photo"></div>
                   <ul class="form-list">
                   ${fields.map(el => `

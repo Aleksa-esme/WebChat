@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 import { fields, links } from './data';
 
 class Profile extends Block {
@@ -18,7 +18,7 @@ class Profile extends Block {
               <img src="../../assets/svg/arrow_button.svg" alt="back">
           </a>
           <div class="profile">
-              <form id="form" action="#" class="profile-form">
+              <form id="form" class="profile-form">
                   <div class="profile-form__photo"></div>
                   <ul class="form-list">
                   ${fields.map(el => `

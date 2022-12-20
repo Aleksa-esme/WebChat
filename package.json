@@ -12,6 +12,12 @@
     "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "alias": {
+    "assets": "./src/assets",
+    "components": "./src/components",
+    "pages": "./src/pages",
+    "utils": "./src/utils"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Aleksa-esme/middle.messenger.praktikum.yandex.git"

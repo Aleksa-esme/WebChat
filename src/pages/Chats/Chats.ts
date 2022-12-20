@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 import { chats, messages } from './data';
 
 class Chats extends Block {
@@ -45,7 +45,7 @@ class Chats extends Block {
                     {{{ Message class="${el.class}" content="${el.content}"}}}
                   `).join(' ')}
               </div>
-              <form class="messages-send" id="form" action="#" >
+              <form class="messages-send" id="form">
                   {{{ ButtonSvg svg="../../../../assets/svg/file.svg" alt='add file' }}} 
                   <div class="messages-send__field">
                       <textarea name="message" type="text" class="form-field messages-send__input" placeholder="Сообщение" rows="2" wrap="soft" style="overflow:hidden"></textarea>
