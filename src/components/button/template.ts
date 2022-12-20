@@ -1,5 +1,5 @@
 const template = `
-    <button type="submit" class="button {{ class }}">
+    <button type="submit" class="button {{ classes }}">
         {{ title }}
     </button>
 `;

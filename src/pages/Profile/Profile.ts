@@ -3,9 +3,6 @@ import { fields, links } from './data';
 
 class Profile extends Block {
   static componentName = 'Profile';
-  // constructor() {
-  //   super();
-  // }
 
   componentDidMount() {
     console.log('готов');
@@ -35,7 +32,7 @@ class Profile extends Block {
                   </ul>
                   <div class="profile-form__buttons">
                   ${links.map(el => `
-                    {{{ Link title="${el.title}" class="${el.class}"}}}
+                    {{{ Link title="${el.title}" classes="${el.class}"}}}
                   `).join(' ')}
                   </div>
               </form>

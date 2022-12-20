@@ -3,7 +3,7 @@ import template from './template';
 
 interface IMessageProps {
   content: String;
-  class: String;
+  classes: String;
 }
 
 class Message extends Block {

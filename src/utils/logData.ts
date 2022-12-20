@@ -1,8 +1,6 @@
-const form = document.getElementById('form');
-
-const logData = (event: any) => {
+const logData = (event: Event) => {
   event.preventDefault();
-
+  const form = document.getElementById('form');
   const data = {};
   const formData = new FormData(form as HTMLFormElement);
 
@@ -11,7 +9,5 @@ const logData = (event: any) => {
   }
   console.log(data);
 };
-
-if (form) form.addEventListener('submit', logData);
 
 export default logData;

@@ -3,7 +3,7 @@ import template from './template';
 
 interface ILinkProps {
   title: String;
-  class: String;
+  classes: String;
 }
 
 class Link extends Block {
@@ -14,7 +14,6 @@ class Link extends Block {
   }
 
   render() {
-    // return this.compile(template, { ...this.props });
     return template;
   }
 }

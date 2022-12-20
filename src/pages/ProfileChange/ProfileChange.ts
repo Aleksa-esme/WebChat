@@ -1,11 +1,12 @@
 import Block from 'utils/Block';
+import logData from 'utils/logData';
 import { fields } from '../Profile/data';
 
 class ProfileChange extends Block {
-  static componentName = 'ProfileChange';
-  // constructor() {
-  //   super();
-  // }
+  constructor(props) {
+    // eslint-disable-next-line no-restricted-globals
+    super({ ...props, onClick: () => logData(event) });
+  }
 
   componentDidMount() {
     console.log('готов');
@@ -34,7 +35,7 @@ class ProfileChange extends Block {
                       }}}
                     </li>`).join(' ')}
                   </ul>
-                  {{{ Button title='Сохранить' class="profile-form__button-submit" }}}
+                  {{{ Button title='Сохранить' classes="profile-form__button-submit" onClick=onClick }}}
               </form>
           </div>
       </section>

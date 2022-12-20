@@ -3,17 +3,21 @@ import template from './template';
 
 interface IButtonProps {
   title: String;
-  class: String;
-  // events?: {
-  //   click?: () => void
-  // }
+  classes: String;
+  onClick?: () => void;
 }
 
 class Button extends Block {
   static componentName = 'Button';
 
-  constructor(props: IButtonProps) {
-    super(props);
+  constructor({ title, classes, onClick }: IButtonProps) {
+    super({
+      title,
+      classes,
+      events: {
+        click: onClick,
+      },
+    });
   }
 
   render() {

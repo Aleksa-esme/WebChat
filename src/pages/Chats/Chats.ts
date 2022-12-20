@@ -3,9 +3,6 @@ import { chats, messages } from './data';
 
 class Chats extends Block {
   static componentName = 'Chats';
-  // constructor() {
-  //   super();
-  // }
 
   componentDidMount() {
     console.log('готов');
@@ -42,7 +39,7 @@ class Chats extends Block {
                       <img src='../assets/message.jpg' alt='message'>
                   {{/message/message}} --}}
                   ${messages.map(el => `
-                    {{{ Message class="${el.class}" content="${el.content}"}}}
+                    {{{ Message classes="${el.class}" content="${el.content}"}}}
                   `).join(' ')}
               </div>
               <form class="messages-send" id="form">

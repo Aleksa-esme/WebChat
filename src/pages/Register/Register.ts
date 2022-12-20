@@ -1,11 +1,13 @@
 import Block from 'utils/Block';
+import logData from 'utils/logData';
 import fields from './data';
 
 class Register extends Block {
   static componentName = 'Register';
 
   constructor(props) {
-    super({ ...props });
+    // eslint-disable-next-line no-restricted-globals
+    super({ ...props, onClick: () => logData(event) });
   }
 
   componentDidMount() {
@@ -31,8 +33,8 @@ class Register extends Block {
                 </li>`).join(' ')}
               </ul>
               <div class="login-form__buttons login-form__buttons-register">  
-                  {{{ Button title='Зарегистрироваться' class="login-form__button-register" }}}
-                  {{{ Link title='Войти' class="login-form__link"}}}
+                  {{{ Button title='Зарегистрироваться' classes="login-form__button-register" onClick=onClick }}}
+                  {{{ Link title='Войти' classes="login-form__link" }}}
               </div>
           </form>
       </section>

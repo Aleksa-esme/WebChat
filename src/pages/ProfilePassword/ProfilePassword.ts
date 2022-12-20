@@ -1,11 +1,14 @@
 import Block from 'utils/Block';
+import logData from 'utils/logData';
 import fields from './data';
 
 class ProfilePassword extends Block {
   static componentName = 'ProfilePassword';
-  // constructor() {
-  //   super();
-  // }
+
+  constructor(props) {
+    // eslint-disable-next-line no-restricted-globals
+    super({ ...props, onClick: () => logData(event) });
+  }
 
   componentDidMount() {
     console.log('готов');
@@ -27,12 +30,13 @@ class ProfilePassword extends Block {
                         label="${el.label}" 
                         value="${el.value}" 
                         name="${el.name}" 
+                        type="password"
                         classLabel='profile-form__label' 
                         classInput='profile-form__value' 
                       }}}
                     </li>`).join(' ')}
                   </ul>
-                  {{{ Button title='Сохранить' class="profile-form__button-submit" }}}
+                  {{{ Button title='Сохранить' classes="profile-form__button-submit" onClick=onClick }}}
               </form>
           </div>
       </section>

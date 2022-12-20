@@ -1,11 +1,14 @@
 import Block from 'utils/Block';
+import logData from 'utils/logData';
 import fields from './data';
 
 class Login extends Block {
   static componentName = 'Login';
-  // constructor() {
-  //   super();
-  // }
+
+  constructor(props) {
+    // eslint-disable-next-line no-restricted-globals
+    super({ ...props, onClick: () => logData(event) });
+  }
 
   componentDidMount() {
     console.log('готов');
@@ -30,8 +33,8 @@ class Login extends Block {
                     </li>`).join(' ')}
           </ul>
           <div class="login-form__buttons login-form__buttons-login">
-              {{{ Button title='Войти' class="login-form__button-login" }}}
-              {{{ Link title='Нет аккаунта?' class="login-form__link"}}}
+              {{{ Button title='Войти' classes="login-form__button-login" onClick=onClick }}}
+              {{{ Link title='Нет аккаунта?' classes="login-form__link" }}}
           </div>
       </form>
     </section>
