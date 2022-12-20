@@ -1,4 +1,8 @@
 import Block from 'utils/Block';
+import * as ArrowButton from 'assets/svg/arrow_button.svg';
+import * as FileSvg from 'assets/svg/file.svg';
+import * as ArrowSvg from 'assets/svg/arrow.svg';
+import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import { chats, messages } from './data';
 
 class Chats extends Block {
@@ -14,7 +18,7 @@ class Chats extends Block {
           <div class="chats">
               <a href="#" class="link link-small chats__link">
                   Профиль
-                  <img src="../assets/svg/arrow.svg" alt="arrow">
+                  <img src=${ArrowSvg} alt="arrow">
               </a>
               <input type="text" class="chats__search" placeholder="Поиск">
               <div class="chats__list">
@@ -31,7 +35,7 @@ class Chats extends Block {
                       </div>
                       <p class="messages-info__user-name">Илья</p>
                   </div>
-                  <img src="../assets/svg/chat-menu.svg" alt="menu">
+                  <img src=${MenuSvg} alt="menu">
               </div>
               <div class="messages-field">
                   <p class="messages-field__date">19 июня</p>
@@ -43,12 +47,12 @@ class Chats extends Block {
                   `).join(' ')}
               </div>
               <form class="messages-send" id="form">
-                  {{{ ButtonSvg svg="../../../../assets/svg/file.svg" alt='add file' }}} 
+                  {{{ ButtonSvg svg="${FileSvg}" alt='add file' }}} 
                   <div class="messages-send__field">
                       <textarea name="message" type="text" class="form-field messages-send__input" placeholder="Сообщение" rows="2" wrap="soft" style="overflow:hidden"></textarea>
                       <span class="error"></span>
                   </div>
-                  {{{ ButtonSvg svg="../../../../assets/svg/arrow_button.svg" alt='send' }}} 
+                  {{{ ButtonSvg svg="${ArrowButton}" alt='send' }}} 
               </form>
           </div>
       </section>

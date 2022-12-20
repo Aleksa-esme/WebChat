@@ -1,4 +1,5 @@
 import Block from 'utils/Block';
+import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import fields from './data';
 
@@ -18,7 +19,7 @@ class ProfilePassword extends Block {
     return `
       <section class="profile-page">
           <a href="#" class="profile-page__button-back">
-              <img src="../assets/svg/arrow_button.svg" alt="back">
+          <img src=${ArrowButton} alt="back">
           </a>
           <div class="profile">
               <form id="form" class="profile-form">

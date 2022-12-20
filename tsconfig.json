@@ -7,7 +7,7 @@
         "sourceMap": true,
         "moduleResolution":"node"
     },
-    "typeRoots": ["node_modules/@types", "typings/app.d.ts", "typings/hbs.d.ts"],
+    "typeRoots": ["node_modules/@types", "typings/app.d.ts", "typings/hbs.d.ts", "typings/svg.d.ts"],
     "include": ["./src", "./node_modules/handlebars/types", "typings"],
     "parserOptions": {
     "project": "./tsconfig.json"
