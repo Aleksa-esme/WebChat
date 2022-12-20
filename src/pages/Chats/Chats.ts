@@ -2,6 +2,7 @@ import Block from '../../utils/Block';
 import { chats, messages } from './data';
 
 class Chats extends Block {
+  static componentName = 'Chats';
   // constructor() {
   //   super();
   // }

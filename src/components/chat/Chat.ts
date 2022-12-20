@@ -9,6 +9,8 @@ interface IChatProps {
 }
 
 class Chat extends Block {
+  static componentName = 'Chat';
+
   constructor(props: IChatProps) {
     super(props);
   }

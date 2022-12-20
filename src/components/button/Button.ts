@@ -10,6 +10,8 @@ interface IButtonProps {
 }
 
 class Button extends Block {
+  static componentName = 'Button';
+
   constructor(props: IButtonProps) {
     super(props);
   }

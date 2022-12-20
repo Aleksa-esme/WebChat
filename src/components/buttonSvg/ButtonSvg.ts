@@ -7,6 +7,8 @@ interface IButtonSvgProps {
 }
 
 class ButtonSvg extends Block {
+  static componentName = 'ButtonSvg';
+
   constructor(props: IButtonSvgProps) {
     super(props);
   }

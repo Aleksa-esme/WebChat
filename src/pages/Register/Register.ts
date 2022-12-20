@@ -2,6 +2,8 @@ import Block from '../../utils/Block';
 import fields from './data';
 
 class Register extends Block {
+  static componentName = 'Register';
+
   constructor(props) {
     super({ ...props });
   }

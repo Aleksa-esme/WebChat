@@ -11,6 +11,8 @@ interface IInputProps {
 }
 
 class Input extends Block {
+  static componentName = 'Input';
+
   constructor(props: IInputProps) {
     super(props);
   }

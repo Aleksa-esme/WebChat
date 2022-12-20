@@ -2,6 +2,7 @@ import Block from '../../utils/Block';
 import { fields } from '../Profile/data';
 
 class ProfileChange extends Block {
+  static componentName = 'ProfileChange';
   // constructor() {
   //   super();
   // }

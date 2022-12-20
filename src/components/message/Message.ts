@@ -7,6 +7,8 @@ interface IMessageProps {
 }
 
 class Message extends Block {
+  static componentName = 'Message';
+
   constructor(props: IMessageProps) {
     super(props);
   }

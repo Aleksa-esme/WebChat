@@ -8,7 +8,9 @@ class Block {
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
+
+  static componentName: string;
 
   public id = nanoid(6);
 

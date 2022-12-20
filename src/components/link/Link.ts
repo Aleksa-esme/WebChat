@@ -7,6 +7,8 @@ interface ILinkProps {
 }
 
 class Link extends Block {
+  static componentName = 'Link';
+
   constructor(props: ILinkProps) {
     super(props);
   }

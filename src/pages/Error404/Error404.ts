@@ -1,6 +1,7 @@
 import Block from '../../utils/Block';
 
 class Error404 extends Block {
+  static componentName = 'Error404';
   // constructor() {
   //   super();
   // }

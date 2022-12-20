@@ -1,6 +1,7 @@
 import Block from '../../utils/Block';
 
 class Error500 extends Block {
+  static componentName = 'Error500';
   // constructor() {
   //   super();
   // }
