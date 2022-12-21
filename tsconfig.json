@@ -3,12 +3,7 @@
         "rootDir": "./src",
         "outDir": "dist",
         "baseUrl": "./src",
-        "target": "es2016",
-        "moduleResolution":"node"
     },
     "typeRoots": ["node_modules/@types", "typings/app.d.ts", "typings/hbs.d.ts", "typings/svg.d.ts"],
     "include": ["./src", "./node_modules/handlebars/types", "typings"],
-    "parserOptions": {
-    "project": "./tsconfig.json"
-}
 }
