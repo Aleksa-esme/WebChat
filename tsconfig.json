@@ -4,12 +4,16 @@
         "outDir": "dist",
         "baseUrl": "./src",
         "target": "es2016",
+        "moduleResolution":"node",
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
         "sourceMap": true,
-        "moduleResolution":"node"
+        "strictNullChecks": true
     },
     "typeRoots": ["node_modules/@types", "typings/app.d.ts", "typings/hbs.d.ts", "typings/svg.d.ts"],
     "include": ["./src", "./node_modules/handlebars/types", "typings"],
     "parserOptions": {
-    "project": "./tsconfig.json"
-}
+        "project": "./tsconfig.json"
+    }
 }

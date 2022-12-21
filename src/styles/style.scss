@@ -174,12 +174,12 @@ div, input, textarea, button, :focus, :active { outline:none; }
             line-height: 14px;
         }
         &__value {
+            width: 100%;
             padding: 8px 0;
             border: unset;
             background-color: unset;
             font-size: 18px;
             line-height: 18px;
-            width: 100%;
         }
         &__buttons {
             display: flex;
@@ -288,8 +288,8 @@ div, input, textarea, button, :focus, :active { outline:none; }
         padding: 14px 20px;
         border-top: 1px solid var(--grey);
         &__field {
-            display: flex;
             position: relative;
+            display: flex;
             width: 100%;
         }
         &__input {
@@ -340,8 +340,8 @@ div, input, textarea, button, :focus, :active { outline:none; }
 
 .form {
     &-list li { 
-        display: flex; 
         position: relative; 
+        display: flex; 
     }
     &__error { 
         border-color: #d24a4a;
@@ -349,29 +349,29 @@ div, input, textarea, button, :focus, :active { outline:none; }
 }
 
 .error { 
-    max-width: 260px; 
-    display: none; 
-    font-size: 13px; 
-    line-height: 15px; 
-    color: var(--white); 
     position: absolute; 
-    left: 0px; 
-    top: calc(100% + 8px); 
     z-index: 100; 
+    top: calc(100% + 8px); 
+    left: 0px; 
+    display: none; 
+    max-width: 260px; 
     padding: 6px 10px 7px; 
     border-radius: 6px; 
     background: var(--red); 
+    color: var(--white); 
+    font-size: 13px; 
+    line-height: 15px; 
     opacity: 0.95;
     &:before { 
+        position: absolute; 
+        top: -8px; 
+        left: 15px; 
         width: 0; 
         height: 0; 
-        content: ''; 
-        position: absolute; 
-        left: 15px; 
-        top: -8px; 
         border-right: 8px solid transparent; 
-        border-left: 8px solid transparent; 
         border-bottom: 8px solid var(--red); 
+        border-left: 8px solid transparent; 
+        content: ''; 
         opacity: 0.95;
     }
 }
@@ -454,10 +454,10 @@ div, input, textarea, button, :focus, :active { outline:none; }
     }
 
     .error { 
-        font-size: 12px; 
-        line-height: 14px; 
         top: calc(100% + 8px); 
         padding: 5px 10px; 
+        font-size: 12px; 
+        line-height: 14px; 
     }
     
 }
@@ -535,9 +535,9 @@ div, input, textarea, button, :focus, :active { outline:none; }
     }
 
     .error { 
+        padding: 5px 8px; 
         font-size: 10px; 
         line-height: 12px; 
-        padding: 5px 8px; 
     }
 }
 

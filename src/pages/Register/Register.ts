@@ -2,15 +2,15 @@ import Block from 'utils/block';
 import logData from 'utils/logData';
 import fields from './data';
 
-interface IRagisterProps {
+interface IRegisterProps {
   onClick?: () => void;
 }
 
 class Register extends Block {
   static componentName = 'Register';
 
-  constructor(props: IRagisterProps) {
-    super({ ...props, onClick: () => logData(event) });
+  constructor(props: IRegisterProps) {
+    super({ ...props, onClick: (event: Event) => logData(event) });
   }
 
   render() {

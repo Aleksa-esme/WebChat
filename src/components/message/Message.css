@@ -1,11 +1,11 @@
 .message {
   max-width: 402px;
+      align-self: flex-start;
   border: 1px solid var(--grey);
   border-radius: 12px;
   margin: 10px 20px;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
   margin-left: 160px;
+  -ms-flex-item-align: start;
 }
 
 .message img {
@@ -21,10 +21,10 @@
 }
 
 .message_user {
-  -ms-flex-item-align: end;
       align-self: flex-end;
   margin-right: 160px;
   margin-left: unset;
+  -ms-flex-item-align: end;
 }
 
 .message-text {
@@ -35,8 +35,8 @@
 
 .message-text_user {
   background: var(--author-message);
-  border-bottom-right-radius: unset;
   border-bottom-left-radius: 12px;
+  border-bottom-right-radius: unset;
 }
 
 @media (max-width: 1440px) {
@@ -57,4 +57,3 @@
     margin-right: unset;
   }
 }
-/*# sourceMappingURL=Message.css.map */

@@ -10,7 +10,7 @@ class Login extends Block {
   static componentName = 'Login';
 
   constructor(props: ILoginProps) {
-    super({ ...props, onClick: () => logData(event) });
+    super({ ...props, onClick: (event: Event) => logData(event) });
   }
 
   render() {

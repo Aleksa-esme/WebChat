@@ -9,7 +9,7 @@ interface IProfileChangeProps {
 
 class ProfileChange extends Block {
   constructor(props: IProfileChangeProps) {
-    super({ ...props, onClick: () => logData(event) });
+    super({ ...props, onClick: (event: Event) => logData(event) });
   }
 
   render() {
