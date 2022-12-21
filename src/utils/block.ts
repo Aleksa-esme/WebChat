@@ -76,6 +76,7 @@ class Block {
 
   _componentDidMount() {
     this.componentDidMount();
+    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount() {}

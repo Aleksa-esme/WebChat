@@ -2,6 +2,7 @@ import Button from 'components/button/Button';
 import Input from 'components/input/Input';
 import renderDOM from 'utils/renderDOM';
 import registerComponent from 'utils/registerComponent';
+import ValidForm from 'utils/ValidForm';
 import ProfilePasswordPage from './ProfilePassword';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,4 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const page = new ProfilePasswordPage({});
 
   renderDOM('#app', page);
+  const form = document.querySelector('[id=form]') as HTMLFormElement | null;
+  if (form) new ValidForm(form);
 });
