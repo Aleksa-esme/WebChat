@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from 'utils/block';
 
 class Error404 extends Block {
   static componentName = 'Error404';

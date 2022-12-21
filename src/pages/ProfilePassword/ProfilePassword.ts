@@ -1,4 +1,4 @@
-import Block from 'utils/Block';
+import Block from 'utils/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import fields from './data';
