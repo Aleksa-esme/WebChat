@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from 'utils/Block';
 
 interface IButtonSvgProps {
   alt: String;
