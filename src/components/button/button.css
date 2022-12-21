@@ -1,22 +1,22 @@
 .button {
   width: 100%;
   max-width: 280px;
-      align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   padding: 12px 0;
   border: unset;
   border-radius: 8px;
   background: var(--blue);
   color: var(--white);
   cursor: pointer;
-  -ms-flex-item-align: center;
   font-size: 18px;
-      -ms-grid-row-align: center;
   line-height: 18px;
 }
 
 .button:hover {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .button:focus-visible {

@@ -13,7 +13,7 @@
 
 .link:hover {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .link:focus-visible {
@@ -27,6 +27,7 @@
     font-size: 16px;
     line-height: 16px;
   }
+
   .link-small {
     font-size: 14px;
     line-height: 14px;
@@ -38,6 +39,7 @@
     font-size: 14px;
     line-height: 14px;
   }
+
   .link-small {
     font-size: 13px;
     line-height: 13px;

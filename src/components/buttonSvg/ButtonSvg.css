@@ -3,7 +3,7 @@
   background-color: unset;
   cursor: pointer;
   -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .svg-button:focus-visible {
@@ -14,5 +14,5 @@
 
 .svg-button:hover {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }

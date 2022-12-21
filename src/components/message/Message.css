@@ -1,11 +1,11 @@
 .message {
   max-width: 402px;
-      align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
   border: 1px solid var(--grey);
   border-radius: 12px;
   margin: 10px 20px;
   margin-left: 160px;
-  -ms-flex-item-align: start;
 }
 
 .message img {
@@ -21,10 +21,10 @@
 }
 
 .message_user {
-      align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
   margin-right: 160px;
   margin-left: unset;
-  -ms-flex-item-align: end;
 }
 
 .message-text {
@@ -43,6 +43,7 @@
   .message {
     margin-left: 60px;
   }
+
   .message_user {
     margin-right: 60px;
     margin-left: unset;
@@ -53,6 +54,7 @@
   .message {
     margin-left: unset;
   }
+
   .message_user {
     margin-right: unset;
   }

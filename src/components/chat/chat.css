@@ -14,15 +14,15 @@
   display: flex;
   width: 47px;
   height: 47px;
-          align-items: center;
-          justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   border-radius: 30px;
   margin-right: 10px;
   background-color: var(--dark-grey);
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-align: center;
-      -ms-flex-pack: center;
 }
 
 .chat__image img {
@@ -63,16 +63,16 @@
   display: flex;
   width: 24px;
   height: 24px;
-          align-items: center;
-      align-self: flex-end;
-          justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   border-radius: 20px;
   background: var(--blue);
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-align: center;
-  -ms-flex-item-align: end;
-      -ms-flex-pack: center;
 }
 
 .chat__indicator span {
@@ -85,19 +85,21 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-          justify-content: space-between;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 @media (max-width: 1024px) {
   .chat__message {
     max-width: 212px;
   }
+
   .chat__indicator {
     width: 20px;
     height: 20px;
   }
+
   .chat__indicator span {
     font-size: 11px;
     line-height: 13px;

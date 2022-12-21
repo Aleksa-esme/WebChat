@@ -4,6 +4,7 @@
 @import url(../components/chat/chat.css);
 @import url(../components/link/link.css);
 @import url(../components/message/Message.css);
+
 @font-face {
   font-family: 'InterBold';
   src: url("../assets/fonts/Inter-SemiBold.otf") format("opentype");
@@ -11,14 +12,19 @@
 
 * {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: 'InterBold';
   font-weight: 500;
 }
 
-div, input, textarea, button, :focus, :active {
+div,
+input,
+textarea,
+button,
+:focus,
+:active {
   outline: none;
 }
 
@@ -33,32 +39,32 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 100%;
   height: 100vh;
-      -ms-flex-direction: column;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-align: center;
-      -ms-flex-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .http-error {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-  -webkit-box-align: center;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-align: center;
-      -ms-flex-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .http-error__number {
@@ -79,14 +85,14 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: calc(100% - 64px);
-      -ms-flex-direction: column;
-          flex-direction: column;
-          align-items: center;
-  margin-top: 60px;
-  -webkit-box-align: center;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
-      -ms-flex-align: center;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-top: 60px;
 }
 
 .profile-page {
@@ -102,20 +108,20 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 64px;
   height: 100vh;
-          align-items: center;
-          justify-content: center;
-  background-color: var(--light);
   -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background-color: var(--light);
   cursor: pointer;
-      -ms-flex-align: center;
-      -ms-flex-pack: center;
   text-decoration: none;
 }
 
 .profile-page__button-back:hover {
   -webkit-filter: brightness(90%);
-          filter: brightness(90%);
+  filter: brightness(90%);
 }
 
 .profile-page__button-back:focus-visible {
@@ -130,30 +136,30 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 100%;
   max-width: 550px;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding: 20px;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 20px;
 }
 
 .profile-form__photo {
   width: 160px;
   height: 160px;
-      align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   border-radius: 80px;
   background: var(--light-grey);
   background-image: url("https://dummyimage.com/160x160/EFEFEF");
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
 }
 
 .profile-form__photo__input {
   max-width: 300px;
-      align-self: center;
-  padding: 20px 20px 0;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
+  padding: 20px 20px 0;
 }
 
 .profile-form__photo__input:focus-visible {
@@ -167,12 +173,12 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-          justify-content: space-between;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid var(--grey);
-  -webkit-box-pack: justify;
   color: var(--black);
-      -ms-flex-pack: justify;
   font-size: 18px;
   line-height: 18px;
 }
@@ -195,17 +201,17 @@ div, input, textarea, button, :focus, :active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-top: 40px;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: 40px;
 }
 
 .profile-form__button {
-      align-self: flex-start;
-  margin: 10px 0;
   -ms-flex-item-align: start;
+  align-self: flex-start;
+  margin: 10px 0;
 }
 
 .profile-form__button-submit {
@@ -222,17 +228,17 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 100%;
   max-width: 440px;
-      -ms-flex-direction: column;
-          flex-direction: column;
-          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 50px 30px 30px;
   border-radius: 12px;
-  -webkit-box-align: center;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
   -webkit-box-shadow: var(--shadow);
-          box-shadow: var(--shadow);
-      -ms-flex-align: center;
+  box-shadow: var(--shadow);
 }
 
 .login__title {
@@ -247,10 +253,10 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .login-form__label {
@@ -258,12 +264,12 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   padding-top: 16px;
   border-bottom: 1px solid var(--blue);
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
   color: var(--dark-grey);
   font-size: 14px;
   line-height: 14px;
@@ -282,13 +288,13 @@ div, input, textarea, button, :focus, :active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column;
-          flex-direction: column;
-          align-items: center;
-  -webkit-box-align: center;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
-      -ms-flex-align: center;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .login-form__button-register {
@@ -316,19 +322,19 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 370px;
   height: 100vh;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   border-right: 1px solid var(--grey);
   background: var(--light);
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
 }
 
 .chats__link {
-      align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
   padding: 22px 10px 24px 0;
   color: var(--dark-grey);
-  -ms-flex-item-align: end;
 }
 
 .chats__link svg {
@@ -336,11 +342,11 @@ div, input, textarea, button, :focus, :active {
 }
 
 .chats__search {
-  padding: 10px 10px;
+  padding: 10px;
   border: unset;
   border-radius: 5px;
   margin: 0 10px 14px;
-  background: #EFEFEF;
+  background: #efefef;
   color: var(--dark-grey);
 }
 
@@ -355,37 +361,37 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: calc(100% - 310px);
-      -ms-flex-direction: column;
-          flex-direction: column;
-          justify-content: space-between;
-  padding: 0 40px;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0 40px;
 }
 
 .messages-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-          align-items: center;
-          justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   padding: 14px 20px;
   border-bottom: 1px solid var(--grey);
-  -webkit-box-align: center;
-  -webkit-box-pack: justify;
-      -ms-flex-align: center;
-      -ms-flex-pack: justify;
 }
 
 .messages-info__user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-          align-items: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .messages-info__user-image {
@@ -394,15 +400,15 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 34px;
   height: 34px;
-          align-items: center;
-          justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   border-radius: 20px;
   margin-right: 10px;
   background-color: var(--dark-grey);
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
-      -ms-flex-align: center;
-      -ms-flex-pack: center;
 }
 
 .messages-info__user-image img {
@@ -421,19 +427,19 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   height: 100%;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-direction: normal;
   -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .messages-field__date {
-      align-self: center;
+  -ms-flex-item-align: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   margin: 30px 0;
   color: var(--dark-grey);
-  -ms-flex-item-align: center;
   font-size: 12px;
-      -ms-grid-row-align: center;
   line-height: 12px;
 }
 
@@ -441,14 +447,14 @@ div, input, textarea, button, :focus, :active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-          align-items: center;
-          justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   padding: 14px 20px;
   border-top: 1px solid var(--grey);
-  -webkit-box-align: center;
-  -webkit-box-pack: justify;
-      -ms-flex-align: center;
-      -ms-flex-pack: justify;
 }
 
 .messages-send__field {
@@ -465,19 +471,19 @@ div, input, textarea, button, :focus, :active {
   border: unset;
   border-radius: 30px;
   margin: 0 10px;
-  background: #EFEFEF;
+  background: #efefef;
   resize: none;
 }
 
-.messages-send__input::-webkit-input-placeholder {
+.messages-send__input::input-placeholder {
   line-height: 35px;
 }
 
-.messages-send__input:-ms-input-placeholder {
+.messages-send__input:input-placeholder {
   line-height: 35px;
 }
 
-.messages-send__input::-ms-input-placeholder {
+.messages-send__input::input-placeholder {
   line-height: 35px;
 }
 
@@ -495,21 +501,21 @@ div, input, textarea, button, :focus, :active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-      -ms-flex-direction: column;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   padding: 40px;
   border-radius: 12px;
   background: var(--white);
-  -webkit-box-align: center;
-  -webkit-box-direction: normal;
-  -webkit-box-orient: vertical;
-  -webkit-box-pack: center;
   -webkit-box-shadow: var(--shadow);
-          box-shadow: var(--shadow);
-      -ms-flex-align: center;
-      -ms-flex-pack: center;
+  box-shadow: var(--shadow);
 }
 
 .modal-wrapper {
@@ -544,7 +550,7 @@ div, input, textarea, button, :focus, :active {
   position: absolute;
   z-index: 100;
   top: calc(100% + 8px);
-  left: 0px;
+  left: 0;
   display: none;
   max-width: 260px;
   padding: 6px 10px 7px;
@@ -556,7 +562,7 @@ div, input, textarea, button, :focus, :active {
   opacity: 0.95;
 }
 
-.error:before {
+.error::before {
   position: absolute;
   top: -8px;
   left: 15px;
@@ -580,70 +586,85 @@ div, input, textarea, button, :focus, :active {
     font-size: 48px;
     line-height: 48px;
   }
+
   .http-error__description {
     padding: 20px 0 38px;
     font-size: 18px;
     line-height: 18px;
   }
+
   .profile {
     width: 100%;
     margin-top: 10px;
   }
+
   .profile-page {
     height: 100vh;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-direction: normal;
     -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
   }
+
   .profile-page__button-back {
     width: 100%;
     height: 64px;
-            justify-content: flex-start;
-    padding-left: 20px;
     -webkit-box-pack: start;
-        -ms-flex-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding-left: 20px;
   }
+
   .profile-form {
     max-width: 470px;
     padding-top: 78px;
   }
+
   .profile-form__label {
     font-size: 16px;
     line-height: 16px;
   }
+
   .profile-form__value {
     font-size: 16px;
     line-height: 16px;
   }
+
   .profile-form__buttons {
     margin-top: 30px;
   }
+
   .login {
     max-width: 370px;
     padding: 30px 25px 25px;
     margin: 20px;
   }
+
   .login__title {
     margin-bottom: 30px;
     font-size: 22px;
     line-height: 22px;
   }
+
   .login-form__label {
     font-size: 12px;
     line-height: 12px;
   }
+
   .login-form__value {
     padding: 6px 0;
     font-size: 16px;
     line-height: 16px;
   }
+
   .login-form__button-register {
     margin-top: 42px;
   }
+
   .login-form__button-login {
     margin-top: 120px;
   }
+
   .error {
     top: calc(100% + 8px);
     padding: 5px 10px;
@@ -657,77 +678,95 @@ div, input, textarea, button, :focus, :active {
     width: calc(100vw - 2 * 20px);
     max-width: unset;
   }
+
   .login__title {
     margin-bottom: 40px;
     font-size: 20px;
     line-height: 20px;
   }
+
   .login-form {
     height: 100%;
   }
+
   .login-form__label {
     padding-bottom: 6px;
     font-size: 11px;
     line-height: 11px;
   }
+
   .login-form__value {
     padding: 4px 0;
     font-size: 14px;
     line-height: 14px;
   }
+
   .login-form__buttons {
     height: 100%;
-            justify-content: flex-end;
     -webkit-box-pack: end;
-        -ms-flex-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
   }
+
   .login-form__buttons-register {
-            justify-content: flex-end;
     -webkit-box-pack: end;
-        -ms-flex-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
   }
+
   .login-form__buttons-login {
-            justify-content: space-between;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
   }
+
   .login-form__button-register {
     margin-top: 20px;
   }
+
   .login-form__button-login {
     margin-top: 14px;
   }
+
   .profile {
     margin-top: unset;
   }
+
   .profile-page__button-back {
     height: 54px;
   }
+
   .profile-form {
     max-width: 470px;
     padding-top: 48px;
   }
+
   .profile-form__photo {
     width: 130px;
     height: 130px;
     background-image: url("https://dummyimage.com/130x130/EFEFEF");
   }
+
   .profile-form__photo__input {
-        align-self: center;
     -ms-flex-item-align: center;
-        -ms-grid-row-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
   }
+
   .profile-form__label {
     font-size: 14px;
     line-height: 14px;
   }
+
   .profile-form__value {
     font-size: 14px;
     line-height: 14px;
   }
+
   .profile-form__buttons {
     margin-top: 20px;
   }
+
   .error {
     padding: 5px 8px;
     font-size: 10px;
@@ -737,15 +776,15 @@ div, input, textarea, button, :focus, :active {
 
 :root {
   --white: #fff;
-  --black: #1E1E1E;
-  --blue: #3369F3;
+  --black: #1e1e1e;
+  --blue: #3369f3;
   --red: #d24a4a;
-  --light: #FBFBFB;
-  --light-grey: #EFEFEF;
-  --grey: #EAEAEA;
-  --dark-grey: #999999;
-  --author-message: #E4EDFD;
-  --not-author-message: #F8F8F8;
-  --shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+  --light: #fbfbfb;
+  --light-grey: #efefef;
+  --grey: #eaeaea;
+  --dark-grey: #999;
+  --author-message: #e4edfd;
+  --not-author-message: #f8f8f8;
+  --shadow: 0 0 6px rgb(0 0 0 / 14%);
   --mobile-s-width: 320px;
 }
