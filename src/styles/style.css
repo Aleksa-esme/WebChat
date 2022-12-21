@@ -33,32 +33,32 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 100%;
   height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
 }
 
 .http-error {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
 }
 
 .http-error__number {
@@ -79,14 +79,14 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: calc(100% - 64px);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
   margin-top: 60px;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+      -ms-flex-align: center;
 }
 
 .profile-page {
@@ -102,14 +102,14 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 64px;
   height: 100vh;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
           justify-content: center;
   background-color: var(--light);
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
   cursor: pointer;
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
   text-decoration: none;
 }
 
@@ -130,30 +130,30 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 100%;
   max-width: 550px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 20px;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
 }
 
 .profile-form__photo {
   width: 160px;
   height: 160px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   border-radius: 80px;
   background: var(--light-grey);
   background-image: url("https://dummyimage.com/160x160/EFEFEF");
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
 }
 
 .profile-form__photo__input {
   max-width: 300px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   padding: 20px 20px 0;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
 }
 
 .profile-form__photo__input:focus-visible {
@@ -167,12 +167,12 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 10px 0;
   border-bottom: 1px solid var(--grey);
+  -webkit-box-pack: justify;
   color: var(--black);
+      -ms-flex-pack: justify;
   font-size: 18px;
   line-height: 18px;
 }
@@ -195,17 +195,17 @@ div, input, textarea, button, :focus, :active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   margin-top: 40px;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
 }
 
 .profile-form__button {
-  -ms-flex-item-align: start;
       align-self: flex-start;
   margin: 10px 0;
+  -ms-flex-item-align: start;
 }
 
 .profile-form__button-submit {
@@ -222,17 +222,17 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 100%;
   max-width: 440px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
   padding: 50px 30px 30px;
   border-radius: 12px;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
   -webkit-box-shadow: var(--shadow);
           box-shadow: var(--shadow);
+      -ms-flex-align: center;
 }
 
 .login__title {
@@ -247,10 +247,10 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
 }
 
 .login-form__label {
@@ -258,37 +258,37 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   padding-top: 16px;
   border-bottom: 1px solid var(--blue);
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
   color: var(--dark-grey);
   font-size: 14px;
   line-height: 14px;
 }
 
 .login-form__value {
+  width: 100%;
   padding: 8px 0;
   border: unset;
   background-color: unset;
   font-size: 18px;
   line-height: 18px;
-  width: 100%;
 }
 
 .login-form__buttons {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+      -ms-flex-align: center;
 }
 
 .login-form__button-register {
@@ -316,19 +316,19 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 370px;
   height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
   border-right: 1px solid var(--grey);
   background: var(--light);
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
 }
 
 .chats__link {
-  -ms-flex-item-align: end;
       align-self: flex-end;
   padding: 22px 10px 24px 0;
   color: var(--dark-grey);
+  -ms-flex-item-align: end;
 }
 
 .chats__link svg {
@@ -355,37 +355,37 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   width: calc(100% - 310px);
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 0 40px;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
 }
 
 .messages-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 14px 20px;
   border-bottom: 1px solid var(--grey);
+  -webkit-box-align: center;
+  -webkit-box-pack: justify;
+      -ms-flex-align: center;
+      -ms-flex-pack: justify;
 }
 
 .messages-info__user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+          align-items: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
 }
 
 .messages-info__user-image {
@@ -394,15 +394,15 @@ div, input, textarea, button, :focus, :active {
   display: flex;
   width: 34px;
   height: 34px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
           justify-content: center;
   border-radius: 20px;
   margin-right: 10px;
   background-color: var(--dark-grey);
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
 }
 
 .messages-info__user-image img {
@@ -421,19 +421,19 @@ div, input, textarea, button, :focus, :active {
   display: -ms-flexbox;
   display: flex;
   height: 100%;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
 }
 
 .messages-field__date {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
       align-self: center;
   margin: 30px 0;
   color: var(--dark-grey);
+  -ms-flex-item-align: center;
   font-size: 12px;
+      -ms-grid-row-align: center;
   line-height: 12px;
 }
 
@@ -441,21 +441,21 @@ div, input, textarea, button, :focus, :active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 14px 20px;
   border-top: 1px solid var(--grey);
+  -webkit-box-align: center;
+  -webkit-box-pack: justify;
+      -ms-flex-align: center;
+      -ms-flex-pack: justify;
 }
 
 .messages-send__field {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: relative;
   width: 100%;
 }
 
@@ -495,21 +495,21 @@ div, input, textarea, button, :focus, :active {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
           justify-content: center;
   padding: 40px;
   border-radius: 12px;
   background: var(--white);
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
   -webkit-box-shadow: var(--shadow);
           box-shadow: var(--shadow);
+      -ms-flex-align: center;
+      -ms-flex-pack: center;
 }
 
 .modal-wrapper {
@@ -530,10 +530,10 @@ div, input, textarea, button, :focus, :active {
 }
 
 .form-list li {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: relative;
 }
 
 .form__error {
@@ -541,31 +541,31 @@ div, input, textarea, button, :focus, :active {
 }
 
 .error {
-  max-width: 260px;
-  display: none;
-  font-size: 13px;
-  line-height: 15px;
-  color: var(--white);
   position: absolute;
-  left: 0px;
-  top: calc(100% + 8px);
   z-index: 100;
+  top: calc(100% + 8px);
+  left: 0px;
+  display: none;
+  max-width: 260px;
   padding: 6px 10px 7px;
   border-radius: 6px;
   background: var(--red);
+  color: var(--white);
+  font-size: 13px;
+  line-height: 15px;
   opacity: 0.95;
 }
 
 .error:before {
+  position: absolute;
+  top: -8px;
+  left: 15px;
   width: 0;
   height: 0;
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: -8px;
   border-right: 8px solid transparent;
-  border-left: 8px solid transparent;
   border-bottom: 8px solid var(--red);
+  border-left: 8px solid transparent;
+  content: '';
   opacity: 0.95;
 }
 
@@ -591,18 +591,18 @@ div, input, textarea, button, :focus, :active {
   }
   .profile-page {
     height: 100vh;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
   }
   .profile-page__button-back {
     width: 100%;
     height: 64px;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
             justify-content: flex-start;
     padding-left: 20px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
   }
   .profile-form {
     max-width: 470px;
@@ -645,10 +645,10 @@ div, input, textarea, button, :focus, :active {
     margin-top: 120px;
   }
   .error {
-    font-size: 12px;
-    line-height: 14px;
     top: calc(100% + 8px);
     padding: 5px 10px;
+    font-size: 12px;
+    line-height: 14px;
   }
 }
 
@@ -677,19 +677,19 @@ div, input, textarea, button, :focus, :active {
   }
   .login-form__buttons {
     height: 100%;
+            justify-content: flex-end;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
-            justify-content: flex-end;
   }
   .login-form__buttons-register {
+            justify-content: flex-end;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
-            justify-content: flex-end;
   }
   .login-form__buttons-login {
+            justify-content: space-between;
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
-            justify-content: space-between;
   }
   .login-form__button-register {
     margin-top: 20px;
@@ -713,9 +713,9 @@ div, input, textarea, button, :focus, :active {
     background-image: url("https://dummyimage.com/130x130/EFEFEF");
   }
   .profile-form__photo__input {
+        align-self: center;
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
-        align-self: center;
   }
   .profile-form__label {
     font-size: 14px;
@@ -729,9 +729,9 @@ div, input, textarea, button, :focus, :active {
     margin-top: 20px;
   }
   .error {
+    padding: 5px 8px;
     font-size: 10px;
     line-height: 12px;
-    padding: 5px 8px;
   }
 }
 
@@ -749,4 +749,3 @@ div, input, textarea, button, :focus, :active {
   --shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
   --mobile-s-width: 320px;
 }
-/*# sourceMappingURL=style.css.map */

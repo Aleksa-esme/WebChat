@@ -1,9 +1,9 @@
 .message {
     max-width: 402px;
+    align-self: flex-start;
     border: 1px solid var(--grey);
     border-radius: 12px;
     margin: 10px 20px;
-    align-self: flex-start;
     margin-left: 160px;
     & img {
         width: 100%;
@@ -26,8 +26,8 @@
         border-bottom-left-radius: unset;
         &_user {
             background: var(--author-message);
-            border-bottom-right-radius: unset;
             border-bottom-left-radius: 12px;
+            border-bottom-right-radius: unset;
         }
     }
 }

@@ -11,7 +11,7 @@ class ProfilePassword extends Block {
   static componentName = 'ProfilePassword';
 
   constructor(props: IProfilePasswordProps) {
-    super({ ...props, onClick: () => logData(event) });
+    super({ ...props, onClick: (event: Event) => logData(event) });
   }
 
   render() {
