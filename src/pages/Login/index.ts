@@ -5,16 +5,12 @@ import renderDOM from 'utils/renderDOM';
 import registerComponent from 'utils/registerComponent';
 import LoginPage from './Login';
 
-// import components from './components/**/index.js';
-
-// // import components from './components/**/*.ts';
-
 document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Button);
   registerComponent(Input);
   registerComponent(Link);
 
-  const page = new LoginPage();
+  const page = new LoginPage({});
 
   renderDOM('#app', page);
 });

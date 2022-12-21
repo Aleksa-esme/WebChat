@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import template from './template';
 
 interface IButtonSvgProps {
   alt: String;
@@ -14,7 +13,11 @@ class ButtonSvg extends Block {
   }
 
   render() {
-    return template;
+    return `
+      <button class="svg-button" type="submit">
+          <img src={{svg}} alt={{alt}}>
+      </button>
+    `;
   }
 }
 

@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import template from './template';
 
 interface IButtonProps {
   title: String;
@@ -21,7 +20,11 @@ class Button extends Block {
   }
 
   render() {
-    return template;
+    return `
+      <button type="submit" class="button {{ classes }}">
+          {{ title }}
+      </button>
+    `;
   }
 }
 

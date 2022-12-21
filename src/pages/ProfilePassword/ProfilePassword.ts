@@ -3,16 +3,15 @@ import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import fields from './data';
 
+interface IProfilePasswordProps {
+  onClick?: () => void;
+}
+
 class ProfilePassword extends Block {
   static componentName = 'ProfilePassword';
 
-  constructor(props) {
-    // eslint-disable-next-line no-restricted-globals
+  constructor(props: IProfilePasswordProps) {
     super({ ...props, onClick: () => logData(event) });
-  }
-
-  componentDidMount() {
-    console.log('готов');
   }
 
   render() {

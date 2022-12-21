@@ -2,9 +2,6 @@ export type Listener<T extends unknown[] = any[]> = (...args: T) => void;
 
 class EventBus<E extends string = string, M extends { [K in E]: unknown[] } = Record<E, any[]>> {
   private listeners: { [key in E]?: Listener<M[E]>[] } = {};
-  // constructor() {
-  //   this.listeners = {}; // Ключ - имя события, значение - массив с обработчиками этого события
-  // }
 
   // подписка функции-обработчика на событие
   on(event: E, callback: Listener<M[E]>) {

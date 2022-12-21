@@ -3,10 +3,6 @@ import Block from 'utils/Block';
 class Error404 extends Block {
   static componentName = 'Error404';
 
-  componentDidMount() {
-    console.log('готов');
-  }
-
   render() {
     return `
       <section class="http-error">

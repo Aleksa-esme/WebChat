@@ -27,8 +27,6 @@ class Block {
   constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus();
 
-    // this.name = name;
-
     const { props, children } = this.getChildren(propsAndChildren);
 
     this.children = children;
@@ -46,14 +44,6 @@ class Block {
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }
-
-  // get componentName() {
-  //   return this._name;
-  // }
-
-  // set componentName(value) {
-  //   this._name = value;
-  // }
 
   getChildren(propsAndChildren: any) {
     const children: any = {};
@@ -86,7 +76,6 @@ class Block {
 
   _componentDidMount() {
     this.componentDidMount();
-    // this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount() {}
@@ -96,9 +85,6 @@ class Block {
   }
 
   _componentDidUpdate(oldProps: any, newProps: any) {
-    // const response = this.componentDidUpdate(oldProps, newProps);
-    // this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
-    // return response;
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -144,7 +130,7 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props) {
+  _makePropsProxy(props: any) {
     const self = this;
     return new Proxy(props as unknown as object, {
       get(target: Record<string, unknown>, prop: string) {

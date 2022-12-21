@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import template from './template';
 
 interface IInputProps {
   label: String;
@@ -18,7 +17,13 @@ class Input extends Block {
   }
 
   render() {
-    return template;
+    return `
+      <label class={{ classLabel }}>
+          {{ label }}
+          <input name={{ name }} value={{ value }} class='input form-field {{ classInput }}' type={{ type }}>
+          <span class="error"></span>
+      </label>
+    `;
   }
 }
 

@@ -3,14 +3,13 @@ import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import { fields } from '../Profile/data';
 
-class ProfileChange extends Block {
-  constructor(props) {
-    // eslint-disable-next-line no-restricted-globals
-    super({ ...props, onClick: () => logData(event) });
-  }
+interface IProfileChangeProps {
+  onClick?: () => void;
+}
 
-  componentDidMount() {
-    console.log('готов');
+class ProfileChange extends Block {
+  constructor(props: IProfileChangeProps) {
+    super({ ...props, onClick: () => logData(event) });
   }
 
   render() {

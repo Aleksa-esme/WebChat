@@ -8,10 +8,6 @@ import { chats, messages } from './data';
 class Chats extends Block {
   static componentName = 'Chats';
 
-  componentDidMount() {
-    console.log('готов');
-  }
-
   render() {
     return `
       <section class="chat-page">

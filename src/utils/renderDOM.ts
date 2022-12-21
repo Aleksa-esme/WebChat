@@ -12,8 +12,6 @@ function renderDOM(rootSelector: string, block: Block) {
   root.innerHTML = '';
 
   root.append(block.getContent());
-
-  // return root;
 }
 
 export default renderDOM;

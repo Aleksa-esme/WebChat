@@ -5,10 +5,6 @@ import { fields, links } from './data';
 class Profile extends Block {
   static componentName = 'Profile';
 
-  componentDidMount() {
-    console.log('готов');
-  }
-
   render() {
     return `
       <section class="profile-page">

@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import template from './template';
 
 interface IMessageProps {
   content: String;
@@ -14,7 +13,11 @@ class Message extends Block {
   }
 
   render() {
-    return template;
+    return `
+      <div class="message {{ classes }}">
+          <span>{{ content }}</p>
+      </div>
+    `;
   }
 }
 

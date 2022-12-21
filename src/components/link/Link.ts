@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import template from './template';
 
 interface ILinkProps {
   title: String;
@@ -14,7 +13,9 @@ class Link extends Block {
   }
 
   render() {
-    return template;
+    return `
+      <a href="#" class="link {{ classes }}">{{ title }}</a>
+    `;
   }
 }
 

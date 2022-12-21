@@ -5,16 +5,12 @@ import renderDOM from 'utils/renderDOM';
 import registerComponent from 'utils/registerComponent';
 import Chats from './Chats';
 
-// import components from './components/**/index.js';
-
-// // import components from './components/**/*.ts';
-
 document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Chat);
   registerComponent(ButtonSvg);
   registerComponent(Message);
 
-  const page = new Chats();
+  const page = new Chats({});
 
   renderDOM('#app', page);
 });

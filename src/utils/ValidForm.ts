@@ -1,41 +1,43 @@
+const passwordReg = /(?=^.{8,40}$)((?=.*\d+)|(?=.*\W+))(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]).*$/;
+const nameReg = /^[a-zA-Zа-яА-ЯёЁ][a-zA-Zа-яА-ЯёЁ_-]*$/;
+
 class ValidForm {
   static checks = {
     email: {
       check: /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/,
-      error: 'Поле должно содержать латинские буквы, знак @ и домен',
+      error: 'Email должен содержать латинские буквы, знак @ и домен',
     },
     login: {
-    // пропускает спецсимволы и кириллицу.
-      check: /(?=^.{3,20}$)(?=.*\d?)(?=.*[a-zA-Z]+).*$/,
-      error: 'Поле должно содержать латинские буквы; длина 3-20 символов; без спецсимволов',
+      check: /^[a-zA-Z][a-zA-Z0-9-_\.]{3,20}$/,
+      error: 'Логин должен содержать латинские буквы; длина 3-20 символов; без спецсимволов',
     },
     password: {
-      check: /(?=^.{8,40}$)((?=.*\d+)|(?=.*\W+))(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]).*$/,
-      error: 'Поле должно содержать минимум одну заглавную букву и цифру; длина 8-40 символов',
+      check: passwordReg,
+      error: 'Пароль должен содержать минимум одну заглавную букву и цифру; длина 8-40 символов',
     },
     newPassword: {
-      check: /(?=^.{8,40}$)((?=.*\d+)|(?=.*\W+))(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]).*$/,
-      error: 'Поле должно содержать минимум одну заглавную букву и цифру; длина 8-40 символов',
+      check: passwordReg,
+      error: 'Пароль должен содержать минимум одну заглавную букву и цифру; длина 8-40 символов',
     },
     phone: {
       check: /^\+?\d{10,15}/,
       error: 'Длина 10-15 символов; без пробелов',
     },
     first_name: {
-      check: /^[a-zA-Zа-яА-ЯёЁ][a-zA-Zа-яА-ЯёЁ_-]*$/,
+      check: nameReg,
       error: 'Первая буква заглавная; нет пробелов, цифр, спецсимволов',
     },
     second_name: {
-      check: /^[a-zA-Zа-яА-ЯёЁ][a-zA-Zа-яА-ЯёЁ_-]*$/,
+      check: nameReg,
       error: 'Первая буква заглавная; нет пробелов, цифр, спецсимволов',
     },
     display_name: {
-      check: /^[a-zA-Zа-яА-ЯёЁ][a-zA-Zа-яА-ЯёЁ_-]*$/,
+      check: nameReg,
       error: 'Первая буква заглавная; нет пробелов, цифр, спецсимволов',
     },
     message: {
       check: /\S+/,
-      error: 'Поле не должно быть пустым',
+      error: 'Сообщение не должно быть пустым',
     },
   };
 
@@ -104,17 +106,11 @@ class ValidForm {
 
   getError(formData: FormData, property: string) {
     let error = '';
-    // переписать просто на функцию
-    const validate = {
-      [property]: () => {
-        if (ValidForm.checks[property].check.test(formData.get(`${property}`)) === false) {
-          error = ValidForm.checks[property].error;
-        }
-      },
-    };
 
     if (property in ValidForm.checks) {
-      validate[property]();
+      if (ValidForm.checks[property].check.test(formData.get(`${property}`)) === false) {
+        error = ValidForm.checks[property].error;
+      }
     }
     return error;
   }

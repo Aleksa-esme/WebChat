@@ -2,16 +2,15 @@ import Block from 'utils/Block';
 import logData from 'utils/logData';
 import fields from './data';
 
+interface IRagisterProps {
+  onClick?: () => void;
+}
+
 class Register extends Block {
   static componentName = 'Register';
 
-  constructor(props) {
-    // eslint-disable-next-line no-restricted-globals
+  constructor(props: IRagisterProps) {
     super({ ...props, onClick: () => logData(event) });
-  }
-
-  componentDidMount() {
-    console.log('готов');
   }
 
   render() {

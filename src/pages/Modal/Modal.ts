@@ -2,13 +2,6 @@ import Block from 'utils/Block';
 
 class Modal extends Block {
   static componentName = 'Modal';
-  // constructor() {
-  //   super();
-  // }
-
-  componentDidMount() {
-    console.log('готов');
-  }
 
   render() {
     return `

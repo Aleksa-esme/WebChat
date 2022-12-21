@@ -2,16 +2,15 @@ import Block from 'utils/Block';
 import logData from 'utils/logData';
 import fields from './data';
 
+interface ILoginProps {
+  onClick?: () => void;
+}
+
 class Login extends Block {
   static componentName = 'Login';
 
-  constructor(props) {
-    // eslint-disable-next-line no-restricted-globals
+  constructor(props: ILoginProps) {
     super({ ...props, onClick: () => logData(event) });
-  }
-
-  componentDidMount() {
-    console.log('готов');
   }
 
   render() {

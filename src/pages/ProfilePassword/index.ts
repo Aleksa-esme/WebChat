@@ -4,15 +4,11 @@ import renderDOM from 'utils/renderDOM';
 import registerComponent from 'utils/registerComponent';
 import ProfilePasswordPage from './ProfilePassword';
 
-// import components from './components/**/index.js';
-
-// // import components from './components/**/*.ts';
-
 document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Button);
   registerComponent(Input);
 
-  const page = new ProfilePasswordPage();
+  const page = new ProfilePasswordPage({});
 
   renderDOM('#app', page);
 });

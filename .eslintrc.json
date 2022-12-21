@@ -27,6 +27,8 @@
       "no-useless-return": "off",
       "@typescript-eslint/no-useless-constructor": "off",
       "@typescript-eslint/no-unused-vars": "off",
+      "no-restricted-globals": "off",
+      "no-useless-escape":"off",
       "import/extensions": [
         "error",
         "ignorePackages",
