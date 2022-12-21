@@ -63,15 +63,15 @@ class ValidForm {
 
   registerEventsHandler() {
     this.btn.addEventListener('click', this.validForm.bind(this));
-    if (!this.form.classList.contains('messages-send')) {
-      this.form.addEventListener('focus', () => {
-        const el = document.activeElement;
-        if (el === this.btn) return;
-        this.cleanError(el);
-      }, true);
-      for (const field of this.fields) {
-        field.addEventListener('blur', this.validBlurField.bind(this));
-      }
+
+    this.form.addEventListener('focus', () => {
+      const el = document.activeElement;
+      if (el === this.btn) return;
+      this.cleanError(el);
+    }, true);
+
+    for (const field of this.fields) {
+      field.addEventListener('blur', this.validBlurField.bind(this));
     }
   }
 

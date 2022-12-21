@@ -14,7 +14,7 @@ class ButtonSvg extends Block {
 
   render() {
     return `
-      <button class="svg-button" type="submit">
+      <button class="svg-button" type={{type}}>
           <img src={{svg}} alt={{alt}}>
       </button>
     `;

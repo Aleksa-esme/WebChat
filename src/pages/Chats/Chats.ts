@@ -43,12 +43,12 @@ class Chats extends Block {
                   `).join(' ')}
               </div>
               <form class="messages-send" id="form">
-                  {{{ ButtonSvg svg="${FileSvg}" alt='add file' }}} 
+                  {{{ ButtonSvg svg="${FileSvg}" alt='add file' type='button' }}} 
                   <div class="messages-send__field">
-                      <textarea name="message" type="text" class="form-field messages-send__input" placeholder="Сообщение" rows="2" wrap="soft" style="overflow:hidden"></textarea>
-                      <span class="error"></span>
+                    <textarea name="message" type="text" class="form-field messages-send__input" placeholder="Сообщение" rows="2" wrap="soft" style="overflow:hidden"></textarea>
+                    <span class="error"></span>
                   </div>
-                  {{{ ButtonSvg svg="${ArrowButton}" alt='send' }}} 
+                  {{{ ButtonSvg svg="${ArrowButton}" alt='send' type='submit' }}} 
               </form>
           </div>
       </section>
