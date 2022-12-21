@@ -1,8 +1,8 @@
-@import url(../components/button/Button.scss);
+@import url(../components/button/button.scss);
 @import url(../components/input/Input.scss);
 @import url(../components/buttonSvg/ButtonSvg.scss);
-@import url(../components/chat/Chat.scss);
-@import url(../components/link/Link.scss);
+@import url(../components/chat/chat.scss);
+@import url(../components/link/link.scss);
 @import url(../components/message/Message.scss);
 @font-face {
   font-family: 'InterBold';
