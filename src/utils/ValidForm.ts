@@ -135,4 +135,5 @@ class ValidForm {
 }
 
 const form = document.querySelector('[id=form]') as HTMLFormElement | null;
+console.log(form);
 if (form) new ValidForm(form);
