@@ -410,7 +410,6 @@ button,
   color: var(--white);
   font-size: 13px;
   line-height: 15px;
-  opacity: 0.95;
 
   &::before {
     position: absolute;
@@ -422,7 +421,6 @@ button,
     border-bottom: 8px solid var(--red);
     border-left: 8px solid transparent;
     content: '';
-    opacity: 0.95;
   }
 }
 

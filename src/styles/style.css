@@ -1,9 +1,9 @@
-@import url(../components/button/button.css);
-@import url(../components/input/Input.css);
-@import url(../components/buttonSvg/ButtonSvg.css);
-@import url(../components/chat/chat.css);
-@import url(../components/link/link.css);
-@import url(../components/message/Message.css);
+@import url(../components/button/button.scss);
+@import url(../components/input/Input.scss);
+@import url(../components/buttonSvg/ButtonSvg.scss);
+@import url(../components/chat/chat.scss);
+@import url(../components/link/link.scss);
+@import url(../components/message/Message.scss);
 
 @font-face {
   font-family: 'InterBold';
@@ -559,7 +559,6 @@ button,
   color: var(--white);
   font-size: 13px;
   line-height: 15px;
-  opacity: 0.95;
 }
 
 .error::before {
@@ -572,7 +571,6 @@ button,
   border-bottom: 8px solid var(--red);
   border-left: 8px solid transparent;
   content: '';
-  opacity: 0.95;
 }
 
 @media (max-width: 1024px) {
