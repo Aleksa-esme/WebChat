@@ -1,9 +1,9 @@
-@import url(../components/button/button.scss);
-@import url(../components/input/Input.scss);
-@import url(../components/buttonSvg/ButtonSvg.scss);
-@import url(../components/chat/chat.scss);
-@import url(../components/link/link.scss);
-@import url(../components/message/Message.scss);
+@import url(../components/button/button.css);
+@import url(../components/input/Input.css);
+@import url(../components/buttonSvg/ButtonSvg.css);
+@import url(../components/chat/chat.css);
+@import url(../components/link/link.css);
+@import url(../components/message/Message.css);
 
 @font-face {
   font-family: 'InterBold';
