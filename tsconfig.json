@@ -4,7 +4,6 @@
         "outDir": "dist",
         "baseUrl": "./src",
         "target": "es2016",
-        "sourceMap": true,
         "moduleResolution":"node"
     },
     "typeRoots": ["node_modules/@types", "typings/app.d.ts", "typings/hbs.d.ts", "typings/svg.d.ts"],
