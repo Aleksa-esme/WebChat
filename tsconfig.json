@@ -4,7 +4,12 @@
         "outDir": "dist",
         "baseUrl": "./src",
         "target": "es2016",
-        "moduleResolution":"node"
+        "moduleResolution":"node",
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "sourceMap": true,
+        "strictNullChecks": true
     },
     "typeRoots": ["node_modules/@types", "typings/app.d.ts", "typings/hbs.d.ts", "typings/svg.d.ts"],
     "include": ["./src", "./node_modules/handlebars/types", "typings"],
