@@ -8,8 +8,8 @@
     "start": "parcel build src/index.html && node ./server.js",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
-    "stylelint": "stylelint .",
-    "stylelint:fix": "stylelint . --fix",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "stylelint:fix": "stylelint \"src/**/*.css\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "alias": {
