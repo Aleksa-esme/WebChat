@@ -111,6 +111,7 @@ class Block {
     const templateString = this.render();
 
     const fragment = this.compile(templateString, { ...this.props });
+    this._removeEvents();
 
     const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -159,6 +160,18 @@ class Block {
 
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.addEventListener(event, listener);
+    });
+  }
+
+  _removeEvents() {
+    const events: Record<string, () => void> = (this.props as any).events;
+
+    if (!events || !this._element) {
+      return;
+    }
+
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element!.removeEventListener(event, listener);
     });
   }
 
