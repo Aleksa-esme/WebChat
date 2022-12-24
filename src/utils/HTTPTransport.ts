@@ -1,7 +1,7 @@
 type Options = {
   method: string;
   data?: any;
-  headers?: Object;
+  headers?: Record<string, any>;
   timeout?: number;
 };
 

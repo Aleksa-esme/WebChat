@@ -2,6 +2,9 @@ import { nanoid } from 'nanoid';
 import * as Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
+type Props = Record<string, any>;
+type Events = Record<string, () => void>;
+
 class Block {
   static EVENTS = {
     INIT: 'init',
@@ -16,15 +19,15 @@ class Block {
 
   private _element: HTMLElement | null = null;
 
-  private _meta: { props: any };
+  private _meta: { props: Props };
 
-  protected props: any;
+  protected props: Props;
 
   protected children: Record<string, Block>;
 
   private eventBus: () => EventBus;
 
-  constructor(propsAndChildren: any = {}) {
+  constructor(propsAndChildren: Props = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this.getChildren(propsAndChildren);
@@ -45,9 +48,9 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  getChildren(propsAndChildren: any) {
-    const children: any = {};
-    const props: any = {};
+  getChildren(propsAndChildren: Props) {
+    const children: Props = {};
+    const props: Props = {};
 
     Object.entries(propsAndChildren).map(([key, value]) => {
       if (value instanceof Block) {
@@ -85,17 +88,17 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: any, newProps: any) {
+  _componentDidUpdate(oldProps: Props, newProps: Props) {
     if (this.componentDidUpdate(oldProps, newProps)) {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   }
 
-  componentDidUpdate(oldProps: any, newProps: any) {
+  componentDidUpdate(oldProps: Props, newProps: Props) {
     return true;
   }
 
-  setProps = (nextProps: any) => {
+  setProps = (nextProps: Props) => {
     if (!nextProps) {
       return;
     }
@@ -129,17 +132,26 @@ class Block {
   }
 
   getContent(): HTMLElement | null {
+    // вызов CDM только после добавления в DOM
+    if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+      setTimeout(() => {
+        if (this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
+          this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+        }
+      }, 100);
+    }
+
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
+  _makePropsProxy(props: Props) {
     const self = this;
-    return new Proxy(props as unknown as object, {
-      get(target: Record<string, unknown>, prop: string) {
+    return new Proxy(props, {
+      get(target: Props, prop: string) {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: Record<string, unknown>, prop: string, value: string) {
+      set(target: Props, prop: string, value: string) {
         const oldProps = { ...target };
         target[prop] = value;
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
@@ -152,7 +164,7 @@ class Block {
   }
 
   _addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const events: Events = (this.props).events;
 
     if (!events) {
       return;
@@ -164,7 +176,7 @@ class Block {
   }
 
   _removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const events: Events = (this.props).events;
 
     if (!events || !this._element) {
       return;
