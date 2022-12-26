@@ -27,7 +27,7 @@ class Block {
 
   private eventBus: () => EventBus;
 
-  constructor(propsAndChildren: Props = {}) {
+  constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this.getChildren(propsAndChildren);
@@ -48,8 +48,8 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  getChildren(propsAndChildren: Props) {
-    const children: Props = {};
+  getChildren(propsAndChildren: any) {
+    const children: any = {};
     const props: Props = {};
 
     Object.entries(propsAndChildren).map(([key, value]) => {
@@ -132,15 +132,6 @@ class Block {
   }
 
   getContent(): HTMLElement | null {
-    // вызов CDM только после добавления в DOM
-    if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
-      setTimeout(() => {
-        if (this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
-          this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-        }
-      }, 100);
-    }
-
     return this.element;
   }
 
@@ -163,20 +154,8 @@ class Block {
     });
   }
 
-  _addEvents() {
-    const events: Events = (this.props).events;
-
-    if (!events) {
-      return;
-    }
-
-    Object.entries(events).forEach(([event, listener]) => {
-      this._element!.addEventListener(event, listener);
-    });
-  }
-
   _removeEvents() {
-    const events: Events = (this.props).events;
+    const events: Events = (this.props as Props).events;
 
     if (!events || !this._element) {
       return;
@@ -184,6 +163,18 @@ class Block {
 
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.removeEventListener(event, listener);
+    });
+  }
+
+  _addEvents() {
+    const events: Events = (this.props as Props).events;
+
+    if (!events) {
+      return;
+    }
+
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element!.addEventListener(event, listener);
     });
   }
 
