@@ -1,5 +1,6 @@
 import Block from 'utils/block';
 import logData from 'utils/logData';
+import ValidForm from 'utils/ValidForm';
 import fields from './data';
 
 interface IRegisterProps {
@@ -11,6 +12,13 @@ class Register extends Block {
 
   constructor(props: IRegisterProps) {
     super({ ...props, onClick: (event: Event) => logData(event) });
+  }
+
+  componentDidMount(): void {
+    setTimeout(() => {
+      const form = new ValidForm();
+      form.registerEventsHandler();
+    }, 100);
   }
 
   render() {
@@ -32,7 +40,12 @@ class Register extends Block {
                 </li>`).join(' ')}
               </ul>
               <div class="login-form__buttons login-form__buttons-register">  
-                  {{{ Button title='Зарегистрироваться' classes="login-form__button-register" onClick=onClick }}}
+                  {{{ Button 
+                    title='Зарегистрироваться' 
+                    classes="login-form__button-register" 
+                    onClick=onClick 
+                    onSubmit=onSubmit 
+                  }}}
                   {{{ Link title='Войти' classes="login-form__link" }}}
               </div>
           </form>

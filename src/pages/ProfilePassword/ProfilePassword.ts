@@ -1,6 +1,7 @@
 import Block from 'utils/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
+import ValidForm from 'utils/ValidForm';
 import fields from './data';
 
 interface IProfilePasswordProps {
@@ -12,6 +13,13 @@ class ProfilePassword extends Block {
 
   constructor(props: IProfilePasswordProps) {
     super({ ...props, onClick: (event: Event) => logData(event) });
+  }
+
+  componentDidMount(): void {
+    setTimeout(() => {
+      const form = new ValidForm();
+      form.registerEventsHandler();
+    }, 100);
   }
 
   render() {

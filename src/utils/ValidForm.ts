@@ -49,12 +49,11 @@ class ValidForm {
 
   protected iserror: Boolean;
 
-  constructor(form: HTMLFormElement) {
-    this.form = form;
+  constructor() {
+    this.form = document.querySelector('[id=form]') as HTMLFormElement;
     this.fields = this.form.querySelectorAll('.form-field');
-    this.btn = this.form.querySelector('[type=submit]');
+    this.btn = this.form.querySelector('[type=submit]') as HTMLElement;
     this.iserror = false;
-    this.registerEventsHandler();
   }
 
   static getElement(el: any) {
@@ -62,20 +61,16 @@ class ValidForm {
   }
 
   registerEventsHandler() {
-    this.btn.addEventListener('click', this.validForm.bind(this));
+    this.btn.addEventListener('click', this.validateForm.bind(this));
 
-    this.form.addEventListener('focus', () => {
-      const el = document.activeElement;
-      if (el === this.btn) return;
-      this.cleanError(el);
-    }, true);
+    this.form.addEventListener('focus', this.validFocusField.bind(this), true);
 
     for (const field of this.fields) {
       field.addEventListener('blur', this.validBlurField.bind(this));
     }
   }
 
-  validForm(e: any) {
+  validateForm(e: any) {
     e.preventDefault();
     const formData: FormData = new FormData(this.form);
     let error: string;
@@ -89,6 +84,12 @@ class ValidForm {
 
     if (this.iserror) return;
     // this.sendFormData(formData);
+  }
+
+  validFocusField() {
+    const el = document.activeElement;
+    if (el === this.btn) return;
+    this.cleanError(el);
   }
 
   validBlurField(e: any) {

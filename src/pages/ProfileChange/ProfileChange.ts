@@ -1,6 +1,7 @@
 import Block from 'utils/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
+import ValidForm from 'utils/ValidForm';
 import { fields } from '../Profile/data';
 
 interface IProfileChangeProps {
@@ -10,6 +11,13 @@ interface IProfileChangeProps {
 class ProfileChange extends Block {
   constructor(props: IProfileChangeProps) {
     super({ ...props, onClick: (event: Event) => logData(event) });
+  }
+
+  componentDidMount(): void {
+    setTimeout(() => {
+      const form = new ValidForm();
+      form.registerEventsHandler();
+    }, 100);
   }
 
   render() {

@@ -1,5 +1,6 @@
 import Block from 'utils/block';
 import logData from 'utils/logData';
+import ValidForm from 'utils/ValidForm';
 import fields from './data';
 
 interface ILoginProps {
@@ -11,6 +12,13 @@ class Login extends Block {
 
   constructor(props: ILoginProps) {
     super({ ...props, onClick: (event: Event) => logData(event) });
+  }
+
+  componentDidMount(): void {
+    setTimeout(() => {
+      const form = new ValidForm();
+      form.registerEventsHandler();
+    }, 100);
   }
 
   render() {

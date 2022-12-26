@@ -3,10 +3,18 @@ import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import * as FileSvg from 'assets/svg/file.svg';
 import * as ArrowSvg from 'assets/svg/arrow.svg';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
+import ValidForm from 'utils/ValidForm';
 import { chats, messages } from './data';
 
 class Chats extends Block {
   static componentName = 'Chats';
+
+  componentDidMount(): void {
+    setTimeout(() => {
+      const form = new ValidForm();
+      form.registerEventsHandler();
+    }, 100);
+  }
 
   render() {
     return `
