@@ -4,17 +4,23 @@ interface IButtonProps {
   title: String;
   classes: String;
   onClick?: () => void;
+  onSubmit?: () => void;
 }
 
 class Button extends Block {
   static componentName = 'Button';
 
-  constructor({ title, classes, onClick }: IButtonProps) {
+  constructor({
+    title,
+    classes,
+    onClick,
+    onSubmit,
+  }: IButtonProps) {
     super({
       title,
       classes,
       events: {
-        click: onClick,
+        click: [onClick, onSubmit],
       },
     });
   }

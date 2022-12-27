@@ -1,24 +1,26 @@
 import Block from 'utils/block';
 import logData from 'utils/logData';
-import ValidForm from 'utils/ValidForm';
+import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import fields from './data';
 
 interface IRegisterProps {
   onClick?: () => void;
+  onSubmit?: () => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 class Register extends Block {
   static componentName = 'Register';
 
   constructor(props: IRegisterProps) {
-    super({ ...props, onClick: (event: Event) => logData(event) });
-  }
-
-  componentDidMount(): void {
-    setTimeout(() => {
-      const form = new ValidForm();
-      form.registerEventsHandler();
-    }, 100);
+    super({
+      ...props,
+      onClick: (event: Event) => logData(event),
+      onSubmit: (event: Event) => validateForm(event),
+      onBlur: (event: Event) => validBlurField(event),
+      onFocus: (event: Event) => validFocusField(event),
+    });
   }
 
   render() {
@@ -34,6 +36,8 @@ class Register extends Block {
                     value="${el.value}" 
                     name="${el.name}" 
                     type="${el.type}" 
+                    onBlur=onBlur
+                    onFocus=onFocus
                     classLabel='login-form__label' 
                     classInput='login-form__value' 
                   }}}

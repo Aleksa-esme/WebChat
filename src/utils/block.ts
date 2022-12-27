@@ -174,6 +174,9 @@ class Block {
     }
 
     Object.entries(events).forEach(([event, listener]) => {
+      if (Array.isArray(listener)) {
+        listener.map(handler => this._element!.addEventListener(event, handler));
+      }
       this._element!.addEventListener(event, listener);
     });
   }

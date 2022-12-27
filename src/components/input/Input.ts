@@ -5,6 +5,8 @@ interface IInputProps {
   name: String;
   value: String;
   type: String;
+  onBlur?: () => void;
+  onFocus?: () => void;
   classLabel: String;
   classInput: String;
 }
@@ -12,8 +14,19 @@ interface IInputProps {
 class Input extends Block {
   static componentName = 'Input';
 
-  constructor(props: IInputProps) {
-    super(props);
+  constructor({ label, name, value, type, classInput, classLabel, onBlur, onFocus }: IInputProps) {
+    super({
+      label,
+      name,
+      value,
+      type,
+      classInput,
+      classLabel,
+      events: {
+        focusout: onBlur,
+        focusin: onFocus,
+      },
+    });
   }
 
   render() {

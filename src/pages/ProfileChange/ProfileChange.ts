@@ -1,23 +1,25 @@
 import Block from 'utils/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
-import ValidForm from 'utils/ValidForm';
+import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import { fields } from '../Profile/data';
 
 interface IProfileChangeProps {
   onClick?: () => void;
+  onSubmit?: () => void;
+  onBlur?: () => void;
+  onFocus?: () => void;
 }
 
 class ProfileChange extends Block {
   constructor(props: IProfileChangeProps) {
-    super({ ...props, onClick: (event: Event) => logData(event) });
-  }
-
-  componentDidMount(): void {
-    setTimeout(() => {
-      const form = new ValidForm();
-      form.registerEventsHandler();
-    }, 100);
+    super({
+      ...props,
+      onClick: (event: Event) => logData(event),
+      onSubmit: (event: Event) => validateForm(event),
+      onBlur: (event: Event) => validBlurField(event),
+      onFocus: (event: Event) => validFocusField(event),
+    });
   }
 
   render() {
@@ -38,12 +40,18 @@ class ProfileChange extends Block {
                         value="${el.value}" 
                         name="${el.name}" 
                         type="${el.type}" 
+                        onBlur=onBlur
+                        onFocus=onFocus
                         classLabel='profile-form__label' 
                         classInput='profile-form__value' 
                       }}}
                     </li>`).join(' ')}
                   </ul>
-                  {{{ Button title='Сохранить' classes="profile-form__button-submit" onClick=onClick }}}
+                  {{{ Button 
+                    title='Сохранить' 
+                    classes="profile-form__button-submit" 
+                    onClick=onClick 
+                    onSubmit=onSubmit }}}
               </form>
           </div>
       </section>
