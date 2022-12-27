@@ -1,0 +1,42 @@
+{
+    "extends": [
+      "airbnb-base",
+      "airbnb-typescript/base"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "no-console": "off",
+      "no-underscore-dangle": "off",
+      "no-param-reassign":"off",
+      "class-methods-use-this":"off",
+      "arrow-parens":"off",
+      "no-return-assign":"off",
+      "no-restricted-syntax":"off",
+      "no-new":"off",
+      "prefer-destructuring":"off",
+      "no-continue":"off",
+      "array-callback-return":"off",
+      "no-unused-vars": "off",
+      "no-useless-return": "off",
+      "@typescript-eslint/no-useless-constructor": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      "no-restricted-globals": "off",
+      "no-useless-escape":"off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+     ]
+    }
+} 

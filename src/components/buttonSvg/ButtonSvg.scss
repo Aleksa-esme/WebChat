@@ -1,0 +1,16 @@
+.svg-button {
+  border: unset;
+  background-color: unset;
+  cursor: pointer;
+  transform: rotate(180deg);
+
+  &:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid var(--blue);
+    outline-width: thin;
+  }
+
+  &:hover {
+    filter: brightness(90%);
+  }
+}

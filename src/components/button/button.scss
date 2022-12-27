@@ -1,0 +1,38 @@
+.button {
+  width: 100%;
+  max-width: 280px;
+  align-self: center;
+  padding: 12px 0;
+  border: unset;
+  border-radius: 8px;
+  background: var(--blue);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 18px;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  &:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid var(--blue);
+    outline-width: thin;
+  }
+}
+
+@media (max-width: 768px) {
+  .button {
+    font-size: 16px;
+    line-height: 16px;
+  }
+}
+
+@media (max-width: 425px) {
+  .button {
+    padding: 12px 0;
+    font-size: 14px;
+    line-height: 14px;
+  }
+}
