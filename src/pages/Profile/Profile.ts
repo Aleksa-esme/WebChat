@@ -12,7 +12,7 @@ class Profile extends Block {
             <img src=${ArrowButton} alt="back">
           </a>
           <div class="profile">
-              <form id="form" class="profile-form">
+              <form id="form" class="form profile-form">
                   <div class="profile-form__photo"></div>
                   <ul class="form-list">
                   ${fields.map(el => `
@@ -27,7 +27,7 @@ class Profile extends Block {
                       }}}
                     </li>`).join(' ')}
                   </ul>
-                  <div class="profile-form__buttons">
+                  <div class="form__buttons profile-form__buttons">
                   ${links.map(el => `
                     {{{ Link title="${el.title}" classes="${el.class}"}}}
                   `).join(' ')}

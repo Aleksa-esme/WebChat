@@ -31,7 +31,7 @@ class ProfilePassword extends Block {
           <img src=${ArrowButton} alt="back">
           </a>
           <div class="profile">
-              <form id="form" class="profile-form">
+              <form id="form" class="form profile-form">
                   <div class="profile-form__photo"></div>
                   <ul class="form-list">
                   ${fields.map(el => `

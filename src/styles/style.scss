@@ -93,12 +93,7 @@ button,
   }
 
   &-form {
-    display: flex;
-    width: 100%;
-    max-width: 550px;
-    flex-direction: column;
-    padding: 20px;
-
+    padding: 40px 0 10px;
     &__photo {
       width: 160px;
       height: 160px;
@@ -121,33 +116,20 @@ button,
     }
 
     &__label {
-      display: flex;
-      width: 100%;
       justify-content: space-between;
       padding: 10px 0;
-      border-bottom: 1px solid var(--grey);
       color: var(--black);
       font-size: 18px;
       line-height: 18px;
     }
 
-    &__label:first-of-type {
-      padding: 40px 0 10px;
-    }
-
     &__value {
       width: 70%;
-      border: unset;
-      background-color: transparent;
       color: var(--dark-grey);
-      font-size: 18px;
-      line-height: 18px;
       text-align: end;
     }
 
     &__buttons {
-      display: flex;
-      flex-direction: column;
       margin-top: 40px;
     }
 
@@ -184,16 +166,9 @@ button,
   }
 
   &-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-
     &__label {
-      display: flex;
-      width: 100%;
       flex-direction: column;
       padding-top: 16px;
-      border-bottom: 1px solid var(--blue);
       color: var(--dark-grey);
       font-size: 14px;
       line-height: 14px;
@@ -202,15 +177,9 @@ button,
     &__value {
       width: 100%;
       padding: 8px 0;
-      border: unset;
-      background-color: unset;
-      font-size: 18px;
-      line-height: 18px;
     }
 
     &__buttons {
-      display: flex;
-      flex-direction: column;
       align-items: center;
     }
 
@@ -387,9 +356,32 @@ button,
 }
 
 .form {
+  display: flex;
+  width: 100%;
+  max-width: 550px;
+  flex-direction: column;
+  padding: 20px;
   &-list li {
     position: relative;
     display: flex;
+  }
+
+  &__label {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid var(--grey);
+  }
+
+  &__value {
+    border: unset;
+    background-color: transparent;
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
   }
 
   &__error {

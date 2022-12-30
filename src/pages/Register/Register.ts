@@ -27,7 +27,7 @@ class Register extends Block {
     return `
       <section class="login">
           <h6 class="login__title">Регистрация</h6>
-          <form id="form" class="login-form">
+          <form id="form" class="form">
               <ul class="form-list">
               ${fields.map(el => `
                 <li>
@@ -43,7 +43,7 @@ class Register extends Block {
                   }}}
                 </li>`).join(' ')}
               </ul>
-              <div class="login-form__buttons login-form__buttons-register">  
+              <div class="form__buttons login-form__buttons login-form__buttons-register">  
                   {{{ Button 
                     title='Зарегистрироваться' 
                     classes="login-form__button-register" 
