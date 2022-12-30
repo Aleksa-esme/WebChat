@@ -29,7 +29,7 @@ class Profile extends Block {
                   </ul>
                   <div class="form__buttons profile-form__buttons">
                   ${links.map(el => `
-                    {{{ Link title="${el.title}" classes="${el.class}"}}}
+                    {{{ Link title="${el.title}" classes="${el.class}" }}}
                   `).join(' ')}
                   </div>
               </form>

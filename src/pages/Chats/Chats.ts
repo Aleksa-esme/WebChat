@@ -3,12 +3,11 @@ import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import * as FileSvg from 'assets/svg/file.svg';
 import * as ArrowSvg from 'assets/svg/arrow.svg';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import { validateForm, validFocusField } from 'utils/ValidForm';
 import { chats, messages } from './data';
 
 interface IChatsProps {
   onSubmit?: () => void;
-  onBlur?: () => void;
   onFocus?: () => void;
 }
 
@@ -19,7 +18,6 @@ class Chats extends Block {
     super({
       ...props,
       onSubmit: (event: Event) => validateForm(event),
-      onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
   }
@@ -51,20 +49,14 @@ class Chats extends Block {
               </div>
               <div class="messages-field">
                   <p class="messages-field__date">19 июня</p>
-                  {{!-- {{#> message/message}}
-                      <img src='../assets/message.jpg' alt='message'>
-                  {{/message/message}} --}}
                   ${messages.map(el => `
                     {{{ Message classes="${el.class}" content="${el.content}"}}}
                   `).join(' ')}
               </div>
               <form class="messages-send" id="form">
                   {{{ ButtonSvg svg="${FileSvg}" alt='add file' type='button' }}} 
-                  <div class="messages-send__field">
-                    <textarea name="message" type="text" class="form-field messages-send__input" placeholder="Сообщение" rows="2" wrap="soft" style="overflow:hidden"></textarea>
-                    <span class="error"></span>
-                  </div>
-                  {{{ ButtonSvg svg="${ArrowButton}" alt='send' type='submit' }}} 
+                  {{{ MessageField onFocus=onFocus }}}
+                  {{{ ButtonSvg svg="${ArrowButton}" alt='send' type='submit' onSubmit=onSubmit}}} 
               </form>
           </div>
       </section>

@@ -5,6 +5,7 @@
 @import url(../components/link/link.scss);
 @import url(../components/message/Message.scss);
 @import url(../components/avatar/avatar.scss);
+@import url(../components/messageField/MessageField.scss);
 
 @font-face {
   font-family: 'InterBold';
@@ -279,32 +280,6 @@ button,
     justify-content: space-between;
     padding: 14px 20px;
     border-top: 1px solid var(--grey);
-
-    &__field {
-      position: relative;
-      display: flex;
-      width: 100%;
-    }
-
-    &__input {
-      width: 100%;
-      padding: 9px 30px;
-      border: unset;
-      border-radius: 30px;
-      margin: 0 10px;
-      background: #efefef;
-      resize: none;
-
-      &::placeholder {
-        line-height: 35px;
-      }
-
-      &:focus-visible {
-        border-radius: 3px;
-        outline: 2px solid var(--blue);
-        outline-width: thin;
-      }
-    }
   }
 }
 
@@ -343,7 +318,6 @@ button,
   flex-direction: column;
   padding: 20px;
   &-list li {
-    position: relative;
     display: flex;
   }
 
@@ -351,6 +325,7 @@ button,
     display: flex;
     width: 100%;
     border-bottom: 1px solid var(--grey);
+    position: relative;
   }
 
   &__value {
@@ -386,7 +361,7 @@ button,
 
   &::before {
     position: absolute;
-    top: -8px;
+    top: -7px;
     left: 15px;
     width: 0;
     height: 0;

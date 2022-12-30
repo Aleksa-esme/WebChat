@@ -69,6 +69,15 @@ const showError = (form: HTMLFormElement, property: string, error: string) => {
   el?.parentElement?.classList.add('form__error');
   errorBox.innerHTML = error;
   errorBox.style.display = 'block';
+
+  const coords = el!.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const percentHeight = 100 - ((coords.top * 100) / windowHeight);
+
+  if (percentHeight < 10) {
+    const top = coords.height - errorBox.offsetHeight * 2;
+    errorBox.style.top = `${top}px`;
+  }
 };
 
 const cleanError = (el: Element) => {
@@ -94,7 +103,7 @@ export const validateForm = (e: Event) => {
   }
 
   if (iserror) return;
-  // this.sendFormData(formData);
+  // sendFormData(formData);
 };
 
 export const validFocusField = (e: Event) => {

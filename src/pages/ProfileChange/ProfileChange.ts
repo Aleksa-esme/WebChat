@@ -50,7 +50,8 @@ class ProfileChange extends Block {
                     title='Сохранить' 
                     classes="profile-form__button-submit" 
                     onClick=onClick 
-                    onSubmit=onSubmit }}}
+                    onSubmit=onSubmit 
+                  }}}
               </form>
           </div>
       </section>

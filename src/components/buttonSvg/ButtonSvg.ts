@@ -3,13 +3,20 @@ import Block from 'utils/block';
 interface IButtonSvgProps {
   alt: String;
   svg: SVGElement;
+  onSubmit?: () => void;
 }
 
 class ButtonSvg extends Block {
   static componentName = 'ButtonSvg';
 
-  constructor(props: IButtonSvgProps) {
-    super(props);
+  constructor({ alt, svg, onSubmit }: IButtonSvgProps) {
+    super({
+      alt,
+      svg,
+      events: {
+        click: onSubmit,
+      },
+    });
   }
 
   render() {
