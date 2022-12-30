@@ -4,6 +4,7 @@
 @import url(../components/chat/chat.scss);
 @import url(../components/link/link.scss);
 @import url(../components/message/Message.scss);
+@import url(../components/avatar/avatar.scss);
 
 @font-face {
   font-family: 'InterBold';
@@ -94,26 +95,6 @@ button,
 
   &-form {
     padding: 40px 0 10px;
-    &__photo {
-      width: 160px;
-      height: 160px;
-      align-self: center;
-      border-radius: 80px;
-      background: var(--light-grey);
-      background-image: url('https://dummyimage.com/160x160/EFEFEF');
-
-      &__input {
-        max-width: 300px;
-        align-self: center;
-        padding: 20px 20px 0;
-
-        &:focus-visible {
-          border-radius: 3px;
-          outline: 2px solid var(--blue);
-          outline-width: thin;
-        }
-      }
-    }
 
     &__label {
       justify-content: space-between;
@@ -574,16 +555,6 @@ button,
     &-form {
       max-width: 470px;
       padding-top: 48px;
-
-      &__photo {
-        width: 130px;
-        height: 130px;
-        background-image: url('https://dummyimage.com/130x130/EFEFEF');
-
-        &__input {
-          align-self: center;
-        }
-      }
 
       &__label {
         font-size: 14px;

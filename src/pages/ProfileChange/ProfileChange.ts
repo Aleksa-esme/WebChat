@@ -26,12 +26,11 @@ class ProfileChange extends Block {
     return `
       <section class="profile-page">
           <a href="#" class="profile-page__button-back">
-          <img src=${ArrowButton} alt="back">
+            <img src=${ArrowButton} alt="back">
           </a>
           <div class="profile">
               <form id="form" class="form profile-form">
-                  <div class="profile-form__photo"></div>
-                  <input type="file" name="avatar" accept="image/png, image/jpeg" class="profile-form__photo__input">
+                  {{{ Avatar isVisible=true}}}
                   <ul class="form-list">
                   ${fields.map(el => `
                     <li>

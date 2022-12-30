@@ -32,7 +32,7 @@ class ProfilePassword extends Block {
           </a>
           <div class="profile">
               <form id="form" class="form profile-form">
-                  <div class="profile-form__photo"></div>
+                  {{{ Avatar }}}
                   <ul class="form-list">
                   ${fields.map(el => `
                     <li>
