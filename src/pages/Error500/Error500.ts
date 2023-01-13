@@ -8,7 +8,7 @@ class Error500 extends Block {
       <section class="http-error">
           <h6 class="http-error__number">500</h6>
           <p class="http-error__description">Мы уже фиксим</p>
-          {{{ Link title='Назад к чатам' classes="link-small" }}}
+          {{{ Button title='Назад к чатам' classes="link link-small" }}}
       </section>
     `;
   }

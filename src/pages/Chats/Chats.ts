@@ -1,4 +1,6 @@
 import Block from 'utils/block';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import * as FileSvg from 'assets/svg/file.svg';
 import * as ArrowSvg from 'assets/svg/arrow.svg';
@@ -9,6 +11,7 @@ import { chats, messages } from './data';
 interface IChatsProps {
   onSubmit?: () => void;
   onFocus?: () => void;
+  onNavigate?: () => void;
 }
 
 class Chats extends Block {
@@ -20,16 +23,21 @@ class Chats extends Block {
       onSubmit: (event: Event) => validateForm(event),
       onFocus: (event: Event) => validFocusField(event),
     });
+
+    this.setProps({
+      navigateProfile: () => this.props.router.go('/profile'),
+    });
   }
 
   render() {
     return `
       <section class="chat-page">
           <div class="chats">
-              <a href="#" class="link link-small chats__link">
-                  Профиль
-                  <img src=${ArrowSvg} alt="arrow">
-              </a>
+              {{{ Button 
+                title='Профиль' 
+                classes="link link-small chats__link" 
+                onNavigate=navigateProfile
+              }}}
               <input type="text" class="chats__search" placeholder="Поиск">
               <div class="chats__list">
                   ${chats.map(el => `
@@ -54,9 +62,9 @@ class Chats extends Block {
                   `).join(' ')}
               </div>
               <form class="messages-send" id="form">
-                  {{{ ButtonSvg svg="${FileSvg}" alt='add file' type='button' }}} 
+                  {{{ ButtonSvg svg="${FileSvg}" alt='add file' type='button' classes="svg-button" }}} 
                   {{{ MessageField onFocus=onFocus }}}
-                  {{{ ButtonSvg svg="${ArrowButton}" alt='send' type='submit' onSubmit=onSubmit}}} 
+                  {{{ ButtonSvg svg="${ArrowButton}" alt='send' type='submit' classes="svg-button" onSubmit=onSubmit}}} 
               </form>
           </div>
       </section>
@@ -64,4 +72,9 @@ class Chats extends Block {
   }
 }
 
-export default Chats;
+export default withRouter(withStore(Chats));
+
+// <a href="#" class="link link-small chats__link">
+//     Профиль
+//     <img src=${ArrowSvg} alt="arrow">
+// </a>

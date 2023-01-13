@@ -1,4 +1,6 @@
 import Block from 'utils/block';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
@@ -9,6 +11,7 @@ interface IProfilePasswordProps {
   onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  onNavigate?: () => void;
 }
 
 class ProfilePassword extends Block {
@@ -22,14 +25,22 @@ class ProfilePassword extends Block {
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
+
+    this.setProps({
+      navigateProfile: () => this.props.router.go('/profile'),
+    });
   }
 
   render() {
     return `
       <section class="profile-page">
-          <a href="#" class="profile-page__button-back">
-          <img src=${ArrowButton} alt="back">
-          </a>
+      {{{ ButtonSvg 
+        svg="${ArrowButton}" 
+        alt='back' 
+        type='button' 
+        classes="profile-page__button-back" 
+        onNavigate=navigateProfile
+      }}}
           <div class="profile">
               <form id="form" class="form profile-form">
                   {{{ Avatar }}}
@@ -50,7 +61,7 @@ class ProfilePassword extends Block {
                   </ul>
                   {{{ Button 
                     title='Сохранить' 
-                    classes="profile-form__button-submit" 
+                    classes="button profile-form__button-submit" 
                     onClick=onClick 
                     onSubmit=onSubmit 
                   }}}
@@ -61,4 +72,4 @@ class ProfilePassword extends Block {
   }
 }
 
-export default ProfilePassword;
+export default withRouter(withStore(ProfilePassword));

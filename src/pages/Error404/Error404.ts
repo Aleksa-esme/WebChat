@@ -8,7 +8,7 @@ class Error404 extends Block {
       <section class="http-error">
           <h6 class="http-error__number">404</h6>
           <p class="http-error__description">Не туда попали</p>
-          {{{ Link title='Назад к чатам' classes="link-small" }}}
+          {{{ Button title='Назад к чатам' classes="link link-small" }}}
       </section>
     `;
   }

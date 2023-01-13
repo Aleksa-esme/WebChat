@@ -1,4 +1,4 @@
-export const fields = [
+const fields = [
   {
     label: 'Почта',
     value: 'pochta@yandex.ru',
@@ -37,17 +37,4 @@ export const fields = [
   },
 ];
 
-export const links = [
-  {
-    title: 'Изменить данные',
-    class: 'profile-form__button',
-  },
-  {
-    title: 'Изменить пароль',
-    class: 'profile-form__button',
-  },
-  {
-    title: 'Выйти',
-    class: 'profile-form__button profile-form__button-exit',
-  },
-];
+export default fields;

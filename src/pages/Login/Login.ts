@@ -46,11 +46,11 @@ class Login extends Block {
           <div class="form__buttons login-form__buttons login-form__buttons-login">
               {{{ Button 
                 title='Войти' 
-                classes="login-form__button-login" 
+                classes="button login-form__button-login" 
                 onClick=onClick 
                 onSubmit=onSubmit 
               }}}
-              {{{ Link title='Нет аккаунта?' classes="login-form__link" }}}
+              {{{ Button title='Нет аккаунта?' classes="link login-form__link" }}}
           </div>
       </form>
     </section>

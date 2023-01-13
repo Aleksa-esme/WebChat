@@ -1,6 +1,10 @@
 import Block from 'utils/block';
 import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import Router from 'utils/Router';
+import { Store } from 'utils/Store';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
 import fields from './data';
 
 interface IRegisterProps {
@@ -8,6 +12,11 @@ interface IRegisterProps {
   onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  // router: Router;
+  // store: Store<AppState>;
+  // isLoading: boolean;
+  // onToggleAppLoading?: () => void;
+  onNavigate?: () => void;
 }
 
 class Register extends Block {
@@ -21,7 +30,28 @@ class Register extends Block {
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
+
+    this.setProps({
+      // onToggleAppLoading: () => this.onToggleAppLoading(),
+      navigateAfterRegister: () => this.navigateAfterRegister(),
+    });
   }
+
+  navigateAfterRegister() {
+    if (this.props.store.getState().user) {
+      this.props.router.go('/profile');
+    } else {
+      this.props.router.go('/login');
+    }
+  }
+
+  // onToggleAppLoading() {
+  //   this.props.store.dispatch({ isLoading: true });
+
+  //   setTimeout(() => {
+  //     this.props.store.dispatch({ isLoading: false });
+  //   }, 2000);
+  // }
 
   render() {
     return `
@@ -46,11 +76,15 @@ class Register extends Block {
               <div class="form__buttons login-form__buttons login-form__buttons-register">  
                   {{{ Button 
                     title='Зарегистрироваться' 
-                    classes="login-form__button-register" 
-                    onClick=onClick 
+                    classes="button login-form__button-register" 
+                    onClick=onClick
                     onSubmit=onSubmit 
+                    onNavigate=onNavigate
                   }}}
-                  {{{ Link title='Войти' classes="login-form__link" }}}
+                  {{{ Button 
+                    title='Войти' 
+                    classes="link login-form__link" 
+                  }}}
               </div>
           </form>
       </section>
@@ -58,4 +92,4 @@ class Register extends Block {
   }
 }
 
-export default Register;
+export default withRouter(withStore(Register));

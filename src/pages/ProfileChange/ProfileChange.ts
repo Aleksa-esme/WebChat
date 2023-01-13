@@ -2,13 +2,16 @@ import Block from 'utils/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
-import { fields } from '../Profile/data';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
+import fields from '../Profile/data';
 
 interface IProfileChangeProps {
   onClick?: () => void;
   onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  onNavigate?: () => void;
 }
 
 class ProfileChange extends Block {
@@ -20,14 +23,22 @@ class ProfileChange extends Block {
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
+
+    this.setProps({
+      navigateProfile: () => this.props.router.go('/profile'),
+    });
   }
 
   render() {
     return `
       <section class="profile-page">
-          <a href="#" class="profile-page__button-back">
-            <img src=${ArrowButton} alt="back">
-          </a>
+      {{{ ButtonSvg 
+        svg="${ArrowButton}" 
+        alt='back' 
+        type='button' 
+        classes="profile-page__button-back" 
+        onNavigate=navigateProfile
+      }}}
           <div class="profile">
               <form id="form" class="form profile-form">
                   {{{ Avatar isVisible=true}}}
@@ -48,7 +59,7 @@ class ProfileChange extends Block {
                   </ul>
                   {{{ Button 
                     title='Сохранить' 
-                    classes="profile-form__button-submit" 
+                    classes="button profile-form__button-submit" 
                     onClick=onClick 
                     onSubmit=onSubmit 
                   }}}
@@ -59,4 +70,4 @@ class ProfileChange extends Block {
   }
 }
 
-export default ProfileChange;
+export default withRouter(withStore(ProfileChange));

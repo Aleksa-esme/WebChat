@@ -1,7 +1,7 @@
 import Block from './block';
 
-function renderDOM(rootSelector: string, block: Block) {
-  const root = document.querySelector(rootSelector);
+function renderDOM(block: Block) {
+  const root = document.querySelector('#app');
 
   if (!root) {
     throw new Error('Root not found');
@@ -11,7 +11,7 @@ function renderDOM(rootSelector: string, block: Block) {
 
   root.innerHTML = '';
 
-  root.append(block.getContent());
+  root.appendChild(block.getContent());
 }
 
 export default renderDOM;

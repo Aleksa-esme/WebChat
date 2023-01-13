@@ -9,7 +9,7 @@ class Modal extends Block {
           <div class="modal">
               <h6 class="modal__heading">Файл загружен</h6>
               <p>pic.jpg</p>
-              {{{ Button title='Поменять' classes='modal__button' }}}
+              {{{ Button title='Поменять' classes='button modal__button' }}}
           </div>
       </section>
     `;

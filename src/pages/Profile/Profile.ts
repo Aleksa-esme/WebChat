@@ -1,16 +1,37 @@
 import Block from 'utils/block';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import { fields, links } from './data';
+import fields from './data';
+
+interface IProfileProps {
+  onNavigate?: () => void;
+}
 
 class Profile extends Block {
   static componentName = 'Profile';
 
+  constructor(props: IProfileProps) {
+    super(props);
+
+    this.setProps({
+      navigateDataChange: () => this.props.router.go('/change'),
+      navigatePasswordChange: () => this.props.router.go('/password'),
+      navigateLogin: () => this.props.router.go('/login'),
+      navigateChats: () => this.props.router.go('/chats'),
+    });
+  }
+
   render() {
     return `
       <section class="profile-page">
-          <a href="#" class="profile-page__button-back">
-            <img src=${ArrowButton} alt="back">
-          </a>
+          {{{ ButtonSvg 
+            svg="${ArrowButton}" 
+            alt='back' 
+            type='button' 
+            classes="profile-page__button-back" 
+            onNavigate=navigateChats
+          }}}
           <div class="profile">
               <form id="form" class="form profile-form">
                 {{{ Avatar }}}
@@ -28,9 +49,21 @@ class Profile extends Block {
                     </li>`).join(' ')}
                   </ul>
                   <div class="form__buttons profile-form__buttons">
-                  ${links.map(el => `
-                    {{{ Link title="${el.title}" classes="${el.class}" }}}
-                  `).join(' ')}
+                    {{{ Button 
+                      title='Изменить данные' 
+                      classes="link profile-form__button" 
+                      onNavigate=navigateDataChange
+                    }}}
+                    {{{ Button 
+                      title='Изменить пароль' 
+                      classes="link profile-form__button" 
+                      onNavigate=navigatePasswordChange
+                    }}}
+                    {{{ Button 
+                      title='Выйти' 
+                      classes="link profile-form__button profile-form__button-exit" 
+                      onNavigate=navigateLogin
+                    }}}
                   </div>
               </form>
           </div>
@@ -39,4 +72,4 @@ class Profile extends Block {
   }
 }
 
-export default Profile;
+export default withRouter(withStore(Profile));

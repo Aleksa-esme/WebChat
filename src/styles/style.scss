@@ -2,7 +2,6 @@
 @import url(../components/input/Input.scss);
 @import url(../components/buttonSvg/ButtonSvg.scss);
 @import url(../components/chat/chat.scss);
-@import url(../components/link/link.scss);
 @import url(../components/message/Message.scss);
 @import url(../components/avatar/avatar.scss);
 @import url(../components/messageField/MessageField.scss);
@@ -81,6 +80,7 @@ button,
       background-color: var(--light);
       cursor: pointer;
       text-decoration: none;
+      border: unset;
 
       &:hover {
         filter: brightness(90%);

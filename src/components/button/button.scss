@@ -22,10 +22,45 @@
   }
 }
 
+.link {
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 18px;
+  text-decoration: none;
+  background-color: transparent;
+  border: unset;
+
+  &-small {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  &:focus-visible {
+    border-radius: 3px;
+    outline: 2px solid var(--blue);
+    outline-width: thin;
+  }
+}
+
 @media (max-width: 768px) {
   .button {
     font-size: 16px;
     line-height: 16px;
+  }
+
+  .link {
+    font-size: 16px;
+    line-height: 16px;
+
+    &-small {
+      font-size: 14px;
+      line-height: 14px;
+    }
   }
 }
 
@@ -34,5 +69,15 @@
     padding: 12px 0;
     font-size: 14px;
     line-height: 14px;
+  }
+
+  .link {
+    font-size: 14px;
+    line-height: 14px;
+
+    &-small {
+      font-size: 13px;
+      line-height: 13px;
+    }
   }
 }
