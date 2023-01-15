@@ -1,9 +1,9 @@
 import Block from 'utils/block';
 import withRouter from 'utils/withRouter';
 import withStore from 'utils/withStore';
+import withUser from 'utils/withUser';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { logout } from 'services/auth';
-import fields from './data';
 
 interface IProfileProps {
   onNavigate?: () => void;
@@ -22,9 +22,14 @@ class Profile extends Block {
       navigateChats: () => this.props.router.go('/chats'),
       onLogout: () => this.props.store.dispatch(logout),
     });
+    console.log(this.props.user);
   }
 
   render() {
+    if (!this.props.user) {
+      return 'no authorized user';
+    }
+
     return `
       <section class="profile-page">
           {{{ ButtonSvg 
@@ -38,16 +43,66 @@ class Profile extends Block {
               <form id="form" class="form profile-form">
                 {{{ Avatar }}}
                   <ul class="form-list">
-                  ${fields.map(el => `
                     <li>
                       {{{ Input 
-                        label="${el.label}" 
-                        name="${el.name}" 
-                        type="${el.type}" 
+                        label="Почта" 
+                        name="email" 
+                        type="email" 
+                        value='${this.props.user.email}'
                         classLabel='profile-form__label' 
                         classInput='profile-form__value' 
                       }}}
-                    </li>`).join(' ')}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Логин" 
+                        name="login" 
+                        type="text" 
+                        value="${this.props.user.login}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Имя" 
+                        name="first_name" 
+                        type="text" 
+                        value="${this.props.user.firstName}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Фамилия" 
+                        name="second_name" 
+                        type="text" 
+                        value="${this.props.user.secondName}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Имя в чате" 
+                        name="display_name" 
+                        type="text" 
+                        value="${this.props.user.displayName}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Телефон" 
+                        name="phone" 
+                        type="telephone" 
+                        value="${this.props.user.phone}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
                   </ul>
                   <div class="form__buttons profile-form__buttons">
                     {{{ Button 
@@ -74,4 +129,4 @@ class Profile extends Block {
   }
 }
 
-export default withRouter(withStore(Profile));
+export default withRouter(withStore(withUser(Profile)));

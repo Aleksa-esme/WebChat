@@ -4,6 +4,7 @@ import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import withRouter from 'utils/withRouter';
 import withStore from 'utils/withStore';
+import withUser from 'utils/withUser';
 import fields from '../Profile/data';
 
 interface IProfileChangeProps {
@@ -30,6 +31,10 @@ class ProfileChange extends Block {
   }
 
   render() {
+    if (!this.props.user) {
+      return 'no authorized user';
+    }
+
     return `
       <section class="profile-page">
       {{{ ButtonSvg 
@@ -43,18 +48,66 @@ class ProfileChange extends Block {
               <form id="form" class="form profile-form">
                   {{{ Avatar isVisible=true}}}
                   <ul class="form-list">
-                  ${fields.map(el => `
-                    <li>
+                  <li>
                       {{{ Input 
-                        label="${el.label}" 
-                        name="${el.name}" 
-                        type="${el.type}" 
-                        onBlur=onBlur
-                        onFocus=onFocus
+                        label="Почта" 
+                        name="email" 
+                        type="email" 
+                        value='${this.props.user.email}'
                         classLabel='profile-form__label' 
                         classInput='profile-form__value' 
                       }}}
-                    </li>`).join(' ')}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Логин" 
+                        name="login" 
+                        type="text" 
+                        value="${this.props.user.login}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Имя" 
+                        name="first_name" 
+                        type="text" 
+                        value="${this.props.user.firstName}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Фамилия" 
+                        name="second_name" 
+                        type="text" 
+                        value="${this.props.user.secondName}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Имя в чате" 
+                        name="display_name" 
+                        type="text" 
+                        value="${this.props.user.displayName}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Телефон" 
+                        name="phone" 
+                        type="telephone" 
+                        value="${this.props.user.phone}"
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
                   </ul>
                   {{{ Button 
                     title='Сохранить' 
@@ -69,4 +122,4 @@ class ProfileChange extends Block {
   }
 }
 
-export default withRouter(withStore(ProfileChange));
+export default withRouter(withStore(withUser(ProfileChange)));
