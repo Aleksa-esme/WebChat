@@ -12,6 +12,8 @@ import Chat from 'components/chat/Chat';
 import Message from 'components/message/Message';
 import MessageField from 'components/messageField/MessageField';
 import Chats from 'pages/Chats/Chats';
+import initApp from 'services/initApp';
+import Login from 'pages/Login/Login';
 import initRouter from './router';
 import defaultState from './store/index';
 
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.router = router;
   window.store = store;
 
-  renderDOM(new Profile({}));
+  renderDOM(new Login({}));
 
   store.on('changed', (prevState, nextState) => {
     if (process.env.DEBUG) {
@@ -62,5 +64,5 @@ document.addEventListener('DOMContentLoaded', () => {
   /**
    * Загружаем данные для приложения
    */
-  // store.dispatch(initApp);
+  store.dispatch(initApp);
 });

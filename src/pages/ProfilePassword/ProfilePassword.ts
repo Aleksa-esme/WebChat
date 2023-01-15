@@ -49,7 +49,6 @@ class ProfilePassword extends Block {
                     <li>
                       {{{ Input 
                         label="${el.label}" 
-                        value="${el.value}" 
                         name="${el.name}" 
                         type="password"
                         onBlur=onBlur

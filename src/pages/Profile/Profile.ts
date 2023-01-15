@@ -2,6 +2,7 @@ import Block from 'utils/block';
 import withRouter from 'utils/withRouter';
 import withStore from 'utils/withStore';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
+import { logout } from 'services/auth';
 import fields from './data';
 
 interface IProfileProps {
@@ -19,6 +20,7 @@ class Profile extends Block {
       navigatePasswordChange: () => this.props.router.go('/password'),
       navigateLogin: () => this.props.router.go('/login'),
       navigateChats: () => this.props.router.go('/chats'),
+      onLogout: () => this.props.store.dispatch(logout),
     });
   }
 
@@ -40,7 +42,6 @@ class Profile extends Block {
                     <li>
                       {{{ Input 
                         label="${el.label}" 
-                        value="${el.value}" 
                         name="${el.name}" 
                         type="${el.type}" 
                         classLabel='profile-form__label' 
@@ -63,6 +64,7 @@ class Profile extends Block {
                       title='Выйти' 
                       classes="link profile-form__button profile-form__button-exit" 
                       onNavigate=navigateLogin
+                      onClick=onLogout
                     }}}
                   </div>
               </form>

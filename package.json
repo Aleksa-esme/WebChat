@@ -16,7 +16,9 @@
     "assets": "./src/assets",
     "components": "./src/components",
     "pages": "./src/pages",
-    "utils": "./src/utils"
+    "utils": "./src/utils",
+    "services": "./src/services",
+    "api": "./src/api"
   },
   "repository": {
     "type": "git",

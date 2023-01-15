@@ -34,7 +34,7 @@ class Chats extends Block {
       <section class="chat-page">
           <div class="chats">
               {{{ Button 
-                title='Профиль' 
+                title='Профиль >' 
                 classes="link link-small chats__link" 
                 onNavigate=navigateProfile
               }}}

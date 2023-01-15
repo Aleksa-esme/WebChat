@@ -34,6 +34,7 @@ class Register extends Block {
     this.setProps({
       // onToggleAppLoading: () => this.onToggleAppLoading(),
       navigateAfterRegister: () => this.navigateAfterRegister(),
+      navigateLogin: () => this.props.router.go('/login'),
     });
   }
 
@@ -62,8 +63,7 @@ class Register extends Block {
               ${fields.map(el => `
                 <li>
                   {{{ Input 
-                    label="${el.label}" 
-                    value="${el.value}" 
+                    label="${el.label}"  
                     name="${el.name}" 
                     type="${el.type}" 
                     onBlur=onBlur
@@ -84,6 +84,7 @@ class Register extends Block {
                   {{{ Button 
                     title='Войти' 
                     classes="link login-form__link" 
+                    onNavigate=navigateLogin
                   }}}
               </div>
           </form>

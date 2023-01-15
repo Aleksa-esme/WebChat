@@ -35,8 +35,13 @@ export class Store<State extends Record<string, any>> extends EventBus {
 
   dispatch(nextStateOrAction: Partial<State> | Action<State>, payload?: any) {
     if (typeof nextStateOrAction === 'function') {
+      console.log(this);
+      console.log(this.state);
+      console.log(payload);
       nextStateOrAction(this.dispatch.bind(this), this.state, payload);
     } else {
+      console.log(this.state);
+      console.log(nextStateOrAction);
       this.set({ ...this.state, ...nextStateOrAction });
     }
   }

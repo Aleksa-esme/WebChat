@@ -1,4 +1,6 @@
 import Block from 'utils/block';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
 
 class Error500 extends Block {
   static componentName = 'Error500';
@@ -14,4 +16,4 @@ class Error500 extends Block {
   }
 }
 
-export default Error500;
+export default withRouter(withStore(Error500));

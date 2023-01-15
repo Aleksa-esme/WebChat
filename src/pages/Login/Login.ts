@@ -1,6 +1,9 @@
 import Block from 'utils/block';
 import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
+import { login } from 'services/auth';
 import fields from './data';
 
 interface ILoginProps {
@@ -8,6 +11,7 @@ interface ILoginProps {
   onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  onNavigate?: () => void;
 }
 
 class Login extends Block {
@@ -16,11 +20,24 @@ class Login extends Block {
   constructor(props: ILoginProps) {
     super({
       ...props,
-      onClick: (event: Event) => logData(event),
+      // onClick: (event: Event) => logData(event),
       onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
+
+    this.setProps({
+      navigateRegister: () => this.props.router.go('/register'),
+      onLogin: () => this.onLogin(),
+    });
+  }
+
+  onLogin() {
+    const loginData = {
+      login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
+      password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
+    };
+    this.props.store.dispatch(login, loginData);
   }
 
   render() {
@@ -33,7 +50,6 @@ class Login extends Block {
                     <li>
                       {{{ Input 
                         label="${el.label}" 
-                        value="${el.value}" 
                         name="${el.name}" 
                         type="${el.type}" 
                         onBlur=onBlur
@@ -47,10 +63,10 @@ class Login extends Block {
               {{{ Button 
                 title='Войти' 
                 classes="button login-form__button-login" 
-                onClick=onClick 
+                onClick=onLogin 
                 onSubmit=onSubmit 
               }}}
-              {{{ Button title='Нет аккаунта?' classes="link login-form__link" }}}
+              {{{ Button title='Нет аккаунта?' classes="link login-form__link" onNavigate=navigateRegister }}}
           </div>
       </form>
     </section>
@@ -58,4 +74,4 @@ class Login extends Block {
   }
 }
 
-export default Login;
+export default withRouter(withStore(Login));

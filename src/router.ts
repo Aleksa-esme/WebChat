@@ -17,33 +17,33 @@ const routes = [
   {
     path: '/profile',
     block: Screens.ProfilePage,
-    shouldAuthorized: false, // true
+    shouldAuthorized: true, // true
   },
   {
     path: '/change',
     block: Screens.ProfileChangePage,
-    shouldAuthorized: false, // true
+    shouldAuthorized: true, // true
   },
   {
     path: '/password',
     block: Screens.ProfilePasswordPage,
-    shouldAuthorized: false, // true
+    shouldAuthorized: true, // true
   },
   {
     path: '/chats',
     block: Screens.ChatsPage,
-    shouldAuthorized: false, // true
+    shouldAuthorized: true, // true
   },
   {
     path: '/error500',
     block: Screens.Error500Page,
     shouldAuthorized: false,
   },
-  {
-    path: '*',
-    block: Screens.Error404Page,
-    shouldAuthorized: false,
-  },
+  // {
+  //   path: '*',
+  //   block: Screens.Error404Page,
+  //   shouldAuthorized: false,
+  // },
 ];
 
 function initRouter(router: Router, store: Store<AppState>) {
@@ -58,7 +58,7 @@ function initRouter(router: Router, store: Store<AppState>) {
       }
 
       if (!currentScreen) {
-        store.dispatch({ screen: Screens.ProfilePage });
+        store.dispatch({ screen: Screens.LoginPage });
       }
     });
   });

@@ -1,4 +1,6 @@
 import Block from 'utils/block';
+import withRouter from 'utils/withRouter';
+import withStore from 'utils/withStore';
 
 class Error404 extends Block {
   static componentName = 'Error404';
@@ -14,4 +16,4 @@ class Error404 extends Block {
   }
 }
 
-export default Error404;
+export default withRouter(withStore(Error404));
