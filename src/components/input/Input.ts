@@ -1,4 +1,4 @@
-import Block from 'utils/block';
+import Block from 'utils/Component/block';
 
 interface IInputProps {
   label: String;
@@ -29,6 +29,15 @@ class Input extends Block {
         focusin: onFocus,
       },
     });
+
+    this.setProps({
+      value: this.checkNull(value),
+    });
+  }
+
+  checkNull(value: String): String {
+    if (value === 'null') value = '';
+    return value;
   }
 
   render() {

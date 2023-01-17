@@ -1,7 +1,7 @@
-import Block from 'utils/block';
-import withRouter from 'utils/withRouter';
-import withStore from 'utils/withStore';
-import withUser from 'utils/withUser';
+import Block from 'utils/Component/block';
+import withRouter from 'utils/HOCs/withRouter';
+import withStore from 'utils/HOCs/withStore';
+import withUser from 'utils/HOCs/withUser';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { logout } from 'services/auth';
 
@@ -25,6 +25,19 @@ class Profile extends Block {
     console.log(this.props.user);
   }
 
+  // задизэйблить поля в профиле
+  // componentDidMount(): void {
+  //   this.disableField();
+  // }
+
+  // disableField() {
+  //   const arr = document.querySelectorAll('.profile-form__value');
+  //   console.log(arr);
+  //   // if (document.querySelectorAll('.profile-form__value')) {
+  //   //   document.getElementsByClassName('profile-form__value')!.disabled = true;
+  //   // }
+  // }
+
   render() {
     if (!this.props.user) {
       return 'no authorized user';
@@ -41,7 +54,7 @@ class Profile extends Block {
           }}}
           <div class="profile">
               <form id="form" class="form profile-form">
-                {{{ Avatar }}}
+                {{{ Avatar url='${this.props.user.avatar}' }}}
                   <ul class="form-list">
                     <li>
                       {{{ Input 

@@ -1,6 +1,6 @@
-import Block from 'utils/block';
-import withRouter from 'utils/withRouter';
-import withStore from 'utils/withStore';
+import Block from 'utils/Component/block';
+import withRouter from 'utils/HOCs/withRouter';
+import withStore from 'utils/HOCs/withStore';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import * as FileSvg from 'assets/svg/file.svg';
 import * as ArrowSvg from 'assets/svg/arrow.svg';

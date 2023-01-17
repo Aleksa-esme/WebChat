@@ -1,9 +1,9 @@
 import Button from 'components/button/Button';
 import Input from 'components/input/Input';
-import renderDOM from 'utils/renderDOM';
-import registerComponent from 'utils/registerComponent';
+import renderDOM from 'utils/Component/renderDOM';
+import registerComponent from 'utils/Component/registerComponent';
 import { Store } from 'utils/Store';
-import Router from 'utils/Router';
+import Router from 'utils/Router/Router';
 import Register from 'pages/Register/Register';
 import Profile from 'pages/Profile/Profile';
 import Avatar from 'components/avatar/Avatar';

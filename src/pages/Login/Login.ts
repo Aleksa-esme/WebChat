@@ -1,8 +1,8 @@
-import Block from 'utils/block';
+import Block from 'utils/Component/block';
 import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
-import withRouter from 'utils/withRouter';
-import withStore from 'utils/withStore';
+import withRouter from 'utils/HOCs/withRouter';
+import withStore from 'utils/HOCs/withStore';
 import { login } from 'services/auth';
 import fields from './data';
 

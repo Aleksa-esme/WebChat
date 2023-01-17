@@ -1,4 +1,4 @@
-import Block from 'utils/block';
+import Block from 'utils/Component/block';
 
 interface IMessageProps {
   content: String;

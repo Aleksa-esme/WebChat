@@ -1,4 +1,4 @@
-import { Screens } from 'utils/screenList';
+import { Screens } from 'utils/Router/screenList';
 
 declare global {
   export type Nullable<T> = T | null;

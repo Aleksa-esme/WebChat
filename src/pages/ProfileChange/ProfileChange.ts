@@ -1,11 +1,11 @@
-import Block from 'utils/block';
+import Block from 'utils/Component/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
-import withRouter from 'utils/withRouter';
-import withStore from 'utils/withStore';
-import withUser from 'utils/withUser';
-import fields from '../Profile/data';
+import withRouter from 'utils/HOCs/withRouter';
+import withStore from 'utils/HOCs/withStore';
+import withUser from 'utils/HOCs/withUser';
+import { changeAvatar, changeData } from 'services/user';
 
 interface IProfileChangeProps {
   onClick?: () => void;
@@ -19,7 +19,7 @@ class ProfileChange extends Block {
   constructor(props: IProfileChangeProps) {
     super({
       ...props,
-      onClick: (event: Event) => logData(event),
+      // onClick: (event: Event) => logData(event),
       onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
@@ -27,7 +27,37 @@ class ProfileChange extends Block {
 
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
+      onChangeProfile: () => this.onChangeProfile(),
+      onChangeAvatar: () => this.onChangeAvatar(),
     });
+  }
+
+  onChangeProfile() {
+    const profileData = {
+      email: (document.querySelector('input[name="email"]') as HTMLInputElement).value,
+      login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
+      first_name: (document.querySelector('input[name="first_name"]') as HTMLInputElement).value,
+      second_name: (document.querySelector('input[name="second_name"]') as HTMLInputElement).value,
+      display_name: (document.querySelector('input[name="display_name"]') as HTMLInputElement).value,
+      phone: (document.querySelector('input[name="phone"]') as HTMLInputElement).value,
+    };
+
+    this.props.store.dispatch(changeData, profileData);
+  }
+
+  onChangeAvatar() {
+  //   const avatar = document.querySelector('input[name="avatar"]');
+  //   const curFiles = avatar!.files[0];
+  //   console.log(curFiles);
+  //   console.log(avatar);
+  //   console.log('форма');
+  //   const form = document.getElementById('avatar_form');
+  //   const formData = new FormData(form as HTMLFormElement);
+  //   this.props.store.dispatch(changeData, formData);
+    const form = document.getElementById('avatar_form');
+    const formData = new FormData(form as HTMLFormElement);
+    console.log(formData)
+    this.props.store.dispatch(changeAvatar, formData);
   }
 
   render() {
@@ -45,8 +75,9 @@ class ProfileChange extends Block {
         onNavigate=navigateProfile
       }}}
           <div class="profile">
+              {{{ Avatar form_id="avatar_form" isVisible=true url='${this.props.user.avatar}'
+              onSubmit=onChangeAvatar  }}}
               <form id="form" class="form profile-form">
-                  {{{ Avatar isVisible=true}}}
                   <ul class="form-list">
                   <li>
                       {{{ Input 
@@ -112,7 +143,7 @@ class ProfileChange extends Block {
                   {{{ Button 
                     title='Сохранить' 
                     classes="button profile-form__button-submit" 
-                    onClick=onClick 
+                    onClick=onChangeProfile 
                     onSubmit=onSubmit 
                   }}}
               </form>

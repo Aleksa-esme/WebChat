@@ -1,7 +1,7 @@
-import Router from 'utils/Router';
-import renderDOM from 'utils/renderDOM';
+import Router from 'utils/Router/Router';
+import renderDOM from 'utils/Component/renderDOM';
 import { Store } from 'utils/Store';
-import { getScreenComponent, Screens } from 'utils/screenList';
+import { getScreenComponent, Screens } from 'utils/Router/screenList';
 
 const routes = [
   {
@@ -17,22 +17,22 @@ const routes = [
   {
     path: '/profile',
     block: Screens.ProfilePage,
-    shouldAuthorized: true, // true
+    shouldAuthorized: true,
   },
   {
     path: '/change',
     block: Screens.ProfileChangePage,
-    shouldAuthorized: true, // true
+    shouldAuthorized: true,
   },
   {
     path: '/password',
     block: Screens.ProfilePasswordPage,
-    shouldAuthorized: true, // true
+    shouldAuthorized: true,
   },
   {
     path: '/chats',
     block: Screens.ChatsPage,
-    shouldAuthorized: true, // true
+    shouldAuthorized: false,
   },
   {
     path: '/error500',

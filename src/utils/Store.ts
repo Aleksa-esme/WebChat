@@ -1,4 +1,4 @@
-import EventBus from './EventBus';
+import EventBus from './Component/EventBus';
 
 export type Dispatch<State> = (
   nextStateOrAction: Partial<State> | Action<State>,
@@ -43,6 +43,8 @@ export class Store<State extends Record<string, any>> extends EventBus {
       console.log(this.state);
       console.log(nextStateOrAction);
       this.set({ ...this.state, ...nextStateOrAction });
+      console.log('state')
+      console.log(this.state)
     }
   }
 }

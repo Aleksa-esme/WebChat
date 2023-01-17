@@ -9,7 +9,8 @@
     height: 160px;
     border-radius: 80px;
     background: var(--light-grey);
-    background-image: url('https://dummyimage.com/160x160/EFEFEF');
+    background-size: cover;
+    background-position: center center;
   }
   &__input {
     max-width: 300px;
@@ -28,7 +29,7 @@
     &__photo {
       width: 130px;
       height: 130px;
-      background-image: url('https://dummyimage.com/130x130/EFEFEF');
+      // background-image: url('https://dummyimage.com/130x130/EFEFEF');
     }
   }
 }

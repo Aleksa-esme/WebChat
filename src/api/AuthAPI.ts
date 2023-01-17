@@ -1,24 +1,41 @@
-import HTTPTransport from 'utils/HTTPTransport';
-import BaseAPI from './BaseAPI';
+import HTTPTransport from 'utils/API/HTTPTransport';
 
-const authAPIInstance = new HTTPTransport('https://ya-praktikum.tech/api/v2/auth');
+type LoginRequestData = {
+  login: string;
+  password: string;
+};
 
-class AuthAPI extends BaseAPI {
-  getUser() {
-    return authAPIInstance.get('/user');
+type RegisterRequestData = {
+  first_name: string;
+  second_name: string;
+  login: string;
+  email: string;
+  password: string;
+  phone: string;
+};
+
+export class AuthAPI {
+  apiInstance: HTTPTransport;
+
+  constructor() {
+    this.apiInstance = new HTTPTransport();
   }
 
-  signup(data) {
-    return authAPIInstance.post('/signup', { data });
+  login(data: LoginRequestData) {
+    return this.apiInstance.post('auth/signin', { data });
   }
 
-  signin(data) {
-    return authAPIInstance.post('/signin', { data });
+  register(data: RegisterRequestData) {
+    return this.apiInstance.post('auth/signup', { data });
+  }
+
+  me() {
+    return this.apiInstance.get('auth/user');
   }
 
   logout() {
-    return authAPIInstance.post('/logout');
+    return this.apiInstance.post('auth/logout');
   }
 }
 
-export default ChatAPI;
+export default new AuthAPI();

@@ -1,23 +1,19 @@
-import authAPI from 'api/auth';
+import AuthAPI from 'api/AuthApi';
 import { UserDTO } from 'api/types';
-import apiHasError from 'utils/apiHasError';
-import transformUser from 'utils/apiTransformers';
+import apiHasError from 'utils/API/apiHasError';
+import transformUser from 'utils/API/apiTransformers';
 import type { Dispatch } from 'utils/Store';
-import defaultState from '../store';
 
 async function initApp(dispatch: Dispatch<AppState>) {
-  // Ручкая задержка для демонстрации загрузочного экрана
-  // eslint-disable-next-line no-promise-executor-return
-  await new Promise(r => setTimeout(r, 700));
-
   try {
-    const response = await authAPI.me();
+    const response = await AuthAPI.me();
 
     console.log(apiHasError(response));
     if (apiHasError(response)) {
       console.log(response);
       return;
     }
+    console.log('response');
     console.log(response);
     dispatch({ user: transformUser(response as UserDTO) });
   } catch (err) {

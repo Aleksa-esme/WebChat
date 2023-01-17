@@ -1,11 +1,11 @@
-import Block from 'utils/block';
-import withRouter from 'utils/withRouter';
-import withStore from 'utils/withStore';
-import withUser from 'utils/withUser';
+import Block from 'utils/Component/block';
+import withRouter from 'utils/HOCs/withRouter';
+import withStore from 'utils/HOCs/withStore';
+import withUser from 'utils/HOCs/withUser';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
-import fields from './data';
+import { changePassword } from 'services/user';
 
 interface IProfilePasswordProps {
   onClick?: () => void;
@@ -21,7 +21,7 @@ class ProfilePassword extends Block {
   constructor(props: IProfilePasswordProps) {
     super({
       ...props,
-      onClick: (event: Event) => logData(event),
+      // onClick: (event: Event) => logData(event),
       onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
@@ -29,7 +29,17 @@ class ProfilePassword extends Block {
 
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
+      onChangePassword: () => this.onChangePassword(),
     });
+  }
+
+  onChangePassword() {
+    const passwordData = {
+      oldPassword: (document.querySelector('input[name="oldPassword"]') as HTMLInputElement).value,
+      newPassword: (document.querySelector('input[name="newPassword"]') as HTMLInputElement).value,
+    };
+
+    this.props.store.dispatch(changePassword, passwordData);
   }
 
   render() {
@@ -50,23 +60,44 @@ class ProfilePassword extends Block {
               <form id="form" class="form profile-form">
                   {{{ Avatar }}}
                   <ul class="form-list">
-                  ${fields.map(el => `
                     <li>
                       {{{ Input 
-                        label="${el.label}" 
-                        name="${el.name}" 
+                        label="Старый пароль" 
+                        name="oldPassword" 
                         type="password"
                         onBlur=onBlur
                         onFocus=onFocus
                         classLabel='profile-form__label' 
                         classInput='profile-form__value' 
                       }}}
-                    </li>`).join(' ')}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Новый пароль" 
+                        name="newPassword" 
+                        type="password"
+                        onBlur=onBlur
+                        onFocus=onFocus
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
+                    <li>
+                      {{{ Input 
+                        label="Повторите новый пароль" 
+                        name="newPassword" 
+                        type="password"
+                        onBlur=onBlur
+                        onFocus=onFocus
+                        classLabel='profile-form__label' 
+                        classInput='profile-form__value' 
+                      }}}
+                    </li>
                   </ul>
                   {{{ Button 
                     title='Сохранить' 
                     classes="button profile-form__button-submit" 
-                    onClick=onClick 
+                    onClick=onChangePassword 
                     onSubmit=onSubmit 
                   }}}
               </form>

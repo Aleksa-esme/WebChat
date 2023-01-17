@@ -20,11 +20,6 @@ const fields = [
     type: 'text',
   },
   {
-    label: 'Имя в чате',
-    name: 'display_name',
-    type: 'text',
-  },
-  {
     label: 'Телефон',
     name: 'phone',
     type: 'telephone',
