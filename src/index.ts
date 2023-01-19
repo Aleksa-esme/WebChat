@@ -11,6 +11,7 @@ import ButtonSvg from 'components/buttonSvg/ButtonSvg';
 import Chat from 'components/chat/Chat';
 import Message from 'components/message/Message';
 import MessageField from 'components/messageField/MessageField';
+import ChatField from 'components/chatField/ChatField';
 import Chats from 'pages/Chats/Chats';
 import initApp from 'services/initApp';
 import Login from 'pages/Login/Login';
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Input);
   registerComponent(Message);
   registerComponent(MessageField);
+  registerComponent(ChatField);
 
   const store = new Store<AppState>(defaultState);
   const router = new Router();

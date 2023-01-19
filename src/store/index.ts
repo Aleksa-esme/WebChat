@@ -4,6 +4,13 @@ const defaultState: AppState = {
   screen: null,
   loginFormError: null,
   user: null,
+  chats: [],
+  chatField: {
+    id: null,
+    title: '',
+    users: [],
+    messages: [],
+  },
 };
 
 export default defaultState;

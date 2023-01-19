@@ -68,6 +68,11 @@
     display: flex;
     justify-content: space-between;
   }
+
+  &:hover {
+    background-color: var(--grey);
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 1024px) {

@@ -29,6 +29,7 @@ class ProfileChange extends Block {
       navigateProfile: () => this.props.router.go('/profile'),
       onChangeProfile: () => this.onChangeProfile(),
       onChangeAvatar: () => this.onChangeAvatar(),
+      url: () => this.props.user.avatar,
     });
   }
 
@@ -58,6 +59,10 @@ class ProfileChange extends Block {
     const formData = new FormData(form as HTMLFormElement);
     console.log(formData)
     this.props.store.dispatch(changeAvatar, formData);
+    // console.log(this.props.user.avatar)
+    // this.setProps({
+    //   url: () => this.props.user.avatar,
+    // })
   }
 
   render() {
@@ -75,8 +80,11 @@ class ProfileChange extends Block {
         onNavigate=navigateProfile
       }}}
           <div class="profile">
-              {{{ Avatar form_id="avatar_form" isVisible=true url='${this.props.user.avatar}'
-              onSubmit=onChangeAvatar  }}}
+              {{{ Avatar 
+                form_id="avatar_form" 
+                isVisible=true url=url
+                onSubmit=onChangeAvatar  
+              }}}
               <form id="form" class="form profile-form">
                   <ul class="form-list">
                   <li>

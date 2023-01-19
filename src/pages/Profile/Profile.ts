@@ -53,8 +53,8 @@ class Profile extends Block {
             onNavigate=navigateChats
           }}}
           <div class="profile">
+            {{{ Avatar url='${this.props.user.avatar}' }}}
               <form id="form" class="form profile-form">
-                {{{ Avatar url='${this.props.user.avatar}' }}}
                   <ul class="form-list">
                     <li>
                       {{{ Input 

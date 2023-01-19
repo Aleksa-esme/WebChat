@@ -29,15 +29,14 @@ class Avatar extends Block {
 
   checkURL(url: String): String {
     if (url === 'null') url = 'https://dummyimage.com/160x160/EFEFEF';
+    else url = `https://ya-praktikum.tech/api/v2/resources${url}`;
     return url;
   }
 
   render() {
     return `
       <form id={{form_id}} class="avatar">
-        <div class="avatar__photo" style="background-image: url('{{url}}')">
-        <img src={{url}} alt={{alt}}>
-        </div>
+        <div class="avatar__photo" style="background-image: url('{{url}}')"></div>
         {{#if ${this.props.isVisible} }}
           <input type="file" name="avatar" accept="image/*" class="avatar__input">
           <input type="submit">

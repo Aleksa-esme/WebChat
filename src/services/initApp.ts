@@ -1,4 +1,5 @@
 import AuthAPI from 'api/AuthApi';
+import ChatsAPI from 'api/ChatsApi';
 import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';
@@ -8,14 +9,17 @@ async function initApp(dispatch: Dispatch<AppState>) {
   try {
     const response = await AuthAPI.me();
 
-    console.log(apiHasError(response));
     if (apiHasError(response)) {
       console.log(response);
       return;
     }
-    console.log('response');
-    console.log(response);
+
     dispatch({ user: transformUser(response as UserDTO) });
+
+    const responseChats = await ChatsAPI.getChats();
+    console.log('chats');
+    console.log(responseChats);
+    dispatch({ chats: responseChats });
   } catch (err) {
     console.error(err);
   } finally {

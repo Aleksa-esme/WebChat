@@ -192,9 +192,14 @@ button,
   border-right: 1px solid var(--grey);
   background: var(--light);
 
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 10px 24px 10px;
+  }
+
   &__link {
     align-self: flex-end;
-    padding: 22px 10px 24px 0;
     color: var(--dark-grey);
 
     & svg {
@@ -257,6 +262,14 @@ button,
         font-weight: 600;
         line-height: 14px;
       }
+    }
+
+    &__users {
+      padding-top: 10px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 14px;
     }
   }
 

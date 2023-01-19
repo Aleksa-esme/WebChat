@@ -57,8 +57,8 @@ class ProfilePassword extends Block {
         onNavigate=navigateProfile
       }}}
           <div class="profile">
+            {{{ Avatar url='${this.props.user.avatar}' }}}
               <form id="form" class="form profile-form">
-                  {{{ Avatar }}}
                   <ul class="form-list">
                     <li>
                       {{{ Input 

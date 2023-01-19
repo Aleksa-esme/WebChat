@@ -14,6 +14,8 @@ declare global {
     isLoading: boolean;
     loginFormError: string | null;
     user: User | null;
+    chats: Array<Chat> | null;
+    chatField: ChatField | null;
   };
 
   export type User = {
@@ -25,6 +27,34 @@ declare global {
     avatar: string;
     phone: string;
     email: string;
+  };
+
+  export type Chat = {
+    id: number;
+    title: string;
+    avatar: string | null;
+    unread_count: number;
+    last_message: LastMessage | null;
+  };
+
+  export type LastMessage = {
+    user: {
+      first_name: string;
+      second_name: string;
+      avatar: string;
+      email: string;
+      login: string;
+      phone: string;
+    },
+    time: string;
+    content: string;
+  };
+
+  export type ChatField = {
+    id: string | null;
+    title: string;
+    users: Array<User>;
+    messages: Array<Object>;
   };
 }
 
