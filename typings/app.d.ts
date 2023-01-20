@@ -16,6 +16,7 @@ declare global {
     user: User | null;
     chats: Array<Chat> | null;
     chatField: ChatField | null;
+    messages: Array<Object>;
   };
 
   export type User = {

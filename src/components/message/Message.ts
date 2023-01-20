@@ -1,6 +1,7 @@
 import Block from 'utils/Component/block';
 
 interface IMessageProps {
+  name?: String;
   content: String;
   classes: String;
 }
@@ -15,7 +16,14 @@ class Message extends Block {
   render() {
     return `
       <div class="message {{ classes }}">
-          <span>{{ content }}</p>
+        {{#if ${!!this.props.name} }}
+          <div class="message__name">
+            <span>{{ name }}</span>
+          </div>
+        {{/if}}
+          <div>
+            <p>{{ content }}</p>
+          </div>
       </div>
     `;
   }

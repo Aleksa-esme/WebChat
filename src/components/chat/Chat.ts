@@ -31,15 +31,17 @@ class Chat extends Block {
     return `
       <div class="chat" id={{id}}>
           <div class="chat__image">
-              <img src="https://dummyimage.com/47x47/999999" alt="user">
+              <img src="https://dummyimage.com/47x47/999999" alt="chat">
           </div>
-          <div>
+          <div class="chat__text">
               <div class="chat_line">
-                  <p class="chat__user">{{name}}</p>
-                  <p class="chat__date">{{date}}</p>
+                  <p class="chat__title">{{name}}</p>
+                  {{#if ${this.props.message !== 'undefined'} }}
+                    <p class="chat__date">{{date}}</p>
+                  {{/if}}
               </div>
               <div class="chat_line">
-                {{#if ${!!this.props.message} }}
+                {{#if ${this.props.message !== 'undefined'} }}
                   <p class="chat__message">{{message}}</p>
                   <div class="chat__indicator"><span>{{messages}}</span></div>
                   {{else}}

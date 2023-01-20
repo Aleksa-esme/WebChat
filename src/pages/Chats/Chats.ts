@@ -1,10 +1,12 @@
 import Block from 'utils/Component/block';
 import withRouter from 'utils/HOCs/withRouter';
+import withChats from 'utils/HOCs/withChats';
 import withStore from 'utils/HOCs/withStore';
 import * as ArrowSvg from 'assets/svg/arrow.svg';
 import { validateForm, validFocusField } from 'utils/ValidForm';
 import { createChat, addUser, chooseChat } from 'services/chats';
-// import { chats, messages } from './data';
+import Messages from 'services/messages';
+import formatDate from 'utils/helpers/formatDate';
 
 interface IChatsProps {
   onSubmit?: () => void;
@@ -27,11 +29,13 @@ class Chats extends Block {
       navigateProfile: () => this.props.router.go('/profile'),
       onCreateChat: () => this.onCreateChat(),
       onChooseChat: (event: Event) => this.onChooseChat(event),
+      sendMessage: (event: SubmitEvent) => this.sendMessage(event),
+      // scrollPosition: () => this.scrollPosition(),
       // chats: window.store.getState().chats,
     });
 
-    console.log('чаты из store')
-    console.log(window.store.getState().chats)
+    console.log('чаты');
+    console.log(this.props.chats);
   }
 
   onCreateChat() {
@@ -53,28 +57,25 @@ class Chats extends Block {
     this.props.store.dispatch(chooseChat, chatId);
   }
 
-  getUsers() {
+  getUsers(): string {
     const users = window.store.getState().chatField!.users;
     const string = users.reduce((result, user, index) => `${result}${user.login}${index < users.length - 1 ? ', ' : ''}`, '');
     return string;
   }
 
-  getChatFieldData() {
+  sendMessage(event: SubmitEvent): void {
+    event.preventDefault();
 
+    const outgoingMessage = document.querySelector('textarea[name="message"]');
+    console.log(outgoingMessage.value)
+    Messages.sendMessage(outgoingMessage.value);
+    outgoingMessage.value = '';
   }
 
-  checkLastMessage(lastMessage: LastMessage | null) {
-    let message;
-    let time;
-    if (lastMessage !== null) {
-      message = lastMessage.content;
-      time = lastMessage.time;
-    } else {
-      message = '';
-      time = '';
-    }
-    return { message, time };
-  }
+  // scrollPosition() {
+  //   const scroller = document.querySelector("#scroller");
+  //   console.log(scroller.scrollTop);
+  // }
 
   render() {
     return `
@@ -94,12 +95,12 @@ class Chats extends Block {
           </div>
           <input type="text" class="chats__search" placeholder="Поиск">
           <div class="chats__list">
-          ${window.store.getState().chats.map(el => `
+          ${this.props.chats.map(el => `
             {{{ Chat 
               id="${el.id}" 
               name="${el.title}" 
-              date="${this.checkLastMessage(el.last_message).time}" 
-              message="${this.checkLastMessage(el.last_message).message}" 
+              date="${formatDate(el.last_message?.time)}" 
+              message="${el.last_message?.content}" 
               messages="${el.unread_count}"
               onClick=onChooseChat
             }}}
@@ -110,6 +111,7 @@ class Chats extends Block {
           {{{ ChatField 
             name='${window.store.getState().chatField!.title}'
             users='${this.getUsers()}'
+            onSubmit=sendMessage
           }}}
         {{else}}
           <div>Выберите чат</div>
@@ -119,7 +121,7 @@ class Chats extends Block {
   }
 }
 
-export default withRouter(withStore(Chats));
+export default withRouter(withStore(withChats(Chats)));
 
 // <a href="#" class="link link-small chats__link">
 //     Профиль

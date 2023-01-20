@@ -11,11 +11,6 @@ function withStore<P extends WithStateProps>(WrappedBlock: any) {
     }
 
     __onChangeStoreCallback = () => {
-      /**
-       * TODO: проверить что стор реально обновлен
-       * и прокидывать не целый стор, а необходимые поля
-       * с помощью метода mapStateToProps
-       */
       this.setProps({ ...this.props, store: window.store });
     };
 

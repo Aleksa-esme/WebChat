@@ -16,6 +16,17 @@
     color: var(--black);
     font-size: 15px;
     line-height: 15px;
+    word-break:break-all;
+  }
+
+  &__name {
+    color: var(--dark-grey);
+    font-size: 13px;
+    line-height: 15px;
+    margin-bottom: 3px;
+    & span {
+      border-bottom: 1px solid var(--dark-grey);
+    }
   }
 
   &_user {

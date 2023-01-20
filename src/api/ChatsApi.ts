@@ -40,7 +40,7 @@ export class ChatsAPI {
     return this.apiInstance.get(`chats/${id}/users`);
   }
 
-  getChatUsersToken(chatId: string) {
+  getToken(chatId: string) {
     return this.apiInstance.post(`chats/token/${chatId}`);
   }
 }

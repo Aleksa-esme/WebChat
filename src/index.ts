@@ -15,6 +15,7 @@ import ChatField from 'components/chatField/ChatField';
 import Chats from 'pages/Chats/Chats';
 import initApp from 'services/initApp';
 import Login from 'pages/Login/Login';
+import MessageForm from 'components/messageForm/MessageForm';
 import initRouter from './router';
 import defaultState from './store/index';
 
@@ -35,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Message);
   registerComponent(MessageField);
   registerComponent(ChatField);
+  registerComponent(MessageForm);
+
 
   const store = new Store<AppState>(defaultState);
   const router = new Router();

@@ -1,46 +1,72 @@
 import Block from 'utils/Component/block';
-import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import * as FileSvg from 'assets/svg/file.svg';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
+import withStore from 'utils/HOCs/withStore';
 
 interface IChatFieldProps {
   name?: string;
   users?: string;
+  onSubmit?: () => void;
+  onScroll?: () => void;
 }
 
 class ChatField extends Block {
   static componentName = 'ChatField';
 
-  constructor({ name, users }: IChatFieldProps) {
-    super({ name, users });
+  constructor({
+    name, users, onSubmit, onScroll,
+  }: IChatFieldProps) {
+    super({
+      name,
+      users,
+      onSubmit,
+      events: {
+        scroll: onScroll,
+      },
+    });
+  }
+
+  getMessageUser(id: string): string {
+    const users = window.store.getState().chatField!.users;
+    return users.find(user => user.id == id).login;
   }
 
   render() {
     return `
-    <div class="messages">
-      <div class="messages-info">
+    <div class="chat-field">
+      <div class="chat-field__info">
         <div>
-          <div class="messages-info__user">
-            <div class="messages-info__user-image">
+          <div class="chat-field__info__user">
+            <div class="chat-field__info__user-image">
               <img src="https://dummyimage.com/34x34/999999" alt="user">
             </div>
-            <p class="messages-info__user-name">{{name}}</p>
+            <p class="chat-field__info__user-name">{{name}}</p>
           </div>
-          <div class="messages-info__users">{{users}}</div>
+          <div class="chat-field__info__users">{{users}}</div>
         </div>
         <img src=${MenuSvg} alt="menu">
       </div>
-      <div class="messages-field">
-        <p class="messages-field__date">19 июня</p>
+      <div class="chat-field__field" id="messages" id="scroller">
+      ${window.store.getState().messages.map(el => `
+        {{#if ${window.store.getState().user.id === el.user_id} }}
+          {{{ Message 
+            classes="message-text message_user message-text_user" 
+            content="${el.content}"
+          }}}
+        {{else}}
+          {{{ Message 
+            classes="message-text" 
+            content="${el.content}" 
+            name="${this.getMessageUser(el.user_id)}"
+          }}}
+        {{/if}}
+      `).join(' ')}
       </div>
-      <form class="messages-send" id="form">
-        {{{ ButtonSvg svg="${FileSvg}" alt='add file' type='button' classes="svg-button" }}} 
-        {{{ MessageField onFocus=onFocus }}}
-        {{{ ButtonSvg svg="${ArrowButton}" alt='send' type='submit' classes="svg-button" onSubmit=onSubmit}}} 
-      </form>
+      {{{ MessageForm onSubmit=onSubmit }}}
     </div>
     `;
   }
 }
 
-export default ChatField;
+export default withStore(ChatField);
+
+// <p class="messages-field__date">19 июня</p>

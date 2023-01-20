@@ -1,7 +1,7 @@
 import ChatsAPI from 'api/ChatsApi';
-import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import type { Dispatch } from 'utils/Store';
+import Messages from './messages';
 
 type CreateChatPayload = {
   title: string;
@@ -65,16 +65,23 @@ export const chooseChat = async (
 ) => {
   dispatch({ isLoading: true });
 
-  const response = await ChatsAPI.getChatUsers(action);
+  const responseChats = await ChatsAPI.getChatUsers(action);
 
   dispatch({ isLoading: false, loginFormError: null });
+
+  const responseToken = await ChatsAPI.getToken(action);
+  console.log('token');
+  console.log(responseToken.token);
+
+  await Messages.connect(Number(action), responseToken.token, '0');
+  console.log('чтото')
 
   const chat = window.store.getState().chats?.filter(el => el.id.toString() === action);
 
   const chatFieldData = {
     id: action,
     title: chat[0]!.title,
-    users: response,
+    users: responseChats,
     messages: [],
   };
 

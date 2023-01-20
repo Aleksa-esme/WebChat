@@ -11,6 +11,7 @@ const defaultState: AppState = {
     users: [],
     messages: [],
   },
+  messages: [],
 };
 
 export default defaultState;
