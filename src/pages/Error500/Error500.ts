@@ -7,10 +7,10 @@ class Error500 extends Block {
 
   render() {
     return `
-      <section class="http-error">
-          <h6 class="http-error__number">500</h6>
-          <p class="http-error__description">Мы уже фиксим</p>
-          {{{ Button title='Назад к чатам' classes="link link-small" }}}
+      <section class='http-error'>
+          <h6 class='http-error__number'>500</h6>
+          <p class='http-error__description'>Мы уже фиксим</p>
+          {{{ Button title='Назад к чатам' classes='link link-small' }}}
       </section>
     `;
   }

@@ -48,60 +48,60 @@ class ProfilePassword extends Block {
     }
 
     return `
-      <section class="profile-page">
-      {{{ ButtonSvg 
-        svg="${ArrowButton}" 
-        alt='back' 
-        type='button' 
-        classes="profile-page__button-back" 
-        onNavigate=navigateProfile
-      }}}
-          <div class="profile">
-            {{{ Avatar url='${this.props.user.avatar}' }}}
-              <form id="form" class="form profile-form">
-                  <ul class="form-list">
-                    <li>
-                      {{{ Input 
-                        label="Старый пароль" 
-                        name="oldPassword" 
-                        type="password"
-                        onBlur=onBlur
-                        onFocus=onFocus
-                        classLabel='profile-form__label' 
-                        classInput='profile-form__value' 
-                      }}}
-                    </li>
-                    <li>
-                      {{{ Input 
-                        label="Новый пароль" 
-                        name="newPassword" 
-                        type="password"
-                        onBlur=onBlur
-                        onFocus=onFocus
-                        classLabel='profile-form__label' 
-                        classInput='profile-form__value' 
-                      }}}
-                    </li>
-                    <li>
-                      {{{ Input 
-                        label="Повторите новый пароль" 
-                        name="newPassword" 
-                        type="password"
-                        onBlur=onBlur
-                        onFocus=onFocus
-                        classLabel='profile-form__label' 
-                        classInput='profile-form__value' 
-                      }}}
-                    </li>
-                  </ul>
-                  {{{ Button 
-                    title='Сохранить' 
-                    classes="button profile-form__button-submit" 
-                    onClick=onChangePassword 
-                    onSubmit=onSubmit 
-                  }}}
-              </form>
-          </div>
+      <section class='profile-page'>
+        {{{ ButtonSvg 
+          svg='${ArrowButton}' 
+          alt='back' 
+          type='button' 
+          classes='profile-page__button-back' 
+          onNavigate=navigateProfile
+        }}}
+        <div class='profile'>
+          {{{ Avatar url='${this.props.user.avatar}' }}}
+          <form id='form' class='form profile-form'>
+            <ul class='form-list'>
+              <li>
+                {{{ Input 
+                  label='Старый пароль' 
+                  name='oldPassword' 
+                  type='password'
+                  onBlur=onBlur
+                  onFocus=onFocus
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+              <li>
+                {{{ Input 
+                  label='Новый пароль' 
+                  name='newPassword' 
+                  type='password'
+                  onBlur=onBlur
+                  onFocus=onFocus
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+              <li>
+                {{{ Input 
+                  label='Повторите новый пароль' 
+                  name='newPassword' 
+                  type='password'
+                  onBlur=onBlur
+                  onFocus=onFocus
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+            </ul>
+            {{{ Button 
+              title='Сохранить' 
+              classes='button profile-form__button-submit' 
+              onClick=onChangePassword 
+              onSubmit=onSubmit 
+            }}}
+          </form>
+        </div>
       </section>
     `;
   }

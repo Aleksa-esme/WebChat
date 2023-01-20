@@ -35,11 +35,11 @@ class Avatar extends Block {
 
   render() {
     return `
-      <form id={{form_id}} class="avatar">
-        <div class="avatar__photo" style="background-image: url('{{url}}')"></div>
+      <form id={{ form_id }} class='avatar'>
+        <div class='avatar__photo' style='background-image: url("{{ url }}")'></div>
         {{#if ${this.props.isVisible} }}
-          <input type="file" name="avatar" accept="image/*" class="avatar__input">
-          <input type="submit">
+          <input type='file' name='avatar' accept='image/*' class='avatar__input'>
+          <input type='submit'>
         {{/if}}
       </form>
     `;

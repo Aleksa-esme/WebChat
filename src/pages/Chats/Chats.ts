@@ -79,29 +79,29 @@ class Chats extends Block {
 
   render() {
     return `
-      <section class="chat-page">
-        <div class="chats">
-          <div class="chats__buttons">
+      <section class='chat-page'>
+        <div class='chats'>
+          <div class='chats__buttons'>
             {{{ Button 
               title='Создать чат' 
-              classes="link link-small chats__link" 
+              classes='link link-small chats__link' 
               onClick=onCreateChat
             }}}
             {{{ Button 
               title='Профиль >' 
-              classes="link link-small chats__link" 
+              classes='link link-small chats__link' 
               onNavigate=navigateProfile
             }}}
           </div>
-          <input type="text" class="chats__search" placeholder="Поиск">
-          <div class="chats__list">
+          <input type='text' class='chats__search' placeholder='Поиск'>
+          <div>
           ${this.props.chats.map(el => `
             {{{ Chat 
-              id="${el.id}" 
-              name="${el.title}" 
-              date="${formatDate(el.last_message?.time)}" 
-              message="${el.last_message?.content}" 
-              messages="${el.unread_count}"
+              id='${el.id}' 
+              name='${el.title}' 
+              date='${formatDate(el.last_message?.time)}' 
+              message='${el.last_message?.content}' 
+              messages='${el.unread_count}'
               onClick=onChooseChat
             }}}
           `).join(' ')}

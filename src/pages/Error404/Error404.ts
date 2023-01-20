@@ -7,10 +7,10 @@ class Error404 extends Block {
 
   render() {
     return `
-      <section class="http-error">
-          <h6 class="http-error__number">404</h6>
-          <p class="http-error__description">Не туда попали</p>
-          {{{ Button title='Назад к чатам' classes="link link-small" }}}
+      <section class='http-error'>
+          <h6 class='http-error__number'>404</h6>
+          <p class='http-error__description'>Не туда попали</p>
+          {{{ Button title='Назад к чатам' classes='link link-small' }}}
       </section>
     `;
   }

@@ -15,9 +15,9 @@ class Message extends Block {
 
   render() {
     return `
-      <div class="message {{ classes }}">
+      <div class='message {{ classes }}'>
         {{#if ${!!this.props.name} }}
-          <div class="message__name">
+          <div class='message__name'>
             <span>{{ name }}</span>
           </div>
         {{/if}}

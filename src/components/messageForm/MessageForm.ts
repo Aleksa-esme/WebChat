@@ -20,10 +20,10 @@ class MessageField extends Block {
 
   render() {
     return `
-      <form class="messages-send" id="message_form">
-          {{{ ButtonSvg svg="${FileSvg}" alt='add file' type='button' classes="svg-button" }}} 
+      <form class='messages-send' id='message_form'>
+          {{{ ButtonSvg svg='${FileSvg}' alt='add file' type='button' classes='svg-button' }}} 
           {{{ MessageField onFocus=onFocus }}}
-          {{{ ButtonSvg svg="${ArrowButton}" alt='send' type='submit' classes="svg-button"}}} 
+          {{{ ButtonSvg svg='${ArrowButton}' alt='send' type='submit' classes='svg-button'}}} 
       </form>
     `;
   }

@@ -71,38 +71,38 @@ class Register extends Block {
 
   render() {
     return `
-      <section class="login">
-          <h6 class="login__title">Регистрация</h6>
-          <form id="form" class="form">
-              <ul class="form-list">
-              ${fields.map(el => `
-                <li>
-                  {{{ Input 
-                    label="${el.label}"  
-                    name="${el.name}" 
-                    type="${el.type}" 
-                    onBlur=onBlur
-                    onFocus=onFocus
-                    classLabel='login-form__label' 
-                    classInput='login-form__value' 
-                  }}}
-                </li>`).join(' ')}
-              </ul>
-              <div class="form__buttons login-form__buttons login-form__buttons-register">  
-                  {{{ Button 
-                    title='Зарегистрироваться' 
-                    classes="button login-form__button-register" 
-                    onClick=onRegister
-                    onSubmit=onSubmit 
-                    onNavigate=onNavigate
-                  }}}
-                  {{{ Button 
-                    title='Войти' 
-                    classes="link login-form__link" 
-                    onNavigate=navigateLogin
-                  }}}
-              </div>
-          </form>
+      <section class='login'>
+        <h6 class='login__title'>Регистрация</h6>
+        <form id='form' class='form'>
+          <ul class='form-list'>
+            ${fields.map(el => `
+            <li>
+              {{{ Input 
+                label='${el.label}'  
+                name='${el.name}' 
+                type='${el.type}' 
+                onBlur=onBlur
+                onFocus=onFocus
+                classLabel='login-form__label' 
+                classInput='login-form__value' 
+              }}}
+            </li>`).join(' ')}
+          </ul>
+          <div class='form__buttons login-form__buttons login-form__buttons-register'>  
+            {{{ Button 
+              title='Зарегистрироваться' 
+              classes='button login-form__button-register' 
+              onClick=onRegister
+              onSubmit=onSubmit 
+              onNavigate=onNavigate
+            }}}
+            {{{ Button 
+              title='Войти' 
+              classes='link login-form__link' 
+              onNavigate=navigateLogin
+            }}}
+          </div>
+        </form>
       </section>
     `;
   }

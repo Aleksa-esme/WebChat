@@ -29,8 +29,8 @@ class Button extends Block {
 
   render() {
     return `
-      <button type="submit" class="{{ classes }}">
-          {{ title }}
+      <button type='submit' class='{{ classes }}'>
+        {{ title }}
       </button>
     `;
   }

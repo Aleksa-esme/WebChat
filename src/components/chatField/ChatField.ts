@@ -32,37 +32,37 @@ class ChatField extends Block {
 
   render() {
     return `
-    <div class="chat-field">
-      <div class="chat-field__info">
-        <div>
-          <div class="chat-field__info__user">
-            <div class="chat-field__info__user-image">
-              <img src="https://dummyimage.com/34x34/999999" alt="user">
+      <div class='chat-field'>
+        <div class='chat-field__info'>
+          <div>
+            <div class='chat-field__info__user'>
+              <div class='chat-field__info__user-image'>
+                <img src='https://dummyimage.com/34x34/999999' alt='user'>
+              </div>
+              <p class='chat-field__info__user-name'>{{ name }}</p>
             </div>
-            <p class="chat-field__info__user-name">{{name}}</p>
+            <div class='chat-field__info__users'>{{ users }}</div>
           </div>
-          <div class="chat-field__info__users">{{users}}</div>
+          <img src=${MenuSvg} alt='menu'>
         </div>
-        <img src=${MenuSvg} alt="menu">
+        <div class='chat-field__field' id='messages' id='scroller'>
+        ${window.store.getState().messages.map(el => `
+          {{#if ${window.store.getState().user.id === el.user_id} }}
+            {{{ Message 
+              classes='message-text message_user message-text_user' 
+              content='${el.content}'
+            }}}
+          {{else}}
+            {{{ Message 
+              classes='message-text' 
+              content='${el.content}' 
+              name='${this.getMessageUser(el.user_id)}'
+            }}}
+          {{/if}}
+        `).join(' ')}
+        </div>
+        {{{ MessageForm onSubmit=onSubmit }}}
       </div>
-      <div class="chat-field__field" id="messages" id="scroller">
-      ${window.store.getState().messages.map(el => `
-        {{#if ${window.store.getState().user.id === el.user_id} }}
-          {{{ Message 
-            classes="message-text message_user message-text_user" 
-            content="${el.content}"
-          }}}
-        {{else}}
-          {{{ Message 
-            classes="message-text" 
-            content="${el.content}" 
-            name="${this.getMessageUser(el.user_id)}"
-          }}}
-        {{/if}}
-      `).join(' ')}
-      </div>
-      {{{ MessageForm onSubmit=onSubmit }}}
-    </div>
     `;
   }
 }

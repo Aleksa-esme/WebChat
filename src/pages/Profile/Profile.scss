@@ -1,0 +1,138 @@
+.profile {
+  display: flex;
+  width: calc(100% - 64px);
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+
+  &-page {
+    display: flex;
+    width: 100%;
+
+    &__button-back {
+      display: flex;
+      width: 64px;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--light);
+      cursor: pointer;
+      text-decoration: none;
+      border: unset;
+
+      &:hover {
+        filter: brightness(90%);
+      }
+
+      &:focus-visible {
+        border-radius: 3px;
+        outline: 2px solid var(--blue);
+        outline-width: thin;
+      }
+    }
+  }
+
+  &-form {
+    padding: 40px 0 10px;
+
+    &__label {
+      justify-content: space-between;
+      padding: 10px 0;
+      color: var(--black);
+      font-size: 18px;
+      line-height: 18px;
+    }
+
+    &__value {
+      width: 70%;
+      color: var(--dark-grey);
+      text-align: end;
+    }
+
+    &__buttons {
+      margin-top: 40px;
+    }
+
+    &__button {
+      align-self: flex-start;
+      margin: 10px 0;
+
+      &-submit {
+        margin-top: 50px;
+      }
+    }
+
+    &__button-exit {
+      color: var(--red);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profile {
+    width: 100%;
+    margin-top: 10px;
+
+    &-page {
+      height: 100vh;
+      flex-direction: column;
+
+      &__button-back {
+        width: 100%;
+        height: 64px;
+        justify-content: flex-start;
+        padding-left: 20px;
+      }
+    }
+
+    &-form {
+      max-width: 470px;
+      padding-top: 78px;
+
+      &__label {
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      &__value {
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      &__buttons {
+        margin-top: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .profile {
+    margin-top: unset;
+
+    &-page {
+      &__button-back {
+        height: 54px;
+      }
+    }
+
+    &-form {
+      max-width: 470px;
+      padding-top: 48px;
+
+      &__label {
+        font-size: 14px;
+        line-height: 14px;
+      }
+
+      &__value {
+        font-size: 14px;
+        line-height: 14px;
+      }
+
+      &__buttons {
+        margin-top: 20px;
+      }
+    }
+  }
+}

@@ -44,8 +44,13 @@ class Input extends Block {
     return `
       <label class='form__label {{ classLabel }}'>
           {{ label }}
-          <input name={{ name }} value="{{ value }}" class='input form__value {{ classInput }}' type={{ type }}>
-          <span class="error"></span>
+          <input 
+            name={{ name }} 
+            value='{{ value }}' 
+            class='input form__value {{ classInput }}' 
+            type={{ type }}
+          >
+          <span class='error'></span>
       </label>
     `;
   }

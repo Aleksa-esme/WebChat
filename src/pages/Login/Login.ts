@@ -42,34 +42,38 @@ class Login extends Block {
 
   render() {
     return `
-    <section class="login">
-      <h6 class="login__title">Вход</h6>
-      <form id="form" class="form" >
-          <ul class="form-list">
-              ${fields.map(el => `
-                    <li>
-                      {{{ Input 
-                        label="${el.label}" 
-                        name="${el.name}" 
-                        type="${el.type}" 
-                        onBlur=onBlur
-                        onFocus=onFocus
-                        classLabel='login-form__label' 
-                        classInput='login-form__value' 
-                      }}}
-                    </li>`).join(' ')}
+      <section class='login'>
+        <h6 class='login__title'>Вход</h6>
+        <form id='form' class='form' >
+          <ul class='form-list'>
+            ${fields.map(el => `
+            <li>
+              {{{ Input 
+                label='${el.label}' 
+                name='${el.name}' 
+                type='${el.type}' 
+                onBlur=onBlur
+                onFocus=onFocus
+                classLabel='login-form__label' 
+                classInput='login-form__value' 
+                }}}
+            </li>`).join(' ')}
           </ul>
-          <div class="form__buttons login-form__buttons login-form__buttons-login">
-              {{{ Button 
-                title='Войти' 
-                classes="button login-form__button-login" 
-                onClick=onLogin 
-                onSubmit=onSubmit 
-              }}}
-              {{{ Button title='Нет аккаунта?' classes="link login-form__link" onNavigate=navigateRegister }}}
+          <div class='form__buttons login-form__buttons login-form__buttons-login'>
+            {{{ Button 
+              title='Войти' 
+              classes='button login-form__button-login' 
+              onClick=onLogin 
+              onSubmit=onSubmit 
+            }}}
+            {{{ Button 
+              title='Нет аккаунта?' 
+              classes='link login-form__link' 
+              onNavigate=navigateRegister 
+            }}}
           </div>
-      </form>
-    </section>
+        </form>
+      </section>
     `;
   }
 }
