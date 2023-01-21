@@ -2,7 +2,7 @@ import Block from 'utils/Component/block';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import withStore from 'utils/HOCs/withStore';
 import formatDate from 'utils/helpers/formatDate';
-import { addUser } from 'services/chats';
+import { addUser, deleteChat, deleteUser } from 'services/chats';
 
 interface IChatFieldProps {
   name?: string;
@@ -29,6 +29,8 @@ class ChatField extends Block {
     this.setProps({
       showMenu: () => this.showMenu(),
       onAddUser: () => this.onAddUser(),
+      onDeleteUser: () => this.onDeleteUser(),
+      onDeleteChat: () => this.onDeleteChat(),
     });
   }
 
@@ -46,10 +48,19 @@ class ChatField extends Block {
 
   onAddUser() {
     const chatId = window.store.getState().chatId;
-    console.log(chatId);
-    // const chatData = prompt('ID пользователя');
     const login = prompt('Введите логин пользователя');
     window.store.dispatch(addUser, { user: login, chatId });
+  }
+
+  onDeleteUser() {
+    const chatId = window.store.getState().chatId;
+    const login = prompt('Введите логин пользователя, которого хотите удалить');
+    window.store.dispatch(deleteUser, { user: login, chatId });
+  }
+
+  onDeleteChat() {
+    const chatId = window.store.getState().chatId;
+    window.store.dispatch(deleteChat, chatId);
   }
 
   render() {
@@ -85,13 +96,15 @@ class ChatField extends Block {
                 <li>
                   {{{ Button 
                     title='Удалить пользователя' 
-                    classes='link link-small' 
+                    classes='link link-small'
+                    onClick=onDeleteUser
                   }}}
                 </li>
                 <li>
                   {{{ Button 
                     title='Удалить чат' 
-                    classes='link link-small' 
+                    classes='link link-small'
+                    onClick=onDeleteChat
                   }}}
                 </li>
               </ul>

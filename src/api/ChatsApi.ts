@@ -5,10 +5,10 @@ type CreateChatRequestData = {
 };
 
 type DeleteChatRequestData = {
-  chatId: string;
+  chatId: number;
 };
 
-type AddUserRequestData = {
+type UserRequestData = {
   users: Array<number>,
   chatId: string
 };
@@ -32,7 +32,7 @@ export class ChatsAPI {
     return this.apiInstance.delete('chats', { data });
   }
 
-  addUser(data: AddUserRequestData) {
+  addUser(data: UserRequestData) {
     return this.apiInstance.put('chats/users', { data });
   }
 
@@ -42,6 +42,10 @@ export class ChatsAPI {
 
   getToken(chatId: string) {
     return this.apiInstance.post(`chats/token/${chatId}`);
+  }
+
+  deleteUser(data: UserRequestData) {
+    return this.apiInstance.delete('chats/users', { data });
   }
 }
 

@@ -18,9 +18,7 @@ class Messages {
 
     this.socket.on(EVENTS.MESSAGE, message => this.storeMessages(message));
 
-    this.socket.on(EVENTS.CLOSE, () => {
-      this.close();
-    });
+    this.socket.on(EVENTS.CLOSE, () => this.close());
 
     this.socket.send({ type: 'get old', content: start || '0' });
   }
