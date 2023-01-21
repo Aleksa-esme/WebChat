@@ -24,11 +24,22 @@ class ChatField extends Block {
         scroll: onScroll,
       },
     });
+
+    this.setProps({
+      showMenu: () => this.showMenu(),
+    });
   }
 
   getMessageUser(id: string): string {
     const users = window.store.getState().chatField!.users;
     return users.find(user => user.id == id).login;
+  }
+
+  showMenu() {
+    const menu = document.querySelector('.chat-field__menu__buttons');
+    menu!.classList.toggle('show');
+
+    // возможно дописать закрытие при клике за пределами блока
   }
 
   render() {
@@ -44,7 +55,37 @@ class ChatField extends Block {
             </div>
             <div class='chat-field__info__users'>{{ users }}</div>
           </div>
-          <img src=${MenuSvg} alt='menu'>
+          <div class='chat-field__menu'>
+            {{{ ButtonSvg 
+              svg='${MenuSvg}' 
+              alt='menu' 
+              type='button' 
+              classes='svg-button'
+              onClick=showMenu 
+            }}}
+            <div class='chat-field__menu__buttons'>
+              <ul>
+                <li>
+                  {{{ Button 
+                    title='Добавить пользователя' 
+                    classes='link link-small' 
+                  }}}
+                </li>
+                <li>
+                  {{{ Button 
+                    title='Удалить пользователя' 
+                    classes='link link-small' 
+                  }}}
+                </li>
+                <li>
+                  {{{ Button 
+                    title='Удалить чат' 
+                    classes='link link-small' 
+                  }}}
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class='chat-field__field' id='messages' id='scroller'>
         ${window.store.getState().messages.map(el => `

@@ -47,6 +47,44 @@
       font-weight: 600;
       line-height: 14px;
     }
+
+  }
+
+  &__menu {
+    position: relative;;
+    &__buttons {
+      position: absolute;
+      z-index: 100;
+      display: none;
+      background-color: var(--grey);
+      padding: 10px;
+      min-width: 212px;
+      right: -16px;
+      top: calc(100% + 8px);
+      border-radius: 6px;
+
+      &::before {
+        position: absolute;
+        top: -7px;
+        right: 10px;
+        width: 0;
+        height: 0;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid var(--grey);
+        border-left: 8px solid transparent;
+        content: '';
+      }
+    }
+
+    & ul {
+      list-style: none;
+      & li {
+        padding-bottom: 10px;
+        &:last-of-type {
+          padding-bottom: unset;
+        }
+      }
+    }
   }
 
   &__field {
