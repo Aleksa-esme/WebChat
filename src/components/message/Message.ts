@@ -3,6 +3,7 @@ import Block from 'utils/Component/block';
 interface IMessageProps {
   name?: String;
   content: String;
+  date?: String;
   classes: String;
 }
 
@@ -22,7 +23,8 @@ class Message extends Block {
           </div>
         {{/if}}
           <div>
-            <p>{{ content }}</p>
+            <p class='message__content-text'>{{ content }}</p>
+            <p class='message__content-date'>{{ date }}</p>
           </div>
       </div>
     `;

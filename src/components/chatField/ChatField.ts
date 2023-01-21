@@ -1,6 +1,7 @@
 import Block from 'utils/Component/block';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import withStore from 'utils/HOCs/withStore';
+import formatDate from 'utils/helpers/formatDate';
 
 interface IChatFieldProps {
   name?: string;
@@ -51,11 +52,13 @@ class ChatField extends Block {
             {{{ Message 
               classes='message-text message_user message-text_user' 
               content='${el.content}'
+              date='${formatDate(el.time)}'
             }}}
           {{else}}
             {{{ Message 
               classes='message-text' 
               content='${el.content}' 
+              date='${formatDate(el.time)}'
               name='${this.getMessageUser(el.user_id)}'
             }}}
           {{/if}}
