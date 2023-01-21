@@ -2,6 +2,7 @@ import Block from 'utils/Component/block';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import withStore from 'utils/HOCs/withStore';
 import formatDate from 'utils/helpers/formatDate';
+import { addUser } from 'services/chats';
 
 interface IChatFieldProps {
   name?: string;
@@ -27,6 +28,7 @@ class ChatField extends Block {
 
     this.setProps({
       showMenu: () => this.showMenu(),
+      onAddUser: () => this.onAddUser(),
     });
   }
 
@@ -40,6 +42,14 @@ class ChatField extends Block {
     menu!.classList.toggle('show');
 
     // возможно дописать закрытие при клике за пределами блока
+  }
+
+  onAddUser() {
+    const chatId = window.store.getState().chatId;
+    console.log(chatId);
+    // const chatData = prompt('ID пользователя');
+    const login = prompt('Введите логин пользователя');
+    window.store.dispatch(addUser, { user: login, chatId });
   }
 
   render() {
@@ -68,7 +78,8 @@ class ChatField extends Block {
                 <li>
                   {{{ Button 
                     title='Добавить пользователя' 
-                    classes='link link-small' 
+                    classes='link link-small'
+                    onClick=onAddUser
                   }}}
                 </li>
                 <li>

@@ -1,4 +1,5 @@
 import ChatsAPI from 'api/ChatsApi';
+import UserAPI from 'api/UserApi';
 import apiHasError from 'utils/API/apiHasError';
 import type { Dispatch } from 'utils/Store';
 import Messages from './messages';
@@ -12,7 +13,7 @@ type DeleteChatPayload = {
 };
 
 type AddUserPayload = {
-  users: Array<number>;
+  user: string;
   chatId: string;
 };
 
@@ -44,7 +45,9 @@ export const addUser = async (
 ) => {
   dispatch({ isLoading: true });
 
-  const response = await ChatsAPI.addUser(action);
+  const user = await UserAPI.search({ login: action.user });
+
+  const response = await ChatsAPI.addUser({ users: [user[0].id], chatId: action.chatId });
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });

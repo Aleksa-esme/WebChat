@@ -14,6 +14,10 @@ type PasswordRequestData = {
   newPassword: string;
 };
 
+type SearchRequestData = {
+  login: string;
+};
+
 export class UserAPI {
   apiInstance: HTTPTransport;
 
@@ -35,6 +39,10 @@ export class UserAPI {
 
   user(id: number) {
     return this.apiInstance.get(`user/${id}`);
+  }
+
+  search(data: SearchRequestData) {
+    return this.apiInstance.post('user/search', { data });
   }
 }
 

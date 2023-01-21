@@ -40,14 +40,6 @@ class Chats extends Block {
     this.props.store.dispatch(createChat, { title: chatData });
   }
 
-  onAddUser(event: Event) {
-    // взять id чата откуда то
-    // const chatId = event.currentTarget.id;
-    // console.log(chatId);
-    const chatData = prompt('ID пользователя');
-    this.props.store.dispatch(addUser, { users: [chatData], chatId });
-  }
-
   onChooseChat(event: Event) {
     const chatId = event.currentTarget!.id;
     this.props.store.dispatch(chooseChat, chatId);
@@ -109,7 +101,9 @@ class Chats extends Block {
             onSubmit=sendMessage
           }}}
         {{else}}
-          <div>Выберите чат</div>
+          <div class='chat-field_empty'>
+            <p>Выберите чат</p>
+          </div>
         {{/if}}
       </section>
     `;
@@ -122,7 +116,3 @@ export default withRouter(withStore(withChats(Chats)));
 //     Профиль
 //     <img src=${ArrowSvg} alt="arrow">
 // </a>
-
-// ${messages.map(el => `
-//                     {{{ Message classes="${el.class}" content="${el.content}"}}}
-//                   `).join(' ')}
