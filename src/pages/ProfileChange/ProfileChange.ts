@@ -19,7 +19,6 @@ class ProfileChange extends Block {
   constructor(props: IProfileChangeProps) {
     super({
       ...props,
-      // onClick: (event: Event) => logData(event),
       onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
@@ -29,7 +28,6 @@ class ProfileChange extends Block {
       navigateProfile: () => this.props.router.go('/profile'),
       onChangeProfile: () => this.onChangeProfile(),
       onChangeAvatar: () => this.onChangeAvatar(),
-      url: () => this.props.user.avatar,
     });
   }
 
@@ -47,21 +45,9 @@ class ProfileChange extends Block {
   }
 
   onChangeAvatar() {
-  //   const avatar = document.querySelector('input[name="avatar"]');
-  //   const curFiles = avatar!.files[0];
-  //   console.log(curFiles);
-  //   console.log(avatar);
-  //   console.log('форма');
-  //   const form = document.getElementById('avatar_form');
-  //   const formData = new FormData(form as HTMLFormElement);
-  //   this.props.store.dispatch(changeData, formData);
     const form = document.getElementById('avatar_form');
     const formData = new FormData(form as HTMLFormElement);
     this.props.store.dispatch(changeAvatar, formData);
-    // console.log(this.props.user.avatar)
-    // this.setProps({
-    //   url: () => this.props.user.avatar,
-    // })
   }
 
   render() {
@@ -81,7 +67,8 @@ class ProfileChange extends Block {
         <div class='profile'>
           {{{ Avatar 
             form_id='avatar_form' 
-            isVisible=true url=url
+            isVisible=true 
+            url='${this.props.user.avatar}'
             onSubmit=onChangeAvatar  
           }}}
           <form id='form' class='form profile-form'>

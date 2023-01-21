@@ -39,7 +39,11 @@ class Avatar extends Block {
         <div class='avatar__photo' style='background-image: url("{{ url }}")'></div>
         {{#if ${this.props.isVisible} }}
           <input type='file' name='avatar' accept='image/*' class='avatar__input'>
-          <input type='submit'>
+          <p class='avatar__size'>Размер файла не должен превышать 1МБ</p>
+          {{{ Button 
+            title='Изменить аватар' 
+            classes='link' 
+          }}}
         {{/if}}
       </form>
     `;
@@ -47,3 +51,5 @@ class Avatar extends Block {
 }
 
 export default Avatar;
+
+// <input type='submit'>

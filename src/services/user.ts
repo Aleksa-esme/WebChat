@@ -71,6 +71,9 @@ export const changeAvatar = async (
     dispatch({ isLoading: false, loginFormError: response.reason });
     return;
   }
+  const responseUser = await UserAPI.user(response.id);
+
+  dispatch({ user: transformUser(responseUser as UserDTO) });
 
   dispatch({ isLoading: false, loginFormError: null });
 };
