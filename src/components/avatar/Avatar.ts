@@ -51,5 +51,3 @@ class Avatar extends Block {
 }
 
 export default Avatar;
-
-// <input type='submit'>

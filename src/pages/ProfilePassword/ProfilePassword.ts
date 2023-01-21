@@ -102,6 +102,9 @@ class ProfilePassword extends Block {
             }}}
           </form>
         </div>
+        {{#if ${!!window.store.getState().isLoading} }}
+          {{{ Loader }}}
+        {{/if}}
       </section>
     `;
   }

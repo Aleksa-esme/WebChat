@@ -102,6 +102,9 @@ class Register extends Block {
             }}}
           </div>
         </form>
+        {{#if ${!!window.store.getState().isLoading} }}
+          {{{ Loader }}}
+        {{/if}}
       </section>
     `;
   }

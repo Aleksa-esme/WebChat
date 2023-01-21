@@ -105,6 +105,9 @@ class Chats extends Block {
             <p>Выберите чат</p>
           </div>
         {{/if}}
+        {{#if ${!!window.store.getState().isLoading} }}
+          {{{ Loader }}}
+        {{/if}}
       </section>
     `;
   }

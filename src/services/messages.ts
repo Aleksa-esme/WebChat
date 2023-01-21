@@ -6,6 +6,7 @@ class Messages {
   private sockets: { [id: string]: WSTransport } = {};
 
   public async connect(chatId: number, token: string, start: string): Promise<void> {
+    window.store.dispatch({ isLoading: true });
     this.close();
 
     const userId = window.store.getState().user!.id;
@@ -21,6 +22,8 @@ class Messages {
     this.socket.on(EVENTS.CLOSE, () => this.close());
 
     this.socket.send({ type: 'get old', content: start || '0' });
+
+    window.store.dispatch({ isLoading: false });
   }
 
   public sendMessage(content: string): void {

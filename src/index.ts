@@ -1,21 +1,22 @@
 import Button from 'components/button/Button';
 import Input from 'components/input/Input';
-import renderDOM from 'utils/Component/renderDOM';
-import registerComponent from 'utils/Component/registerComponent';
-import { Store } from 'utils/Store';
-import Router from 'utils/Router/Router';
-import Register from 'pages/Register/Register';
-import Profile from 'pages/Profile/Profile';
 import Avatar from 'components/avatar/Avatar';
 import ButtonSvg from 'components/buttonSvg/ButtonSvg';
 import Chat from 'components/chat/Chat';
 import Message from 'components/message/Message';
 import MessageField from 'components/messageField/MessageField';
 import ChatField from 'components/chatField/ChatField';
-import Chats from 'pages/Chats/Chats';
-import initApp from 'services/initApp';
-import Login from 'pages/Login/Login';
 import MessageForm from 'components/messageForm/MessageForm';
+import Loader from 'components/loader/Loader';
+import renderDOM from 'utils/Component/renderDOM';
+import registerComponent from 'utils/Component/registerComponent';
+import Login from 'pages/Login/Login';
+import Register from 'pages/Register/Register';
+import Profile from 'pages/Profile/Profile';
+import Chats from 'pages/Chats/Chats';
+import { Store } from 'utils/Store';
+import Router from 'utils/Router/Router';
+import initApp from 'services/initApp';
 import initRouter from './router';
 import defaultState from './store/index';
 
@@ -27,6 +28,7 @@ declare global {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  registerComponent(Loader);
   registerComponent(Button);
   registerComponent(ButtonSvg);
   registerComponent(Input);
@@ -37,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(MessageField);
   registerComponent(ChatField);
   registerComponent(MessageForm);
-
 
   const store = new Store<AppState>(defaultState);
   const router = new Router();

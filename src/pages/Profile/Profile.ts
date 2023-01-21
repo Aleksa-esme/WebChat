@@ -136,6 +136,9 @@ class Profile extends Block {
             </div>
           </form>
         </div>
+        {{#if ${!!window.store.getState().isLoading} }}
+          {{{ Loader }}}
+        {{/if}}
       </section>
     `;
   }
