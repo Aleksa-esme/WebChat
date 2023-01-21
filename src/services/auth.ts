@@ -1,4 +1,5 @@
 import AuthAPI from 'api/AuthApi';
+import ChatsAPI from 'api/ChatsApi';
 import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';
@@ -50,8 +51,19 @@ export const login = async (
     dispatch(logout);
     return;
   }
+  const responseChats = await ChatsAPI.getChats();
 
-  dispatch({ user: transformUser(responseUser as UserDTO) });
+  if (apiHasError(responseChats)) {
+    console.log(responseChats);
+    return;
+  }
+
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    user: transformUser(responseUser as UserDTO),
+    chats: responseChats,
+  });
 
   window.router.go('/profile');
 };

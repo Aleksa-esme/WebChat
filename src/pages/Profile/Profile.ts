@@ -19,7 +19,7 @@ class Profile extends Block {
       navigateDataChange: () => this.props.router.go('/change'),
       navigatePasswordChange: () => this.props.router.go('/password'),
       navigateLogin: () => this.props.router.go('/login'),
-      navigateChats: () => this.props.router.go('/chats'),
+      navigateChats: () => this.props.router.go('/'),
       onLogout: () => this.props.store.dispatch(logout),
     });
   }
@@ -39,7 +39,7 @@ class Profile extends Block {
 
   render() {
     if (!this.props.user) {
-      return 'no authorized user';
+      return '{{{ Loader }}}';
     }
 
     return `

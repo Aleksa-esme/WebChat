@@ -29,6 +29,7 @@
       "no-restricted-globals": "off",
       "no-useless-escape":"off",
       "max-len":"off",
+      "no-extra-boolean-cast": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

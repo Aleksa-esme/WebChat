@@ -14,6 +14,8 @@ async function initApp(dispatch: Dispatch<AppState>) {
       return;
     }
 
+    dispatch({ user: transformUser(response as UserDTO) });
+
     const responseChats = await ChatsAPI.getChats();
 
     if (apiHasError(responseChats)) {
@@ -21,10 +23,7 @@ async function initApp(dispatch: Dispatch<AppState>) {
       return;
     }
 
-    dispatch({
-      user: transformUser(response as UserDTO),
-      chats: responseChats,
-    });
+    dispatch({ chats: responseChats });
   } catch (err) {
     console.error(err);
   } finally {

@@ -49,13 +49,13 @@ class ChatField extends Block {
   onAddUser() {
     const chatId = window.store.getState().chatId;
     const login = prompt('Введите логин пользователя');
-    window.store.dispatch(addUser, { user: login, chatId });
+    if (!!login) window.store.dispatch(addUser, { user: login, chatId });
   }
 
   onDeleteUser() {
     const chatId = window.store.getState().chatId;
     const login = prompt('Введите логин пользователя, которого хотите удалить');
-    window.store.dispatch(deleteUser, { user: login, chatId });
+    if (!!login) window.store.dispatch(deleteUser, { user: login, chatId });
   }
 
   onDeleteChat() {

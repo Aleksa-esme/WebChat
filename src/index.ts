@@ -8,11 +8,9 @@ import MessageField from 'components/messageField/MessageField';
 import ChatField from 'components/chatField/ChatField';
 import MessageForm from 'components/messageForm/MessageForm';
 import Loader from 'components/loader/Loader';
+import Login from 'pages/Login/Login';
 import renderDOM from 'utils/Component/renderDOM';
 import registerComponent from 'utils/Component/registerComponent';
-import Login from 'pages/Login/Login';
-import Register from 'pages/Register/Register';
-import Profile from 'pages/Profile/Profile';
 import Chats from 'pages/Chats/Chats';
 import { Store } from 'utils/Store';
 import Router from 'utils/Router/Router';
@@ -43,14 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const store = new Store<AppState>(defaultState);
   const router = new Router();
 
-  /**
-   * Помещаем роутер и стор в глобальную область для доступа в хоках with*
-   * @warning Не использовать такой способ на реальный проектах
-   */
   window.router = router;
   window.store = store;
 
-  renderDOM(new Login({}));
+  renderDOM(new Chats({}));
 
   store.on('changed', (prevState, nextState) => {
     if (process.env.DEBUG) {
@@ -63,12 +57,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /**
-     * Инициализируем роутер
-     */
-  initRouter(router, store);
+  * Загружаем данные для приложения
+  */
+  store.dispatch(initApp);
 
   /**
-   * Загружаем данные для приложения
-   */
-  store.dispatch(initApp);
+  * Инициализируем роутер
+  */
+  initRouter(router, store);
 });

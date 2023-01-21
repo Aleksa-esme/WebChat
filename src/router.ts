@@ -5,13 +5,18 @@ import { getScreenComponent, Screens } from 'utils/Router/screenList';
 
 const routes = [
   {
-    path: '/register', // вынести в enum и в screens
-    block: Screens.RegisterPage,
-    shouldAuthorized: false,
+    path: '/',
+    block: Screens.ChatsPage,
+    shouldAuthorized: true,
   },
   {
     path: '/login',
     block: Screens.LoginPage,
+    shouldAuthorized: false,
+  },
+  {
+    path: '/register', // вынести в enum и в screens
+    block: Screens.RegisterPage,
     shouldAuthorized: false,
   },
   {
@@ -30,20 +35,15 @@ const routes = [
     shouldAuthorized: true,
   },
   {
-    path: '/chats',
-    block: Screens.ChatsPage,
-    shouldAuthorized: false,
-  },
-  {
     path: '/error500',
     block: Screens.Error500Page,
     shouldAuthorized: false,
   },
-  // {
-  //   path: '*',
-  //   block: Screens.Error404Page,
-  //   shouldAuthorized: false,
-  // },
+  {
+    path: '*',
+    block: Screens.Error404Page,
+    shouldAuthorized: false,
+  },
 ];
 
 function initRouter(router: Router, store: Store<AppState>) {

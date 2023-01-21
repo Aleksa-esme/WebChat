@@ -37,7 +37,7 @@ class Chats extends Block {
 
   onCreateChat() {
     const chatData = prompt('Название чата');
-    this.props.store.dispatch(createChat, { title: chatData });
+    if (!!chatData) this.props.store.dispatch(createChat, { title: chatData });
   }
 
   onChooseChat(event: Event) {
@@ -65,6 +65,10 @@ class Chats extends Block {
   // }
 
   render() {
+    if (!this.props.chats) {
+      return '{{{ Loader }}}';
+    }
+
     return `
       <section class='chat-page'>
         <div class='chats'>

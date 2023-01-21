@@ -27,7 +27,7 @@ class ProfileChange extends Block {
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
       onChangeProfile: () => this.onChangeProfile(),
-      onChangeAvatar: () => this.onChangeAvatar(),
+      onChangeAvatar: (event: SubmitEvent) => this.onChangeAvatar(event),
     });
   }
 
@@ -44,15 +44,20 @@ class ProfileChange extends Block {
     this.props.store.dispatch(changeData, profileData);
   }
 
-  onChangeAvatar() {
+  onChangeAvatar(event: SubmitEvent) {
+    event.preventDefault();
+    const avatar = document.querySelector('input[name="avatar"]');
+    const curFile = avatar!.files[0];
+
     const form = document.getElementById('avatar_form');
     const formData = new FormData(form as HTMLFormElement);
-    this.props.store.dispatch(changeAvatar, formData);
+    if (curFile.size <= 1048576) this.props.store.dispatch(changeAvatar, formData);
+    else alert('Размер файла не должен превышать 1МБ');
   }
 
   render() {
     if (!this.props.user) {
-      return 'no authorized user';
+      return '{{{ Loader }}}';
     }
 
     return `

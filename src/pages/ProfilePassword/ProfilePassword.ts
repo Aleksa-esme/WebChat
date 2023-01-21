@@ -44,7 +44,7 @@ class ProfilePassword extends Block {
 
   render() {
     if (!this.props.user) {
-      return 'no authorized user';
+      return '{{{ Loader }}}';
     }
 
     return `
