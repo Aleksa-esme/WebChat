@@ -15,7 +15,9 @@ declare global {
     loginFormError: string | null;
     user: User | null;
     chats: Array<Chat> | null;
-    chatField: ChatField | null;
+    chatId: string | null;
+    chatTitle: string;
+    users: Array<User>;
     messages: Array<Object>;
   };
 
@@ -49,13 +51,6 @@ declare global {
     },
     time: string;
     content: string;
-  };
-
-  export type ChatField = {
-    id: string | null;
-    title: string;
-    users: Array<User>;
-    messages: Array<Object>;
   };
 }
 

@@ -55,7 +55,7 @@ export const addUser = async (
 
   dispatch({ isLoading: false, loginFormError: null });
 
-  dispatch({ chatField: { id: action.chatId, users: responseUsers } });
+  dispatch({ users: responseUsers });
 };
 
 export const chooseChat = async (
@@ -70,20 +70,12 @@ export const chooseChat = async (
   dispatch({ isLoading: false, loginFormError: null });
 
   const responseToken = await ChatsAPI.getToken(action);
-  console.log('token');
-  console.log(responseToken.token);
 
   await Messages.connect(Number(action), responseToken.token, '0');
-  console.log('чтото')
 
   const chat = window.store.getState().chats?.filter(el => el.id.toString() === action);
 
-  const chatFieldData = {
-    id: action,
-    title: chat[0]!.title,
-    users: responseChats,
-    messages: [],
-  };
-
-  dispatch({ chatField: chatFieldData });
+  dispatch({ chatId: action });
+  dispatch({ chatTitle: chat[0]!.title });
+  dispatch({ users: responseChats });
 };

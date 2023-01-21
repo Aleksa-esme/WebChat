@@ -42,7 +42,6 @@ class Messages {
 
     currentMessages.push(newMessages);
 
-    // возможно перенести messages, или поправить chatField
     window.store.dispatch({ messages: currentMessages.flat() });
   }
 

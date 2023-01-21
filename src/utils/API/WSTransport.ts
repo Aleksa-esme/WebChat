@@ -52,23 +52,11 @@ export class WSTransport extends EventBus {
   private listenEvents(socket: WebSocket): void {
     socket.addEventListener('open', () => this.emit(EVENTS.OPEN));
 
-    socket.addEventListener('error', (error) => this.emit(EVENTS.ERROR, error));
+    socket.addEventListener('close', () => this.emit(EVENTS.CLOSE));
 
-    socket.addEventListener('close', (event) => {
-      if (event.wasClean) {
-        console.log('Соединение закрыто чисто');
-      } else {
-        console.log('Обрыв соединения');
-      }
-
-      console.log(`Код: ${event.code} | Причина: ${event.reason}`);
-
-      this.emit(EVENTS.CLOSE);
-    });
+    socket.addEventListener('error', error => this.emit(EVENTS.ERROR, error));
 
     socket.addEventListener('message', message => {
-      console.log('Получены данные', message.data);
-
       try {
         const data = JSON.parse(message.data);
 

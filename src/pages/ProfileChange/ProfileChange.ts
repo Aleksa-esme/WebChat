@@ -57,7 +57,6 @@ class ProfileChange extends Block {
   //   this.props.store.dispatch(changeData, formData);
     const form = document.getElementById('avatar_form');
     const formData = new FormData(form as HTMLFormElement);
-    console.log(formData)
     this.props.store.dispatch(changeAvatar, formData);
     // console.log(this.props.user.avatar)
     // this.setProps({

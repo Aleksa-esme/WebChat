@@ -36,8 +36,6 @@ export const login = async (
   dispatch({ isLoading: true });
 
   const response = await AuthAPI.login(action);
-  console.log('response');
-  console.log(response);
 
   if (apiHasError(response)) {
     dispatch({ isLoading: false, loginFormError: response.reason });
@@ -45,8 +43,6 @@ export const login = async (
   }
 
   const responseUser = await AuthAPI.me();
-  console.log('responseUser');
-  console.log(responseUser);
 
   dispatch({ isLoading: false, loginFormError: null });
 
@@ -75,7 +71,6 @@ export const register = async (
   }
 
   const responseUser = await AuthAPI.me();
-  console.log(responseUser);
 
   dispatch({ isLoading: false, loginFormError: null });
 

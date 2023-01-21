@@ -33,9 +33,6 @@ class Chats extends Block {
       // scrollPosition: () => this.scrollPosition(),
       // chats: window.store.getState().chats,
     });
-
-    console.log('чаты');
-    console.log(this.props.chats);
   }
 
   onCreateChat() {
@@ -53,12 +50,11 @@ class Chats extends Block {
 
   onChooseChat(event: Event) {
     const chatId = event.currentTarget!.id;
-    console.log(chatId);
     this.props.store.dispatch(chooseChat, chatId);
   }
 
   getUsers(): string {
-    const users = window.store.getState().chatField!.users;
+    const users = window.store.getState().users;
     const string = users.reduce((result, user, index) => `${result}${user.login}${index < users.length - 1 ? ', ' : ''}`, '');
     return string;
   }
@@ -67,7 +63,6 @@ class Chats extends Block {
     event.preventDefault();
 
     const outgoingMessage = document.querySelector('textarea[name="message"]');
-    console.log(outgoingMessage.value)
     Messages.sendMessage(outgoingMessage.value);
     outgoingMessage.value = '';
   }
@@ -95,7 +90,7 @@ class Chats extends Block {
           </div>
           <input type='text' class='chats__search' placeholder='Поиск'>
           <div>
-          ${this.props.chats.map(el => `
+          ${this.props.chats?.map(el => `
             {{{ Chat 
               id='${el.id}' 
               name='${el.title}' 
@@ -107,9 +102,9 @@ class Chats extends Block {
           `).join(' ')}
           </div>
         </div>
-        {{#if ${window.store.getState().chatField.id !== null} }}
+        {{#if ${window.store.getState().chatId !== null} }}
           {{{ ChatField 
-            name='${window.store.getState().chatField!.title}'
+            name='${window.store.getState().chatTitle}'
             users='${this.getUsers()}'
             onSubmit=sendMessage
           }}}

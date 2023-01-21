@@ -5,12 +5,9 @@ const defaultState: AppState = {
   loginFormError: null,
   user: null,
   chats: [],
-  chatField: {
-    id: null,
-    title: '',
-    users: [],
-    messages: [],
-  },
+  chatId: null,
+  chatTitle: '',
+  users: [],
   messages: [],
 };
 

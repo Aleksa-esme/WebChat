@@ -22,7 +22,6 @@ class Profile extends Block {
       navigateChats: () => this.props.router.go('/chats'),
       onLogout: () => this.props.store.dispatch(logout),
     });
-    console.log(this.props.user);
   }
 
   // задизэйблить поля в профиле

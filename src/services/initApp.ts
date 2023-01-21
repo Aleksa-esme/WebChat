@@ -17,8 +17,6 @@ async function initApp(dispatch: Dispatch<AppState>) {
     dispatch({ user: transformUser(response as UserDTO) });
 
     const responseChats = await ChatsAPI.getChats();
-    console.log('chats');
-    console.log(responseChats);
     dispatch({ chats: responseChats });
   } catch (err) {
     console.error(err);

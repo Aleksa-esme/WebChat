@@ -57,7 +57,6 @@ class Register extends Block {
       phone: (document.querySelector('input[name="phone"]') as HTMLInputElement).value,
       password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
     };
-    console.log(registerData);
     this.props.store.dispatch(register, registerData);
   }
 

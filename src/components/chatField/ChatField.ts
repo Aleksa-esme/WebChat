@@ -31,7 +31,7 @@ class ChatField extends Block {
   }
 
   getMessageUser(id: string): string {
-    const users = window.store.getState().chatField!.users;
+    const users = window.store.getState().users;
     return users.find(user => user.id == id).login;
   }
 
@@ -89,7 +89,7 @@ class ChatField extends Block {
         </div>
         <div class='chat-field__field' id='messages' id='scroller'>
         ${window.store.getState().messages.map(el => `
-          {{#if ${window.store.getState().user.id === el.user_id} }}
+          {{#if ${window.store.getState().user?.id === el.user_id} }}
             {{{ Message 
               classes='message-text message_user message-text_user' 
               content='${el.content}'
