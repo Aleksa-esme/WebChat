@@ -33,9 +33,11 @@ export const createChat = async (
 
   const responseChats = await ChatsAPI.getChats();
 
-  dispatch({ isLoading: false, loginFormError: null });
-
-  dispatch({ chats: responseChats });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    chats: responseChats,
+  });
 };
 
 export const chooseChat = async (
@@ -47,17 +49,19 @@ export const chooseChat = async (
 
   const responseChats = await ChatsAPI.getChatUsers(action);
 
-  dispatch({ isLoading: false, loginFormError: null });
-
   const responseToken = await ChatsAPI.getToken(action);
 
   await Messages.connect(Number(action), responseToken.token, '0');
 
   const chat = window.store.getState().chats?.filter(el => el.id.toString() === action);
 
-  dispatch({ chatId: action });
-  dispatch({ chatTitle: chat[0]!.title });
-  dispatch({ users: responseChats });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    chatId: action,
+    chatTitle: chat[0]!.title,
+    users: responseChats,
+  });
 };
 
 export const deleteChat = async (
@@ -78,11 +82,12 @@ export const deleteChat = async (
 
   const responseChats = await ChatsAPI.getChats();
 
-  dispatch({ isLoading: false, loginFormError: null });
-
-  dispatch({ chatId: null });
-
-  dispatch({ chats: responseChats });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    chatId: null,
+    chats: responseChats,
+  });
 };
 
 export const addUser = async (
@@ -103,9 +108,11 @@ export const addUser = async (
 
   const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
 
-  dispatch({ isLoading: false, loginFormError: null });
-
-  dispatch({ users: responseUsers });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    users: responseUsers,
+  });
 };
 
 export const deleteUser = async (
@@ -126,7 +133,9 @@ export const deleteUser = async (
 
   const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
 
-  dispatch({ isLoading: false, loginFormError: null });
-
-  dispatch({ users: responseUsers });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    users: responseUsers,
+  });
 };

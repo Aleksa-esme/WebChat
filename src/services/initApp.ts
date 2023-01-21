@@ -14,10 +14,17 @@ async function initApp(dispatch: Dispatch<AppState>) {
       return;
     }
 
-    dispatch({ user: transformUser(response as UserDTO) });
-
     const responseChats = await ChatsAPI.getChats();
-    dispatch({ chats: responseChats });
+
+    if (apiHasError(responseChats)) {
+      console.log(responseChats);
+      return;
+    }
+
+    dispatch({
+      user: transformUser(response as UserDTO),
+      chats: responseChats,
+    });
   } catch (err) {
     console.error(err);
   } finally {

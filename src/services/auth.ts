@@ -72,14 +72,11 @@ export const register = async (
 
   const responseUser = await AuthAPI.me();
 
-  dispatch({ isLoading: false, loginFormError: null });
-
-  if (apiHasError(response)) {
-    dispatch(logout);
-    return;
-  }
-
-  dispatch({ user: transformUser(responseUser as UserDTO) });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    user: transformUser(responseUser as UserDTO),
+  });
 
   window.router.go('/profile');
 };

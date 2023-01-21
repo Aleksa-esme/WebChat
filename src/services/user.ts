@@ -32,13 +32,13 @@ export const changeData = async (
     return;
   }
 
-  dispatch({ isLoading: false, loginFormError: null });
-
   const responseUser = await UserAPI.user(response.id);
 
-  dispatch({ isLoading: false, loginFormError: null });
-
-  dispatch({ user: transformUser(responseUser as UserDTO) });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    user: transformUser(responseUser as UserDTO),
+  });
 };
 
 export const changePassword = async (
@@ -73,7 +73,9 @@ export const changeAvatar = async (
   }
   const responseUser = await UserAPI.user(response.id);
 
-  dispatch({ user: transformUser(responseUser as UserDTO) });
-
-  dispatch({ isLoading: false, loginFormError: null });
+  dispatch({
+    isLoading: false,
+    loginFormError: null,
+    user: transformUser(responseUser as UserDTO),
+  });
 };
