@@ -28,6 +28,9 @@
       "@typescript-eslint/no-unused-vars": "off",
       "no-restricted-globals": "off",
       "no-useless-escape":"off",
+      "max-len":"off",
+      "no-extra-boolean-cast": "off",
+      "no-alert": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

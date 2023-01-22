@@ -1,5 +1,5 @@
 const passwordReg = /(?=^.{8,40}$)((?=.*\d+)|(?=.*\W+))(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]).*$/;
-const nameReg = /^[a-zA-Zа-яА-ЯёЁ][a-zA-Zа-яА-ЯёЁ_-]*$/;
+const nameReg = /^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ_-]*$/;
 
 interface IChecks {
   [index: string]: {
@@ -53,7 +53,6 @@ const getElement = (el: any) => el.nextElementSibling;
 
 const getError = (formData: FormData, property: string) => {
   let error = '';
-
   if (property in checks) {
     if (checks[property].check.test(formData.get(`${property}`)) === false) {
       error = checks[property].error;
@@ -69,6 +68,15 @@ const showError = (form: HTMLFormElement, property: string, error: string) => {
   el?.parentElement?.classList.add('form__error');
   errorBox.innerHTML = error;
   errorBox.style.display = 'block';
+
+  const coords = el!.getBoundingClientRect();
+  const windowHeight = window.innerHeight;
+  const percentHeight = 100 - ((coords.top * 100) / windowHeight);
+
+  if (percentHeight < 10) {
+    const top = coords.height - errorBox.offsetHeight * 2;
+    errorBox.style.top = `${top}px`;
+  }
 };
 
 const cleanError = (el: Element) => {
@@ -77,8 +85,6 @@ const cleanError = (el: Element) => {
   errorBox.removeAttribute('style');
   iserror = false;
 };
-
-//   sendFormData(formData) {}
 
 export const validateForm = (e: Event) => {
   const form = document.querySelector('[id=form]') as HTMLFormElement;
@@ -93,8 +99,7 @@ export const validateForm = (e: Event) => {
     showError(form, property, error);
   }
 
-  if (iserror) return;
-  // this.sendFormData(formData);
+  return iserror;
 };
 
 export const validFocusField = (e: Event) => {

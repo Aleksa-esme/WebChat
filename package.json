@@ -3,20 +3,22 @@
   "version": "1.0.0",
   "description": "---",
   "scripts": {
-    "dev": "parcel src/index.html --no-cache --open",
+    "dev": "parcel src/index.html --no-cache",
     "build": "parcel build src/index.html",
     "start": "parcel build src/index.html && node ./server.js",
     "eslint": "eslint . --ext .ts",
     "eslint:fix": "eslint . --ext .ts --fix",
-    "stylelint": "stylelint \"src/**/*.css\"",
-    "stylelint:fix": "stylelint \"src/**/*.css\" --fix",
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "stylelint:fix": "stylelint \"src/**/*.scss\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "alias": {
     "assets": "./src/assets",
     "components": "./src/components",
     "pages": "./src/pages",
-    "utils": "./src/utils"
+    "utils": "./src/utils",
+    "services": "./src/services",
+    "api": "./src/api"
   },
   "repository": {
     "type": "git",

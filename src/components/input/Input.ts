@@ -1,4 +1,4 @@
-import Block from 'utils/block';
+import Block from 'utils/Component/block';
 
 interface IInputProps {
   label: String;
@@ -14,7 +14,9 @@ interface IInputProps {
 class Input extends Block {
   static componentName = 'Input';
 
-  constructor({ label, name, value, type, classInput, classLabel, onBlur, onFocus }: IInputProps) {
+  constructor({
+    label, name, value, type, classInput, classLabel, onBlur, onFocus,
+  }: IInputProps) {
     super({
       label,
       name,
@@ -27,14 +29,28 @@ class Input extends Block {
         focusin: onFocus,
       },
     });
+
+    this.setProps({
+      value: this.checkNull(value),
+    });
+  }
+
+  checkNull(value: String): String {
+    if (value === 'null') value = '';
+    return value;
   }
 
   render() {
     return `
-      <label class={{ classLabel }}>
+      <label class='form__label {{ classLabel }}'>
           {{ label }}
-          <input name={{ name }} value={{ value }} class='input form-field {{ classInput }}' type={{ type }}>
-          <span class="error"></span>
+          <input 
+            name={{ name }} 
+            value='{{ value }}' 
+            class='input form__value {{ classInput }}' 
+            type={{ type }}
+          >
+          <span class='error'></span>
       </label>
     `;
   }

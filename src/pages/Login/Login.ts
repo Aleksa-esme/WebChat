@@ -1,6 +1,8 @@
-import Block from 'utils/block';
-import logData from 'utils/logData';
+import Block from 'utils/Component/block';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import withRouter from 'utils/HOCs/withRouter';
+import withStore from 'utils/HOCs/withStore';
+import { login } from 'services/auth';
 import fields from './data';
 
 interface ILoginProps {
@@ -8,6 +10,7 @@ interface ILoginProps {
   onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  onNavigate?: () => void;
 }
 
 class Login extends Block {
@@ -16,46 +19,65 @@ class Login extends Block {
   constructor(props: ILoginProps) {
     super({
       ...props,
-      onClick: (event: Event) => logData(event),
-      onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
+
+    this.setProps({
+      navigateRegister: () => this.props.router.go('/register'),
+      onLogin: (event: Event) => this.onLogin(event),
+    });
+  }
+
+  onLogin(event: Event) {
+    const isError = validateForm(event);
+    if (!isError) {
+      const loginData = {
+        login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
+        password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
+      };
+      this.props.store.dispatch(login, loginData);
+    }
   }
 
   render() {
     return `
-    <section class="login">
-      <h6 class="login__title">Вход</h6>
-      <form id="form" class="login-form" >
-          <ul class="form-list">
-              ${fields.map(el => `
-                    <li>
-                      {{{ Input 
-                        label="${el.label}" 
-                        value="${el.value}" 
-                        name="${el.name}" 
-                        type="${el.type}" 
-                        onBlur=onBlur
-                        onFocus=onFocus
-                        classLabel='login-form__label' 
-                        classInput='login-form__value' 
-                      }}}
-                    </li>`).join(' ')}
+      <section class='login'>
+        <h6 class='login__title'>Вход</h6>
+        <form id='form' class='form' >
+          <ul class='form-list'>
+            ${fields.map(el => `
+            <li>
+              {{{ Input 
+                label='${el.label}' 
+                name='${el.name}' 
+                type='${el.type}' 
+                onBlur=onBlur
+                onFocus=onFocus
+                classLabel='login-form__label' 
+                classInput='login-form__value' 
+                }}}
+            </li>`).join(' ')}
           </ul>
-          <div class="login-form__buttons login-form__buttons-login">
-              {{{ Button 
-                title='Войти' 
-                classes="login-form__button-login" 
-                onClick=onClick 
-                onSubmit=onSubmit 
-              }}}
-              {{{ Link title='Нет аккаунта?' classes="login-form__link" }}}
+          <div class='form__buttons login-form__buttons login-form__buttons-login'>
+            {{{ Button 
+              title='Войти' 
+              classes='button login-form__button-login' 
+              onClick=onLogin 
+            }}}
+            {{{ Button 
+              title='Нет аккаунта?' 
+              classes='link login-form__link' 
+              onNavigate=navigateRegister 
+            }}}
           </div>
-      </form>
-    </section>
+        </form>
+        {{#if ${!!window.store.getState().isLoading} }}
+          {{{ Loader }}}
+        {{/if}}
+      </section>
     `;
   }
 }
 
-export default Login;
+export default withRouter(withStore(Login));
