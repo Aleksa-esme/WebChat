@@ -2,10 +2,10 @@ import Block from 'utils/Component/block';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
-import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import logData from 'utils/logData';
+import comparePasswords from 'utils/helpers/comparePasswords';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import { changePassword } from 'services/user';
+import * as ArrowButton from 'assets/svg/arrow_button.svg';
 
 interface IProfilePasswordProps {
   onClick?: () => void;
@@ -21,25 +21,27 @@ class ProfilePassword extends Block {
   constructor(props: IProfilePasswordProps) {
     super({
       ...props,
-      // onClick: (event: Event) => logData(event),
-      onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
 
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
-      onChangePassword: () => this.onChangePassword(),
+      onChangePassword: (event: Event) => this.onChangePassword(event),
     });
   }
 
-  onChangePassword() {
-    const passwordData = {
-      oldPassword: (document.querySelector('input[name="oldPassword"]') as HTMLInputElement).value,
-      newPassword: (document.querySelector('input[name="newPassword"]') as HTMLInputElement).value,
-    };
+  onChangePassword(event: Event) {
+    const isError = validateForm(event);
+    if (!isError) {
+      const passwordData = {
+        oldPassword: (document.querySelector('input[name="oldPassword"]') as HTMLInputElement).value,
+        newPassword: (document.querySelector('input[name="newPassword"]') as HTMLInputElement).value,
+      };
 
-    this.props.store.dispatch(changePassword, passwordData);
+      if (comparePasswords('newPassword')) this.props.store.dispatch(changePassword, passwordData);
+      else alert('Пароли должны совпадать');
+    }
   }
 
   render() {
@@ -98,7 +100,6 @@ class ProfilePassword extends Block {
               title='Сохранить' 
               classes='button profile-form__button-submit' 
               onClick=onChangePassword 
-              onSubmit=onSubmit 
             }}}
           </form>
         </div>

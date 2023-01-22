@@ -15,7 +15,7 @@ const routes = [
     shouldAuthorized: false,
   },
   {
-    path: '/register', // вынести в enum и в screens
+    path: '/register',
     block: Screens.RegisterPage,
     shouldAuthorized: false,
   },

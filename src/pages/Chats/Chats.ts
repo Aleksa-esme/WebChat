@@ -2,7 +2,6 @@ import Block from 'utils/Component/block';
 import withRouter from 'utils/HOCs/withRouter';
 import withChats from 'utils/HOCs/withChats';
 import withStore from 'utils/HOCs/withStore';
-import * as ArrowSvg from 'assets/svg/arrow.svg';
 import { validateForm, validFocusField } from 'utils/ValidForm';
 import { createChat, addUser, chooseChat } from 'services/chats';
 import Messages from 'services/messages';
@@ -20,9 +19,7 @@ class Chats extends Block {
   constructor(props: IChatsProps) {
     super({
       ...props,
-      onSubmit: (event: Event) => validateForm(event),
       onFocus: (event: Event) => validFocusField(event),
-      // chats: window.store.getState().chats,
     });
 
     this.setProps({
@@ -30,8 +27,6 @@ class Chats extends Block {
       onCreateChat: () => this.onCreateChat(),
       onChooseChat: (event: Event) => this.onChooseChat(event),
       sendMessage: (event: SubmitEvent) => this.sendMessage(event),
-      // scrollPosition: () => this.scrollPosition(),
-      // chats: window.store.getState().chats,
     });
   }
 
@@ -53,21 +48,18 @@ class Chats extends Block {
 
   sendMessage(event: SubmitEvent): void {
     event.preventDefault();
-
-    const outgoingMessage = document.querySelector('textarea[name="message"]');
-    if (!!outgoingMessage) {
-      Messages.sendMessage(outgoingMessage.value);
-      outgoingMessage.value = '';
+    const isError = validateForm(event);
+    if (!isError) {
+      const outgoingMessage = document.querySelector('textarea[name="message"]');
+      if (!!outgoingMessage) {
+        Messages.sendMessage(outgoingMessage.value);
+        outgoingMessage.value = '';
+      }
     }
   }
 
-  // scrollPosition() {
-  //   const scroller = document.querySelector("#scroller");
-  //   console.log(scroller.scrollTop);
-  // }
-
   render() {
-    if (!this.props.chats) {
+    if (this.props.chats === 'undefined') {
       return '{{{ Loader }}}';
     }
 
@@ -88,16 +80,20 @@ class Chats extends Block {
           </div>
           <input type='text' class='chats__search' placeholder='Поиск'>
           <div>
-          ${this.props.chats?.map((el: Chat) => `
-            {{{ Chat 
-              id='${el.id}' 
-              name='${el.title}' 
-              date='${formatDate(el.last_message?.time)}' 
-              message='${el.last_message?.content}' 
-              messages='${el.unread_count}'
-              onClick=onChooseChat
-            }}}
-          `).join(' ')}
+          {{#if ${!!this.props.chats} }}
+            ${this.props.chats?.map((el: Chat) => `
+              {{{ Chat 
+                id='${el.id}' 
+                name='${el.title}' 
+                date='${formatDate(el.last_message?.time)}' 
+                message='${el.last_message?.content}' 
+                messages='${el.unread_count}'
+                onClick=onChooseChat
+              }}}
+            `).join(' ')}
+          {{else}}  
+              <div>У вас пока нет чатов</div>
+          {{/if}}
           </div>
         </div>
         {{#if ${window.store.getState().chatId !== null} }}
@@ -105,6 +101,7 @@ class Chats extends Block {
             name='${window.store.getState().chatTitle}'
             users='${this.getUsers()}'
             onSubmit=sendMessage
+            onFocus=onFocus
           }}}
         {{else}}
           <div class='chat-field_empty'>
@@ -120,8 +117,3 @@ class Chats extends Block {
 }
 
 export default withRouter(withStore(withChats(Chats)));
-
-// <a href="#" class="link link-small chats__link">
-//     Профиль
-//     <img src=${ArrowSvg} alt="arrow">
-// </a>

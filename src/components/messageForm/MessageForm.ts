@@ -10,8 +10,9 @@ interface IMessageFieldProps {
 class MessageField extends Block {
   static componentName = 'MessageForm';
 
-  constructor({ onSubmit }: IMessageFieldProps) {
+  constructor({ onSubmit, onFocus }: IMessageFieldProps) {
     super({
+      onFocus,
       events: {
         submit: onSubmit,
       },
@@ -20,7 +21,7 @@ class MessageField extends Block {
 
   render() {
     return `
-      <form class='messages-send' id='message_form'>
+      <form class='messages-send' id='form'>
           {{{ ButtonSvg svg='${FileSvg}' alt='add file' type='button' classes='svg-button' }}} 
           {{{ MessageField onFocus=onFocus }}}
           {{{ ButtonSvg svg='${ArrowButton}' alt='send' type='submit' classes='svg-button'}}} 

@@ -65,6 +65,7 @@ class HTTPTransport {
         xhr.send(data);
       } else if (!isFormData) {
         xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.setRequestHeader('Content-Security-Policy', "default-src 'self';img-src *;script-src trusted.com;");
       }
 
       if (isGet || !data) xhr.send();

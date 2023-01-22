@@ -1,10 +1,8 @@
 import Block from 'utils/Component/block';
-import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
-import Router from 'utils/Router/Router';
-import { Store } from 'utils/Store';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
+import comparePasswords from 'utils/helpers/comparePasswords';
 import { register } from 'services/auth';
 import fields from './data';
 
@@ -13,10 +11,6 @@ interface IRegisterProps {
   onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  // router: Router;
-  // store: Store<AppState>;
-  // isLoading: boolean;
-  // onToggleAppLoading?: () => void;
   onNavigate?: () => void;
 }
 
@@ -26,47 +20,31 @@ class Register extends Block {
   constructor(props: IRegisterProps) {
     super({
       ...props,
-      onClick: (event: Event) => logData(event),
-      onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
 
     this.setProps({
-      // onToggleAppLoading: () => this.onToggleAppLoading(),
-      // navigateAfterRegister: () => this.navigateAfterRegister(),
       navigateLogin: () => this.props.router.go('/login'),
-      onRegister: () => this.onRegister(),
+      onRegister: (event: Event) => this.onRegister(event),
     });
   }
 
-  // navigateAfterRegister() {
-  //   if (this.props.store.getState().user) {
-  //     this.props.router.go('/profile');
-  //   } else {
-  //     this.props.router.go('/login');
-  //   }
-  // }
-
-  onRegister() {
-    const registerData = {
-      email: (document.querySelector('input[name="email"]') as HTMLInputElement).value,
-      login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
-      first_name: (document.querySelector('input[name="first_name"]') as HTMLInputElement).value,
-      second_name: (document.querySelector('input[name="second_name"]') as HTMLInputElement).value,
-      phone: (document.querySelector('input[name="phone"]') as HTMLInputElement).value,
-      password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
-    };
-    this.props.store.dispatch(register, registerData);
+  onRegister(event: Event) {
+    const isError = validateForm(event);
+    if (!isError) {
+      const registerData = {
+        email: (document.querySelector('input[name="email"]') as HTMLInputElement).value,
+        login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
+        first_name: (document.querySelector('input[name="first_name"]') as HTMLInputElement).value,
+        second_name: (document.querySelector('input[name="second_name"]') as HTMLInputElement).value,
+        phone: (document.querySelector('input[name="phone"]') as HTMLInputElement).value,
+        password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
+      };
+      if (comparePasswords('password')) this.props.store.dispatch(register, registerData);
+      else alert('Пароли должны совпадать');
+    }
   }
-
-  // onToggleAppLoading() {
-  //   this.props.store.dispatch({ isLoading: true });
-
-  //   setTimeout(() => {
-  //     this.props.store.dispatch({ isLoading: false });
-  //   }, 2000);
-  // }
 
   render() {
     return `
@@ -92,7 +70,6 @@ class Register extends Block {
               title='Зарегистрироваться' 
               classes='button login-form__button-register' 
               onClick=onRegister
-              onSubmit=onSubmit 
               onNavigate=onNavigate
             }}}
             {{{ Button 

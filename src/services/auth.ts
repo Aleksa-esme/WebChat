@@ -90,5 +90,5 @@ export const register = async (
     user: transformUser(responseUser as UserDTO),
   });
 
-  window.router.go('/profile');
+  window.router.go('/');
 };

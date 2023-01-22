@@ -8,6 +8,7 @@ interface IChatFieldProps {
   name: string;
   users: string;
   onSubmit?: () => void;
+  onFocus?: () => void;
   onScroll?: () => void;
 }
 
@@ -17,12 +18,13 @@ class ChatField extends Block {
   static chatUsers: Array<User>;
 
   constructor({
-    name, users, onSubmit, onScroll,
+    name, users, onSubmit, onScroll, onFocus,
   }: IChatFieldProps) {
     super({
       name,
       users,
       onSubmit,
+      onFocus,
       events: {
         scroll: onScroll,
       },
@@ -49,8 +51,6 @@ class ChatField extends Block {
   showMenu() {
     const menu = document.querySelector('.chat-field__menu__buttons');
     menu!.classList.toggle('show');
-
-    // возможно дописать закрытие при клике за пределами блока
   }
 
   onAddUser() {
@@ -136,7 +136,7 @@ class ChatField extends Block {
           {{/if}}
         `).join(' ')}
         </div>
-        {{{ MessageForm onSubmit=onSubmit }}}
+        {{{ MessageForm onSubmit=onSubmit onFocus=onFocus }}}
       </div>
     `;
   }

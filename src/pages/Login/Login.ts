@@ -1,5 +1,4 @@
 import Block from 'utils/Component/block';
-import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
@@ -20,24 +19,25 @@ class Login extends Block {
   constructor(props: ILoginProps) {
     super({
       ...props,
-      // onClick: (event: Event) => logData(event),
-      onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
 
     this.setProps({
       navigateRegister: () => this.props.router.go('/register'),
-      onLogin: () => this.onLogin(),
+      onLogin: (event: Event) => this.onLogin(event),
     });
   }
 
-  onLogin() {
-    const loginData = {
-      login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
-      password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
-    };
-    this.props.store.dispatch(login, loginData);
+  onLogin(event: Event) {
+    const isError = validateForm(event);
+    if (!isError) {
+      const loginData = {
+        login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
+        password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
+      };
+      this.props.store.dispatch(login, loginData);
+    }
   }
 
   render() {
@@ -64,7 +64,6 @@ class Login extends Block {
               title='Войти' 
               classes='button login-form__button-login' 
               onClick=onLogin 
-              onSubmit=onSubmit 
             }}}
             {{{ Button 
               title='Нет аккаунта?' 

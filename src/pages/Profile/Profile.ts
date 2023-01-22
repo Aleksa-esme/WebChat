@@ -24,19 +24,6 @@ class Profile extends Block {
     });
   }
 
-  // задизэйблить поля в профиле
-  // componentDidMount(): void {
-  //   this.disableField();
-  // }
-
-  // disableField() {
-  //   const arr = document.querySelectorAll('.profile-form__value');
-  //   console.log(arr);
-  //   // if (document.querySelectorAll('.profile-form__value')) {
-  //   //   document.getElementsByClassName('profile-form__value')!.disabled = true;
-  //   // }
-  // }
-
   render() {
     if (!this.props.user) {
       return '{{{ Loader }}}';

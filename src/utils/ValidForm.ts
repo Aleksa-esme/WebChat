@@ -1,5 +1,5 @@
 const passwordReg = /(?=^.{8,40}$)((?=.*\d+)|(?=.*\W+))(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]).*$/;
-const nameReg = /^[a-zA-Zа-яА-ЯёЁ][a-zA-Zа-яА-ЯёЁ_-]*$/;
+const nameReg = /^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ_-]*$/;
 
 interface IChecks {
   [index: string]: {
@@ -53,7 +53,6 @@ const getElement = (el: any) => el.nextElementSibling;
 
 const getError = (formData: FormData, property: string) => {
   let error = '';
-
   if (property in checks) {
     if (checks[property].check.test(formData.get(`${property}`)) === false) {
       error = checks[property].error;
@@ -87,8 +86,6 @@ const cleanError = (el: Element) => {
   iserror = false;
 };
 
-//   sendFormData(formData) {}
-
 export const validateForm = (e: Event) => {
   const form = document.querySelector('[id=form]') as HTMLFormElement;
   e.preventDefault();
@@ -102,8 +99,7 @@ export const validateForm = (e: Event) => {
     showError(form, property, error);
   }
 
-  if (iserror) return;
-  // sendFormData(formData);
+  return iserror;
 };
 
 export const validFocusField = (e: Event) => {

@@ -1,6 +1,5 @@
 import Block from 'utils/Component/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import logData from 'utils/logData';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
@@ -19,40 +18,44 @@ class ProfileChange extends Block {
   constructor(props: IProfileChangeProps) {
     super({
       ...props,
-      onSubmit: (event: Event) => validateForm(event),
       onBlur: (event: Event) => validBlurField(event),
       onFocus: (event: Event) => validFocusField(event),
     });
 
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
-      onChangeProfile: () => this.onChangeProfile(),
+      onChangeProfile: (event: Event) => this.onChangeProfile(event),
       onChangeAvatar: (event: SubmitEvent) => this.onChangeAvatar(event),
     });
   }
 
-  onChangeProfile() {
-    const profileData = {
-      email: (document.querySelector('input[name="email"]') as HTMLInputElement).value,
-      login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
-      first_name: (document.querySelector('input[name="first_name"]') as HTMLInputElement).value,
-      second_name: (document.querySelector('input[name="second_name"]') as HTMLInputElement).value,
-      display_name: (document.querySelector('input[name="display_name"]') as HTMLInputElement).value,
-      phone: (document.querySelector('input[name="phone"]') as HTMLInputElement).value,
-    };
+  onChangeProfile(event: Event) {
+    const isError = validateForm(event);
+    if (!isError) {
+      const profileData = {
+        email: (document.querySelector('input[name="email"]') as HTMLInputElement).value,
+        login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
+        first_name: (document.querySelector('input[name="first_name"]') as HTMLInputElement).value,
+        second_name: (document.querySelector('input[name="second_name"]') as HTMLInputElement).value,
+        display_name: (document.querySelector('input[name="display_name"]') as HTMLInputElement).value,
+        phone: (document.querySelector('input[name="phone"]') as HTMLInputElement).value,
+      };
 
-    this.props.store.dispatch(changeData, profileData);
+      this.props.store.dispatch(changeData, profileData);
+    }
   }
 
   onChangeAvatar(event: SubmitEvent) {
     event.preventDefault();
+
     const avatar = document.querySelector('input[name="avatar"]');
     const curFile = avatar!.files[0];
 
     const form = document.getElementById('avatar_form');
     const formData = new FormData(form as HTMLFormElement);
-    if (curFile.size <= 1048576) this.props.store.dispatch(changeAvatar, formData);
-    else alert('Размер файла не должен превышать 1МБ');
+    if (!!curFile && curFile.size <= 1048576) this.props.store.dispatch(changeAvatar, formData);
+    else if (!!curFile && curFile.size > 1048576) alert('Размер файла не должен превышать 1МБ');
+    else alert('Файл не выбран');
   }
 
   render() {
@@ -86,6 +89,8 @@ class ProfileChange extends Block {
                   value='${this.props.user.email}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  onBlur=onBlur
+                  onFocus=onFocus
                 }}}
               </li>
               <li>
@@ -96,6 +101,8 @@ class ProfileChange extends Block {
                   value='${this.props.user.login}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  onBlur=onBlur
+                  onFocus=onFocus
                 }}}
               </li>
               <li>
@@ -106,6 +113,8 @@ class ProfileChange extends Block {
                   value='${this.props.user.firstName}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  onBlur=onBlur
+                  onFocus=onFocus
                 }}}
               </li>
               <li>
@@ -116,6 +125,8 @@ class ProfileChange extends Block {
                   value='${this.props.user.secondName}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  onBlur=onBlur
+                  onFocus=onFocus
                 }}}
               </li>
               <li>
@@ -126,6 +137,8 @@ class ProfileChange extends Block {
                   value='${this.props.user.displayName}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  onBlur=onBlur
+                  onFocus=onFocus
                 }}}
               </li>
               <li>
@@ -136,6 +149,8 @@ class ProfileChange extends Block {
                   value='${this.props.user.phone}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  onBlur=onBlur
+                  onFocus=onFocus
                 }}}
               </li>
             </ul>
@@ -143,7 +158,6 @@ class ProfileChange extends Block {
               title='Сохранить' 
               classes='button profile-form__button-submit' 
               onClick=onChangeProfile 
-              onSubmit=onSubmit 
             }}}
           </form>
         </div>
