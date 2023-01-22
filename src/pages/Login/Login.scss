@@ -1,0 +1,133 @@
+.login {
+  display: flex;
+  width: 100%;
+  max-width: 440px;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 30px 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+
+  &__title {
+    margin-bottom: 40px;
+    color: var(--black);
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  &-form {
+    &__label {
+      flex-direction: column;
+      padding-top: 16px;
+      color: var(--dark-grey);
+      font-size: 14px;
+      line-height: 14px;
+    }
+
+    &__value {
+      width: 100%;
+      padding: 8px 0;
+    }
+
+    &__buttons {
+      align-items: center;
+    }
+
+    &__button-register {
+      margin-top: 62px;
+    }
+
+    &__button-login {
+      margin-top: 160px;
+    }
+
+    &__link {
+      margin-top: 14px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .login {
+    max-width: 370px;
+    padding: 30px 25px 25px;
+    margin: 20px;
+
+    &__title {
+      margin-bottom: 30px;
+      font-size: 22px;
+      line-height: 22px;
+    }
+
+    &-form {
+      &__label {
+        font-size: 12px;
+        line-height: 12px;
+      }
+
+      &__value {
+        padding: 6px 0;
+        font-size: 16px;
+        line-height: 16px;
+      }
+
+      &__button-register {
+        margin-top: 42px;
+      }
+
+      &__button-login {
+        margin-top: 120px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .login {
+    width: calc(100vw - 2 * 20px);
+    max-width: unset;
+
+    &__title {
+      margin-bottom: 40px;
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    &-form {
+      height: 100%;
+
+      &__label {
+        padding-bottom: 6px;
+        font-size: 11px;
+        line-height: 11px;
+      }
+
+      &__value {
+        padding: 4px 0;
+        font-size: 14px;
+        line-height: 14px;
+      }
+
+      &__buttons {
+        height: 100%;
+        justify-content: flex-end;
+
+        &-register {
+          justify-content: flex-end;
+        }
+
+        &-login {
+          justify-content: space-between;
+        }
+      }
+
+      &__button-register {
+        margin-top: 20px;
+      }
+
+      &__button-login {
+        margin-top: 14px;
+      }
+    }
+  }
+}

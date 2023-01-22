@@ -1,0 +1,26 @@
+.messages-field {
+  position: relative;
+  display: flex;
+  width: 100%;
+
+  &__input {
+    width: 100%;
+    padding: 9px 30px;
+    border: unset;
+    border-radius: 30px;
+    margin: 0 10px;
+    background: #efefef;
+    resize: none;
+    overflow: hidden;
+
+    &::placeholder {
+      line-height: 35px;
+    }
+
+    &:focus-visible {
+      border-radius: 3px;
+      outline: 2px solid var(--blue);
+      outline-width: thin;
+    }
+  }
+}

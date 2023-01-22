@@ -1,7 +1,9 @@
-import Block from 'utils/block';
+import Block from 'utils/Component/block';
 
 interface IMessageProps {
+  name?: String;
   content: String;
+  date?: String;
   classes: String;
 }
 
@@ -14,8 +16,16 @@ class Message extends Block {
 
   render() {
     return `
-      <div class="message {{ classes }}">
-          <span>{{ content }}</p>
+      <div class='message {{ classes }}'>
+        {{#if ${!!this.props.name} }}
+          <div class='message__name'>
+            <span>{{ name }}</span>
+          </div>
+        {{/if}}
+          <div>
+            <p class='message__content-text'>{{ content }}</p>
+            <p class='message__content-date'>{{ date }}</p>
+          </div>
       </div>
     `;
   }

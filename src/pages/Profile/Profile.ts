@@ -1,42 +1,134 @@
-import Block from 'utils/block';
+import Block from 'utils/Component/block';
+import withRouter from 'utils/HOCs/withRouter';
+import withStore from 'utils/HOCs/withStore';
+import withUser from 'utils/HOCs/withUser';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import { fields, links } from './data';
+import { logout } from 'services/auth';
+
+interface IProfileProps {
+  onNavigate?: () => void;
+}
 
 class Profile extends Block {
   static componentName = 'Profile';
 
+  constructor(props: IProfileProps) {
+    super(props);
+
+    this.setProps({
+      navigateDataChange: () => this.props.router.go('/change'),
+      navigatePasswordChange: () => this.props.router.go('/password'),
+      navigateLogin: () => this.props.router.go('/login'),
+      navigateChats: () => this.props.router.go('/'),
+      onLogout: () => this.props.store.dispatch(logout),
+    });
+  }
+
   render() {
+    if (!this.props.user) {
+      return '{{{ Loader }}}';
+    }
+
     return `
-      <section class="profile-page">
-          <a href="#" class="profile-page__button-back">
-            <img src=${ArrowButton} alt="back">
-          </a>
-          <div class="profile">
-              <form id="form" class="profile-form">
-                  <div class="profile-form__photo"></div>
-                  <ul class="form-list">
-                  ${fields.map(el => `
-                    <li>
-                      {{{ Input 
-                        label="${el.label}" 
-                        value="${el.value}" 
-                        name="${el.name}" 
-                        type="${el.type}" 
-                        classLabel='profile-form__label' 
-                        classInput='profile-form__value' 
-                      }}}
-                    </li>`).join(' ')}
-                  </ul>
-                  <div class="profile-form__buttons">
-                  ${links.map(el => `
-                    {{{ Link title="${el.title}" classes="${el.class}"}}}
-                  `).join(' ')}
-                  </div>
-              </form>
-          </div>
+      <section class='profile-page'>
+        {{{ ButtonSvg 
+          svg='${ArrowButton}' 
+          alt='back' 
+          type='button' 
+          classes='profile-page__button-back' 
+          onNavigate=navigateChats
+        }}}
+        <div class='profile'>
+          {{{ Avatar url='${this.props.user.avatar}' }}}
+          <form id='form' class='form profile-form'>
+            <ul class='form-list'>
+              <li>
+                {{{ Input 
+                  label='Почта' 
+                  name='email' 
+                  type='email' 
+                  value='${this.props.user.email}'
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+              <li>
+                {{{ Input 
+                  label='Логин' 
+                  name='login' 
+                  type='text' 
+                  value='${this.props.user.login}'
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+              <li>
+                {{{ Input 
+                  label='Имя' 
+                  name='first_name' 
+                  type='text' 
+                  value='${this.props.user.firstName}'
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+              <li>
+                {{{ Input 
+                  label='Фамилия' 
+                  name='second_name' 
+                  type='text' 
+                  value='${this.props.user.secondName}'
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+              <li>
+                {{{ Input 
+                  label='Имя в чате' 
+                  name='display_name' 
+                  type='text' 
+                  value='${this.props.user.displayName}'
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+              <li>
+                {{{ Input 
+                  label='Телефон' 
+                  name='phone' 
+                  type='telephone' 
+                  value='${this.props.user.phone}'
+                  classLabel='profile-form__label' 
+                  classInput='profile-form__value' 
+                }}}
+              </li>
+            </ul>
+            <div class='form__buttons profile-form__buttons'>
+                {{{ Button 
+                  title='Изменить данные' 
+                  classes='link profile-form__button' 
+                  onNavigate=navigateDataChange
+                }}}
+                {{{ Button 
+                  title='Изменить пароль' 
+                  classes='link profile-form__button' 
+                  onNavigate=navigatePasswordChange
+                }}}
+                {{{ Button 
+                  title='Выйти' 
+                  classes='link profile-form__button profile-form__button-exit' 
+                  onNavigate=navigateLogin
+                  onClick=onLogout
+                }}}
+            </div>
+          </form>
+        </div>
+        {{#if ${!!window.store.getState().isLoading} }}
+          {{{ Loader }}}
+        {{/if}}
       </section>
     `;
   }
 }
 
-export default Profile;
+export default withRouter(withStore(withUser(Profile)));
