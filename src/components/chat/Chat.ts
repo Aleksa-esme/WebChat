@@ -43,7 +43,9 @@ class Chat extends Block {
           <div class='chat_line'>
             {{#if ${this.props.message !== 'undefined'} }}
               <p class='chat__message'>{{ message }}</p>
-              <div class='chat__indicator'><span>{{ messages }}</span></div>
+              {{#if ${this.props.messages !== '0'} }}
+                <div class='chat__indicator'><span>{{ messages }}</span></div>
+              {{/if}}
             {{else}}
               <p class='chat__message'>Нет сообщений</p>
             {{/if}}

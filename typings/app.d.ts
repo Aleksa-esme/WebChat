@@ -18,7 +18,7 @@ declare global {
     chatId: string | null;
     chatTitle: string;
     users: Array<User>;
-    messages: Array<Object>;
+    messages: Array<Message> | Array<NewMessage>;
   };
 
   export type User = {
@@ -51,6 +51,25 @@ declare global {
     },
     time: string;
     content: string;
+  };
+
+  export type Message = {
+    chatID: number;
+    content: string;
+    file: null;
+    id: number;
+    is_read: boolean;
+    time: string;
+    type: string;
+    user_id: number;
+  };
+
+  export type NewMessage = {
+    content: string;
+    id: number;
+    time: string;
+    type: string;
+    user_id: number;
   };
 }
 

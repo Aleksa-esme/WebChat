@@ -30,6 +30,7 @@
       "no-useless-escape":"off",
       "max-len":"off",
       "no-extra-boolean-cast": "off",
+      "no-alert": "off",
       "import/extensions": [
         "error",
         "ignorePackages",

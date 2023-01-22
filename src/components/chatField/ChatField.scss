@@ -11,6 +11,7 @@
     align-items: center;
     width: calc(100% - 370px);
     justify-content: center;
+
     & p {
       color: var(--blue);
     }
@@ -57,11 +58,11 @@
       font-weight: 600;
       line-height: 14px;
     }
-
   }
 
   &__menu {
-    position: relative;;
+    position: relative;
+
     &__buttons {
       position: absolute;
       z-index: 100;
@@ -88,8 +89,10 @@
 
     & ul {
       list-style: none;
+
       & li {
         padding-bottom: 10px;
+
         &:last-of-type {
           padding-bottom: unset;
         }

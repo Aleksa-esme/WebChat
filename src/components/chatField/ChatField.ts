@@ -5,14 +5,16 @@ import formatDate from 'utils/helpers/formatDate';
 import { addUser, deleteChat, deleteUser } from 'services/chats';
 
 interface IChatFieldProps {
-  name?: string;
-  users?: string;
+  name: string;
+  users: string;
   onSubmit?: () => void;
   onScroll?: () => void;
 }
 
 class ChatField extends Block {
   static componentName = 'ChatField';
+
+  static chatUsers: Array<User>;
 
   constructor({
     name, users, onSubmit, onScroll,
@@ -32,11 +34,16 @@ class ChatField extends Block {
       onDeleteUser: () => this.onDeleteUser(),
       onDeleteChat: () => this.onDeleteChat(),
     });
+
+    ChatField.chatUsers = window.store.getState().users;
   }
 
-  getMessageUser(id: string): string {
-    const users = window.store.getState().users;
-    return users.find(user => user.id == id).login;
+  getMessageUser(id: number): string {
+    let messageUser;
+    if (!!ChatField.chatUsers) messageUser = ChatField.chatUsers.find(user => user.id === id).login;
+    else messageUser = '';
+
+    return messageUser;
   }
 
   showMenu() {
@@ -136,5 +143,3 @@ class ChatField extends Block {
 }
 
 export default withStore(ChatField);
-
-// <p class="messages-field__date">19 июня</p>

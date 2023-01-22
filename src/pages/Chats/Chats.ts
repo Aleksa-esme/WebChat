@@ -55,8 +55,10 @@ class Chats extends Block {
     event.preventDefault();
 
     const outgoingMessage = document.querySelector('textarea[name="message"]');
-    Messages.sendMessage(outgoingMessage.value);
-    outgoingMessage.value = '';
+    if (!!outgoingMessage) {
+      Messages.sendMessage(outgoingMessage.value);
+      outgoingMessage.value = '';
+    }
   }
 
   // scrollPosition() {
@@ -86,7 +88,7 @@ class Chats extends Block {
           </div>
           <input type='text' class='chats__search' placeholder='Поиск'>
           <div>
-          ${this.props.chats?.map(el => `
+          ${this.props.chats?.map((el: Chat) => `
             {{{ Chat 
               id='${el.id}' 
               name='${el.title}' 

@@ -5,8 +5,7 @@ class Messages {
 
   private sockets: { [id: string]: WSTransport } = {};
 
-  public async connect(chatId: number, token: string, start: string): Promise<void> {
-    window.store.dispatch({ isLoading: true });
+  public async connect(chatId: number, token: string, start: string = '0'): Promise<void> {
     this.close();
 
     const userId = window.store.getState().user!.id;
@@ -21,9 +20,7 @@ class Messages {
 
     this.socket.on(EVENTS.CLOSE, () => this.close());
 
-    this.socket.send({ type: 'get old', content: start || '0' });
-
-    window.store.dispatch({ isLoading: false });
+    this.socket.send({ type: 'get old', content: start });
   }
 
   public sendMessage(content: string): void {
@@ -33,8 +30,8 @@ class Messages {
     });
   }
 
-  private async storeMessages(messages: Object | Array<Object>): Promise<void> {
-    let newMessages: Array<Object> = [];
+  private async storeMessages(messages: Message | Array<Message>): Promise<void> {
+    let newMessages: Array<Message> = [];
 
     if (Array.isArray(messages)) newMessages = messages.reverse();
     else newMessages.push(messages);

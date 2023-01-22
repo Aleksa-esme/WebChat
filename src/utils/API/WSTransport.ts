@@ -10,7 +10,7 @@ export const EVENTS = {
 export class WSTransport extends EventBus {
   private socket: WebSocket | null = null;
 
-  private pingInterval = 10000;
+  private pingInterval = 30000;
 
   constructor(private url: string) {
     super();
