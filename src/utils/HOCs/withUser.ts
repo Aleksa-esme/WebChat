@@ -1,3 +1,5 @@
+import { StoreEvents } from 'utils/Store';
+
 type WithUserProps = { user: User | null };
 
 function withUser<P extends WithUserProps>(WrappedBlock) {
@@ -16,12 +18,12 @@ function withUser<P extends WithUserProps>(WrappedBlock) {
 
     componentDidMount(props: P) {
       super.componentDidMount(props);
-      window.store.on('changed', this.__onChangeUserCallback);
+      window.store.on(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
 
     componentWillUnmount() {
       super.componentWillUnmount();
-      window.store.off('changed', this.__onChangeUserCallback);
+      window.store.off(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
   };
 }

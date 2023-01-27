@@ -6,6 +6,7 @@ import comparePasswords from 'utils/helpers/comparePasswords';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import { changePassword } from 'services/user';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
+import checkURL from 'utils/helpers/checkURL';
 
 interface IProfilePasswordProps {
   onClick?: () => void;
@@ -59,7 +60,7 @@ class ProfilePassword extends Block {
           onNavigate=navigateProfile
         }}}
         <div class='profile'>
-          {{{ Avatar url='${this.props.user.avatar}' }}}
+          {{{ Avatar url='${checkURL(this.props.user.avatar)}' }}}
           <form id='form' class='form profile-form'>
             <ul class='form-list'>
               <li>

@@ -1,4 +1,4 @@
-import { Store } from '../Store';
+import { Store, StoreEvents } from '../Store';
 
 type WithStateProps = { store: Store<AppState> };
 
@@ -16,12 +16,12 @@ function withStore<P extends WithStateProps>(WrappedBlock: any) {
 
     componentDidMount(props: P) {
       super.componentDidMount(props);
-      window.store.on('changed', this.__onChangeStoreCallback);
+      window.store.on(StoreEvents.UPDATED, this.__onChangeStoreCallback);
     }
 
     componentWillUnmount() {
       super.componentWillUnmount();
-      window.store.off('changed', this.__onChangeStoreCallback);
+      window.store.off(StoreEvents.UPDATED, this.__onChangeStoreCallback);
     }
   };
 }

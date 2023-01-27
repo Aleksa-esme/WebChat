@@ -33,6 +33,10 @@ class EventBus<E extends string = string, M extends { [K in E]: unknown[] } = Re
       listener(...args);
     });
   }
+
+  destroy() {
+    this.listeners = {};
+  }
 }
 
 export default EventBus;

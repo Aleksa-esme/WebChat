@@ -4,6 +4,8 @@ import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { logout } from 'services/auth';
+import { Screens } from 'utils/Router/screenList';
+import checkURL from 'utils/helpers/checkURL';
 
 interface IProfileProps {
   onNavigate?: () => void;
@@ -22,9 +24,16 @@ class Profile extends Block {
       navigateChats: () => this.props.router.go('/'),
       onLogout: () => this.props.store.dispatch(logout),
     });
+    console.log(window.store.getState().screen)
+  }
+
+  componentDidUpdate() {
+    // брать из HOC
+    return window.store.getState().screen === Screens.ProfilePage;
   }
 
   render() {
+    console.log('%c Profile block render', 'background: #1f9af3; color: #fff');
     if (!this.props.user) {
       return '{{{ Loader }}}';
     }
@@ -39,7 +48,7 @@ class Profile extends Block {
           onNavigate=navigateChats
         }}}
         <div class='profile'>
-          {{{ Avatar url='${this.props.user.avatar}' }}}
+          {{{ Avatar url='${checkURL(this.props.user.avatar)}' }}}
           <form id='form' class='form profile-form'>
             <ul class='form-list'>
               <li>

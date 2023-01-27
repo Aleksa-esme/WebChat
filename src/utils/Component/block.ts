@@ -1,15 +1,22 @@
 import { nanoid } from 'nanoid';
 import * as Handlebars from 'handlebars';
+import isEqual from 'utils/helpers/isEqual';
 import EventBus from './EventBus';
 
 type Props = Record<string, any>;
 type Events = Record<string, () => void>;
+
+export interface BlockClass<P> extends Function {
+  new (props: P): Props;
+  componentName?: string;
+}
 
 class Block {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render',
   } as const;
 
@@ -38,7 +45,7 @@ class Block {
       props,
     };
 
-    this.props = this._makePropsProxy(props);
+    this.props = props;
 
     this.initChildren();
 
@@ -66,10 +73,22 @@ class Block {
 
   protected initChildren() {}
 
+  _checkInDOM() {
+    const elementInDOM = document.body.contains(this._element);
+
+    if (elementInDOM) {
+      setTimeout(() => this._checkInDOM(), 1000);
+      return;
+    }
+
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
+  }
+
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -84,26 +103,42 @@ class Block {
 
   componentDidMount() {}
 
+  _componentWillUnmount() {
+    this.eventBus().destroy();
+    this.componentWillUnmount();
+  }
+
+  componentWillUnmount() {}
+
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
   _componentDidUpdate(oldProps: Props, newProps: Props) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    const response = this.componentDidUpdate(oldProps, newProps);
+    if (!response) {
+      return;
     }
+    this._render();
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props) {
     return true;
   }
 
-  setProps = (nextProps: Props) => {
-    if (!nextProps) {
+  setProps = (nextPartialProps: Props) => {
+    if (!nextPartialProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    const prevProps = this.props;
+    const nextProps = { ...prevProps, ...nextPartialProps };
+
+    this.props = nextProps;
+
+    if (isEqual(prevProps, nextProps)) {
+      this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
+    }
   };
 
   get element(): HTMLElement | null {
@@ -133,25 +168,6 @@ class Block {
 
   getContent(): HTMLElement | null {
     return this.element;
-  }
-
-  _makePropsProxy(props: Props) {
-    const self = this;
-    return new Proxy(props, {
-      get(target: Props, prop: string) {
-        const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
-      },
-      set(target: Props, prop: string, value: string) {
-        const oldProps = { ...target };
-        target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
-        return true;
-      },
-      deleteProperty() {
-        throw new Error('Нет прав');
-      },
-    });
   }
 
   _removeEvents() {

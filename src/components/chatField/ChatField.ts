@@ -142,4 +142,4 @@ class ChatField extends Block {
   }
 }
 
-export default withStore(ChatField);
+export default ChatField;

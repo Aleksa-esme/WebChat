@@ -1,3 +1,5 @@
+import { StoreEvents } from 'utils/Store';
+
 function withChats(WrappedBlock) {
   return class extends WrappedBlock {
     public static componentName = WrappedBlock.componentName || WrappedBlock.name;
@@ -14,12 +16,12 @@ function withChats(WrappedBlock) {
 
     componentDidMount(props) {
       super.componentDidMount(props);
-      window.store.on('changed', this.__onChangeUserCallback);
+      window.store.on(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
 
     componentWillUnmount() {
       super.componentWillUnmount();
-      window.store.off('changed', this.__onChangeUserCallback);
+      window.store.off(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
   };
 }

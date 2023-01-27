@@ -1,6 +1,6 @@
 import Router from 'utils/Router/Router';
 import renderDOM from 'utils/Component/renderDOM';
-import { Store } from 'utils/Store';
+import { Store, StoreEvents } from 'utils/Store';
 import { getScreenComponent, Screens } from 'utils/Router/screenList';
 
 const routes = [
@@ -67,7 +67,7 @@ function initRouter(router: Router, store: Store<AppState>) {
    * Глобальный слушатель изменений в сторе
    * для переключения активного экрана
    */
-  store.on('changed', (prevState, nextState) => {
+  store.on(StoreEvents.UPDATED, (prevState, nextState) => {
     if (!prevState.appIsInited && nextState.appIsInited) {
       router.start();
     }

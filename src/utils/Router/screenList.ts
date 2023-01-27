@@ -6,6 +6,7 @@ import ProfilePassword from 'pages/ProfilePassword/ProfilePassword';
 import Chats from 'pages/Chats/Chats';
 import Error404 from 'pages/Error404/Error404';
 import Error500 from 'pages/Error500/Error500';
+import { BlockClass } from 'utils/Component/block';
 
 export enum Screens {
   RegisterPage = 'register',
@@ -29,4 +30,4 @@ const map = {
   [Screens.Error500Page]: Error500,
 };
 
-export const getScreenComponent = (screen: Screens) => map[screen];
+export const getScreenComponent = (screen: Screens): BlockClass<any> => map[screen];

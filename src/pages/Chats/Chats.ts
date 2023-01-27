@@ -6,6 +6,7 @@ import { validateForm, validFocusField } from 'utils/ValidForm';
 import { createChat, addUser, chooseChat } from 'services/chats';
 import Messages from 'services/messages';
 import formatDate from 'utils/helpers/formatDate';
+import { Screens } from 'utils/Router/screenList';
 
 interface IChatsProps {
   onSubmit?: () => void;
@@ -28,7 +29,13 @@ class Chats extends Block {
       onChooseChat: (event: Event) => this.onChooseChat(event),
       sendMessage: (event: SubmitEvent) => this.sendMessage(event),
     });
+    console.log(window.store.getState().screen)
   }
+
+  // componentDidUpdate() {
+  //   // брать из HOC
+  //   return window.store.getState().screen === Screens.ChatsPage;
+  // }
 
   onCreateChat() {
     const chatData = prompt('Название чата');
@@ -59,6 +66,7 @@ class Chats extends Block {
   }
 
   render() {
+    console.log('%c Chats block render', 'background: #1f9af3; color: #fff');
     if (this.props.chats === 'undefined') {
       return '{{{ Loader }}}';
     }
