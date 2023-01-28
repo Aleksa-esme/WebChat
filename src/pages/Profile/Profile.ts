@@ -24,7 +24,7 @@ class Profile extends Block {
       navigateChats: () => this.props.router.go('/'),
       onLogout: () => this.props.store.dispatch(logout),
     });
-    console.log(window.store.getState().screen)
+    console.log(window.store.getState().screen);
   }
 
   componentDidUpdate() {

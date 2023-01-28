@@ -15,7 +15,7 @@ class Message extends Block {
   }
 
   render() {
-    console.log('%c Message render', 'background: #5f5af3; color: #fff');
+    // console.log('%c Message render', 'background: #5f5af3; color: #fff');
     return `
       <div class='message {{ classes }}'>
         {{#if ${!!this.props.name} }}

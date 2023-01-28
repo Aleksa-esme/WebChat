@@ -29,6 +29,7 @@ class ChatField extends Block {
         scroll: onScroll,
       },
     });
+    ChatField.chatUsers = window.store.getState().users;
 
     this.setProps({
       showMenu: () => this.showMenu(),
@@ -36,16 +37,10 @@ class ChatField extends Block {
       onDeleteUser: () => this.onDeleteUser(),
       onDeleteChat: () => this.onDeleteChat(),
     });
-
-    ChatField.chatUsers = window.store.getState().users;
   }
 
-  getMessageUser(id: number): string {
-    let messageUser;
-    if (!!ChatField.chatUsers) messageUser = ChatField.chatUsers.find(user => user.id === id).login;
-    else messageUser = '';
-
-    return messageUser;
+  getNewMessages() {
+    return window.store.getState().newMessages;
   }
 
   showMenu() {
@@ -68,6 +63,14 @@ class ChatField extends Block {
   onDeleteChat() {
     const chatId = window.store.getState().chatId;
     window.store.dispatch(deleteChat, chatId);
+  }
+
+  getMessageUser(id: number): string {
+    let messageUser;
+    if (!!ChatField.chatUsers) messageUser = ChatField.chatUsers.find(user => user.id === id).login;
+    else messageUser = '';
+
+    return messageUser;
   }
 
   render() {
@@ -118,24 +121,7 @@ class ChatField extends Block {
             </div>
           </div>
         </div>
-        <div class='chat-field__field' id='messages' id='scroller'>
-        ${window.store.getState().messages.map(el => `
-          {{#if ${window.store.getState().user?.id === el.user_id} }}
-            {{{ Message 
-              classes='message-text message_user message-text_user' 
-              content='${el.content}'
-              date='${formatDate(el.time)}'
-            }}}
-          {{else}}
-            {{{ Message 
-              classes='message-text' 
-              content='${el.content}' 
-              date='${formatDate(el.time)}'
-              name='${this.getMessageUser(el.user_id)}'
-            }}}
-          {{/if}}
-        `).join(' ')}
-        </div>
+        {{{ MessagesList }}}
         {{{ MessageForm onSubmit=onSubmit onFocus=onFocus }}}
       </div>
     `;

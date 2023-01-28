@@ -1,0 +1,14 @@
+.messages-list {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  overflow-y: auto;
+
+  &__date {
+    align-self: center;
+    margin: 30px 0;
+    color: var(--dark-grey);
+    font-size: 12px;
+    line-height: 12px;
+  }
+}

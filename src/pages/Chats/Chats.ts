@@ -29,7 +29,7 @@ class Chats extends Block {
       onChooseChat: (event: Event) => this.onChooseChat(event),
       sendMessage: (event: SubmitEvent) => this.sendMessage(event),
     });
-    console.log(window.store.getState().screen)
+    console.log(window.store.getState().screen);
   }
 
   // componentDidUpdate() {

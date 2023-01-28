@@ -30,15 +30,15 @@ class Messages {
     });
   }
 
-  private async storeMessages(messages: Message | Array<Message>): Promise<void> {
+  private async storeMessages(data: Message | Array<Message>): Promise<void> {
     let newMessages: Array<Message> = [];
 
-    if (Array.isArray(messages)) newMessages = messages.reverse();
-    else newMessages.push(messages);
+    if (Array.isArray(data)) newMessages = data.reverse();
+    else newMessages.push(data);
 
     const currentMessages = window.store.getState().messages;
 
-    currentMessages.push(newMessages);
+    currentMessages.push(data as Message);
 
     window.store.dispatch({ messages: currentMessages.flat() });
   }

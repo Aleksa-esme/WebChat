@@ -136,9 +136,12 @@ class Block {
 
     this.props = nextProps;
 
-    if (isEqual(prevProps, nextProps)) {
-      this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
-    }
+    // if (isEqual(prevProps, nextProps)) {
+    //   this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
+    // }
+
+    // иначе не работает функция при клике на chat menu, разобраться почему
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
   get element(): HTMLElement | null {
