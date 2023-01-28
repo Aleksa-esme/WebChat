@@ -8,11 +8,8 @@ import { changePassword } from 'services/user';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 
 interface IProfilePasswordProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
 class ProfilePassword extends Block {
@@ -56,7 +53,7 @@ class ProfilePassword extends Block {
           alt='back' 
           type='button' 
           classes='profile-page__button-back' 
-          onNavigate=navigateProfile
+          onClick=navigateProfile
         }}}
         <div class='profile'>
           {{{ Avatar size='160' url='${this.props.user.avatar}' }}}

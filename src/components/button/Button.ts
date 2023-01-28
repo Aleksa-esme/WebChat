@@ -4,8 +4,6 @@ interface IButtonProps {
   title: String;
   classes?: String;
   onClick?: () => void;
-  onSubmit?: () => void;
-  onNavigate?: () => void;
 }
 
 class Button extends Block {
@@ -15,14 +13,12 @@ class Button extends Block {
     title,
     classes,
     onClick,
-    onSubmit,
-    onNavigate,
   }: IButtonProps) {
     super({
       title,
       classes,
       events: {
-        click: [onClick, onSubmit, onNavigate],
+        click: onClick,
       },
     });
   }

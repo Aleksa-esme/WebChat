@@ -7,11 +7,8 @@ import { register } from 'services/auth';
 import fields from './data';
 
 interface IRegisterProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
 class Register extends Block {
@@ -70,12 +67,11 @@ class Register extends Block {
               title='Зарегистрироваться' 
               classes='button login-form__button-register' 
               onClick=onRegister
-              onNavigate=onNavigate
             }}}
             {{{ Button 
               title='Войти' 
               classes='link login-form__link' 
-              onNavigate=navigateLogin
+              onClick=navigateLogin
             }}}
           </div>
         </form>

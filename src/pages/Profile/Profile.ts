@@ -6,20 +6,15 @@ import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { logout } from 'services/auth';
 import { Screens } from 'utils/Router/screenList';
 
-interface IProfileProps {
-  onNavigate?: () => void;
-}
-
 class Profile extends Block {
   static componentName = 'Profile';
 
-  constructor(props: IProfileProps) {
+  constructor(props: any) {
     super(props);
 
     this.setProps({
       navigateDataChange: () => this.props.router.go('/change'),
       navigatePasswordChange: () => this.props.router.go('/password'),
-      navigateLogin: () => this.props.router.go('/login'),
       navigateChats: () => this.props.router.go('/'),
       onLogout: () => this.props.store.dispatch(logout),
     });
@@ -44,7 +39,7 @@ class Profile extends Block {
           alt='back' 
           type='button' 
           classes='profile-page__button-back' 
-          onNavigate=navigateChats
+          onClick=navigateChats
         }}}
         <div class='profile'>
           {{{ Avatar size='160' url='${this.props.user.avatar}' }}}
@@ -115,17 +110,16 @@ class Profile extends Block {
                 {{{ Button 
                   title='Изменить данные' 
                   classes='link profile-form__button' 
-                  onNavigate=navigateDataChange
+                  onClick=navigateDataChange
                 }}}
                 {{{ Button 
                   title='Изменить пароль' 
                   classes='link profile-form__button' 
-                  onNavigate=navigatePasswordChange
+                  onClick=navigatePasswordChange
                 }}}
                 {{{ Button 
                   title='Выйти' 
                   classes='link profile-form__button profile-form__button-exit' 
-                  onNavigate=navigateLogin
                   onClick=onLogout
                 }}}
             </div>

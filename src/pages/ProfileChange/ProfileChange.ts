@@ -7,11 +7,8 @@ import withUser from 'utils/HOCs/withUser';
 import { changeAvatar, changeData } from 'services/user';
 
 interface IProfileChangeProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
 class ProfileChange extends Block {
@@ -70,7 +67,7 @@ class ProfileChange extends Block {
           alt='back' 
           type='button' 
           classes='profile-page__button-back' 
-          onNavigate=navigateProfile
+          onClick=navigateProfile
         }}}
         <div class='profile'>
           {{{ AvatarForm 

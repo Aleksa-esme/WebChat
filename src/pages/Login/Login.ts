@@ -6,11 +6,8 @@ import { login } from 'services/auth';
 import fields from './data';
 
 interface ILoginProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
 class Login extends Block {
@@ -68,7 +65,7 @@ class Login extends Block {
             {{{ Button 
               title='Нет аккаунта?' 
               classes='link login-form__link' 
-              onNavigate=navigateRegister 
+              onClick=navigateRegister 
             }}}
           </div>
         </form>

@@ -6,6 +6,7 @@ import AvatarForm from 'components/avatarForm/AvatarForm';
 import ButtonSvg from 'components/buttonSvg/ButtonSvg';
 import Loader from 'components/loader/Loader';
 import Chat from 'components/ChatPage/chat/Chat';
+import ChatList from 'components/ChatPage/chatList/ChatList';
 import Message from 'components/ChatPage/message/Message';
 import MessageField from 'components/ChatPage/messageField/MessageField';
 import ChatField from 'components/ChatPage/chatField/ChatField';
@@ -39,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(Avatar);
   registerComponent(AvatarForm);
   registerComponent(Chat);
+  registerComponent(ChatList);
   registerComponent(ChatField);
   registerComponent(ChatMenu);
   registerComponent(ChatInfo);

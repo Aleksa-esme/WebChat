@@ -6,15 +6,13 @@ interface IButtonSvgProps {
   classes?: String;
   type?: String;
   onClick?: () => void;
-  onSubmit?: () => void;
-  onNavigate?: () => void;
 }
 
 class ButtonSvg extends Block {
   static componentName = 'ButtonSvg';
 
   constructor({
-    alt, svg, classes, type, onClick, onSubmit, onNavigate,
+    alt, svg, classes, type, onClick,
   }: IButtonSvgProps) {
     super({
       alt,
@@ -22,7 +20,7 @@ class ButtonSvg extends Block {
       classes,
       type,
       events: {
-        click: [onClick, onSubmit, onNavigate],
+        click: onClick,
       },
     });
   }
