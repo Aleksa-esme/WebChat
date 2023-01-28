@@ -16,47 +16,4 @@
       color: var(--blue);
     }
   }
-
-  &__info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px;
-    border-bottom: 1px solid var(--grey);
-
-    &__user {
-      display: flex;
-      align-items: center;
-
-      &-image {
-        display: flex;
-        width: 34px;
-        height: 34px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 20px;
-        margin-right: 10px;
-        background-color: var(--dark-grey);
-
-        & img {
-          border-radius: 30px;
-        }
-      }
-
-      &-name {
-        color: var(--black);
-        font-size: 14px;
-        font-weight: 600;
-        line-height: 14px;
-      }
-    }
-
-    &__users {
-      padding-top: 10px;
-      color: var(--blue);
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 14px;
-    }
-  }
 }

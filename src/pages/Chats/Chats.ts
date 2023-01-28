@@ -47,12 +47,6 @@ class Chats extends Block {
     this.props.store.dispatch(chooseChat, chatId);
   }
 
-  getUsers(): string {
-    const users = window.store.getState().users;
-    const string = users.reduce((result, user, index) => `${result}${user.login}${index < users.length - 1 ? ', ' : ''}`, '');
-    return string;
-  }
-
   sendMessage(event: SubmitEvent): void {
     event.preventDefault();
     const isError = validateForm(event);
@@ -106,8 +100,6 @@ class Chats extends Block {
         </div>
         {{#if ${window.store.getState().chatId !== null} }}
           {{{ ChatField 
-            name='${window.store.getState().chatTitle}'
-            users='${this.getUsers()}'
             onSubmit=sendMessage
             onFocus=onFocus
           }}}

@@ -15,7 +15,6 @@ class MessagesList extends Block {
   }
 
   getMessageUser(id: number): string {
-    console.log(id);
     let messageUser;
     if (!!MessagesList.chatUsers) messageUser = MessagesList.chatUsers.find(user => user.id === id).login;
     else messageUser = '';
