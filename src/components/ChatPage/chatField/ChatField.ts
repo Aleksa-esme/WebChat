@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Block from 'utils/Component/Block';
 import { validateForm } from 'utils/ValidForm';
 import Messages from 'services/messages';
 

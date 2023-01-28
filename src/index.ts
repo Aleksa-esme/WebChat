@@ -57,15 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderDOM(new Chats({}));
 
-  store.on(StoreEvents.UPDATED, (prevState, nextState) => {
-    if (process.env.DEBUG) {
-      console.log(
-        '%cstore updated',
-        'background: #222; color: #bada55',
-        nextState,
-      );
-    }
-  });
+  // store.on(StoreEvents.UPDATED, (prevState, nextState) => {
+  //   if (process.env.DEBUG) {
+  //     console.log(
+  //       '%cstore updated',
+  //       'background: #222; color: #bada55',
+  //       nextState,
+  //     );
+  //   }
+  // });
 
   /**
   * Загружаем данные для приложения

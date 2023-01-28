@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Block from 'utils/Component/Block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import * as FileSvg from 'assets/svg/file.svg';
 import { validFocusField } from 'utils/ValidForm';

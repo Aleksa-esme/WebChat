@@ -6,7 +6,7 @@ import ProfilePassword from 'pages/ProfilePassword/ProfilePassword';
 import Chats from 'pages/Chats/Chats';
 import Error404 from 'pages/Error404/Error404';
 import Error500 from 'pages/Error500/Error500';
-import { BlockClass } from 'utils/Component/block';
+import { BlockClass } from 'utils/Component/Block';
 
 export enum Screens {
   RegisterPage = 'register',

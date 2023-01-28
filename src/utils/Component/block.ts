@@ -6,8 +6,8 @@ import EventBus from './EventBus';
 type Props = Record<string, any>;
 type Events = Record<string, () => void>;
 
-export interface BlockClass<P> extends Function {
-  new (props: P): Props;
+export interface BlockClass extends Function {
+  new (props: Props): Props;
   componentName?: string;
 }
 
@@ -24,7 +24,7 @@ class Block {
 
   public id = nanoid(6);
 
-  private _element: HTMLElement | null = null;
+  private _element: Nullable<HTMLElement> = null;
 
   private _meta: { props: Props };
 
@@ -144,7 +144,7 @@ class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
-  get element(): HTMLElement | null {
+  get element() {
     return this._element;
   }
 
@@ -169,8 +169,8 @@ class Block {
     return '';
   }
 
-  getContent(): HTMLElement | null {
-    return this.element;
+  getContent(): Nullable<HTMLElement> {
+    return this._element;
   }
 
   _removeEvents() {

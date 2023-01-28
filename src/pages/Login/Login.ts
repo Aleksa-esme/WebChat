@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Block from 'utils/Component/Block';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';

@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Block from 'utils/Component/Block';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';

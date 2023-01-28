@@ -1,4 +1,4 @@
-import { BlockClass } from 'utils/Component/block';
+import { BlockClass } from 'utils/Component/Block';
 import Router from '../Router/Router';
 
 type WithRouterProps = { router: Router };

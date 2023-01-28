@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Block from 'utils/Component/Block';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import { addUser, deleteChat, deleteUser } from 'services/chats';
 

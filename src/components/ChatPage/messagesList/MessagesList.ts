@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Block from 'utils/Component/Block';
 import formatDate from 'utils/helpers/formatDate';
 
 class MessagesList extends Block {

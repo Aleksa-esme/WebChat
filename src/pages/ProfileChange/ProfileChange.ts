@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Block from 'utils/Component/Block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
