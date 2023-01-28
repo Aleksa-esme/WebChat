@@ -5,7 +5,6 @@ import withUser from 'utils/HOCs/withUser';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { logout } from 'services/auth';
 import { Screens } from 'utils/Router/screenList';
-import checkURL from 'utils/helpers/checkURL';
 
 interface IProfileProps {
   onNavigate?: () => void;
@@ -48,7 +47,7 @@ class Profile extends Block {
           onNavigate=navigateChats
         }}}
         <div class='profile'>
-          {{{ Avatar url='${checkURL(this.props.user.avatar)}' }}}
+          {{{ Avatar size='160' url='${this.props.user.avatar}' }}}
           <form id='form' class='form profile-form'>
             <ul class='form-list'>
               <li>

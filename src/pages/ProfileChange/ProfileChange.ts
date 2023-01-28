@@ -1,7 +1,6 @@
 import Block from 'utils/Component/block';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
-import checkURL from 'utils/helpers/checkURL';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
@@ -74,10 +73,10 @@ class ProfileChange extends Block {
           onNavigate=navigateProfile
         }}}
         <div class='profile'>
-          {{{ Avatar 
+          {{{ AvatarForm 
             form_id='avatar_form' 
-            isVisible=true 
-            url='${checkURL(this.props.user.avatar)}'
+            size='160'
+            url='${this.props.user.avatar}'
             onSubmit=onChangeAvatar  
           }}}
           <form id='form' class='form profile-form'>

@@ -18,9 +18,7 @@ class ChatInfo extends Block {
       <div class='chat-info'>
         <div>
           <div class='chat-info__info'>
-            <div class='chat-info__image'>
-              <img src='https://dummyimage.com/34x34/999999' alt='chat'>
-            </div>
+            {{{ Avatar size='34' }}}
             <p class='chat-info__title'>${window.store.getState().chatTitle}</p>
           </div>
           <div class='chat-info__users'>${this.getUsers()}</div>

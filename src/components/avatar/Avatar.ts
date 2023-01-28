@@ -1,41 +1,30 @@
 import Block from 'utils/Component/block';
 
 interface IAvatarProps {
-  form_id: String,
-  isVisible?: Boolean,
+  size: String,
   url?: String,
-  onSubmit?: () => void;
 }
 
 class Avatar extends Block {
   static componentName = 'Avatar';
 
-  constructor({
-    form_id, isVisible = false, url, onSubmit,
-  }: IAvatarProps) {
-    super({
-      form_id,
-      isVisible,
-      url,
-      events: {
-        submit: onSubmit,
-      },
-    });
+  constructor({ size, url = 'null' }: IAvatarProps) {
+    super({ size, url });
+  }
+
+  checkURL(url: String): String {
+    if (url === 'null') url = `https://dummyimage.com/${this.props.size}x${this.props.size}/EFEFEF`;
+    else url = `https://ya-praktikum.tech/api/v2/resources${url}`;
+    return url;
   }
 
   render() {
     return `
-      <form id={{ form_id }} class='avatar'>
-        <div class='avatar__photo' style='background-image: url("{{ url }}")'></div>
-        {{#if ${this.props.isVisible} }}
-          <input type='file' name='avatar' accept='image/*' class='avatar__input'>
-          <p class='avatar__size'>Размер файла не должен превышать 1МБ</p>
-          {{{ Button 
-            title='Изменить аватар' 
-            classes='link' 
-          }}}
-        {{/if}}
-      </form>
+      <div 
+        class='avatar' 
+        style='width: {{ size }}px; height: {{ size }}px; background-image: url("${this.checkURL(this.props.url)}")'
+      >
+      </div>
     `;
   }
 }

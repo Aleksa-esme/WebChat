@@ -30,9 +30,7 @@ class Chat extends Block {
   render() {
     return `
       <div class='chat' id={{ id }}>
-        <div class='chat__image'>
-          <img src='https://dummyimage.com/47x47/999999' alt='chat'>
-        </div>
+        {{{ Avatar size='47' }}}
         <div class='chat__text'>
           <div class='chat_line'>
             <p class='chat__title'>{{ name }}</p>

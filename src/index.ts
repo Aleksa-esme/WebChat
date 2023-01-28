@@ -2,6 +2,7 @@
 import Button from 'components/button/Button';
 import Input from 'components/input/Input';
 import Avatar from 'components/avatar/Avatar';
+import AvatarForm from 'components/avatarForm/AvatarForm';
 import ButtonSvg from 'components/buttonSvg/ButtonSvg';
 import Loader from 'components/loader/Loader';
 import Chat from 'components/ChatPage/chat/Chat';
@@ -36,15 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(ButtonSvg);
   registerComponent(Input);
   registerComponent(Avatar);
+  registerComponent(AvatarForm);
   registerComponent(Chat);
-  registerComponent(Input);
-  registerComponent(Message);
-  registerComponent(MessageField);
   registerComponent(ChatField);
-  registerComponent(MessageForm);
-  registerComponent(MessagesList);
   registerComponent(ChatMenu);
   registerComponent(ChatInfo);
+  registerComponent(Message);
+  registerComponent(MessageField);
+  registerComponent(MessageForm);
+  registerComponent(MessagesList);
 
   const store = new Store<AppState>(defaultState);
   const router = new Router();
