@@ -1,3 +1,4 @@
+// Components
 import Button from 'components/button/Button';
 import Input from 'components/input/Input';
 import Avatar from 'components/avatar/Avatar';
@@ -9,9 +10,12 @@ import ChatField from 'components/ChatPage/chatField/ChatField';
 import MessageForm from 'components/ChatPage/messageForm/MessageForm';
 import Loader from 'components/loader/Loader';
 import MessagesList from 'components/ChatPage/messagesList/MessagesList';
+import ChatMenu from 'components/ChatPage/chatMenu/ChatMenu';
+// Pages
+import Chats from 'pages/Chats/Chats';
+// Utils
 import renderDOM from 'utils/Component/renderDOM';
 import registerComponent from 'utils/Component/registerComponent';
-import Chats from 'pages/Chats/Chats';
 import { Store, StoreEvents } from 'utils/Store';
 import Router from 'utils/Router/Router';
 import initApp from 'services/initApp';
@@ -38,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(ChatField);
   registerComponent(MessageForm);
   registerComponent(MessagesList);
+  registerComponent(ChatMenu);
 
   const store = new Store<AppState>(defaultState);
   const router = new Router();
