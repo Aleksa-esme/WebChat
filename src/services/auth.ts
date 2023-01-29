@@ -3,7 +3,7 @@ import ChatsAPI from 'api/ChatsApi';
 import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';
-import type { Dispatch } from 'utils/Store';
+import type { Dispatch } from 'utils/Store/Store';
 
 type LoginPayload = {
   login: string;

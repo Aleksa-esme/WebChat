@@ -19,7 +19,7 @@ import Chats from 'pages/Chats/Chats';
 // Utils
 import renderDOM from 'utils/Component/renderDOM';
 import registerComponent from 'utils/Component/registerComponent';
-import { Store, StoreEvents } from 'utils/Store';
+import { Store, StoreEvents } from 'utils/Store/Store';
 import Router from 'utils/Router/Router';
 import initApp from 'services/initApp';
 import initRouter from './router';

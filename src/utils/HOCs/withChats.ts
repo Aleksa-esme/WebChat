@@ -1,4 +1,4 @@
-import { StoreEvents } from 'utils/Store';
+import { StoreEvents } from 'utils/Store/Store';
 
 function withChats(WrappedBlock) {
   return class extends WrappedBlock {

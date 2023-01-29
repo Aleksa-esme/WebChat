@@ -1,4 +1,4 @@
-import { StoreEvents } from 'utils/Store';
+import { StoreEvents } from 'utils/Store/Store';
 
 type WithUserProps = { user: User | null };
 

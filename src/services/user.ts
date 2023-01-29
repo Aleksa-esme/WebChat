@@ -2,7 +2,7 @@ import UserAPI from 'api/UserApi';
 import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';
-import type { Dispatch } from 'utils/Store';
+import type { Dispatch } from 'utils/Store/Store';
 
 type DataPayload = {
   first_name: string;

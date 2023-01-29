@@ -1,4 +1,4 @@
-import { Store, StoreEvents } from '../Store';
+import { Store, StoreEvents } from '../Store/Store';
 
 type WithStateProps = { store: Store<AppState> };
 
