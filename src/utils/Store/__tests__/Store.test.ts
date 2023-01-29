@@ -1,7 +1,6 @@
 import { Store, StoreEvents } from '../Store';
 
 describe('utils/Store', () => {
-  // ЮНИТ-ТЕСТ на модуль
   it('should set state', () => {
     const store = new Store({});
 
@@ -10,7 +9,6 @@ describe('utils/Store', () => {
     expect(store.getState()).toEqual({ userId: 123 });
   });
 
-  // ЮНИТ-ТЕСТ на тестирования события
   it('should emit event after store was updated', () => {
     const store = new Store({ userId: -1 });
     const mock = jest.fn();
@@ -23,7 +21,6 @@ describe('utils/Store', () => {
     expect(mock).toHaveBeenCalledWith({ userId: -1 }, { userId: 123 });
   });
 
-  // ЮНИТ-ТЕСТ на тестирования вызова функции
   it('should call callback with store and dispatch when it is function', () => {
     const store = new Store({ userId: -1 });
     const mock = jest.fn();

@@ -169,7 +169,7 @@ class Block {
     return '';
   }
 
-  getContent(): Nullable<HTMLElement> {
+  getContent(): any {
     return this._element;
   }
 
