@@ -48,6 +48,7 @@
     "html-webpack-plugin": "5.5.0",
     "husky": "8.0.3",
     "jest": "27.5.1",
+    "mini-css-extract-plugin": "2.7.2",
     "resolve-url-loader": "5.0.0",
     "sass": "1.57.1",
     "sass-loader": "13.2.0",

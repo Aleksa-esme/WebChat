@@ -25,8 +25,7 @@ import Router from 'utils/Router/Router';
 import initApp from 'services/initApp';
 import initRouter from './router';
 import defaultState from './store/index';
-
-require('./styles/style.scss');
+import './styles/style.scss';
 
 declare global {
   interface Window {
