@@ -45,8 +45,8 @@ class ProfileChange extends Block {
   onChangeAvatar(event: SubmitEvent) {
     event.preventDefault();
 
-    const avatar = document.querySelector('input[name="avatar"]');
-    const curFile = avatar!.files[0];
+    const avatar = document.querySelector('input[name="avatar"]') as HTMLInputElement;
+    const curFile = avatar.files![0];
 
     const form = document.getElementById('avatar_form');
     const formData = new FormData(form as HTMLFormElement);

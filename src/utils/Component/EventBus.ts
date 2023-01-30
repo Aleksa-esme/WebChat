@@ -9,7 +9,7 @@ class EventBus<E extends string = string, M extends { [K in E]: unknown[] } = Re
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    this.listeners[event]!.push(callback);
   }
 
   // отписка функции-обработчика от события
@@ -18,7 +18,7 @@ class EventBus<E extends string = string, M extends { [K in E]: unknown[] } = Re
       throw new Error(`Нет события: ${event}`);
     }
 
-    this.listeners[event] = this.listeners[event].filter(
+    this.listeners[event] = this.listeners[event]!.filter(
       (listener) => listener !== callback,
     );
   }
@@ -29,7 +29,7 @@ class EventBus<E extends string = string, M extends { [K in E]: unknown[] } = Re
       return;
     }
 
-    this.listeners[event].forEach(listener => {
+    this.listeners[event]!.forEach(listener => {
       listener(...args);
     });
   }

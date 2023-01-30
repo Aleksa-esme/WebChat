@@ -30,4 +30,4 @@ const map = {
   [Screens.Error500Page]: Error500,
 };
 
-export const getScreenComponent = (screen: Screens): BlockClass<any> => map[screen];
+export const getScreenComponent = (screen: Screens): BlockClass => map[screen];

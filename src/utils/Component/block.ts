@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid';
 import * as Handlebars from 'handlebars';
-import isEqual from 'utils/helpers/isEqual';
 import EventBus from './EventBus';
 
 type Props = Record<string, any>;
@@ -26,8 +25,6 @@ class Block {
 
   private _element: Nullable<HTMLElement> = null;
 
-  private _meta: { props: Props };
-
   protected props: Props;
 
   protected children: Record<string, Block>;
@@ -40,10 +37,6 @@ class Block {
     const { props, children } = this.getChildren(propsAndChildren);
 
     this.children = children;
-
-    this._meta = {
-      props,
-    };
 
     this.props = props;
 

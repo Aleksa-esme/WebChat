@@ -1,10 +1,10 @@
 import { StoreEvents } from 'utils/Store/Store';
 
-function withChats(WrappedBlock) {
+function withChats(WrappedBlock: any) {
   return class extends WrappedBlock {
     public static componentName = WrappedBlock.componentName || WrappedBlock.name;
 
-    constructor(props) {
+    constructor(props: any) {
       super({ ...props, chats: window.store.getState().chats });
     }
 
@@ -14,7 +14,7 @@ function withChats(WrappedBlock) {
       }
     };
 
-    componentDidMount(props) {
+    componentDidMount(props: any) {
       super.componentDidMount(props);
       window.store.on(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }

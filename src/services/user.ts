@@ -61,7 +61,7 @@ export const changePassword = async (
 export const changeAvatar = async (
   dispatch: Dispatch<AppState>,
   state: AppState,
-  action,
+  action: any,
 ) => {
   dispatch({ isLoading: true });
 

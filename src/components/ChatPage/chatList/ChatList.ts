@@ -14,7 +14,8 @@ class ChatList extends Block {
   }
 
   onChooseChat(event: Event) {
-    const chatId = event.currentTarget!.id;
+    const target = event.currentTarget as HTMLElement;
+    const chatId = target!.id;
     window.store.dispatch(chooseChat, chatId);
   }
 

@@ -2,7 +2,7 @@ import { StoreEvents } from 'utils/Store/Store';
 
 type WithUserProps = { user: User | null };
 
-function withUser<P extends WithUserProps>(WrappedBlock) {
+function withUser<P extends WithUserProps>(WrappedBlock: any) {
   return class extends WrappedBlock<P> {
     public static componentName = WrappedBlock.componentName || WrappedBlock.name;
 

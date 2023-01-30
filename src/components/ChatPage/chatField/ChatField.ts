@@ -25,7 +25,7 @@ class ChatField extends Block {
     event.preventDefault();
     const isError = validateForm(event);
     if (!isError) {
-      const outgoingMessage = document.querySelector('textarea[name="message"]');
+      const outgoingMessage = document.querySelector('textarea[name="message"]') as HTMLInputElement;
       if (!!outgoingMessage) {
         Messages.sendMessage(outgoingMessage.value);
         outgoingMessage.value = '';

@@ -28,7 +28,7 @@ class ButtonSvg extends Block {
   render() {
     return `
       <button class='{{ classes }}' type={{ type }}>
-        <img src={{ svg }} alt={{ alt }}>
+        <img src="{{ svg }}" alt={{ alt }}>
       </button>
     `;
   }

@@ -18,7 +18,6 @@ class Profile extends Block {
       navigateChats: () => this.props.router.go('/'),
       onLogout: () => this.props.store.dispatch(logout),
     });
-    console.log(window.store.getState().screen);
   }
 
   componentDidUpdate() {
@@ -27,7 +26,6 @@ class Profile extends Block {
   }
 
   render() {
-    console.log('%c Profile block render', 'background: #1f9af3; color: #fff');
     if (!this.props.user) {
       return '{{{ Loader }}}';
     }

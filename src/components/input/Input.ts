@@ -41,7 +41,6 @@ class Input extends Block {
   }
 
   render() {
-    console.log('%c Input render', 'background: #5f5af3; color: #fff');
     return `
       <label class='form__label {{ classLabel }}'>
           {{ label }}

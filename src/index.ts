@@ -17,13 +17,16 @@ import ChatInfo from 'components/ChatPage/chatInfo/ChatInfo';
 // Pages
 import Chats from 'pages/Chats/Chats';
 // Utils
+import Block from 'utils/Component/Block';
 import renderDOM from 'utils/Component/renderDOM';
 import registerComponent from 'utils/Component/registerComponent';
-import { Store, StoreEvents } from 'utils/Store/Store';
+import { Store } from 'utils/Store/Store';
 import Router from 'utils/Router/Router';
 import initApp from 'services/initApp';
 import initRouter from './router';
 import defaultState from './store/index';
+
+require('./styles/style.scss');
 
 declare global {
   interface Window {
@@ -55,17 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.router = router;
   window.store = store;
 
-  renderDOM(new Chats({}));
-
-  // store.on(StoreEvents.UPDATED, (prevState, nextState) => {
-  //   if (process.env.DEBUG) {
-  //     console.log(
-  //       '%cstore updated',
-  //       'background: #222; color: #bada55',
-  //       nextState,
-  //     );
-  //   }
-  // });
+  renderDOM(new Chats({}) as Block);
 
   /**
   * Загружаем данные для приложения

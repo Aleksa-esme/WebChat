@@ -59,7 +59,7 @@ export const chooseChat = async (
     isLoading: false,
     loginFormError: null,
     chatId: action,
-    chatTitle: chat[0]!.title,
+    chatTitle: chat![0].title,
     users: responseChats,
   });
 };

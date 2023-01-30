@@ -14,7 +14,6 @@ class Chats extends Block {
       navigateProfile: () => this.props.router.go('/profile'),
       onCreateChat: () => this.onCreateChat(),
     });
-    console.log(window.store.getState().screen);
   }
 
   // componentDidUpdate() {
@@ -28,7 +27,6 @@ class Chats extends Block {
   }
 
   render() {
-    console.log('%c Chats block render', 'background: #1f9af3; color: #fff');
     if (this.props.chats === 'undefined') {
       return '{{{ Loader }}}';
     }

@@ -7,7 +7,7 @@ class Router {
     if (!this.isStarted) {
       this.isStarted = true;
 
-      window.onpopstate = (event: PopStateEvent) => {
+      window.onpopstate = () => {
         this.onRouteChange.call(this);
       };
 
