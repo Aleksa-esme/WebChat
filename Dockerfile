@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json ./
 
-RUN node --max-old-space-size=4096 `which npm` install
+RUN npm install
 
 COPY . .
 
