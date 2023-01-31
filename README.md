@@ -9,7 +9,7 @@
 - Чата
 - Ошибки
 ---
-- Деплой на Netlify: [тут](https://capable-puffpuff-dc3ab9.netlify.app)
+- Деплой на Render.com: [тут](https://https://web-chat-3acm.onrender.com)
 - Макет в Figma: [тут](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1&t=XgjBQHVVn2AaQBhh-0)
 
 ## Установка
