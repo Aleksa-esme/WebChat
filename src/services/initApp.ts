@@ -1,5 +1,5 @@
 import AuthAPI from 'api/AuthAPI';
-import ChatsAPI from 'api/Chats';
+import ChatsAPI from 'api/ChatsAPI';
 import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';

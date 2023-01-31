@@ -1,5 +1,5 @@
-import ChatsAPI from 'api/Chats';
-import UserAPI from 'api/User';
+import ChatsAPI from 'api/ChatsAPI';
+import UserAPI from 'api/UserAPI';
 import apiHasError from 'utils/API/apiHasError';
 import type { Dispatch } from 'utils/Store/Store';
 import Messages from './messages';
