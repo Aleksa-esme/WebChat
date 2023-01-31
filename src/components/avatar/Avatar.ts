@@ -1,11 +1,11 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
 interface IAvatarProps {
   size: String,
   url?: String,
 }
 
-class Avatar extends Block {
+class Avatar extends Component {
   static componentName = 'Avatar';
 
   constructor({ size, url = 'null' }: IAvatarProps) {

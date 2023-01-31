@@ -1,4 +1,4 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
 interface IButtonProps {
   title: String;
@@ -6,7 +6,7 @@ interface IButtonProps {
   onClick?: () => void;
 }
 
-class Button extends Block {
+class Button extends Component {
   static componentName = 'Button';
 
   constructor({

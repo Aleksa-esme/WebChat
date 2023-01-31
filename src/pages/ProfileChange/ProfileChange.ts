@@ -1,6 +1,6 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
@@ -11,7 +11,7 @@ interface IProfileChangeProps {
   onFocus?: () => void;
 }
 
-class ProfileChange extends Block {
+class ProfileChange extends Component {
   constructor(props: IProfileChangeProps) {
     super({
       ...props,

@@ -1,8 +1,8 @@
 import { StoreEvents } from 'utils/Store/Store';
 
-function withChats(WrappedBlock: any) {
-  return class extends WrappedBlock {
-    public static componentName = WrappedBlock.componentName || WrappedBlock.name;
+function withChats(WrappedComponent: any) {
+  return class extends WrappedComponent {
+    public static componentName = WrappedComponent.componentName || WrappedComponent.name;
 
     constructor(props: any) {
       super({ ...props, chats: window.store.getState().chats });

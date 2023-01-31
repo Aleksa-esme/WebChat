@@ -1,4 +1,4 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
 interface IChatProps {
   id: string,
@@ -9,7 +9,7 @@ interface IChatProps {
   onClick?: () => void;
 }
 
-class Chat extends Block {
+class Chat extends Component {
   static componentName = 'Chat';
 
   constructor({

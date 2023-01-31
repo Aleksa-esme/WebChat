@@ -2,9 +2,9 @@ import { Store, StoreEvents } from '../Store/Store';
 
 type WithStateProps = { store: Store<AppState> };
 
-function withStore<P extends WithStateProps>(WrappedBlock: any) {
-  return class extends WrappedBlock<P> {
-    public static componentName = WrappedBlock.componentName || WrappedBlock.name;
+function withStore<P extends WithStateProps>(WrappedComponent: any) {
+  return class extends WrappedComponent<P> {
+    public static componentName = WrappedComponent.componentName || WrappedComponent.name;
 
     constructor(props: P) {
       super({ ...props, store: window.store });

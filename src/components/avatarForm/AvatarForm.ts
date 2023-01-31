@@ -1,4 +1,4 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
 interface IAvatarFormProps {
   form_id: String,
@@ -7,7 +7,7 @@ interface IAvatarFormProps {
   onSubmit?: () => void;
 }
 
-class AvatarForm extends Block {
+class AvatarForm extends Component {
   static componentName = 'AvatarForm';
 
   constructor({

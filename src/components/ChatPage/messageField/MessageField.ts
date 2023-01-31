@@ -1,10 +1,10 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
 interface IMessageFieldProps {
   onFocus?: () => void;
 }
 
-class MessageField extends Block {
+class MessageField extends Component {
   static componentName = 'MessageField';
 
   constructor({ onFocus }: IMessageFieldProps) {

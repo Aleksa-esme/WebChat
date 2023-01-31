@@ -5,12 +5,12 @@ import EventBus from './EventBus';
 type Props = Record<string, any>;
 type Events = Record<string, () => void>;
 
-export interface BlockClass extends Function {
+export interface ComponentClass extends Function {
   new (props: Props): Props;
   componentName?: string;
 }
 
-class Block {
+class Component {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -27,7 +27,7 @@ class Block {
 
   protected props: Props;
 
-  protected children: Record<string, Block>;
+  protected children: Record<string, Component>;
 
   private eventBus: () => EventBus;
 
@@ -45,7 +45,7 @@ class Block {
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
-    eventBus.emit(Block.EVENTS.INIT);
+    eventBus.emit(Component.EVENTS.INIT);
   }
 
   getChildren(propsAndChildren: any) {
@@ -53,9 +53,9 @@ class Block {
     const props: Props = {};
 
     Object.entries(propsAndChildren).map(([key, value]) => {
-      if (value instanceof Block) {
+      if (value instanceof Component) {
         children[key] = value;
-      } else if (Array.isArray(value) && value.every(v => (v instanceof Block))) {
+      } else if (Array.isArray(value) && value.every(v => (v instanceof Component))) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -74,24 +74,24 @@ class Block {
       return;
     }
 
-    this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
+    this.eventBus().emit(Component.EVENTS.FLOW_CWU, this.props);
   }
 
   _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Component.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   init() {
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
   _componentDidMount() {
     this.componentDidMount();
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount() {}
@@ -104,7 +104,7 @@ class Block {
   componentWillUnmount() {}
 
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
   _componentDidUpdate(oldProps: Props, newProps: Props) {
@@ -130,11 +130,11 @@ class Block {
     this.props = nextProps;
 
     // if (isEqual(prevProps, nextProps)) {
-    //   this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
+    //   this.eventBus().emit(Component.EVENTS.FLOW_CDU, prevProps, nextProps);
     // }
 
     // иначе не работает функция при клике на chat menu, разобраться почему
-    this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
+    this.eventBus().emit(Component.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
   get element() {
@@ -219,4 +219,4 @@ class Block {
   }
 }
 
-export default Block;
+export default Component;

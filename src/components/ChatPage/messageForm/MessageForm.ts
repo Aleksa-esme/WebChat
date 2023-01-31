@@ -1,13 +1,13 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import * as FileSvg from 'assets/svg/file.svg';
-import { validFocusField } from 'utils/ValidForm';
+import { validFocusField } from 'utils/Validation/ValidForm';
 
 interface IMessageFieldProps {
   onSubmit?: () => void;
 }
 
-class MessageField extends Block {
+class MessageField extends Component {
   static componentName = 'MessageForm';
 
   constructor({ onSubmit }: IMessageFieldProps) {

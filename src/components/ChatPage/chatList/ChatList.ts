@@ -1,8 +1,8 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import formatDate from 'utils/helpers/formatDate';
 import { chooseChat } from 'services/chats';
 
-class ChatList extends Block {
+class ChatList extends Component {
   static componentName = 'ChatList';
 
   constructor(props: any) {

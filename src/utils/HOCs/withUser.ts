@@ -2,9 +2,9 @@ import { StoreEvents } from 'utils/Store/Store';
 
 type WithUserProps = { user: User | null };
 
-function withUser<P extends WithUserProps>(WrappedBlock: any) {
-  return class extends WrappedBlock<P> {
-    public static componentName = WrappedBlock.componentName || WrappedBlock.name;
+function withUser<P extends WithUserProps>(WrappedComponent: any) {
+  return class extends WrappedComponent<P> {
+    public static componentName = WrappedComponent.componentName || WrappedComponent.name;
 
     constructor(props: P) {
       super({ ...props, user: window.store.getState().user });

@@ -17,7 +17,7 @@ import ChatInfo from 'components/ChatPage/chatInfo/ChatInfo';
 // Pages
 import Chats from 'pages/Chats/Chats';
 // Utils
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import renderDOM from 'utils/Component/renderDOM';
 import registerComponent from 'utils/Component/registerComponent';
 import { Store } from 'utils/Store/Store';
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.router = router;
   window.store = store;
 
-  renderDOM(new Chats({}) as Block);
+  renderDOM(new Chats({}) as Component);
 
   /**
   * Загружаем данные для приложения

@@ -1,9 +1,9 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
 import comparePasswords from 'utils/helpers/comparePasswords';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import { changePassword } from 'services/user';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 
@@ -12,7 +12,7 @@ interface IProfilePasswordProps {
   onFocus?: () => void;
 }
 
-class ProfilePassword extends Block {
+class ProfilePassword extends Component {
   static componentName = 'ProfilePassword';
 
   constructor(props: IProfilePasswordProps) {

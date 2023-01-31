@@ -1,4 +1,4 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
 interface IButtonSvgProps {
   alt: String;
@@ -8,7 +8,7 @@ interface IButtonSvgProps {
   onClick?: () => void;
 }
 
-class ButtonSvg extends Block {
+class ButtonSvg extends Component {
   static componentName = 'ButtonSvg';
 
   constructor({

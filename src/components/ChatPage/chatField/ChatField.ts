@@ -1,12 +1,12 @@
-import Block from 'utils/Component/Block';
-import { validateForm } from 'utils/ValidForm';
+import Component from 'utils/Component/Component';
+import { validateForm } from 'utils/Validation/ValidForm';
 import Messages from 'services/messages';
 
 interface IChatFieldProps {
   onScroll?: () => void;
 }
 
-class ChatField extends Block {
+class ChatField extends Component {
   static componentName = 'ChatField';
 
   constructor({ onScroll }: IChatFieldProps) {

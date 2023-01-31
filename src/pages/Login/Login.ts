@@ -1,5 +1,5 @@
-import Block from 'utils/Component/Block';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import Component from 'utils/Component/Component';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import { login } from 'services/auth';
@@ -10,7 +10,7 @@ interface ILoginProps {
   onFocus?: () => void;
 }
 
-class Login extends Block {
+class Login extends Component {
   static componentName = 'Login';
 
   constructor(props: ILoginProps) {

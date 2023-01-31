@@ -1,6 +1,6 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
-class Modal extends Block {
+class Modal extends Component {
   static componentName = 'Modal';
 
   render() {

@@ -1,5 +1,5 @@
-import Block from 'utils/Component/Block';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import Component from 'utils/Component/Component';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import comparePasswords from 'utils/helpers/comparePasswords';
@@ -11,7 +11,7 @@ interface IRegisterProps {
   onFocus?: () => void;
 }
 
-class Register extends Block {
+class Register extends Component {
   static componentName = 'Register';
 
   constructor(props: IRegisterProps) {

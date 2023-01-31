@@ -1,6 +1,6 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
-class ChatInfo extends Block {
+class ChatInfo extends Component {
   static componentName = 'ChatInfo';
 
   constructor(props: any) {

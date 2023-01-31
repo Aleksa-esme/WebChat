@@ -1,7 +1,7 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import formatDate from 'utils/helpers/formatDate';
 
-class MessagesList extends Block {
+class MessagesList extends Component {
   static componentName = 'MessagesList';
 
   static chatUsers: Array<User>;

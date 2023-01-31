@@ -1,8 +1,8 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import { addUser, deleteChat, deleteUser } from 'services/chats';
 
-class ChatMenu extends Block {
+class ChatMenu extends Component {
   static componentName = 'ChatMenu';
 
   constructor(props: any) {

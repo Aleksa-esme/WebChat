@@ -1,10 +1,10 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withChats from 'utils/HOCs/withChats';
 import withStore from 'utils/HOCs/withStore';
 import { createChat } from 'services/chats';
 
-class Chats extends Block {
+class Chats extends Component {
   static componentName = 'Chats';
 
   constructor(props: any) {

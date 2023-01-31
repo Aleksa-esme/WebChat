@@ -1,4 +1,4 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
@@ -6,7 +6,7 @@ import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { logout } from 'services/auth';
 import { Screens } from 'utils/Router/screenList';
 
-class Profile extends Block {
+class Profile extends Component {
   static componentName = 'Profile';
 
   constructor(props: any) {

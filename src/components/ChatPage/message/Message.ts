@@ -1,4 +1,4 @@
-import Block from 'utils/Component/Block';
+import Component from 'utils/Component/Component';
 
 interface IMessageProps {
   name?: String;
@@ -7,7 +7,7 @@ interface IMessageProps {
   classes: String;
 }
 
-class Message extends Block {
+class Message extends Component {
   static componentName = 'Message';
 
   constructor(props: IMessageProps) {

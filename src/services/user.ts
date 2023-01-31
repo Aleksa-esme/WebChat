@@ -1,4 +1,4 @@
-import UserAPI from 'api/UserApi';
+import UserAPI from 'api/User';
 import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';
