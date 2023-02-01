@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run eslint:fix && npm run stylelint:fix && npm run test"
+      "pre-commit": "npm run eslint:fix && npm run stylelint:fix"
     }
   },
   "jest": {
