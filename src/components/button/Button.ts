@@ -1,6 +1,7 @@
 import Component from 'utils/Component/Component';
 
 interface IButtonProps {
+  type?: String;
   title: String;
   classes?: String;
   onClick?: () => void;
@@ -10,11 +11,13 @@ class Button extends Component {
   static componentName = 'Button';
 
   constructor({
+    type = 'submit',
     title,
     classes,
     onClick,
   }: IButtonProps) {
     super({
+      type,
       title,
       classes,
       events: {
@@ -25,7 +28,7 @@ class Button extends Component {
 
   render() {
     return `
-      <button type='submit' class='{{ classes }}'>
+      <button type='{{ type }}' class='{{ classes }}'>
         {{ title }}
       </button>
     `;

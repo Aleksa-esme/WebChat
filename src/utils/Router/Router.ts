@@ -35,9 +35,7 @@ class Router {
   }
 
   go(pathname: string) {
-    console.log(pathname);
     window.history.pushState({}, '', pathname);
-    console.log(window.history.length);
     this.onRouteChange(pathname);
   }
 

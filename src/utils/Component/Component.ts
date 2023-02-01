@@ -1,4 +1,4 @@
-import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 import * as Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
@@ -21,7 +21,7 @@ class Component {
 
   static componentName: string;
 
-  public id = nanoid(6);
+  public id = uuidv4();
 
   private _element: Nullable<HTMLElement> = null;
 
@@ -46,6 +46,10 @@ class Component {
 
     this._registerEvents(eventBus);
     eventBus.emit(Component.EVENTS.INIT);
+  }
+
+  getProps() {
+    return this.props;
   }
 
   getChildren(propsAndChildren: any) {
@@ -129,11 +133,6 @@ class Component {
 
     this.props = nextProps;
 
-    // if (isEqual(prevProps, nextProps)) {
-    //   this.eventBus().emit(Component.EVENTS.FLOW_CDU, prevProps, nextProps);
-    // }
-
-    // иначе не работает функция при клике на chat menu, разобраться почему
     this.eventBus().emit(Component.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 

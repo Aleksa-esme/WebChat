@@ -1,5 +1,4 @@
 import Component from 'utils/Component/Component';
-import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import { addUser, deleteChat, deleteUser } from 'services/chats';
 
 class ChatMenu extends Component {
@@ -41,11 +40,10 @@ class ChatMenu extends Component {
   render() {
     return `
       <div class='chat-menu'>
-        {{{ ButtonSvg 
-          svg='${MenuSvg}' 
-          alt='menu' 
+        {{{ Button
+          title='Меню'
           type='button' 
-          classes='svg-button'
+          classes='link'
           onClick=showMenu 
         }}}
         <div class='chat-menu__buttons'>
