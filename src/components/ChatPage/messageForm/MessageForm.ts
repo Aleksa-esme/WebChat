@@ -1,4 +1,6 @@
 import Component from 'utils/Component/Component';
+import * as ArrowButton from 'assets/svg/arrow_button.svg';
+import * as FileSvg from 'assets/svg/file.svg';
 import { validFocusField } from 'utils/Validation/ValidForm';
 
 interface IMessageFieldProps {
@@ -23,9 +25,9 @@ class MessageField extends Component {
   render() {
     return `
       <form class='messages-send' id='form'>
-          {{{ Button title='Файл' type='button' classes='link' }}} 
+          {{{ ButtonSvg svg='${FileSvg}' alt='add file' type='button' classes='svg-button' }}} 
           {{{ MessageField onFocus=onFocus }}}
-          {{{ Button title='Отправить' classes='link'}}} 
+          {{{ ButtonSvg svg='${ArrowButton}' alt='send' type='submit' classes='svg-button' }}} 
       </form>
     `;
   }

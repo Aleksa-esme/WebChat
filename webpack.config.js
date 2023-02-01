@@ -52,8 +52,11 @@ module.exports = {
         exclude: /(node_modules)/
       },
       {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader',
+        test: /\.(svg|png|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          esModule: false,
+        },
       },
       {
         test: /\.html$/i,
