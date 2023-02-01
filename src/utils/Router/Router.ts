@@ -15,7 +15,7 @@ class Router {
     }
   }
 
-  private onRouteChange(pathname: string = window.location.pathname) {
+  onRouteChange(pathname: string = window.location.pathname) {
     const found = Object.entries(this.routes).some(([routeHash, callback]) => {
       if (routeHash === pathname) {
         callback();
@@ -35,7 +35,9 @@ class Router {
   }
 
   go(pathname: string) {
+    console.log(pathname);
     window.history.pushState({}, '', pathname);
+    console.log(window.history.length);
     this.onRouteChange(pathname);
   }
 

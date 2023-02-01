@@ -29,7 +29,7 @@ class Component {
 
   protected children: Record<string, Component>;
 
-  private eventBus: () => EventBus;
+  eventBus: () => EventBus;
 
   constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus();
@@ -158,7 +158,7 @@ class Component {
     this._addEvents();
   }
 
-  protected render(): string {
+  render(): string {
     return '';
   }
 

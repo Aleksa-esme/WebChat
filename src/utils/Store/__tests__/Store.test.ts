@@ -1,6 +1,6 @@
 import { Store, StoreEvents } from '../Store';
 
-describe('utils/Store', () => {
+describe('Store', () => {
   it('should set state', () => {
     const store = new Store({});
 
