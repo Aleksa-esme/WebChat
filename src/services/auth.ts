@@ -20,13 +20,17 @@ type RegisterPayload = {
 };
 
 export const logout = async (dispatch: Dispatch<AppState>) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  await AuthAPI.logout();
+    await AuthAPI.logout();
 
-  dispatch({ isLoading: false, user: null });
-
-  window.router.go('/login');
+    dispatch({ isLoading: false, user: null });
+  } catch (err) {
+    console.error(err);
+  } finally {
+    window.router.go('/login');
+  }
 };
 
 export const login = async (
@@ -34,38 +38,42 @@ export const login = async (
   state: AppState,
   action: LoginPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const response = await AuthAPI.login(action);
+    const response = await AuthAPI.login(action);
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseUser = await AuthAPI.me();
+
+    dispatch({ isLoading: false, loginFormError: null });
+
+    if (apiHasError(response)) {
+      dispatch(logout);
+      return;
+    }
+    const responseChats = await ChatsAPI.getChats();
+
+    if (apiHasError(responseChats)) {
+      console.log(responseChats);
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      user: transformUser(responseUser as UserDTO),
+      chats: responseChats,
+    });
+  } catch (err) {
+    console.error(err);
+  } finally {
+    window.router.go('/profile');
   }
-
-  const responseUser = await AuthAPI.me();
-
-  dispatch({ isLoading: false, loginFormError: null });
-
-  if (apiHasError(response)) {
-    dispatch(logout);
-    return;
-  }
-  const responseChats = await ChatsAPI.getChats();
-
-  if (apiHasError(responseChats)) {
-    console.log(responseChats);
-    return;
-  }
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    user: transformUser(responseUser as UserDTO),
-    chats: responseChats,
-  });
-
-  window.router.go('/profile');
 };
 
 export const register = async (
@@ -73,22 +81,26 @@ export const register = async (
   state: AppState,
   action: RegisterPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const response = await AuthAPI.register(action);
+    const response = await AuthAPI.register(action);
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseUser = await AuthAPI.me();
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      user: transformUser(responseUser as UserDTO),
+    });
+  } catch (err) {
+    console.error(err);
+  } finally {
+    window.router.go('/');
   }
-
-  const responseUser = await AuthAPI.me();
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    user: transformUser(responseUser as UserDTO),
-  });
-
-  window.router.go('/');
 };

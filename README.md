@@ -14,5 +14,5 @@
 - Макет в Figma: [тут](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1&t=XgjBQHVVn2AaQBhh-0)
 
 ## Установка
-- `npx webpack serve` - запуск development сборки
+- `npm run dev` - запуск development сборки
 - `npm run start` - запуск production сборки

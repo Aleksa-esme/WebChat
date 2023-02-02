@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "---",
   "scripts": {
-    "dev": "webpack ./src/index.html",
+    "dev": "webpack serve ./src/index.html",
     "build": "webpack build ./src/index.html",
     "start": "webpack build ./src/index.html && node ./server.js",
     "eslint": "eslint . --ext .ts",
@@ -14,7 +14,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run eslint:fix && npm run stylelint:fix"
+      "pre-commit": "npm run eslint:fix && npm run stylelint:fix && npm run test"
     }
   },
   "jest": {

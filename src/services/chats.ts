@@ -22,22 +22,31 @@ export const createChat = async (
   state: AppState,
   action: CreateChatPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const response = await ChatsAPI.create(action);
+    const response = await ChatsAPI.create(action);
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseChats = await ChatsAPI.getChats();
+
+    if (apiHasError(responseChats)) {
+      dispatch({ isLoading: false, loginFormError: responseChats.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      chats: responseChats,
+    });
+  } catch (err) {
+    console.error(err);
   }
-
-  const responseChats = await ChatsAPI.getChats();
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    chats: responseChats,
-  });
 };
 
 export const chooseChat = async (
@@ -45,23 +54,37 @@ export const chooseChat = async (
   state: AppState,
   action: string,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const responseChats = await ChatsAPI.getChatUsers(action);
+    const responseChats = await ChatsAPI.getChatUsers(action);
 
-  const responseToken = await ChatsAPI.getToken(action);
+    if (apiHasError(responseChats)) {
+      dispatch({ isLoading: false, loginFormError: responseChats.reason });
+      return;
+    }
 
-  await Messages.connect(Number(action), responseToken.token, '0');
+    const responseToken = await ChatsAPI.getToken(action);
 
-  const chat = window.store.getState().chats?.filter(el => el.id.toString() === action);
+    if (apiHasError(responseToken)) {
+      dispatch({ isLoading: false, loginFormError: responseToken.reason });
+      return;
+    }
 
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    chatId: action,
-    chatTitle: chat![0].title,
-    users: responseChats,
-  });
+    await Messages.connect(Number(action), responseToken.token, '0');
+
+    const chat = window.store.getState().chats?.filter(el => el.id.toString() === action);
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      chatId: action,
+      chatTitle: chat![0].title,
+      users: responseChats,
+    });
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export const deleteChat = async (
@@ -69,25 +92,34 @@ export const deleteChat = async (
   state: AppState,
   action: DeleteChatPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const response = await ChatsAPI.delete({ chatId: Number(action) });
+    const response = await ChatsAPI.delete({ chatId: Number(action) });
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    Messages.close();
+
+    const responseChats = await ChatsAPI.getChats();
+
+    if (apiHasError(responseChats)) {
+      dispatch({ isLoading: false, loginFormError: responseChats.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      chatId: null,
+      chats: responseChats,
+    });
+  } catch (err) {
+    console.error(err);
   }
-
-  Messages.close();
-
-  const responseChats = await ChatsAPI.getChats();
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    chatId: null,
-    chats: responseChats,
-  });
 };
 
 export const addUser = async (
@@ -95,24 +127,38 @@ export const addUser = async (
   state: AppState,
   action:UserPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const user = await UserAPI.search({ login: action.user });
+    const user = await UserAPI.search({ login: action.user });
 
-  const response = await ChatsAPI.addUser({ users: [user[0].id], chatId: action.chatId });
+    if (apiHasError(user)) {
+      dispatch({ isLoading: false, loginFormError: user.reason });
+      return;
+    }
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    const response = await ChatsAPI.addUser({ users: [user[0].id], chatId: action.chatId });
+
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
+
+    if (apiHasError(responseUsers)) {
+      dispatch({ isLoading: false, loginFormError: responseUsers.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      users: responseUsers,
+    });
+  } catch (err) {
+    console.error(err);
   }
-
-  const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    users: responseUsers,
-  });
 };
 
 export const deleteUser = async (
@@ -120,22 +166,36 @@ export const deleteUser = async (
   state: AppState,
   action: UserPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const user = await UserAPI.search({ login: action.user });
+    const user = await UserAPI.search({ login: action.user });
 
-  const response = await ChatsAPI.deleteUser({ users: [user[0].id], chatId: action.chatId });
+    if (apiHasError(user)) {
+      dispatch({ isLoading: false, loginFormError: user.reason });
+      return;
+    }
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    const response = await ChatsAPI.deleteUser({ users: [user[0].id], chatId: action.chatId });
+
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
+
+    if (apiHasError(responseUsers)) {
+      dispatch({ isLoading: false, loginFormError: responseUsers.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      users: responseUsers,
+    });
+  } catch (err) {
+    console.error(err);
   }
-
-  const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    users: responseUsers,
-  });
 };

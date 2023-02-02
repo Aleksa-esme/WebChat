@@ -23,22 +23,31 @@ export const changeData = async (
   state: AppState,
   action: DataPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const response = await UserAPI.data(action);
+    const response = await UserAPI.data(action);
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseUser = await UserAPI.user(response.id);
+
+    if (apiHasError(responseUser)) {
+      dispatch({ isLoading: false, loginFormError: responseUser.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      user: transformUser(responseUser as UserDTO),
+    });
+  } catch (err) {
+    console.error(err);
   }
-
-  const responseUser = await UserAPI.user(response.id);
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    user: transformUser(responseUser as UserDTO),
-  });
 };
 
 export const changePassword = async (
@@ -46,16 +55,20 @@ export const changePassword = async (
   state: AppState,
   action: PasswordPayload,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const response = await UserAPI.password(action);
+    const response = await UserAPI.password(action);
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    dispatch({ isLoading: false, loginFormError: null });
+  } catch (err) {
+    console.error(err);
   }
-
-  dispatch({ isLoading: false, loginFormError: null });
 };
 
 export const changeAvatar = async (
@@ -63,19 +76,29 @@ export const changeAvatar = async (
   state: AppState,
   action: any,
 ) => {
-  dispatch({ isLoading: true });
+  try {
+    dispatch({ isLoading: true });
 
-  const response = await UserAPI.avatar(action);
+    const response = await UserAPI.avatar(action);
 
-  if (apiHasError(response)) {
-    dispatch({ isLoading: false, loginFormError: response.reason });
-    return;
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseUser = await UserAPI.user(response.id);
+
+    if (apiHasError(responseUser)) {
+      dispatch({ isLoading: false, loginFormError: responseUser.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      user: transformUser(responseUser as UserDTO),
+    });
+  } catch (err) {
+    console.error(err);
   }
-  const responseUser = await UserAPI.user(response.id);
-
-  dispatch({
-    isLoading: false,
-    loginFormError: null,
-    user: transformUser(responseUser as UserDTO),
-  });
 };
