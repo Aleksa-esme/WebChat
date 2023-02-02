@@ -1,9 +1,10 @@
 import { StoreEvents } from 'utils/Store/Store';
+import { ComponentClass } from 'utils/Component/Component';
 
 type WithUserProps = { user: User | null };
 
-function withUser<P extends WithUserProps>(WrappedComponent: any) {
-  return class extends WrappedComponent<P> {
+function withUser<P extends WithUserProps>(WrappedComponent: ComponentClass) {
+  return class extends WrappedComponent {
     public static componentName = WrappedComponent.componentName || WrappedComponent.name;
 
     constructor(props: P) {
@@ -25,7 +26,7 @@ function withUser<P extends WithUserProps>(WrappedComponent: any) {
       super.componentWillUnmount();
       window.store.off(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
-  };
+  } as ComponentClass;
 }
 
 export default withUser;

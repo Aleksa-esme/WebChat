@@ -5,7 +5,7 @@ import { chooseChat } from 'services/chats';
 class ChatList extends Component {
   static componentName = 'ChatList';
 
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
 
     this.setProps({

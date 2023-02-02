@@ -8,7 +8,7 @@ class MessagesList extends Component {
 
   static messagesArray: Array<Message> | Array<NewMessage> = [];
 
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
 
     MessagesList.chatUsers = window.store.getState().users;

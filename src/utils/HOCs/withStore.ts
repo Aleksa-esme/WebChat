@@ -1,9 +1,10 @@
+import { ComponentClass } from 'utils/Component/Component';
 import { Store, StoreEvents } from '../Store/Store';
 
 type WithStateProps = { store: Store<AppState> };
 
-function withStore<P extends WithStateProps>(WrappedComponent: any) {
-  return class extends WrappedComponent<P> {
+function withStore<P extends WithStateProps>(WrappedComponent: ComponentClass) {
+  return class extends WrappedComponent {
     public static componentName = WrappedComponent.componentName || WrappedComponent.name;
 
     constructor(props: P) {
@@ -23,7 +24,7 @@ function withStore<P extends WithStateProps>(WrappedComponent: any) {
       super.componentWillUnmount();
       window.store.off(StoreEvents.UPDATED, this.__onChangeStoreCallback);
     }
-  };
+  } as ComponentClass;
 }
 
 export default withStore;

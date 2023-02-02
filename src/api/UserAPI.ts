@@ -29,7 +29,7 @@ export class UserAPI {
     return this.apiInstance.put('user/profile', { data });
   }
 
-  avatar(data: any) {
+  avatar(data: FormData) {
     return this.apiInstance.put('user/profile/avatar', { data, isFormData: true });
   }
 

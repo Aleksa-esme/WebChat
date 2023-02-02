@@ -1,6 +1,7 @@
 import { StoreEvents } from 'utils/Store/Store';
+import { ComponentClass } from 'utils/Component/Component';
 
-function withChats(WrappedComponent: any) {
+function withChats(WrappedComponent: ComponentClass) {
   return class extends WrappedComponent {
     public static componentName = WrappedComponent.componentName || WrappedComponent.name;
 
@@ -14,7 +15,7 @@ function withChats(WrappedComponent: any) {
       }
     };
 
-    componentDidMount(props: any) {
+    componentDidMount(props: unknown) {
       super.componentDidMount(props);
       window.store.on(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
@@ -23,7 +24,7 @@ function withChats(WrappedComponent: any) {
       super.componentWillUnmount();
       window.store.off(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
-  };
+  } as ComponentClass;
 }
 
 export default withChats;

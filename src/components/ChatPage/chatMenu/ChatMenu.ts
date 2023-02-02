@@ -5,7 +5,7 @@ import { addUser, deleteChat, deleteUser } from 'services/chats';
 class ChatMenu extends Component {
   static componentName = 'ChatMenu';
 
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
 
     this.setProps({

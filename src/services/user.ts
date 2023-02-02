@@ -63,7 +63,7 @@ export const changePassword: DispatchStateHandler<PasswordPayload> = async (disp
   }
 };
 
-export const changeAvatar: DispatchStateHandler<any> = async (dispatch, state, action) => {
+export const changeAvatar: DispatchStateHandler<FormData> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 

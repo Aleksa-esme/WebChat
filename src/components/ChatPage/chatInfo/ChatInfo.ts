@@ -3,10 +3,6 @@ import Component from 'utils/Component/Component';
 class ChatInfo extends Component {
   static componentName = 'ChatInfo';
 
-  constructor(props: any) {
-    super(props);
-  }
-
   getUsers(): string {
     const users = window.store.getState().users;
     const string = users.reduce((result, user, index) => `${result}${user.login}${index < users.length - 1 ? ', ' : ''}`, '');

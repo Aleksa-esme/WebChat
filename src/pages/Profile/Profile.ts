@@ -9,7 +9,7 @@ import { Screens } from 'utils/Router/screenList';
 class Profile extends Component {
   static componentName = 'Profile';
 
-  constructor(props: any) {
+  constructor(props: unknown) {
     super(props);
 
     this.setProps({
