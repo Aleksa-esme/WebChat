@@ -1,7 +1,7 @@
 import ChatsAPI from 'api/ChatsAPI';
 import UserAPI from 'api/UserAPI';
 import apiHasError from 'utils/API/apiHasError';
-import type { Dispatch } from 'utils/Store/Store';
+import type { DispatchStateHandler } from './types';
 import Messages from './messages';
 
 type CreateChatPayload = {
@@ -17,11 +17,7 @@ type UserPayload = {
   chatId: string;
 };
 
-export const createChat = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: CreateChatPayload,
-) => {
+export const createChat: DispatchStateHandler<CreateChatPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
@@ -49,11 +45,7 @@ export const createChat = async (
   }
 };
 
-export const chooseChat = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: string,
-) => {
+export const chooseChat: DispatchStateHandler<string> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
@@ -87,11 +79,7 @@ export const chooseChat = async (
   }
 };
 
-export const deleteChat = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: DeleteChatPayload,
-) => {
+export const deleteChat: DispatchStateHandler<DeleteChatPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
@@ -122,11 +110,7 @@ export const deleteChat = async (
   }
 };
 
-export const addUser = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action:UserPayload,
-) => {
+export const addUser: DispatchStateHandler<UserPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
@@ -161,11 +145,7 @@ export const addUser = async (
   }
 };
 
-export const deleteUser = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: UserPayload,
-) => {
+export const deleteUser: DispatchStateHandler<UserPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 

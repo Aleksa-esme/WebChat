@@ -4,6 +4,7 @@ import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';
 import type { Dispatch } from 'utils/Store/Store';
+import type { DispatchStateHandler } from './types';
 
 type LoginPayload = {
   login: string;
@@ -33,11 +34,7 @@ export const logout = async (dispatch: Dispatch<AppState>) => {
   }
 };
 
-export const login = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: LoginPayload,
-) => {
+export const login: DispatchStateHandler<LoginPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
@@ -76,11 +73,7 @@ export const login = async (
   }
 };
 
-export const register = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: RegisterPayload,
-) => {
+export const register: DispatchStateHandler<RegisterPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 

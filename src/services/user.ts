@@ -2,7 +2,7 @@ import UserAPI from 'api/UserAPI';
 import { UserDTO } from 'api/types';
 import apiHasError from 'utils/API/apiHasError';
 import transformUser from 'utils/API/apiTransformers';
-import type { Dispatch } from 'utils/Store/Store';
+import type { DispatchStateHandler } from './types';
 
 type DataPayload = {
   first_name: string;
@@ -18,11 +18,7 @@ type PasswordPayload = {
   newPassword: string;
 };
 
-export const changeData = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: DataPayload,
-) => {
+export const changeData: DispatchStateHandler<DataPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
@@ -50,11 +46,7 @@ export const changeData = async (
   }
 };
 
-export const changePassword = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: PasswordPayload,
-) => {
+export const changePassword: DispatchStateHandler<PasswordPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
@@ -71,11 +63,7 @@ export const changePassword = async (
   }
 };
 
-export const changeAvatar = async (
-  dispatch: Dispatch<AppState>,
-  state: AppState,
-  action: any,
-) => {
+export const changeAvatar: DispatchStateHandler<any> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
 
