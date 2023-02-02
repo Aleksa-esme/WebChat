@@ -30,6 +30,7 @@ class ChatList extends Component {
               date='${formatDate(el.last_message?.time)}' 
               message='${el.last_message?.content}' 
               messages='${el.unread_count}'
+              avatar='${el.avatar}'
               onClick=onChooseChat
             }}}
           `).join(' ')}

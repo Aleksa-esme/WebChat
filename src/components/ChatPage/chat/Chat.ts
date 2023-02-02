@@ -6,6 +6,7 @@ interface IChatProps {
   date?: String;
   message?: String;
   messages?: String;
+  avatar?: String;
   onClick?: () => void;
 }
 
@@ -13,7 +14,7 @@ class Chat extends Component {
   static componentName = 'Chat';
 
   constructor({
-    id, name, date, message, messages, onClick,
+    id, name, date, message, messages, avatar, onClick,
   }: IChatProps) {
     super({
       id,
@@ -21,6 +22,7 @@ class Chat extends Component {
       date,
       message,
       messages,
+      avatar,
       events: {
         click: onClick,
       },
@@ -30,7 +32,7 @@ class Chat extends Component {
   render() {
     return `
       <div class='chat' id={{ id }}>
-        {{{ Avatar size='47' }}}
+        {{{ Avatar size='47' url='${this.props.avatar}'}}}
         <div class='chat__text'>
           <div class='chat_line'>
             <p class='chat__title'>{{ name }}</p>
