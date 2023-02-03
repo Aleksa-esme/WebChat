@@ -32,6 +32,10 @@ export class ChatsAPI {
     return this.apiInstance.delete('chats', { data });
   }
 
+  avatar(data: FormData) {
+    return this.apiInstance.put('chats/avatar', { data, isFormData: true });
+  }
+
   addUser(data: UserRequestData) {
     return this.apiInstance.put('chats/users', { data });
   }

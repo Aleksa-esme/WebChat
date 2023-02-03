@@ -4,6 +4,7 @@
 @import 'components/loader/Loader.scss';
 @import 'components/avatar/Avatar.scss';
 @import 'components/avatarForm/AvatarForm.scss';
+@import 'components/modal/Modal.scss';
 @import 'components/ChatPage/chat/Chat.scss';
 @import 'components/ChatPage/message/Message.scss';
 @import 'components/ChatPage/messageField/MessageField.scss';
@@ -15,7 +16,6 @@
 @import 'pages/Chats/Chats.scss';
 @import 'pages/Error404/HttpError.scss';
 @import 'pages/Login/Login.scss';
-@import 'pages/Modal/Modal.scss';
 @import 'pages/Profile/Profile.scss';
 
 @font-face {
@@ -53,7 +53,7 @@ button,
 }
 
 .show {
-  display: block;
+  display: flex !important;
 }
 
 .form {

@@ -4,13 +4,15 @@ import Messages from 'services/messages';
 
 interface IChatFieldProps {
   onScroll?: () => void;
+  avatar?: String;
 }
 
 class ChatField extends Component {
   static componentName = 'ChatField';
 
-  constructor({ onScroll }: IChatFieldProps) {
+  constructor({ avatar, onScroll }: IChatFieldProps) {
     super({
+      avatar,
       events: {
         scroll: onScroll,
       },
@@ -36,7 +38,7 @@ class ChatField extends Component {
   render() {
     return `
       <div class='chat-field'>
-        {{{ ChatInfo name=name users=users }}}
+        {{{ ChatInfo name=name users=users avatar=avatar }}}
         {{{ MessagesList }}}
         {{{ MessageForm onSubmit=sendMessage }}}
       </div>

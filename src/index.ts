@@ -5,6 +5,7 @@ import Avatar from 'components/avatar/Avatar';
 import AvatarForm from 'components/avatarForm/AvatarForm';
 import ButtonSvg from 'components/buttonSvg/ButtonSvg';
 import Loader from 'components/loader/Loader';
+import Modal from 'components/modal/Modal';
 import Chat from 'components/ChatPage/chat/Chat';
 import ChatList from 'components/ChatPage/chatList/ChatList';
 import Message from 'components/ChatPage/message/Message';
@@ -35,6 +36,7 @@ declare global {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  registerComponent(Modal);
   registerComponent(Loader);
   registerComponent(Button);
   registerComponent(ButtonSvg);

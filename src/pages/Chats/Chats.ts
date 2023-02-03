@@ -2,7 +2,7 @@ import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withChats from 'utils/HOCs/withChats';
 import withStore from 'utils/HOCs/withStore';
-import { createChat } from 'services/chats';
+import { createChat, changeAvatar } from 'services/chats';
 
 class Chats extends Component {
   static componentName = 'Chats';
@@ -13,6 +13,7 @@ class Chats extends Component {
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
       onCreateChat: () => this.onCreateChat(),
+      onChangeAvatar: (event: SubmitEvent) => this.onChangeAvatar(event),
     });
   }
 
@@ -24,6 +25,27 @@ class Chats extends Component {
   onCreateChat() {
     const chatData = prompt('Название чата');
     if (!!chatData) this.props.store.dispatch(createChat, { title: chatData });
+  }
+
+  onChangeAvatar(event: SubmitEvent) {
+    event.preventDefault();
+
+    const avatar = document.querySelector('input[name="avatar"]') as HTMLInputElement;
+    const curFile = avatar.files![0];
+    const chatId = window.store.getState().chatId;
+    const formData = new FormData();
+    formData.set('avatar', curFile, curFile.name);
+    formData.set('chatId', chatId!);
+
+    if (!!curFile && curFile.size <= 1048576) this.props.store.dispatch(changeAvatar, formData);
+    else if (!!curFile && curFile.size > 1048576) alert('Размер файла не должен превышать 1МБ');
+    else alert('Файл не выбран');
+  }
+
+  getChatAvatar() {
+    const chats = window.store.getState().chats;
+    const chat = chats?.find(el => el.id === Number(window.store.getState().chatId));
+    return chat?.avatar;
   }
 
   render() {
@@ -50,12 +72,17 @@ class Chats extends Component {
           {{{ ChatList }}}
         </div>
         {{#if ${window.store.getState().chatId !== null} }}
-          {{{ ChatField }}}
+          {{{ ChatField avatar="${this.getChatAvatar()}" }}}
         {{else}}
           <div class='chat-field_empty'>
             <p>Выберите чат</p>
           </div>
         {{/if}}
+        {{{ Modal 
+          modal_id='modal-avatar' 
+          avatar="${this.getChatAvatar()}" 
+          onSubmit=onChangeAvatar 
+        }}}
         {{#if ${!!window.store.getState().isLoading} }}
           {{{ Loader }}}
         {{/if}}

@@ -1,6 +1,7 @@
 import Component from 'utils/Component/Component';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
 import { addUser, deleteChat, deleteUser } from 'services/chats';
+import showBlock from 'utils/helpers/showBlock';
 
 class ChatMenu extends Component {
   static componentName = 'ChatMenu';
@@ -9,16 +10,12 @@ class ChatMenu extends Component {
     super(props);
 
     this.setProps({
-      showMenu: () => this.showMenu(),
+      showMenu: () => showBlock('.chat-menu__buttons'),
       onAddUser: () => this.onAddUser(),
       onDeleteUser: () => this.onDeleteUser(),
       onDeleteChat: () => this.onDeleteChat(),
+      onShowModal: () => showBlock('#modal-avatar'),
     });
-  }
-
-  showMenu() {
-    const menu = document.querySelector('.chat-menu__buttons');
-    menu!.classList.toggle('show');
   }
 
   onAddUser() {
@@ -62,6 +59,13 @@ class ChatMenu extends Component {
                 title='Удалить пользователя' 
                 classes='link link-small'
                 onClick=onDeleteUser
+              }}}
+            </li>
+            <li>
+              {{{ Button 
+                title='Изменить аватар чата' 
+                classes='link link-small'
+                onClick=onShowModal
               }}}
             </li>
             <li>

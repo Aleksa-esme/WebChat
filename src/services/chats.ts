@@ -79,6 +79,34 @@ export const chooseChat: DispatchStateHandler<string> = async (dispatch, state, 
   }
 };
 
+export const changeAvatar: DispatchStateHandler<FormData> = async (dispatch, state, action) => {
+  try {
+    dispatch({ isLoading: true });
+
+    const response = await ChatsAPI.avatar(action);
+
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseChats = await ChatsAPI.getChats();
+
+    if (apiHasError(responseChats)) {
+      dispatch({ isLoading: false, loginFormError: responseChats.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      chats: responseChats,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const deleteChat: DispatchStateHandler<DeleteChatPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
