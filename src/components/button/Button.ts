@@ -1,35 +1,34 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 
 interface IButtonProps {
+  type?: String;
   title: String;
   classes?: String;
   onClick?: () => void;
-  onSubmit?: () => void;
-  onNavigate?: () => void;
 }
 
-class Button extends Block {
+class Button extends Component {
   static componentName = 'Button';
 
   constructor({
+    type = 'submit',
     title,
     classes,
     onClick,
-    onSubmit,
-    onNavigate,
   }: IButtonProps) {
     super({
+      type,
       title,
       classes,
       events: {
-        click: [onClick, onSubmit, onNavigate],
+        click: onClick,
       },
     });
   }
 
   render() {
     return `
-      <button type='submit' class='{{ classes }}'>
+      <button type='{{ type }}' class='{{ classes }}'>
         {{ title }}
       </button>
     `;

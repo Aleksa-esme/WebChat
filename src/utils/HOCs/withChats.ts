@@ -1,8 +1,11 @@
-function withChats(WrappedBlock) {
-  return class extends WrappedBlock {
-    public static componentName = WrappedBlock.componentName || WrappedBlock.name;
+import { StoreEvents } from 'utils/Store/Store';
+import { ComponentClass } from 'utils/Component/Component';
 
-    constructor(props) {
+function withChats(WrappedComponent: ComponentClass) {
+  return class extends WrappedComponent {
+    public static componentName = WrappedComponent.componentName || WrappedComponent.name;
+
+    constructor(props: any) {
       super({ ...props, chats: window.store.getState().chats });
     }
 
@@ -12,16 +15,16 @@ function withChats(WrappedBlock) {
       }
     };
 
-    componentDidMount(props) {
+    componentDidMount(props: unknown) {
       super.componentDidMount(props);
-      window.store.on('changed', this.__onChangeUserCallback);
+      window.store.on(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
 
     componentWillUnmount() {
       super.componentWillUnmount();
-      window.store.off('changed', this.__onChangeUserCallback);
+      window.store.off(StoreEvents.UPDATED, this.__onChangeUserCallback);
     }
-  };
+  } as ComponentClass;
 }
 
 export default withChats;

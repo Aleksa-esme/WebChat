@@ -1,27 +1,28 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import { logout } from 'services/auth';
+import { Screens } from 'utils/Router/screenList';
 
-interface IProfileProps {
-  onNavigate?: () => void;
-}
-
-class Profile extends Block {
+class Profile extends Component {
   static componentName = 'Profile';
 
-  constructor(props: IProfileProps) {
+  constructor(props: unknown) {
     super(props);
 
     this.setProps({
       navigateDataChange: () => this.props.router.go('/change'),
       navigatePasswordChange: () => this.props.router.go('/password'),
-      navigateLogin: () => this.props.router.go('/login'),
       navigateChats: () => this.props.router.go('/'),
       onLogout: () => this.props.store.dispatch(logout),
     });
+  }
+
+  componentDidUpdate() {
+    // брать из HOC
+    return window.store.getState().screen === Screens.ProfilePage;
   }
 
   render() {
@@ -36,10 +37,10 @@ class Profile extends Block {
           alt='back' 
           type='button' 
           classes='profile-page__button-back' 
-          onNavigate=navigateChats
+          onClick=navigateChats
         }}}
         <div class='profile'>
-          {{{ Avatar url='${this.props.user.avatar}' }}}
+          {{{ Avatar size='160' url='${this.props.user.avatar}' }}}
           <form id='form' class='form profile-form'>
             <ul class='form-list'>
               <li>
@@ -107,17 +108,16 @@ class Profile extends Block {
                 {{{ Button 
                   title='Изменить данные' 
                   classes='link profile-form__button' 
-                  onNavigate=navigateDataChange
+                  onClick=navigateDataChange
                 }}}
                 {{{ Button 
                   title='Изменить пароль' 
                   classes='link profile-form__button' 
-                  onNavigate=navigatePasswordChange
+                  onClick=navigatePasswordChange
                 }}}
                 {{{ Button 
                   title='Выйти' 
                   classes='link profile-form__button profile-form__button-exit' 
-                  onNavigate=navigateLogin
                   onClick=onLogout
                 }}}
             </div>

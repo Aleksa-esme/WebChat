@@ -1,21 +1,18 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
 import comparePasswords from 'utils/helpers/comparePasswords';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import { changePassword } from 'services/user';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 
 interface IProfilePasswordProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
-class ProfilePassword extends Block {
+class ProfilePassword extends Component {
   static componentName = 'ProfilePassword';
 
   constructor(props: IProfilePasswordProps) {
@@ -56,10 +53,10 @@ class ProfilePassword extends Block {
           alt='back' 
           type='button' 
           classes='profile-page__button-back' 
-          onNavigate=navigateProfile
+          onClick=navigateProfile
         }}}
         <div class='profile'>
-          {{{ Avatar url='${this.props.user.avatar}' }}}
+          {{{ Avatar size='160' url='${this.props.user.avatar}' }}}
           <form id='form' class='form profile-form'>
             <ul class='form-list'>
               <li>

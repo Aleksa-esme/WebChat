@@ -1,17 +1,21 @@
-import EventBus from './Component/EventBus';
+import EventBus from '../Component/EventBus';
 
 export type Dispatch<State> = (
   nextStateOrAction: Partial<State> | Action<State>,
-  payload?: any,
+  payload?: unknown,
 ) => void;
 
 export type Action<State> = (
   dispatch: Dispatch<State>,
   state: State,
-  payload: any,
+  payload: unknown,
 ) => void;
 
-export class Store<State extends Record<string, any>> extends EventBus {
+export enum StoreEvents {
+  UPDATED = 'updated',
+}
+
+export class Store<State extends Record<string, unknown>> extends EventBus {
   private state: State = {} as State;
 
   constructor(defaultState: State) {
@@ -30,10 +34,10 @@ export class Store<State extends Record<string, any>> extends EventBus {
 
     this.state = { ...this.state, ...nextState };
 
-    this.emit('changed', prevState, nextState);
+    this.emit(StoreEvents.UPDATED, prevState, nextState);
   }
 
-  dispatch(nextStateOrAction: Partial<State> | Action<State>, payload?: any) {
+  dispatch(nextStateOrAction: Partial<State> | Action<State>, payload?: unknown) {
     if (typeof nextStateOrAction === 'function') {
       nextStateOrAction(this.dispatch.bind(this), this.state, payload);
     } else {

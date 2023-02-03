@@ -1,17 +1,17 @@
-import Block from './block';
+import Component from './Component';
 
-function renderDOM(block: Block) {
+function renderDOM(component: Component) {
   const root = document.querySelector('#app');
 
   if (!root) {
     throw new Error('Root not found');
   }
 
-  block.dispatchComponentDidMount();
+  component.dispatchComponentDidMount();
 
   root.innerHTML = '';
 
-  root.appendChild(block.getContent());
+  root.appendChild(component.getContent());
 }
 
 export default renderDOM;

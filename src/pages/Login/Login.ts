@@ -1,19 +1,16 @@
-import Block from 'utils/Component/block';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import Component from 'utils/Component/Component';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import { login } from 'services/auth';
 import fields from './data';
 
 interface ILoginProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
-class Login extends Block {
+class Login extends Component {
   static componentName = 'Login';
 
   constructor(props: ILoginProps) {
@@ -68,7 +65,7 @@ class Login extends Block {
             {{{ Button 
               title='Нет аккаунта?' 
               classes='link login-form__link' 
-              onNavigate=navigateRegister 
+              onClick=navigateRegister 
             }}}
           </div>
         </form>

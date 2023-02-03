@@ -54,7 +54,8 @@ const getElement = (el: any) => el.nextElementSibling;
 const getError = (formData: FormData, property: string) => {
   let error = '';
   if (property in checks) {
-    if (checks[property].check.test(formData.get(`${property}`)) === false) {
+    const value = formData.get(`${property}`) as string;
+    if (checks[property].check.test(value) === false) {
       error = checks[property].error;
     }
   }
@@ -105,7 +106,7 @@ export const validateForm = (e: Event) => {
 export const validFocusField = (e: Event) => {
   const form = document.querySelector('[id=form]') as HTMLFormElement;
   const btn = form.querySelector('[type=submit]') as HTMLElement;
-  const el = e?.target;
+  const el = e?.target as Element;
   if (el === btn) return;
   if (el) cleanError(el);
 };

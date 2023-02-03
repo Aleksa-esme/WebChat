@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 
 interface IInputProps {
   label: String;
@@ -11,7 +11,7 @@ interface IInputProps {
   classInput: String;
 }
 
-class Input extends Block {
+class Input extends Component {
   static componentName = 'Input';
 
   constructor({

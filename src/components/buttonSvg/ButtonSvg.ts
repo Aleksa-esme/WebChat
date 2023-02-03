@@ -1,26 +1,26 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 
 interface IButtonSvgProps {
   alt: String;
   svg: SVGElement;
   classes?: String;
+  type?: String;
   onClick?: () => void;
-  onSubmit?: () => void;
-  onNavigate?: () => void;
 }
 
-class ButtonSvg extends Block {
+class ButtonSvg extends Component {
   static componentName = 'ButtonSvg';
 
   constructor({
-    alt, svg, classes, onClick, onSubmit, onNavigate,
+    alt, svg, classes, type, onClick,
   }: IButtonSvgProps) {
     super({
       alt,
       svg,
       classes,
+      type,
       events: {
-        click: [onClick, onSubmit, onNavigate],
+        click: onClick,
       },
     });
   }
@@ -28,7 +28,7 @@ class ButtonSvg extends Block {
   render() {
     return `
       <button class='{{ classes }}' type={{ type }}>
-        <img src={{ svg }} alt={{ alt }}>
+        <img src="{{ svg }}" alt={{ alt }}>
       </button>
     `;
   }

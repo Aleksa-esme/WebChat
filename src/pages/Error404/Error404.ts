@@ -1,8 +1,8 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 
-class Error404 extends Block {
+class Error404 extends Component {
   static componentName = 'Error404';
 
   render() {

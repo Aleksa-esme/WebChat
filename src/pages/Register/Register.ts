@@ -1,5 +1,5 @@
-import Block from 'utils/Component/block';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import Component from 'utils/Component/Component';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import comparePasswords from 'utils/helpers/comparePasswords';
@@ -7,14 +7,11 @@ import { register } from 'services/auth';
 import fields from './data';
 
 interface IRegisterProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
-class Register extends Block {
+class Register extends Component {
   static componentName = 'Register';
 
   constructor(props: IRegisterProps) {
@@ -70,12 +67,11 @@ class Register extends Block {
               title='Зарегистрироваться' 
               classes='button login-form__button-register' 
               onClick=onRegister
-              onNavigate=onNavigate
             }}}
             {{{ Button 
               title='Войти' 
               classes='link login-form__link' 
-              onNavigate=navigateLogin
+              onClick=navigateLogin
             }}}
           </div>
         </form>

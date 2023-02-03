@@ -1,4 +1,4 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 
 interface IChatProps {
   id: string,
@@ -6,14 +6,15 @@ interface IChatProps {
   date?: String;
   message?: String;
   messages?: String;
+  avatar?: String;
   onClick?: () => void;
 }
 
-class Chat extends Block {
+class Chat extends Component {
   static componentName = 'Chat';
 
   constructor({
-    id, name, date, message, messages, onClick,
+    id, name, date, message, messages, avatar, onClick,
   }: IChatProps) {
     super({
       id,
@@ -21,6 +22,7 @@ class Chat extends Block {
       date,
       message,
       messages,
+      avatar,
       events: {
         click: onClick,
       },
@@ -30,9 +32,7 @@ class Chat extends Block {
   render() {
     return `
       <div class='chat' id={{ id }}>
-        <div class='chat__image'>
-          <img src='https://dummyimage.com/47x47/999999' alt='chat'>
-        </div>
+        {{{ Avatar size='47' url='${this.props.avatar}'}}}
         <div class='chat__text'>
           <div class='chat_line'>
             <p class='chat__title'>{{ name }}</p>

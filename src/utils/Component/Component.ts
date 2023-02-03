@@ -1,31 +1,35 @@
-import { nanoid } from 'nanoid';
+import { v4 as uuidv4 } from 'uuid';
 import * as Handlebars from 'handlebars';
 import EventBus from './EventBus';
 
 type Props = Record<string, any>;
 type Events = Record<string, () => void>;
 
-class Block {
+export interface ComponentClass extends Function {
+  new (props: Props): Props;
+  componentName?: string;
+}
+
+class Component {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render',
   } as const;
 
   static componentName: string;
 
-  public id = nanoid(6);
+  public id = uuidv4();
 
-  private _element: HTMLElement | null = null;
-
-  private _meta: { props: Props };
+  private _element: Nullable<HTMLElement> = null;
 
   protected props: Props;
 
-  protected children: Record<string, Block>;
+  protected children: Record<string, Component>;
 
-  private eventBus: () => EventBus;
+  eventBus: () => EventBus;
 
   constructor(propsAndChildren: any = {}) {
     const eventBus = new EventBus();
@@ -34,18 +38,18 @@ class Block {
 
     this.children = children;
 
-    this._meta = {
-      props,
-    };
-
-    this.props = this._makePropsProxy(props);
+    this.props = props;
 
     this.initChildren();
 
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
-    eventBus.emit(Block.EVENTS.INIT);
+    eventBus.emit(Component.EVENTS.INIT);
+  }
+
+  getProps() {
+    return this.props;
   }
 
   getChildren(propsAndChildren: any) {
@@ -53,9 +57,9 @@ class Block {
     const props: Props = {};
 
     Object.entries(propsAndChildren).map(([key, value]) => {
-      if (value instanceof Block) {
+      if (value instanceof Component) {
         children[key] = value;
-      } else if (Array.isArray(value) && value.every(v => (v instanceof Block))) {
+      } else if (Array.isArray(value) && value.every(v => (v instanceof Component))) {
         children[key] = value;
       } else {
         props[key] = value;
@@ -66,47 +70,73 @@ class Block {
 
   protected initChildren() {}
 
+  _checkInDOM() {
+    const elementInDOM = document.body.contains(this._element);
+
+    if (elementInDOM) {
+      setTimeout(() => this._checkInDOM(), 1000);
+      return;
+    }
+
+    this.eventBus().emit(Component.EVENTS.FLOW_CWU, this.props);
+  }
+
   _registerEvents(eventBus: EventBus) {
-    eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    eventBus.on(Component.EVENTS.INIT, this.init.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
+    eventBus.on(Component.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
   init() {
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
   _componentDidMount() {
     this.componentDidMount();
-    this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    this.eventBus().emit(Component.EVENTS.FLOW_RENDER);
   }
 
   componentDidMount() {}
 
+  _componentWillUnmount() {
+    this.eventBus().destroy();
+    this.componentWillUnmount();
+  }
+
+  componentWillUnmount() {}
+
   dispatchComponentDidMount() {
-    this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+    this.eventBus().emit(Component.EVENTS.FLOW_CDM);
   }
 
   _componentDidUpdate(oldProps: Props, newProps: Props) {
-    if (this.componentDidUpdate(oldProps, newProps)) {
-      this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+    const response = this.componentDidUpdate(oldProps, newProps);
+    if (!response) {
+      return;
     }
+    this._render();
   }
 
   componentDidUpdate(oldProps: Props, newProps: Props) {
     return true;
   }
 
-  setProps = (nextProps: Props) => {
-    if (!nextProps) {
+  setProps = (nextPartialProps: Props) => {
+    if (!nextPartialProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    const prevProps = this.props;
+    const nextProps = { ...prevProps, ...nextPartialProps };
+
+    this.props = nextProps;
+
+    this.eventBus().emit(Component.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
-  get element(): HTMLElement | null {
+  get element() {
     return this._element;
   }
 
@@ -127,31 +157,12 @@ class Block {
     this._addEvents();
   }
 
-  protected render(): string {
+  render(): string {
     return '';
   }
 
-  getContent(): HTMLElement | null {
-    return this.element;
-  }
-
-  _makePropsProxy(props: Props) {
-    const self = this;
-    return new Proxy(props, {
-      get(target: Props, prop: string) {
-        const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
-      },
-      set(target: Props, prop: string, value: string) {
-        const oldProps = { ...target };
-        target[prop] = value;
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target);
-        return true;
-      },
-      deleteProperty() {
-        throw new Error('Нет прав');
-      },
-    });
+  getContent(): any {
+    return this._element;
   }
 
   _removeEvents() {
@@ -207,4 +218,4 @@ class Block {
   }
 }
 
-export default Block;
+export default Component;

@@ -1,0 +1,19 @@
+.chat-field {
+  display: flex;
+  width: calc(100% - 370px);
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 100vh;
+
+  &_empty {
+    display: flex;
+    align-items: center;
+    width: calc(100% - 370px);
+    justify-content: center;
+
+    & p {
+      color: var(--blue);
+    }
+  }
+}

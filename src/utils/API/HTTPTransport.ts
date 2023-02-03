@@ -23,7 +23,7 @@ const queryStringify = (data: Options) => {
   }
 
   const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
+  return keys.reduce((result, key, index) => `${result}${key}=${(data as any)[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
 };
 
 class HTTPTransport {

@@ -1,0 +1,28 @@
+.chat-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--grey);
+
+  &__info {
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    color: var(--black);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
+    margin-left: 10px;
+  }
+
+  &__users {
+    padding-top: 10px;
+    color: var(--blue);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
+  }
+}

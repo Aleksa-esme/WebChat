@@ -1,11 +1,7 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 
-class Loader extends Block {
+class Loader extends Component {
   static componentName = 'Loader';
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return `

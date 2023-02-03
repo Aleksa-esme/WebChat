@@ -1,0 +1,13 @@
+.avatar {
+  border-radius: 80px;
+  background: var(--light-grey);
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (max-width: 425px) {
+  .avatar {
+    width: 130px;
+    height: 130px;
+  }
+}

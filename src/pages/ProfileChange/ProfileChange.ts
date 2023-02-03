@@ -1,20 +1,17 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import { validateForm, validBlurField, validFocusField } from 'utils/ValidForm';
+import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
 import { changeAvatar, changeData } from 'services/user';
 
 interface IProfileChangeProps {
-  onClick?: () => void;
-  onSubmit?: () => void;
   onBlur?: () => void;
   onFocus?: () => void;
-  onNavigate?: () => void;
 }
 
-class ProfileChange extends Block {
+class ProfileChange extends Component {
   constructor(props: IProfileChangeProps) {
     super({
       ...props,
@@ -48,8 +45,8 @@ class ProfileChange extends Block {
   onChangeAvatar(event: SubmitEvent) {
     event.preventDefault();
 
-    const avatar = document.querySelector('input[name="avatar"]');
-    const curFile = avatar!.files[0];
+    const avatar = document.querySelector('input[name="avatar"]') as HTMLInputElement;
+    const curFile = avatar.files![0];
 
     const form = document.getElementById('avatar_form');
     const formData = new FormData(form as HTMLFormElement);
@@ -70,12 +67,12 @@ class ProfileChange extends Block {
           alt='back' 
           type='button' 
           classes='profile-page__button-back' 
-          onNavigate=navigateProfile
+          onClick=navigateProfile
         }}}
         <div class='profile'>
-          {{{ Avatar 
+          {{{ AvatarForm 
             form_id='avatar_form' 
-            isVisible=true 
+            size='160'
             url='${this.props.user.avatar}'
             onSubmit=onChangeAvatar  
           }}}

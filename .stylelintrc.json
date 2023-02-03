@@ -13,6 +13,7 @@
     "selector-pseudo-element-no-unknown": null,
     "selector-pseudo-class-no-unknown": null,
     "font-family-no-missing-generic-family-keyword": null,
-    "no-duplicate-selectors": null
+    "no-duplicate-selectors": null,
+    "import-notation": null
   }
 }

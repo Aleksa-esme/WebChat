@@ -1,21 +1,24 @@
-import Block from 'utils/Component/block';
+import Component from 'utils/Component/Component';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 import * as FileSvg from 'assets/svg/file.svg';
+import { validFocusField } from 'utils/Validation/ValidForm';
 
 interface IMessageFieldProps {
   onSubmit?: () => void;
-  onFocus?: () => void;
 }
 
-class MessageField extends Block {
+class MessageField extends Component {
   static componentName = 'MessageForm';
 
-  constructor({ onSubmit, onFocus }: IMessageFieldProps) {
+  constructor({ onSubmit }: IMessageFieldProps) {
     super({
-      onFocus,
       events: {
         submit: onSubmit,
       },
+    });
+
+    this.setProps({
+      onFocus: (event: Event) => validFocusField(event),
     });
   }
 
@@ -24,7 +27,7 @@ class MessageField extends Block {
       <form class='messages-send' id='form'>
           {{{ ButtonSvg svg='${FileSvg}' alt='add file' type='button' classes='svg-button' }}} 
           {{{ MessageField onFocus=onFocus }}}
-          {{{ ButtonSvg svg='${ArrowButton}' alt='send' type='submit' classes='svg-button'}}} 
+          {{{ ButtonSvg svg='${ArrowButton}' alt='send' type='submit' classes='svg-button' }}} 
       </form>
     `;
   }

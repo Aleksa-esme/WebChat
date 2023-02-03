@@ -1,10 +1,11 @@
-import { Store } from '../Store';
+import { ComponentClass } from 'utils/Component/Component';
+import { Store, StoreEvents } from '../Store/Store';
 
 type WithStateProps = { store: Store<AppState> };
 
-function withStore<P extends WithStateProps>(WrappedBlock: any) {
-  return class extends WrappedBlock<P> {
-    public static componentName = WrappedBlock.componentName || WrappedBlock.name;
+function withStore<P extends WithStateProps>(WrappedComponent: ComponentClass) {
+  return class extends WrappedComponent {
+    public static componentName = WrappedComponent.componentName || WrappedComponent.name;
 
     constructor(props: P) {
       super({ ...props, store: window.store });
@@ -16,14 +17,14 @@ function withStore<P extends WithStateProps>(WrappedBlock: any) {
 
     componentDidMount(props: P) {
       super.componentDidMount(props);
-      window.store.on('changed', this.__onChangeStoreCallback);
+      window.store.on(StoreEvents.UPDATED, this.__onChangeStoreCallback);
     }
 
     componentWillUnmount() {
       super.componentWillUnmount();
-      window.store.off('changed', this.__onChangeStoreCallback);
+      window.store.off(StoreEvents.UPDATED, this.__onChangeStoreCallback);
     }
-  };
+  } as ComponentClass;
 }
 
 export default withStore;

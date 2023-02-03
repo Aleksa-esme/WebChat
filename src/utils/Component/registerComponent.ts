@@ -1,10 +1,10 @@
 import * as Handlebars from 'handlebars';
 import { HelperOptions } from 'handlebars';
-import Block from './block';
+import Component from './Component';
 
-function registerComponent(Component: typeof Block) {
+function registerComponent(Block: typeof Component) {
   Handlebars.registerHelper(
-    Component.componentName || Component.name,
+    Block.componentName || Block.name,
     ({ hash: { ...hash }, data }: HelperOptions) => {
       if (!data.root.children) {
         data.root.children = {};
@@ -12,7 +12,7 @@ function registerComponent(Component: typeof Block) {
 
       const { children } = data.root;
 
-      const component = new Component(hash);
+      const component = new Block(hash);
 
       children[component.id] = component;
 

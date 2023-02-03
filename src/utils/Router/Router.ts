@@ -7,7 +7,7 @@ class Router {
     if (!this.isStarted) {
       this.isStarted = true;
 
-      window.onpopstate = (event: PopStateEvent) => {
+      window.onpopstate = () => {
         this.onRouteChange.call(this);
       };
 
@@ -15,7 +15,7 @@ class Router {
     }
   }
 
-  private onRouteChange(pathname: string = window.location.pathname) {
+  onRouteChange(pathname: string = window.location.pathname) {
     const found = Object.entries(this.routes).some(([routeHash, callback]) => {
       if (routeHash === pathname) {
         callback();
