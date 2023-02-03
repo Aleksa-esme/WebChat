@@ -15,6 +15,7 @@ import MessageForm from 'components/ChatPage/messageForm/MessageForm';
 import MessagesList from 'components/ChatPage/messagesList/MessagesList';
 import ChatMenu from 'components/ChatPage/chatMenu/ChatMenu';
 import ChatInfo from 'components/ChatPage/chatInfo/ChatInfo';
+import FileForm from 'components/ChatPage/fileForm/FileForm';
 // Pages
 import Chats from 'pages/Chats/Chats';
 // Utils
@@ -52,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(MessageField);
   registerComponent(MessageForm);
   registerComponent(MessagesList);
+  registerComponent(FileForm);
 
   const store = new Store<AppState>(defaultState);
   const router = new Router();

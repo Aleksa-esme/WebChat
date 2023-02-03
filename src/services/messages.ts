@@ -27,10 +27,10 @@ class Messages {
     }
   }
 
-  public sendMessage(content: string): void {
+  public sendMessage(content: string, type: string = 'message'): void {
     this.socket.send({
       content,
-      type: 'message',
+      type,
     });
   }
 

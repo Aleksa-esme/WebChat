@@ -19,6 +19,7 @@ declare global {
     chatTitle: string;
     users: Array<User>;
     messages: Array<Message> | Array<NewMessage>;
+    fileId: string | null;
   };
 
   export type User = {

@@ -4,14 +4,19 @@ import showBlock from 'utils/helpers/showBlock';
 interface IModalProps {
   modal_id: String,
   avatar?: String,
+  insert_component: String;
   onSubmit?: () => void;
 }
 
 class Modal extends Component {
   static componentName = 'Modal';
 
-  constructor({ modal_id, avatar, onSubmit }: IModalProps) {
-    super({ modal_id, avatar, onSubmit });
+  constructor({
+    modal_id, avatar, insert_component, onSubmit,
+  }: IModalProps) {
+    super({
+      modal_id, avatar, insert_component, onSubmit,
+    });
 
     this.setProps({
       onCloseModal: () => showBlock(`#${modal_id}`),
@@ -25,7 +30,7 @@ class Modal extends Component {
           <div class='modal__header'>
             {{{ Button title='X' classes='link' onClick=onCloseModal }}}
           </div>
-          {{{ AvatarForm form_id='form_modal' size='120' url=avatar onSubmit=onSubmit }}}
+          {{{ ${this.props.insert_component} }}}
         </div>
       </section>
     `;

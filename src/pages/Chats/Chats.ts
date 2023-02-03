@@ -3,6 +3,8 @@ import withRouter from 'utils/HOCs/withRouter';
 import withChats from 'utils/HOCs/withChats';
 import withStore from 'utils/HOCs/withStore';
 import { createChat, changeAvatar } from 'services/chats';
+import sendFile from 'services/resources';
+import Messages from 'services/messages';
 
 class Chats extends Component {
   static componentName = 'Chats';
@@ -14,6 +16,7 @@ class Chats extends Component {
       navigateProfile: () => this.props.router.go('/profile'),
       onCreateChat: () => this.onCreateChat(),
       onChangeAvatar: (event: SubmitEvent) => this.onChangeAvatar(event),
+      onSendFile: (event: SubmitEvent) => this.onSendFile(event),
     });
   }
 
@@ -33,13 +36,38 @@ class Chats extends Component {
     const avatar = document.querySelector('input[name="avatar"]') as HTMLInputElement;
     const curFile = avatar.files![0];
     const chatId = window.store.getState().chatId;
+
     const formData = new FormData();
-    formData.set('avatar', curFile, curFile.name);
+    formData.set('avatar', curFile);
     formData.set('chatId', chatId!);
 
     if (!!curFile && curFile.size <= 1048576) this.props.store.dispatch(changeAvatar, formData);
     else if (!!curFile && curFile.size > 1048576) alert('Размер файла не должен превышать 1МБ');
     else alert('Файл не выбран');
+  }
+
+  onSendFile(event: SubmitEvent) {
+    event.preventDefault();
+
+    const file = document.querySelector('input[name="file"]') as HTMLInputElement;
+    const curFile = file.files![0];
+
+    const formData = new FormData();
+    formData.set('resource', curFile);
+
+    if (!!curFile && curFile.size <= 1048576) {
+      this.props.store.dispatch(sendFile, formData);
+
+      setTimeout(() => {
+        const fileId = window.store.getState().fileId!;
+
+        Messages.sendMessage(fileId, 'file');
+      }, 1000);
+    } else if (!!curFile && curFile.size > 1048576) {
+      alert('Размер файла не должен превышать 1МБ');
+    } else {
+      alert('Файл не выбран');
+    }
   }
 
   getChatAvatar() {
@@ -82,6 +110,12 @@ class Chats extends Component {
           modal_id='modal-avatar' 
           avatar="${this.getChatAvatar()}" 
           onSubmit=onChangeAvatar 
+          insert_component="AvatarForm form_id='form_modal' size='120' url=avatar onSubmit=onSubmit"
+        }}}
+        {{{ Modal 
+          modal_id='modal-file' 
+          onSubmit=onSendFile
+          insert_component="FileForm form_id='form_file' onSubmit=onSubmit"
         }}}
         {{#if ${!!window.store.getState().isLoading} }}
           {{{ Loader }}}

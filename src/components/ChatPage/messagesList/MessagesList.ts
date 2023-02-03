@@ -16,10 +16,17 @@ class MessagesList extends Component {
 
   getMessageUser(id: number): string {
     let messageUser;
-    if (!!MessagesList.chatUsers) messageUser = MessagesList.chatUsers!.find(user => user.id === id)!.login;
+    if (!!MessagesList.chatUsers && typeof id !== 'undefined') messageUser = MessagesList.chatUsers!.find(user => user.id === id)!.login;
     else messageUser = '';
 
     return messageUser;
+  }
+
+  checkFile(el: any) {
+    let path;
+    if (el.type === 'file') path = `https://ya-praktikum.tech/api/v2/resources${el.file.path}`;
+    else path = '';
+    return path;
   }
 
   render() {
@@ -31,6 +38,8 @@ class MessagesList extends Component {
               classes='message-text message_user message-text_user' 
               content='${el.content}'
               date='${formatDate(el.time)}'
+              type='${el.type}'
+              path='${this.checkFile(el)}'
             }}}
           {{else}}
             {{{ Message 
@@ -38,6 +47,8 @@ class MessagesList extends Component {
               content='${el.content}' 
               date='${formatDate(el.time)}'
               name='${this.getMessageUser(el.user_id)}'
+              type='${el.type}'
+              path='${this.checkFile(el)}'
             }}}
           {{/if}}
         `).join(' ')}
