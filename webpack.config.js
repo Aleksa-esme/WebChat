@@ -23,6 +23,7 @@ module.exports = {
       pages: path.resolve(__dirname, 'src/pages/'),
       utils: path.resolve(__dirname, 'src/utils/'),
       services: path.resolve(__dirname, 'src/services/'),
+      controllers: path.resolve(__dirname, 'src/controllers/'),
       api: path.resolve(__dirname, 'src/api/'),
     },
   },

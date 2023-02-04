@@ -1,8 +1,8 @@
 import Component from 'utils/Component/Component';
-import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
+import onLogin from 'controllers/loginController';
+import { validBlurField, validFocusField } from 'utils/Validation/ValidForm';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
-import { login } from 'services/auth';
 import fields from './data';
 
 interface ILoginProps {
@@ -22,19 +22,8 @@ class Login extends Component {
 
     this.setProps({
       navigateRegister: () => this.props.router.go('/register'),
-      onLogin: (event: Event) => this.onLogin(event),
+      onLogin: (event: Event) => onLogin(event),
     });
-  }
-
-  onLogin(event: Event) {
-    const isError = validateForm(event);
-    if (!isError) {
-      const loginData = {
-        login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,
-        password: (document.querySelector('input[name="password"]') as HTMLInputElement).value,
-      };
-      this.props.store.dispatch(login, loginData);
-    }
   }
 
   render() {

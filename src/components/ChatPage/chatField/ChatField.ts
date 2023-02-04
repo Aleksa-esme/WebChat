@@ -1,6 +1,5 @@
 import Component from 'utils/Component/Component';
-import { validateForm } from 'utils/Validation/ValidForm';
-import Messages from 'services/messages';
+import { onSendMessage } from 'controllers/chatsController';
 
 interface IChatFieldProps {
   onScroll?: () => void;
@@ -19,20 +18,8 @@ class ChatField extends Component {
     });
 
     this.setProps({
-      sendMessage: (event: SubmitEvent) => this.sendMessage(event),
+      sendMessage: (event: SubmitEvent) => onSendMessage(event),
     });
-  }
-
-  sendMessage(event: SubmitEvent): void {
-    event.preventDefault();
-    const isError = validateForm(event);
-    if (!isError) {
-      const outgoingMessage = document.querySelector('textarea[name="message"]') as HTMLInputElement;
-      if (!!outgoingMessage) {
-        Messages.sendMessage(outgoingMessage.value);
-        outgoingMessage.value = '';
-      }
-    }
   }
 
   render() {

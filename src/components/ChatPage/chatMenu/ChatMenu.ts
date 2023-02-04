@@ -1,7 +1,8 @@
 import Component from 'utils/Component/Component';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
-import { addUser, deleteChat, deleteUser } from 'services/chats';
 import showBlock from 'utils/helpers/showBlock';
+
+import { onAddUser, onDeleteUser, onDeleteChat } from 'controllers/chatsController';
 
 class ChatMenu extends Component {
   static componentName = 'ChatMenu';
@@ -11,28 +12,11 @@ class ChatMenu extends Component {
 
     this.setProps({
       showMenu: () => showBlock('.chat-menu__buttons'),
-      onAddUser: () => this.onAddUser(),
-      onDeleteUser: () => this.onDeleteUser(),
-      onDeleteChat: () => this.onDeleteChat(),
       onShowModal: () => showBlock('#modal-avatar'),
+      onAddUser: () => onAddUser(),
+      onDeleteUser: () => onDeleteUser(),
+      onDeleteChat: () => onDeleteChat(),
     });
-  }
-
-  onAddUser() {
-    const chatId = window.store.getState().chatId;
-    const login = prompt('Введите логин пользователя');
-    if (!!login) window.store.dispatch(addUser, { user: login, chatId });
-  }
-
-  onDeleteUser() {
-    const chatId = window.store.getState().chatId;
-    const login = prompt('Введите логин пользователя, которого хотите удалить');
-    if (!!login) window.store.dispatch(deleteUser, { user: login, chatId });
-  }
-
-  onDeleteChat() {
-    const chatId = window.store.getState().chatId;
-    window.store.dispatch(deleteChat, chatId);
   }
 
   render() {

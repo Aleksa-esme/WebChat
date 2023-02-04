@@ -1,6 +1,6 @@
 import Component from 'utils/Component/Component';
 import formatDate from 'utils/helpers/formatDate';
-import { chooseChat } from 'services/chats';
+import { onChooseChat } from 'controllers/chatsController';
 
 class ChatList extends Component {
   static componentName = 'ChatList';
@@ -9,14 +9,8 @@ class ChatList extends Component {
     super(props);
 
     this.setProps({
-      onChooseChat: (event: Event) => this.onChooseChat(event),
+      onChooseChat: (event: Event) => onChooseChat(event),
     });
-  }
-
-  onChooseChat(event: Event) {
-    const target = event.currentTarget as HTMLElement;
-    const chatId = target!.id;
-    window.store.dispatch(chooseChat, chatId);
   }
 
   render() {
