@@ -5,6 +5,9 @@ import withStore from 'utils/HOCs/withStore';
 import { createChat, changeAvatar } from 'services/chats';
 import sendFile from 'services/resources';
 import Messages from 'services/messages';
+import { createPack } from 'services/stickers';
+// import StickersAPI from 'api/StickersAPI';
+import showBlock from 'utils/helpers/showBlock';
 
 class Chats extends Component {
   static componentName = 'Chats';
@@ -14,9 +17,11 @@ class Chats extends Component {
 
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
+      onShowModal: () => showBlock('#modal-stickers'),
       onCreateChat: () => this.onCreateChat(),
       onChangeAvatar: (event: SubmitEvent) => this.onChangeAvatar(event),
       onSendFile: (event: SubmitEvent) => this.onSendFile(event),
+      createStickerPack: (event: SubmitEvent) => this.createStickerPack(event),
     });
   }
 
@@ -76,6 +81,26 @@ class Chats extends Component {
     return chat?.avatar;
   }
 
+  // async getStickers() {
+  //   const a = await StickersAPI.getPack();
+  //   console.log(a)
+  //   // '<a href="https://www.flaticon.com/ru/free-stickers/" title="люди стикеры">Люди стикеры от Stickers - Flaticon</a>'
+  // }
+
+  createStickerPack(event: SubmitEvent) {
+    event.preventDefault();
+
+    const input = document.querySelector('input[name="stickers[]"]') as HTMLInputElement;
+    const files = input.files;
+    const formData = new FormData();
+
+    if (files) Array.from(files).forEach(file => formData.append('resource', file));
+
+    const title = prompt('Название стикерпака');
+    if (title) formData.append('title', title);
+    this.props.store.dispatch(createPack, formData);
+  }
+
   render() {
     if (this.props.chats === 'undefined') {
       return '{{{ Loader }}}';
@@ -85,6 +110,11 @@ class Chats extends Component {
       <section class='chat-page'>
         <div class='chats'>
           <div class='chats__buttons'>
+            {{{ Button 
+              title='Стикеры' 
+              classes='link link-small chats__link' 
+              onClick=onShowModal
+            }}}
             {{{ Button 
               title='Создать чат' 
               classes='link link-small chats__link' 
@@ -106,6 +136,7 @@ class Chats extends Component {
             <p>Выберите чат</p>
           </div>
         {{/if}}
+
         {{{ Modal 
           modal_id='modal-avatar' 
           avatar="${this.getChatAvatar()}" 
@@ -114,9 +145,18 @@ class Chats extends Component {
         }}}
         {{{ Modal 
           modal_id='modal-file' 
+          name='file'
           onSubmit=onSendFile
-          insert_component="FileForm form_id='form_file' onSubmit=onSubmit"
+          insert_component="FileForm form_id='form_file' name=name onSubmit=onSubmit"
         }}}
+        {{{ Modal 
+          modal_id='modal-stickers' 
+          name='stickers[]'
+          isMultiple=true
+          onSubmit=createStickerPack
+          insert_component="FileForm form_id='form_stickers' name=name isMultiple=isMultiple onSubmit=onSubmit"
+        }}}
+
         {{#if ${!!window.store.getState().isLoading} }}
           {{{ Loader }}}
         {{/if}}

@@ -20,6 +20,7 @@ declare global {
     users: Array<User>;
     messages: Array<Message> | Array<NewMessage>;
     fileId: string | null;
+    stickers: Array<any>;
   };
 
   export type User = {

@@ -2,6 +2,8 @@ import Component from 'utils/Component/Component';
 
 interface IFileFormProps {
   form_id: String,
+  name: String;
+  isMultiple: Boolean;
   onSubmit?: () => void;
 }
 
@@ -9,10 +11,12 @@ class FileForm extends Component {
   static componentName = 'FileForm';
 
   constructor({
-    form_id, onSubmit,
+    form_id, name, isMultiple = false, onSubmit,
   }: IFileFormProps) {
     super({
       form_id,
+      name,
+      isMultiple,
       events: {
         submit: onSubmit,
       },
@@ -22,7 +26,11 @@ class FileForm extends Component {
   render() {
     return `
       <form id={{ form_id }} class='avatar-form'>
-        <input type='file' name='file' accept='image/*' class='avatar-form__input'>
+        {{#if ${this.props.isMultiple} }}
+          <input type='file' name='{{ name }}' accept='image/*' class='avatar-form__input' multiple>
+        {{else}}
+          <input type='file' name='{{ name }}' accept='image/*' class='avatar-form__input'>
+        {{/if}}
         <p class='avatar-form__size'>Размер файла не должен превышать 1МБ</p>
         {{{ Button 
           title='Отправить изображение' 

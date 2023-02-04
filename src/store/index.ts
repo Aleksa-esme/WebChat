@@ -10,6 +10,7 @@ const defaultState: AppState = {
   users: [],
   messages: [],
   fileId: null,
+  stickers: [],
 };
 
 export default defaultState;
