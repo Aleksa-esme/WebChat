@@ -1,26 +1,25 @@
 import Component from 'utils/Component/Component';
-import { onSendMessage } from 'controllers/chatsController';
+import { onSendMessage, scrollToBottom } from 'controllers/chatsController';
 
 interface IChatFieldProps {
-  onScroll?: () => void;
   avatar?: String;
 }
 
 class ChatField extends Component {
   static componentName = 'ChatField';
 
-  constructor({ avatar, onScroll }: IChatFieldProps) {
-    super({
-      avatar,
-      events: {
-        scroll: onScroll,
-      },
-    });
+  constructor({ avatar }: IChatFieldProps) {
+    super({ avatar });
 
     this.setProps({
       sendMessage: (event: SubmitEvent) => onSendMessage(event),
     });
   }
+
+  componentDidUpdate = () => {
+    setTimeout(() => scrollToBottom(), 100);
+    return true;
+  };
 
   render() {
     return `

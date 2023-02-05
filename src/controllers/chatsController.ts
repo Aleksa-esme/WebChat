@@ -119,6 +119,11 @@ export const checkFile = (el: any) => {
   return path;
 };
 
+export const scrollToBottom = () => {
+  const block = document.querySelector('.messages-list');
+  if (block) block!.scrollTop = block!.scrollHeight;
+};
+
 // Stickers
 export const createStickerPack = (event: SubmitEvent) => {
   event.preventDefault();
