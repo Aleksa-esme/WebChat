@@ -7,9 +7,12 @@ import {
 } from 'services/chats';
 
 // Chat list
-export const onCreateChat = () => {
-  const chatData = prompt('Название чата');
-  if (!!chatData) window.store.dispatch(createChat, { title: chatData });
+export const onCreateChat = (event: SubmitEvent) => {
+  event.preventDefault();
+
+  const input = document.querySelector('input[name="chat-title"]') as HTMLInputElement;
+  if (!!input.value) window.store.dispatch(createChat, { title: input.value });
+  else alert('Название не должно быть пустым');
 };
 
 export const onChooseChat = (event: Event) => {

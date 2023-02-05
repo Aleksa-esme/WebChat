@@ -18,8 +18,9 @@ class Chats extends Component {
 
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
-      onShowModal: () => showBlock('#modal-stickers'),
-      onCreateChat: () => onCreateChat(),
+      onShowModalStickers: () => showBlock('#modal-stickers'),
+      onShowModalChat: () => showBlock('#modal-chat'),
+      onCreateChat: (event: SubmitEvent) => onCreateChat(event),
       onChangeAvatar: (event: SubmitEvent) => onChangeAvatar(event),
       onSendFile: (event: SubmitEvent) => onSendFile(event),
       createStickerPack: (event: SubmitEvent) => createStickerPack(event),
@@ -47,14 +48,14 @@ class Chats extends Component {
               alt='menu'
               type='button' 
               classes='svg-button'
-              onClick=onCreateChat 
+              onClick=onShowModalChat 
             }}}
             {{{ ButtonSvg
               svg='${StickerAddSvg}' 
               alt='menu'
               type='button' 
               classes='svg-button'
-              onClick=onShowModal 
+              onClick=onShowModalStickers 
             }}}
             {{{ ButtonSvg
               svg='${UserSvg}' 
@@ -91,6 +92,11 @@ class Chats extends Component {
           isMultiple=true
           onSubmit=createStickerPack
           insert_component="FileForm form_id='form_stickers' name=name isMultiple=isMultiple onSubmit=onSubmit"
+        }}}
+        {{{ Modal 
+          modal_id='modal-chat' 
+          onSubmit=onCreateChat
+          insert_component="ChatForm form_id='form_chat' onSubmit=onSubmit"
         }}}
 
         {{#if ${!!window.store.getState().isLoading} }}
