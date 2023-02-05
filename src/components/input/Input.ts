@@ -5,6 +5,7 @@ interface IInputProps {
   name: String;
   value: String;
   type: String;
+  isDisabled?: Boolean;
   onBlur?: () => void;
   onFocus?: () => void;
   classLabel: String;
@@ -15,13 +16,14 @@ class Input extends Component {
   static componentName = 'Input';
 
   constructor({
-    label, name, value, type, classInput, classLabel, onBlur, onFocus,
+    label, name, value, type, classInput, classLabel, isDisabled = false, onBlur, onFocus,
   }: IInputProps) {
     super({
       label,
       name,
       value,
       type,
+      isDisabled,
       classInput,
       classLabel,
       events: {
@@ -44,12 +46,22 @@ class Input extends Component {
     return `
       <label class='form__label {{ classLabel }}'>
           {{ label }}
-          <input 
-            name={{ name }} 
-            value='{{ value }}' 
-            class='input form__value {{ classInput }}' 
-            type={{ type }}
-          >
+          {{#if ${this.props.isDisabled} }}
+            <input 
+              name={{ name }} 
+              value='{{ value }}' 
+              class='input form__value {{ classInput }}' 
+              type={{ type }}
+              disabled
+            >
+          {{else}}
+            <input 
+              name={{ name }} 
+              value='{{ value }}' 
+              class='input form__value {{ classInput }}' 
+              type={{ type }}
+            >
+          {{/if}}
           <span class='error'></span>
       </label>
     `;
