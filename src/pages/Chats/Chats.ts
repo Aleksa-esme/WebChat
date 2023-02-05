@@ -6,6 +6,9 @@ import showBlock from 'utils/helpers/showBlock';
 import {
   onCreateChat, onChangeAvatar, onSendFile, getChatAvatar, createStickerPack,
 } from 'controllers/chatsController';
+import * as ChatsAddSvg from 'assets/svg/chats-add.svg';
+import * as StickerAddSvg from 'assets/svg/sticker-add.svg';
+import * as UserSvg from 'assets/svg/user.svg';
 
 class Chats extends Component {
   static componentName = 'Chats';
@@ -36,25 +39,31 @@ class Chats extends Component {
     return `
       <section class='chat-page'>
         <div class='chats'>
-          <div class='chats__buttons'>
-            {{{ Button 
-              title='Стикеры' 
-              classes='link link-small chats__link' 
-              onClick=onShowModal
-            }}}
-            {{{ Button 
-              title='Создать чат' 
-              classes='link link-small chats__link' 
-              onClick=onCreateChat
-            }}}
-            {{{ Button 
-              title='Профиль >' 
-              classes='link link-small chats__link' 
-              onClick=navigateProfile
-            }}}
-          </div>
           <input type='text' class='chats__search' placeholder='Поиск'>
           {{{ ChatList }}}
+          <div class='chats__buttons'>
+            {{{ ButtonSvg
+              svg='${ChatsAddSvg}' 
+              alt='menu'
+              type='button' 
+              classes='svg-button'
+              onClick=onCreateChat 
+            }}}
+            {{{ ButtonSvg
+              svg='${StickerAddSvg}' 
+              alt='menu'
+              type='button' 
+              classes='svg-button'
+              onClick=onShowModal 
+            }}}
+            {{{ ButtonSvg
+              svg='${UserSvg}' 
+              alt='menu'
+              type='button' 
+              classes='svg-button'
+              onClick=navigateProfile 
+            }}}
+          </div>
         </div>
         {{#if ${window.store.getState().chatId !== null} }}
           {{{ ChatField avatar="${getChatAvatar()}" }}}

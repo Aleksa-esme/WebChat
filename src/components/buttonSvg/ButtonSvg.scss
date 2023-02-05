@@ -2,7 +2,8 @@
   border: unset;
   background-color: unset;
   cursor: pointer;
-  transform: rotate(180deg);
+  display: flex;
+  align-items: center;
 
   &:focus-visible {
     border-radius: 3px;
@@ -13,4 +14,12 @@
   &:hover {
     filter: brightness(90%);
   }
+
+  &__title {
+    padding-left: 6px;
+  }
+}
+
+.rotate-svg {
+  transform: rotate(180deg);
 }

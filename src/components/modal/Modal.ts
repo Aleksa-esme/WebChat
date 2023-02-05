@@ -1,5 +1,6 @@
 import Component from 'utils/Component/Component';
 import showBlock from 'utils/helpers/showBlock';
+import * as CloseSvg from 'assets/svg/close.svg';
 
 interface IModalProps {
   modal_id: String,
@@ -30,7 +31,12 @@ class Modal extends Component {
       <section class='wrapper' id={{ modal_id }}>
         <div class='modal'>
           <div class='modal__header'>
-            {{{ Button title='X' classes='link' onClick=onCloseModal }}}
+            {{{ ButtonSvg 
+              svg='${CloseSvg}' 
+              alt='delete chat'
+              classes='svg-button'
+              onClick=onCloseModal
+            }}}
           </div>
           {{{ ${this.props.insert_component} }}}
         </div>

@@ -15,7 +15,7 @@ class ChatList extends Component {
 
   render() {
     return `
-      <div>
+      <div class='chat-list'>
         {{#if ${!!window.store.getState().chats} }}
           ${window.store.getState().chats?.map((el: Chat) => `
             {{{ Chat 

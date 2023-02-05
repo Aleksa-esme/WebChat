@@ -1,5 +1,9 @@
 import Component from 'utils/Component/Component';
 import * as MenuSvg from 'assets/svg/chat-menu.svg';
+import * as UserAddSvg from 'assets/svg/user-add.svg';
+import * as UserDeleterSvg from 'assets/svg/user-delete.svg';
+import * as AvatarSvg from 'assets/svg/avatar.svg';
+import * as ChatDeleteSvg from 'assets/svg/chats-delete.svg';
 import showBlock from 'utils/helpers/showBlock';
 
 import { onAddUser, onDeleteUser, onDeleteChat } from 'controllers/chatsController';
@@ -32,30 +36,38 @@ class ChatMenu extends Component {
         <div class='chat-menu__buttons'>
           <ul>
             <li>
-              {{{ Button 
+              {{{ ButtonSvg 
+                svg='${UserAddSvg}' 
+                alt='add user'
                 title='Добавить пользователя' 
-                classes='link link-small'
+                classes='svg-button'
                 onClick=onAddUser
               }}}
             </li>
             <li>
-              {{{ Button 
+              {{{ ButtonSvg 
+                svg='${UserDeleterSvg}' 
+                alt='delete user'
                 title='Удалить пользователя' 
-                classes='link link-small'
+                classes='svg-button'
                 onClick=onDeleteUser
               }}}
             </li>
             <li>
-              {{{ Button 
+              {{{ ButtonSvg 
+                svg='${AvatarSvg}' 
+                alt='change avatar'
                 title='Изменить аватар чата' 
-                classes='link link-small'
+                classes='svg-button'
                 onClick=onShowModal
               }}}
             </li>
             <li>
-              {{{ Button 
+              {{{ ButtonSvg 
+                svg='${ChatDeleteSvg}' 
+                alt='delete chat'
                 title='Удалить чат' 
-                classes='link link-small'
+                classes='svg-button'
                 onClick=onDeleteChat
               }}}
             </li>

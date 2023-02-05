@@ -14,7 +14,9 @@
   &__buttons {
     display: flex;
     justify-content: space-between;
-    padding: 22px 10px 24px;
+    padding: 24px 60px;
+    border-top: 1px solid var(--grey);
+    margin: 0 10px;
   }
 
   &__link {
@@ -30,7 +32,7 @@
     padding: 10px;
     border: unset;
     border-radius: 5px;
-    margin: 0 10px 14px;
+    margin: 25px 14px;
     background: #efefef;
     color: var(--dark-grey);
 
