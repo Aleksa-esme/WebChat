@@ -2,15 +2,17 @@ import Component from 'utils/Component/Component';
 
 interface IMessageFieldProps {
   onFocus?: () => void;
+  onKeydown?: () => void;
 }
 
 class MessageField extends Component {
   static componentName = 'MessageField';
 
-  constructor({ onFocus }: IMessageFieldProps) {
+  constructor({ onFocus, onKeydown }: IMessageFieldProps) {
     super({
       events: {
         focusin: onFocus,
+        keydown: onKeydown,
       },
     });
   }

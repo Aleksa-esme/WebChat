@@ -78,6 +78,13 @@ export const onSendMessage = (event: SubmitEvent) => {
   }
 };
 
+export const onSendMessageByEnter = (event: any) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    onSendMessage(event);
+  }
+};
+
 export const onSendFile = (event: SubmitEvent) => {
   event.preventDefault();
 
