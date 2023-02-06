@@ -2,7 +2,7 @@ import { changeAvatar, changeData } from 'services/user';
 import { validateForm } from 'utils/Validation/ValidForm';
 
 export const onChangeProfile = (event: Event) => {
-  const isError = validateForm(event);
+  const isError = validateForm(event, 'form');
   if (!isError) {
     const profileData = {
       email: (document.querySelector('input[name="email"]') as HTMLInputElement).value,

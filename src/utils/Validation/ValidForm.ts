@@ -1,5 +1,6 @@
 const passwordReg = /(?=^.{8,40}$)((?=.*\d+)|(?=.*\W+))(?![.\n])(?=.*[A-Z]+)(?=.*[a-z]).*$/;
 const nameReg = /^[A-ZА-ЯЁ][a-zA-Zа-яА-ЯёЁ_-]*$/;
+const emptyReg = /\S+/;
 
 interface IChecks {
   [index: string]: {
@@ -45,6 +46,18 @@ const checks: IChecks = {
     check: /\S+/,
     error: 'Сообщение не должно быть пустым',
   },
+  chat_title: {
+    check: emptyReg,
+    error: 'Поле не должно быть пустым',
+  },
+  user_add: {
+    check: emptyReg,
+    error: 'Поле не должно быть пустым',
+  },
+  user_del: {
+    check: emptyReg,
+    error: 'Поле не должно быть пустым',
+  },
 };
 
 let iserror: Boolean = false;
@@ -87,8 +100,8 @@ const cleanError = (el: Element) => {
   iserror = false;
 };
 
-export const validateForm = (e: Event) => {
-  const form = document.querySelector('[id=form]') as HTMLFormElement;
+export const validateForm = (e: Event, formId: string) => {
+  const form = document.querySelector(`[id=${formId}]`) as HTMLFormElement;
   e.preventDefault();
   const formData: FormData = new FormData(form);
   let error: string;
@@ -103,16 +116,16 @@ export const validateForm = (e: Event) => {
   return iserror;
 };
 
-export const validFocusField = (e: Event) => {
-  const form = document.querySelector('[id=form]') as HTMLFormElement;
+export const validFocusField = (e: Event, formId: string) => {
+  const form = document.querySelector(`[id=${formId}]`) as HTMLFormElement;
   const btn = form.querySelector('[type=submit]') as HTMLElement;
   const el = e?.target as Element;
   if (el === btn) return;
   if (el) cleanError(el);
 };
 
-export const validBlurField = (e: any) => {
-  const form = document.querySelector('[id=form]') as HTMLFormElement;
+export const validBlurField = (e: any, formId: string) => {
+  const form = document.querySelector(`[id=${formId}]`) as HTMLFormElement;
   const { target } = e;
   const property = target.getAttribute('name');
   const { value } = target;

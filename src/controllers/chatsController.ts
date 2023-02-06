@@ -10,9 +10,12 @@ import {
 export const onCreateChat = (event: SubmitEvent) => {
   event.preventDefault();
 
-  const input = document.querySelector('input[name="chat-title"]') as HTMLInputElement;
-  if (!!input.value) window.store.dispatch(createChat, { title: input.value });
-  else alert('Название не должно быть пустым');
+  const isError = validateForm(event, 'form_chat');
+
+  if (!isError) {
+    const input = document.querySelector('input[name="chat_title"]') as HTMLInputElement;
+    if (!!input.value) window.store.dispatch(createChat, { title: input.value });
+  }
 };
 
 export const onChooseChat = (event: Event) => {
@@ -35,16 +38,28 @@ export const getChatAvatar = () => {
 };
 
 // Chat menu
-export const onAddUser = () => {
-  const chatId = window.store.getState().chatId;
-  const login = prompt('Введите логин пользователя');
-  if (!!login) window.store.dispatch(addUser, { user: login, chatId });
+export const onAddUser = (event: SubmitEvent) => {
+  event.preventDefault();
+
+  const isError = validateForm(event, 'form_user_add');
+
+  if (!isError) {
+    const chatId = window.store.getState().chatId;
+    const input = document.querySelector('input[name="user_add"]') as HTMLInputElement;
+    if (!!input.value) window.store.dispatch(addUser, { user: input.value, chatId });
+  }
 };
 
-export const onDeleteUser = () => {
-  const chatId = window.store.getState().chatId;
-  const login = prompt('Введите логин пользователя, которого хотите удалить');
-  if (!!login) window.store.dispatch(deleteUser, { user: login, chatId });
+export const onDeleteUser = (event: SubmitEvent) => {
+  event.preventDefault();
+
+  const isError = validateForm(event, 'form_user-del');
+
+  if (!isError) {
+    const chatId = window.store.getState().chatId;
+    const input = document.querySelector('input[name="user_del"]') as HTMLInputElement;
+    if (!!input.value) window.store.dispatch(deleteUser, { user: input.value, chatId });
+  }
 };
 
 export const onDeleteChat = () => {
@@ -71,7 +86,7 @@ export const onChangeAvatar = (event: SubmitEvent) => {
 // Send Messages
 export const onSendMessage = (event: SubmitEvent) => {
   event.preventDefault();
-  const isError = validateForm(event);
+  const isError = validateForm(event, 'form');
   if (!isError) {
     const outgoingMessage = document.querySelector('textarea[name="message"]') as HTMLInputElement;
     if (!!outgoingMessage) {

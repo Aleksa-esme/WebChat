@@ -15,8 +15,8 @@ class ProfileChange extends Component {
   constructor(props: IProfileChangeProps) {
     super({
       ...props,
-      onBlur: (event: Event) => validBlurField(event),
-      onFocus: (event: Event) => validFocusField(event),
+      onBlur: (event: Event) => validBlurField(event, 'form'),
+      onFocus: (event: Event) => validFocusField(event, 'form'),
     });
 
     this.setProps({

@@ -3,7 +3,7 @@ import { validateForm } from 'utils/Validation/ValidForm';
 import comparePasswords from 'utils/helpers/comparePasswords';
 
 const onChangePassword = (event: Event) => {
-  const isError = validateForm(event);
+  const isError = validateForm(event, 'form');
   if (!isError) {
     const passwordData = {
       oldPassword: (document.querySelector('input[name="oldPassword"]') as HTMLInputElement).value,

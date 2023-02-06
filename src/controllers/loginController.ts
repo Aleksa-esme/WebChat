@@ -2,7 +2,7 @@ import { login } from 'services/auth';
 import { validateForm } from 'utils/Validation/ValidForm';
 
 const onLogin = (event: Event) => {
-  const isError = validateForm(event);
+  const isError = validateForm(event, 'form');
   if (!isError) {
     const loginData = {
       login: (document.querySelector('input[name="login"]') as HTMLInputElement).value,

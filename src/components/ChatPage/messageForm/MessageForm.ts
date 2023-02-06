@@ -21,7 +21,7 @@ class MessageField extends Component {
     });
 
     this.setProps({
-      onFocus: (event: Event) => validFocusField(event),
+      onFocus: (event: Event) => validFocusField(event, 'form'),
       onShowModalFile: () => showBlock('#modal-file'),
       onShowModalStickers: () => showBlock('#modal-stickers'),
       onKeydown: (event: any) => onSendMessageByEnter(event),

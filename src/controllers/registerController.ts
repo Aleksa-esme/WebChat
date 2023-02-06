@@ -3,7 +3,7 @@ import { validateForm } from 'utils/Validation/ValidForm';
 import comparePasswords from 'utils/helpers/comparePasswords';
 
 const onRegister = (event: Event) => {
-  const isError = validateForm(event);
+  const isError = validateForm(event, 'form');
 
   if (!isError) {
     const registerData = {

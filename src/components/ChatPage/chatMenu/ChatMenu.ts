@@ -6,7 +6,7 @@ import * as AvatarSvg from 'assets/svg/avatar.svg';
 import * as ChatDeleteSvg from 'assets/svg/chats-delete.svg';
 import showBlock from 'utils/helpers/showBlock';
 
-import { onAddUser, onDeleteUser, onDeleteChat } from 'controllers/chatsController';
+import { onDeleteChat } from 'controllers/chatsController';
 
 class ChatMenu extends Component {
   static componentName = 'ChatMenu';
@@ -17,8 +17,8 @@ class ChatMenu extends Component {
     this.setProps({
       showMenu: () => showBlock('.chat-menu__buttons'),
       onShowModal: () => showBlock('#modal-avatar'),
-      onAddUser: () => onAddUser(),
-      onDeleteUser: () => onDeleteUser(),
+      onShowModalUserAdd: () => showBlock('#modal-user-add'),
+      onShowModalUserDel: () => showBlock('#modal-user-del'),
       onDeleteChat: () => onDeleteChat(),
     });
   }
@@ -41,7 +41,7 @@ class ChatMenu extends Component {
                 alt='add user'
                 title='Добавить пользователя' 
                 classes='svg-button'
-                onClick=onAddUser
+                onClick=onShowModalUserAdd
               }}}
             </li>
             <li>
@@ -50,7 +50,7 @@ class ChatMenu extends Component {
                 alt='delete user'
                 title='Удалить пользователя' 
                 classes='svg-button'
-                onClick=onDeleteUser
+                onClick=onShowModalUserDel
               }}}
             </li>
             <li>

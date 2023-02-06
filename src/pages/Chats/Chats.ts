@@ -4,7 +4,7 @@ import withChats from 'utils/HOCs/withChats';
 import withStore from 'utils/HOCs/withStore';
 import showBlock from 'utils/helpers/showBlock';
 import {
-  onCreateChat, onChangeAvatar, onSendFile, getChatAvatar, createStickerPack,
+  onCreateChat, onChangeAvatar, onSendFile, getChatAvatar, createStickerPack, onAddUser, onDeleteUser,
 } from 'controllers/chatsController';
 import * as ChatsAddSvg from 'assets/svg/chats-add.svg';
 import * as StickerAddSvg from 'assets/svg/sticker-add.svg';
@@ -24,6 +24,8 @@ class Chats extends Component {
       onChangeAvatar: (event: SubmitEvent) => onChangeAvatar(event),
       onSendFile: (event: SubmitEvent) => onSendFile(event),
       createStickerPack: (event: SubmitEvent) => createStickerPack(event),
+      onAddUser: (event: SubmitEvent) => onAddUser(event),
+      onDeleteUser: (event: SubmitEvent) => onDeleteUser(event),
     });
   }
 
@@ -78,25 +80,69 @@ class Chats extends Component {
           modal_id='modal-avatar' 
           avatar="${getChatAvatar()}" 
           onSubmit=onChangeAvatar 
-          insert_component="AvatarForm form_id='form_modal' size='120' url=avatar onSubmit=onSubmit"
+          insert_component="AvatarForm 
+            form_id='form_modal' 
+            size='120' 
+            url=avatar 
+            onSubmit=onSubmit
+          "
         }}}
         {{{ Modal 
           modal_id='modal-file' 
           name='file'
           onSubmit=onSendFile
-          insert_component="FileForm form_id='form_file' name=name onSubmit=onSubmit"
+          insert_component="FileForm 
+            form_id='form_file' 
+            name=name 
+            onSubmit=onSubmit
+          "
         }}}
         {{{ Modal 
           modal_id='modal-stickers' 
           name='stickers[]'
           isMultiple=true
           onSubmit=createStickerPack
-          insert_component="FileForm form_id='form_stickers' name=name isMultiple=isMultiple onSubmit=onSubmit"
+          insert_component="FileForm 
+            form_id='form_stickers' 
+            name=name 
+            isMultiple=isMultiple 
+            onSubmit=onSubmit
+          "
         }}}
         {{{ Modal 
           modal_id='modal-chat' 
           onSubmit=onCreateChat
-          insert_component="ChatForm form_id='form_chat' onSubmit=onSubmit"
+          insert_component="ChatForm 
+            form_id='form_chat' 
+            onSubmit=onSubmit 
+            label='Введите название чата' 
+            name='chat_title' 
+            title='Создать чат' 
+          "
+        }}}
+        {{{ Modal 
+          modal_id='modal-user-add' 
+          onSubmit=onAddUser
+          insert_component="ChatForm 
+            form_id='form_user_add' 
+            onSubmit=onSubmit 
+            label='Введите логин пользователя' 
+            name='user_add' 
+            title='Добавить пользователя'
+            isInfo=true
+          "
+        }}}
+        {{{ Modal 
+          modal_id='modal-user-del' 
+          onSubmit=onDeleteUser
+          insert_component="ChatForm 
+            form_id='form_user-del' 
+            onSubmit=onSubmit 
+            label='Введите логин пользователя' 
+            name='user_del' 
+            title='Удалить пользователя' 
+            isInfo=true
+          "
         }}}
 
         {{#if ${!!window.store.getState().isLoading} }}
