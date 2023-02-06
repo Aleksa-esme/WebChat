@@ -5,6 +5,7 @@ import { validateForm } from 'utils/Validation/ValidForm';
 import {
   createChat, changeAvatar, chooseChat, addUser, deleteChat, deleteUser,
 } from 'services/chats';
+import showBlock from 'utils/helpers/showBlock';
 
 // Chat list
 export const onCreateChat = (event: SubmitEvent) => {
@@ -22,6 +23,16 @@ export const onChooseChat = (event: Event) => {
   const target = event.currentTarget as HTMLElement;
   const chatId = target!.id;
   window.store.dispatch(chooseChat, chatId);
+
+  const windowInnerWidth = window.innerWidth;
+
+  if (windowInnerWidth <= 768) {
+    setTimeout(() => {
+      const chats = document.querySelector('.chats') as HTMLElement;
+      chats.style.display = 'none';
+      showBlock('.chat-field');
+    }, 1000);
+  }
 };
 
 // Chat info

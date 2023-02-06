@@ -11,7 +11,7 @@ class MessagesList extends Component {
 
   render() {
     return `
-      <div class='messages-list'>
+      <div class='messages-list scroll'>
         ${window.store.getState().messages.map(el => `
           {{#if ${window.store.getState().user?.id === el.user_id} }}
             {{{ Message 

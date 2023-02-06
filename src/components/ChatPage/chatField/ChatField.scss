@@ -17,3 +17,13 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .chat-field {
+    display: none;
+
+    &_empty {
+      display: none;
+    }
+  }
+}

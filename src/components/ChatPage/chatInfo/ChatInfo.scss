@@ -4,6 +4,12 @@
   justify-content: space-between;
   padding: 14px 20px;
   border-bottom: 1px solid var(--grey);
+  
+  &__left {
+    & button {
+      display: none;
+    }
+  }
 
   &__info {
     display: flex;
@@ -24,5 +30,20 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-info {
+    &__left {
+      display: flex;
+      align-items: center;
+      
+      & button {
+        margin-right: 20px;
+        display: block;
+      }
+    }
+  
   }
 }
