@@ -20,8 +20,10 @@ export class ChatsAPI {
     this.apiInstance = new HTTPTransport();
   }
 
-  getChats() {
-    return this.apiInstance.get('chats');
+  getChats(offset = 0, limit = 100, title = '') {
+    return this.apiInstance.get('chats', {
+      data: { offset, limit, title },
+    });
   }
 
   create(data: CreateChatRequestData) {
