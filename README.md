@@ -14,6 +14,8 @@
 - Валидация форм на клиенте
 - Роутинг
 
+--------------
+
 - [Деплой на Render.com](https://web-chat-3acm.onrender.com)
 - [Макет в Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1&t=XgjBQHVVn2AaQBhh-0)
 
