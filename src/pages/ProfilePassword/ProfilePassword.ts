@@ -2,9 +2,8 @@ import Component from 'utils/Component/Component';
 import withRouter from 'utils/HOCs/withRouter';
 import withStore from 'utils/HOCs/withStore';
 import withUser from 'utils/HOCs/withUser';
-import comparePasswords from 'utils/helpers/comparePasswords';
-import { validateForm, validBlurField, validFocusField } from 'utils/Validation/ValidForm';
-import { changePassword } from 'services/user';
+import { validBlurField, validFocusField } from 'utils/Validation/ValidForm';
+import onChangePassword from 'controllers/profilePasswordController';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
 
 interface IProfilePasswordProps {
@@ -18,27 +17,14 @@ class ProfilePassword extends Component {
   constructor(props: IProfilePasswordProps) {
     super({
       ...props,
-      onBlur: (event: Event) => validBlurField(event),
-      onFocus: (event: Event) => validFocusField(event),
+      onBlur: (event: Event) => validBlurField(event, 'form'),
+      onFocus: (event: Event) => validFocusField(event, 'form'),
     });
 
     this.setProps({
       navigateProfile: () => this.props.router.go('/profile'),
-      onChangePassword: (event: Event) => this.onChangePassword(event),
+      onChangePassword: (event: Event) => onChangePassword(event),
     });
-  }
-
-  onChangePassword(event: Event) {
-    const isError = validateForm(event);
-    if (!isError) {
-      const passwordData = {
-        oldPassword: (document.querySelector('input[name="oldPassword"]') as HTMLInputElement).value,
-        newPassword: (document.querySelector('input[name="newPassword"]') as HTMLInputElement).value,
-      };
-
-      if (comparePasswords('newPassword')) this.props.store.dispatch(changePassword, passwordData);
-      else alert('Пароли должны совпадать');
-    }
   }
 
   render() {

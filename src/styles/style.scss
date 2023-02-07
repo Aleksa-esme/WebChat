@@ -4,6 +4,7 @@
 @import 'components/loader/Loader.scss';
 @import 'components/avatar/Avatar.scss';
 @import 'components/avatarForm/AvatarForm.scss';
+@import 'components/modal/Modal.scss';
 @import 'components/ChatPage/chat/Chat.scss';
 @import 'components/ChatPage/message/Message.scss';
 @import 'components/ChatPage/messageField/MessageField.scss';
@@ -12,10 +13,10 @@
 @import 'components/ChatPage/messagesList/MessagesList.scss';
 @import 'components/ChatPage/chatMenu/ChatMenu.scss';
 @import 'components/ChatPage/chatInfo/ChatInfo.scss';
+@import 'components/ChatPage/chatList/ChatList.scss';
 @import 'pages/Chats/Chats.scss';
 @import 'pages/Error404/HttpError.scss';
 @import 'pages/Login/Login.scss';
-@import 'pages/Modal/Modal.scss';
 @import 'pages/Profile/Profile.scss';
 
 @font-face {
@@ -38,14 +39,10 @@ button,
 :focus,
 :active { outline: none; }
 
-.container {
-  width: 100%;
-  min-width: var(--mobile-s-width);
-}
-
 .main {
   display: flex;
   width: 100%;
+  min-width: var(--mobile-s-width);
   height: 100vh;
   flex-direction: column;
   align-items: center;
@@ -53,7 +50,25 @@ button,
 }
 
 .show {
-  display: block;
+  display: flex !important;
+}
+
+.scroll {
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--grey);
+    border-radius: 20px;
+    border: 4px solid var(--white);
+  }
 }
 
 .form {

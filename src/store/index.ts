@@ -9,6 +9,8 @@ const defaultState: AppState = {
   chatTitle: '',
   users: [],
   messages: [],
+  fileId: null,
+  stickers: [],
 };
 
 export default defaultState;

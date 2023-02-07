@@ -26,6 +26,7 @@
     "pages": "./src/pages",
     "utils": "./src/utils",
     "services": "./src/services",
+    "controllers": "./src/controllers",
     "api": "./src/api"
   },
   "repository": {

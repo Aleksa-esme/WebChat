@@ -1,0 +1,27 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.wrapper {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  z-index: 500;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 70%);
+}

@@ -79,6 +79,34 @@ export const chooseChat: DispatchStateHandler<string> = async (dispatch, state, 
   }
 };
 
+export const changeAvatar: DispatchStateHandler<FormData> = async (dispatch, state, action) => {
+  try {
+    dispatch({ isLoading: true });
+
+    const response = await ChatsAPI.avatar(action);
+
+    if (apiHasError(response)) {
+      dispatch({ isLoading: false, loginFormError: response.reason });
+      return;
+    }
+
+    const responseChats = await ChatsAPI.getChats();
+
+    if (apiHasError(responseChats)) {
+      dispatch({ isLoading: false, loginFormError: responseChats.reason });
+      return;
+    }
+
+    dispatch({
+      isLoading: false,
+      loginFormError: null,
+      chats: responseChats,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 export const deleteChat: DispatchStateHandler<DeleteChatPayload> = async (dispatch, state, action) => {
   try {
     dispatch({ isLoading: true });
@@ -114,32 +142,43 @@ export const addUser: DispatchStateHandler<UserPayload> = async (dispatch, state
   try {
     dispatch({ isLoading: true });
 
-    const user = await UserAPI.search({ login: action.user });
+    const users = await UserAPI.search({ login: action.user });
 
-    if (apiHasError(user)) {
-      dispatch({ isLoading: false, loginFormError: user.reason });
+    if (apiHasError(users)) {
+      dispatch({ isLoading: false, loginFormError: users.reason });
       return;
     }
 
-    const response = await ChatsAPI.addUser({ users: [user[0].id], chatId: action.chatId });
+    if (users.length !== 0) {
+      const user = users.filter((el: any) => el.login === action.user);
 
-    if (apiHasError(response)) {
-      dispatch({ isLoading: false, loginFormError: response.reason });
-      return;
+      const response = await ChatsAPI.addUser({ users: [user[0].id], chatId: action.chatId });
+
+      if (apiHasError(response)) {
+        dispatch({ isLoading: false, loginFormError: response.reason });
+        return;
+      }
+
+      const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
+
+      if (apiHasError(responseUsers)) {
+        dispatch({ isLoading: false, loginFormError: responseUsers.reason });
+        return;
+      }
+
+      dispatch({
+        isLoading: false,
+        loginFormError: null,
+        users: responseUsers,
+      });
+    } else {
+      dispatch({
+        isLoading: false,
+        loginFormError: null,
+      });
+      alert('Нет такого пользователя');
+      throw new Error('Нет такого пользователя');
     }
-
-    const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
-
-    if (apiHasError(responseUsers)) {
-      dispatch({ isLoading: false, loginFormError: responseUsers.reason });
-      return;
-    }
-
-    dispatch({
-      isLoading: false,
-      loginFormError: null,
-      users: responseUsers,
-    });
   } catch (err) {
     console.error(err);
   }
@@ -149,32 +188,42 @@ export const deleteUser: DispatchStateHandler<UserPayload> = async (dispatch, st
   try {
     dispatch({ isLoading: true });
 
-    const user = await UserAPI.search({ login: action.user });
+    const users = await UserAPI.search({ login: action.user });
 
-    if (apiHasError(user)) {
-      dispatch({ isLoading: false, loginFormError: user.reason });
+    if (apiHasError(users)) {
+      dispatch({ isLoading: false, loginFormError: users.reason });
       return;
     }
+    if (users.length !== 0) {
+      const user = users.filter((el: any) => el.login === action.user);
 
-    const response = await ChatsAPI.deleteUser({ users: [user[0].id], chatId: action.chatId });
+      const response = await ChatsAPI.deleteUser({ users: [user[0].id], chatId: action.chatId });
 
-    if (apiHasError(response)) {
-      dispatch({ isLoading: false, loginFormError: response.reason });
-      return;
+      if (apiHasError(response)) {
+        dispatch({ isLoading: false, loginFormError: response.reason });
+        return;
+      }
+
+      const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
+
+      if (apiHasError(responseUsers)) {
+        dispatch({ isLoading: false, loginFormError: responseUsers.reason });
+        return;
+      }
+
+      dispatch({
+        isLoading: false,
+        loginFormError: null,
+        users: responseUsers,
+      });
+    } else {
+      dispatch({
+        isLoading: false,
+        loginFormError: null,
+      });
+      alert('Нет такого пользователя');
+      throw new Error('Нет такого пользователя');
     }
-
-    const responseUsers = await ChatsAPI.getChatUsers(action.chatId);
-
-    if (apiHasError(responseUsers)) {
-      dispatch({ isLoading: false, loginFormError: responseUsers.reason });
-      return;
-    }
-
-    dispatch({
-      isLoading: false,
-      loginFormError: null,
-      users: responseUsers,
-    });
   } catch (err) {
     console.error(err);
   }

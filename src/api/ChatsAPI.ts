@@ -20,8 +20,10 @@ export class ChatsAPI {
     this.apiInstance = new HTTPTransport();
   }
 
-  getChats() {
-    return this.apiInstance.get('chats');
+  getChats(offset = 0, limit = 100, title = '') {
+    return this.apiInstance.get('chats', {
+      data: { offset, limit, title },
+    });
   }
 
   create(data: CreateChatRequestData) {
@@ -30,6 +32,10 @@ export class ChatsAPI {
 
   delete(data: DeleteChatRequestData) {
     return this.apiInstance.delete('chats', { data });
+  }
+
+  avatar(data: FormData) {
+    return this.apiInstance.put('chats/avatar', { data, isFormData: true });
   }
 
   addUser(data: UserRequestData) {

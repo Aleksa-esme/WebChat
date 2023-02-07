@@ -51,6 +51,7 @@ class Profile extends Component {
                   value='${this.props.user.email}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  isDisabled=true
                 }}}
               </li>
               <li>
@@ -61,6 +62,7 @@ class Profile extends Component {
                   value='${this.props.user.login}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  isDisabled=true
                 }}}
               </li>
               <li>
@@ -71,6 +73,7 @@ class Profile extends Component {
                   value='${this.props.user.firstName}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  isDisabled=true
                 }}}
               </li>
               <li>
@@ -81,6 +84,7 @@ class Profile extends Component {
                   value='${this.props.user.secondName}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  isDisabled=true
                 }}}
               </li>
               <li>
@@ -91,6 +95,7 @@ class Profile extends Component {
                   value='${this.props.user.displayName}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  isDisabled=true
                 }}}
               </li>
               <li>
@@ -101,6 +106,7 @@ class Profile extends Component {
                   value='${this.props.user.phone}'
                   classLabel='profile-form__label' 
                   classInput='profile-form__value' 
+                  isDisabled=true
                 }}}
               </li>
             </ul>

@@ -5,6 +5,7 @@ import Avatar from 'components/avatar/Avatar';
 import AvatarForm from 'components/avatarForm/AvatarForm';
 import ButtonSvg from 'components/buttonSvg/ButtonSvg';
 import Loader from 'components/loader/Loader';
+import Modal from 'components/modal/Modal';
 import Chat from 'components/ChatPage/chat/Chat';
 import ChatList from 'components/ChatPage/chatList/ChatList';
 import Message from 'components/ChatPage/message/Message';
@@ -14,6 +15,8 @@ import MessageForm from 'components/ChatPage/messageForm/MessageForm';
 import MessagesList from 'components/ChatPage/messagesList/MessagesList';
 import ChatMenu from 'components/ChatPage/chatMenu/ChatMenu';
 import ChatInfo from 'components/ChatPage/chatInfo/ChatInfo';
+import FileForm from 'components/ChatPage/fileForm/FileForm';
+import ChatForm from 'components/ChatPage/chatForm/ChatForm';
 // Pages
 import Chats from 'pages/Chats/Chats';
 // Utils
@@ -35,6 +38,7 @@ declare global {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  registerComponent(Modal);
   registerComponent(Loader);
   registerComponent(Button);
   registerComponent(ButtonSvg);
@@ -50,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   registerComponent(MessageField);
   registerComponent(MessageForm);
   registerComponent(MessagesList);
+  registerComponent(FileForm);
+  registerComponent(ChatForm);
 
   const store = new Store<AppState>(defaultState);
   const router = new Router();
