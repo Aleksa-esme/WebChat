@@ -18,9 +18,16 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .chat-field {
+    width: calc(100% - 310px);
+  }
+}
+
 @media (max-width: 768px) {
   .chat-field {
     display: none;
+    width: 100%;
 
     &_empty {
       display: none;

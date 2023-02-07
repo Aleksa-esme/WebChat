@@ -4,7 +4,7 @@ import withChats from 'utils/HOCs/withChats';
 import withStore from 'utils/HOCs/withStore';
 import showBlock from 'utils/helpers/showBlock';
 import {
-  onCreateChat, onChangeAvatar, onSendFile, getChatAvatar, createStickerPack, onAddUser, onDeleteUser,
+  onCreateChat, onChangeAvatar, onSendFile, getChatAvatar, createStickerPack, onAddUser, onDeleteUser, onResize,
 } from 'controllers/chatsController';
 import * as ChatsAddSvg from 'assets/svg/chats-add.svg';
 import * as StickerAddSvg from 'assets/svg/sticker-add.svg';
@@ -27,6 +27,8 @@ class Chats extends Component {
       onAddUser: (event: SubmitEvent) => onAddUser(event),
       onDeleteUser: (event: SubmitEvent) => onDeleteUser(event),
     });
+
+    window.addEventListener('resize', onResize);
   }
 
   // componentDidUpdate() {

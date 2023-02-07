@@ -31,7 +31,7 @@ export const onChooseChat = (event: Event) => {
       const chats = document.querySelector('.chats') as HTMLElement;
       chats.style.display = 'none';
       showBlock('.chat-field');
-    }, 1000);
+    }, 2000);
   }
 };
 
@@ -180,3 +180,13 @@ export const createStickerPack = (event: SubmitEvent) => {
 //   console.log(a)
 //   // '<a href="https://www.flaticon.com/ru/free-stickers/" title="люди стикеры">Люди стикеры от Stickers - Flaticon</a>'
 // }
+
+export const onResize = () => {
+  const windowInnerWidth = window.innerWidth;
+
+  if (windowInnerWidth > 768) {
+    const chats = document.querySelector('.chats') as HTMLElement;
+    chats.style.display = 'flex';
+    showBlock('.chat-field');
+  }
+};
