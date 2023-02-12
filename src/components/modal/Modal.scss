@@ -25,3 +25,15 @@
   justify-content: center;
   background: rgb(0 0 0 / 70%);
 }
+
+@media (max-width: 425px) {
+  .modal {
+    padding: 20px;
+    
+    &__header {
+      & button img {
+        width: 20px;
+      }
+    }
+  }
+}
