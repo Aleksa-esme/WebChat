@@ -71,7 +71,7 @@
 @media (max-width: 768px) {
   .profile {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
 
     &-page {
       height: 100vh;
@@ -94,11 +94,6 @@
         line-height: 16px;
       }
 
-      &__value {
-        font-size: 16px;
-        line-height: 16px;
-      }
-
       &__buttons {
         margin-top: 30px;
       }
@@ -108,11 +103,11 @@
 
 @media (max-width: 425px) {
   .profile {
-    margin-top: unset;
+    margin-top: 20px;
 
     &-page {
       &__button-back {
-        height: 54px;
+        height: 44px;
       }
     }
 
@@ -126,12 +121,17 @@
       }
 
       &__value {
-        font-size: 14px;
-        line-height: 14px;
+        width: 60%;
       }
 
       &__buttons {
-        margin-top: 20px;
+        margin-top: 10px;
+      }
+
+      &__button {
+        &-submit {
+          margin-top: 25px;
+        }
       }
     }
   }
