@@ -26,11 +26,7 @@
 
 @media (max-width: 768px) {
   .chat-field {
-    display: none;
     width: 100%;
-
-    &_empty {
-      display: none;
-    }
+    padding: unset;
   }
 }

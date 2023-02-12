@@ -1,7 +1,6 @@
 import Component from 'utils/Component/Component';
-import { getUsers } from 'controllers/chatsController';
+import { getUsers, showChats } from 'controllers/chatsController';
 import * as ArrowButton from 'assets/svg/arrow_button.svg';
-import showBlock from 'utils/helpers/showBlock';
 
 interface IChatInfoProps {
   avatar?: String;
@@ -14,14 +13,8 @@ class ChatInfo extends Component {
     super({ avatar });
 
     this.setProps({
-      showChats: () => this.showChats(),
+      showChats: () => showChats(),
     });
-  }
-
-  showChats() {
-    showBlock('.chat-field');
-    const chats = document.querySelector('.chats') as HTMLElement;
-    chats.style.display = 'flex';
   }
 
   render() {

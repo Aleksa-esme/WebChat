@@ -5,7 +5,6 @@ import { validateForm } from 'utils/Validation/ValidForm';
 import {
   createChat, changeAvatar, chooseChat, addUser, deleteChat, deleteUser,
 } from 'services/chats';
-import showBlock from 'utils/helpers/showBlock';
 
 // Chat list
 export const onCreateChat = (event: SubmitEvent) => {
@@ -28,10 +27,13 @@ export const onChooseChat = (event: Event) => {
 
   if (windowInnerWidth <= 768) {
     setTimeout(() => {
-      const chats = document.querySelector('.chats') as HTMLElement;
-      chats.style.display = 'none';
-      showBlock('.chat-field');
-    }, 2000);
+      window.store.dispatch({
+        chatState: {
+          chatList: false,
+          chatField: true,
+        },
+      });
+    }, 1000);
   }
 };
 
@@ -181,12 +183,41 @@ export const createStickerPack = (event: SubmitEvent) => {
 //   // '<a href="https://www.flaticon.com/ru/free-stickers/" title="люди стикеры">Люди стикеры от Stickers - Flaticon</a>'
 // }
 
+// Chat visibility
 export const onResize = () => {
   const windowInnerWidth = window.innerWidth;
 
   if (windowInnerWidth > 768) {
-    const chats = document.querySelector('.chats') as HTMLElement;
-    chats.style.display = 'flex';
-    showBlock('.chat-field');
+    window.store.dispatch({
+      chatState: {
+        chatList: true,
+        chatField: true,
+      },
+    });
+  } else if (windowInnerWidth <= 768) {
+    if (!!window.store.getState().chatId) {
+      window.store.dispatch({
+        chatState: {
+          chatList: false,
+          chatField: true,
+        },
+      });
+    } else {
+      window.store.dispatch({
+        chatState: {
+          chatList: true,
+          chatField: false,
+        },
+      });
+    }
   }
+};
+
+export const showChats = () => {
+  window.store.dispatch({
+    chatState: {
+      chatList: true,
+      chatField: false,
+    },
+  });
 };

@@ -21,6 +21,7 @@ declare global {
     messages: Array<Message> | Array<NewMessage>;
     fileId: string | null;
     stickers: Array<any>;
+    chatState: ChatState;
   };
 
   export type User = {
@@ -72,6 +73,11 @@ declare global {
     time: string;
     type: string;
     user_id: number;
+  };
+
+  export type ChatState = {
+    chatList: boolean;
+    chatField: boolean;
   };
 }
 
