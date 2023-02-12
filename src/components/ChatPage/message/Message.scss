@@ -3,8 +3,12 @@
   align-self: flex-start;
   border: 1px solid var(--grey);
   border-radius: 12px;
-  margin: 10px 20px;
+  margin: 10px 20px 0;
   margin-left: 160px;
+
+  &:last-child {
+    margin: 10px 20px 10px;
+  }
 
   &_user {
     align-self: flex-end;
@@ -76,6 +80,50 @@
 
     &_user {
       margin-right: 10px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .message {
+    max-width: 320px;
+
+    &__content {
+      &-text {
+        font-size: 13px;
+        line-height: 13px;
+      }
+  
+      &-image {
+        max-width: 306px;
+      }
+
+      &-date {
+        font-size: 9px;
+        padding-top: 3px;
+      }
+    }
+
+    &__name {
+      font-size: 12px;
+      line-height: 13px;
+    }
+    
+    &-text {
+      padding: 6px;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .message {
+    max-width: 260px;
+    margin-left: 10px;
+
+    &__content {
+      &-image {
+        max-width: 246px;
+      }
     }
   }
 }

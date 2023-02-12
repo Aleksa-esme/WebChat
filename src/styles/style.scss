@@ -140,6 +140,13 @@ button,
     font-size: 12px;
     line-height: 14px;
   }
+
+  .form { 
+    &__value {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
 }
 
 @media (max-width: 425px) {
@@ -147,6 +154,14 @@ button,
     padding: 5px 8px;
     font-size: 10px;
     line-height: 12px;
+  }
+
+  .form { 
+    padding: 16px;
+    &__value {
+      font-size: 14px;
+      line-height: 14px;
+    }
   }
 }
 

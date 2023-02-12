@@ -38,3 +38,30 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .chat-menu {
+    &__buttons {
+      min-width: 216px;
+      right: -10px;
+
+      &::before {
+        right: 3px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .chat-menu {
+    &__buttons {
+      min-width: 204px;
+    }
+
+    & ul {
+      & li {
+        padding-bottom: 8px;       
+      }
+    }
+  }
+}

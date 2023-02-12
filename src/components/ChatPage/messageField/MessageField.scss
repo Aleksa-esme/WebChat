@@ -24,3 +24,16 @@
     }
   }
 }
+
+@media (max-width: 425px) {
+  .messages-field {
+    &__input {
+      padding: 6px 20px;
+      margin: 0 4px;
+  
+      &::placeholder {
+        line-height: 30px;
+      }
+    }
+  }
+}

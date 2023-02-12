@@ -11,6 +11,10 @@ const defaultState: AppState = {
   messages: [],
   fileId: null,
   stickers: [],
+  chatState: {
+    chatList: true,
+    chatField: true,
+  },
 };
 
 export default defaultState;

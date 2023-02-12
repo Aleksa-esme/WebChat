@@ -26,11 +26,13 @@
 
 @media (max-width: 768px) {
   .chat-field {
-    display: none;
     width: 100%;
+    padding: 0 20px;
+  }
+}
 
-    &_empty {
-      display: none;
-    }
+@media (max-width: 425px) {
+  .chat-field {
+    padding: unset;
   }
 }

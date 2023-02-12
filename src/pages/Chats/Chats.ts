@@ -28,7 +28,12 @@ class Chats extends Component {
       onDeleteUser: (event: SubmitEvent) => onDeleteUser(event),
     });
 
-    window.addEventListener('resize', onResize);
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.addEventListener('load', onResize);
+    } else {
+      window.addEventListener('load', onResize);
+      window.addEventListener('resize', onResize);
+    }
   }
 
   // componentDidUpdate() {
@@ -43,39 +48,44 @@ class Chats extends Component {
 
     return `
       <section class='chat-page'>
-        <div class='chats'>
-          <input type='text' class='chats__search' placeholder='Поиск'>
-          {{{ ChatList }}}
-          <div class='chats__buttons'>
-            {{{ ButtonSvg
-              svg='${ChatsAddSvg}' 
-              alt='menu'
-              type='button' 
-              classes='svg-button'
-              onClick=onShowModalChat 
-            }}}
-            {{{ ButtonSvg
-              svg='${StickerAddSvg}' 
-              alt='menu'
-              type='button' 
-              classes='svg-button'
-              onClick=onShowModalStickers 
-            }}}
-            {{{ ButtonSvg
-              svg='${UserSvg}' 
-              alt='menu'
-              type='button' 
-              classes='svg-button'
-              onClick=navigateProfile 
-            }}}
+        {{#if ${!!window.store.getState().chatState.chatList} }}
+          <div class='chats'>
+            <input type='text' class='chats__search' placeholder='Поиск'>
+
+            {{{ ChatList }}}
+            <div class='chats__buttons'>
+              {{{ ButtonSvg
+                svg='${ChatsAddSvg}' 
+                alt='menu'
+                type='button' 
+                classes='svg-button'
+                onClick=onShowModalChat 
+              }}}
+              {{{ ButtonSvg
+                svg='${StickerAddSvg}' 
+                alt='menu'
+                type='button' 
+                classes='svg-button'
+                onClick=onShowModalStickers 
+              }}}
+              {{{ ButtonSvg
+                svg='${UserSvg}' 
+                alt='menu'
+                type='button' 
+                classes='svg-button'
+                onClick=navigateProfile 
+              }}}
+            </div>
           </div>
-        </div>
-        {{#if ${window.store.getState().chatId !== null} }}
-          {{{ ChatField avatar="${getChatAvatar()}" }}}
-        {{else}}
-          <div class='chat-field_empty'>
-            <p>Выберите чат</p>
-          </div>
+        {{/if}}
+        {{#if ${!!window.store.getState().chatState.chatField} }}
+          {{#if ${window.store.getState().chatId !== null} }}
+            {{{ ChatField avatar="${getChatAvatar()}" }}}
+          {{else}}
+            <div class='chat-field_empty'>
+              <p>Выберите чат</p>
+            </div>
+          {{/if}}
         {{/if}}
 
         {{{ Modal 

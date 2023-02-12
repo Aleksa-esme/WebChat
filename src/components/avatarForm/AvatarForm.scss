@@ -23,3 +23,19 @@
     }
   }
 }
+
+@media (max-width: 425px) {
+  .avatar-form {
+    padding-bottom: 15px;
+  
+    &__size {
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  
+    &__input {
+      max-width: 250px;
+      padding: 15px 20px 0;
+    }
+  }
+}
