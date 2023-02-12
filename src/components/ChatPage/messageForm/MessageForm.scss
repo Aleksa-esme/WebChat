@@ -5,3 +5,9 @@
   padding: 14px 20px;
   border-top: 1px solid var(--grey);
 }
+
+@media (max-width: 768px) {
+  .messages-send {
+    padding: 10px;
+  }
+}

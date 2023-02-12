@@ -55,3 +55,15 @@
     width: 600px;
   }
 }
+
+@media (max-width: 425px) {
+  .chats {
+    &__search {
+      margin: 18px 14px;
+    }
+
+    &__buttons {
+      padding: 17px 60px;
+    }
+  }
+}

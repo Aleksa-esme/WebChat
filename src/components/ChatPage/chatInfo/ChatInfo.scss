@@ -35,6 +35,7 @@
 
 @media (max-width: 768px) {
   .chat-info {
+    padding: 10px 16px;
     &__left {
       display: flex;
       align-items: center;
@@ -44,6 +45,15 @@
         display: block;
       }
     }
-  
+  }
+}
+
+@media (max-width: 425px) {
+  .chat-info {
+    &__users {
+      padding-top: 6px;
+      font-size: 12px;
+      line-height: 12px;
+    }
   }
 }
