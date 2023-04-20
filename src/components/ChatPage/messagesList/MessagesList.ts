@@ -9,6 +9,7 @@ class MessagesList extends Component {
     super(props);
   }
 
+  // BUG FIX смайлики с обратным слешем (напр :\ ) ломают парсер шаблонизатора
   render() {
     return `
       <div class='messages-list scroll'>
