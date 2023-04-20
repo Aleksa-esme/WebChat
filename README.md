@@ -15,17 +15,17 @@
 - Роутинг
 
 Для работы с приложением необходима регистрация. Можно указывать несуществующую почту
-![alt text](https://cloud.mail.ru/public/ZfzB/SNmriWq35)
+![Image alt](https://cloud.mail.ru/public/ZfzB/SNmriWq35)
 
 На странице профиля можно посмотреть и изменить свои данные
-![alt text](https://cloud.mail.ru/public/honM/bZGQg1gYL)
+![Image alt](https://cloud.mail.ru/public/honM/bZGQg1gYL)
 
 На странице чатов можно создать чат, в который можно добавлять/удалять пользователей (по логину), изменять изображение чата
-![alt text](https://cloud.mail.ru/public/honM/bZGQg1gYL)
+![Image alt](https://cloud.mail.ru/public/honM/bZGQg1gYL)
 
 В чат можно добавлять любое количество пользователей. Общение происходит в реальном времени. Можно отправлять текстовые сообщения и изображения. 
 Приложение адаптировано для работы на десктопной, планшетной и мобильной версиях
-![alt text](https://cloud.mail.ru/public/m3aF/ethZCmuDF)
+![Image alt](https://cloud.mail.ru/public/m3aF/ethZCmuDF)
 
 Важно: в браузере можно находиться только с одного аккаунта (не считая режим инкогнито).
 
